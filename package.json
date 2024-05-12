@@ -8,7 +8,7 @@
     "ios": "expo start --ios",
     "web": "expo start --web",
     "test": "jest --watchAll",
-    "deploy": "gh-pages -t -d dist",
+    "deploy": "netlify deploy --dir dist",
     "predeploy": "expo export -p web"
   },
   "jest": {
