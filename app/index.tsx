@@ -1,3 +1,5 @@
+/** @format */
+
 import { Article } from "@/components/Article";
 import Card from "@/components/Card";
 import { colors } from "@/constants/customisedTheme";
@@ -166,7 +168,7 @@ export default function HomeScreen() {
           <FontAwesome6 name="github" size={24} color={colors.primary} />
         </Pressable>
         <Pressable
-          onPress={() => Linking.openURL("mailto:karniej.p@gmail.com")}
+          onPress={() => Linking.openURL("mailto:contact@pawelkarniej.com")}
         >
           <FontAwesome6 name="envelope" size={24} color={colors.primary} />
         </Pressable>
