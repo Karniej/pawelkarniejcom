@@ -9,7 +9,8 @@
     "web": "expo start --web",
     "test": "jest --watchAll",
     "deploy": "netlify deploy --dir dist",
-    "predeploy": "expo export -p web"
+    "predeploy": "expo export -p web",
+    "prod": "yarn deploy --prod"
   },
   "jest": {
     "preset": "jest-expo"
