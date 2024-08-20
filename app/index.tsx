@@ -71,7 +71,7 @@ export default function HomeScreen() {
   const ArticleSection = () => {
     return (
       <Animated.View entering={FadeIn}>
-        <VStack alignItems="center">
+        <VStack gap="$1" alignItems="center">
           <SectionTitle>Articles about React Native</SectionTitle>
           <Article
             title="The best React Native date picker libraries"
@@ -117,7 +117,7 @@ export default function HomeScreen() {
     <Animated.View entering={FadeIn}>
       <VStack alignItems="center">
         <SectionTitle>Currently working on:</SectionTitle>
-        <HStack alignItems="center">
+        <HStack gap="$2" alignItems="center">
           <Card
             type="app"
             imageUrl={require("../assets/images/newsletterytics.png")}
@@ -132,6 +132,13 @@ export default function HomeScreen() {
             link="https://coldsmithapp.com/"
             description="Tracking your cold exposure sessions on Mobile."
           />
+          <Card
+            type="app"
+            imageUrl={require("../assets/images/rnchallenge.png")}
+            title="React Native Challenge"
+            link="https://reactnativechallenge.com/"
+            description="Weekly Newsletter of React Native coding challenges to sharpen your skills."
+          />
           {/* <Card
             type="app"
             imageUrl={require("../assets/images/utanihur.png")}
@@ -141,12 +148,18 @@ export default function HomeScreen() {
           /> */}
         </HStack>
         <SectionTitle>My released projects</SectionTitle>
-        <HStack alignItems="center">
+        <HStack gap="$2" alignItems="center">
           <Card
             imageUrl={require("../assets/images/countownnuts.png")}
             title="Countdown Nuts"
             link="https://countdownnuts.com/"
             description="Managing and tracking your consumable items."
+          />
+          <Card
+            imageUrl={require("../assets/images/themegen.png")}
+            title="Themegen.xyz"
+            link="https://themegen.xyz/"
+            description="Create and customize dependency-free themes for React Native"
           />
           <Card
             type="app"
@@ -159,7 +172,7 @@ export default function HomeScreen() {
             imageUrl={require("../assets/images/selfmadedev.png")}
             title="Selfmade.dev"
             link="https://selfmadedev.com/"
-            description="My old blog about learning programming and React Native."
+            description="My blog about learning programming and React Native."
           />
         </HStack>
       </VStack>
@@ -190,7 +203,7 @@ export default function HomeScreen() {
   );
 
   return (
-    <VStack flex={1}>
+    <VStack flex={1} alignItems="center">
       <ScrollView alignItems="center">
         <Header />
         <ReleasesSection />
