@@ -74,9 +74,14 @@ export default function HomeScreen() {
         <VStack alignItems="center">
           <SectionTitle>Articles about React Native</SectionTitle>
           <Article
-            title="How to make Tinder-like card animations with React Native"
-            link="https://blog.logrocket.com/how-to-make-tinder-like-card-animations-with-react-native/"
-            description="Sep 2, 2019"
+            title="The best React Native date picker libraries"
+            link="https://blog.logrocket.com/best-react-native-date-picker-libraries/"
+            description="Feb 22, 2024"
+          />
+          <Article
+            title="React Native iOS and Android"
+            link="https://www.netguru.com/blog/react-native-ios-and-android"
+            description="Feb 22, 2024"
           />
           <Article
             title="Designing a custom UI using React Native Paper"
@@ -84,9 +89,9 @@ export default function HomeScreen() {
             description="May 2, 2023"
           />
           <Article
-            title="The best React Native date picker libraries"
-            link="https://blog.logrocket.com/best-react-native-date-picker-libraries/"
-            description="Feb 22, 2024"
+            title="Detox Tool for React Native"
+            link="https://www.netguru.com/blog/detox-tool-react-native"
+            description="May 2, 2023"
           />
           <Article
             title="Common bugs in React Native ScrollView"
@@ -94,19 +99,14 @@ export default function HomeScreen() {
             description="Aug 6, 2020"
           />
           <Article
-            title="React Native Heart Animation"
-            link="https://www.netguru.com/blog/react-native-heart-animation"
+            title="How to make Tinder-like card animations with React Native"
+            link="https://blog.logrocket.com/how-to-make-tinder-like-card-animations-with-react-native/"
             description="Sep 2, 2019"
           />
           <Article
-            title="Detox Tool for React Native"
-            link="https://www.netguru.com/blog/detox-tool-react-native"
-            description="May 2, 2023"
-          />
-          <Article
-            title="React Native iOS and Android"
-            link="https://www.netguru.com/blog/react-native-ios-and-android"
-            description="Feb 22, 2024"
+            title="React Native Heart Animation"
+            link="https://www.netguru.com/blog/react-native-heart-animation"
+            description="Sep 2, 2019"
           />
         </VStack>
       </Animated.View>
@@ -117,7 +117,14 @@ export default function HomeScreen() {
     <Animated.View entering={FadeIn}>
       <VStack alignItems="center">
         <SectionTitle>Currently working on:</SectionTitle>
-        <HStack>
+        <HStack alignItems="center">
+          <Card
+            type="app"
+            imageUrl={require("../assets/images/newsletterytics.png")}
+            title="Newsletterytics"
+            link="https://newsletterytics.com/"
+            description="Your Beehiiv newsletter statistics, on the go."
+          />
           <Card
             type="app"
             imageUrl={require("../assets/images/coldsmith.png")}
@@ -125,16 +132,22 @@ export default function HomeScreen() {
             link="https://coldsmithapp.com/"
             description="Tracking your cold exposure sessions on Mobile."
           />
-          <Card
+          {/* <Card
             type="app"
             imageUrl={require("../assets/images/utanihur.png")}
             title="Utanihur"
             link="https://utanihur.com/"
             description="Tibia boss checker for Web and Mobile."
-          />
+          /> */}
         </HStack>
         <SectionTitle>My released projects</SectionTitle>
         <HStack alignItems="center">
+          <Card
+            imageUrl={require("../assets/images/countownnuts.png")}
+            title="Countdown Nuts"
+            link="https://countdownnuts.com/"
+            description="Managing and tracking your consumable items."
+          />
           <Card
             type="app"
             imageUrl={require("../assets/images/fitmate.png")}
