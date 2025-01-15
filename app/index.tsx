@@ -120,9 +120,16 @@ export default function HomeScreen() {
         <HStack gap="$2" alignItems="center">
           <Card
             type="app"
+            imageUrl={require("../assets/images/aividly.png")}
+            title="AI Video Creator Pro: Aividly"
+            link="https://apps.apple.com/us/app/aividly-ai-video-creator-pro/id6698894140"
+            description="Create short AI videos on your phone."
+          />
+          <Card
+            type="app"
             imageUrl={require("../assets/images/newsletterytics.png")}
             title="Newsletterytics"
-            link="https://newsletterytics.com/"
+            link="https://apps.apple.com/us/app/newsletterytics-beehiivs-app/id6505141597"
             description="Your Beehiiv newsletter statistics, on the go."
           />
           <Card
@@ -131,13 +138,6 @@ export default function HomeScreen() {
             title="Coldsmith"
             link="https://coldsmithapp.com/"
             description="Tracking your cold exposure sessions on Mobile."
-          />
-          <Card
-            type="app"
-            imageUrl={require("../assets/images/rnchallenge.png")}
-            title="React Native Challenge"
-            link="https://reactnativechallenge.com/"
-            description="Weekly Newsletter of React Native coding challenges to sharpen your skills."
           />
           {/* <Card
             type="app"
