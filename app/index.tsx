@@ -158,7 +158,7 @@ export default function HomeScreen() {
           <Card
             imageUrl={require("../assets/images/themegen.png")}
             title="Themegen.xyz"
-            link="https://themegen.xyz/"
+            link="https://themegenrn.netlify.app/"
             description="Create and customize dependency-free themes for React Native"
           />
           <Card
