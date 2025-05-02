@@ -15,6 +15,7 @@ import {
 } from "@gluestack-ui/themed";
 import { Linking } from "react-native";
 import Animated, { FadeIn } from "react-native-reanimated";
+import { Link as ExpoLink, useRouter } from "expo-router";
 
 export default function HomeScreen() {
   const Header = () => (
@@ -121,7 +122,7 @@ export default function HomeScreen() {
           <Card
             type="app"
             imageUrl={require("../assets/images/aividly.png")}
-            title="AI Video Creator Pro: Aividly"
+            title="Aividly: AI Generated Videos"
             link="https://apps.apple.com/us/app/aividly-ai-video-creator-pro/id6698894140"
             description="Create short AI videos on your phone."
           />
@@ -179,28 +180,64 @@ export default function HomeScreen() {
     </Animated.View>
   );
 
-  const SocialsSection = () => (
-    <Animated.View entering={FadeIn}>
-      <HStack mb="$16" alignItems="center" justifyContent="center">
-        <Pressable
-          onPress={() => Linking.openURL("https://twitter.com/pawelkarniej")}
-        >
-          <FontAwesome6 name="x-twitter" size={24} color={colors.primary} />
-        </Pressable>
-        <Pressable
-          mx="$4"
-          onPress={() => Linking.openURL("https://github.com/karniej")}
-        >
-          <FontAwesome6 name="github" size={24} color={colors.primary} />
-        </Pressable>
-        <Pressable
-          onPress={() => Linking.openURL("mailto:contact@pawelkarniej.com")}
-        >
-          <FontAwesome6 name="envelope" size={24} color={colors.primary} />
-        </Pressable>
-      </HStack>
-    </Animated.View>
-  );
+  const SocialsSection = () => {
+    const router = useRouter();
+    return (
+      <Animated.View entering={FadeIn}>
+        <VStack mb="$16" alignItems="center" justifyContent="center" space="md">
+          <HStack alignItems="center" justifyContent="center">
+            <Pressable
+              onPress={() =>
+                Linking.openURL("https://twitter.com/pawelkarniej")
+              }
+            >
+              <FontAwesome6 name="x-twitter" size={24} color={colors.primary} />
+            </Pressable>
+            <Pressable
+              mx="$4"
+              onPress={() => Linking.openURL("https://github.com/karniej")}
+            >
+              <FontAwesome6 name="github" size={24} color={colors.primary} />
+            </Pressable>
+            <Pressable
+              onPress={() => Linking.openURL("mailto:contact@pawelkarniej.com")}
+            >
+              <FontAwesome6 name="envelope" size={24} color={colors.primary} />
+            </Pressable>
+          </HStack>
+          <HStack space="md">
+            <Pressable onPress={() => router.push("/contact")}>
+              <Text
+                $light-color={colors.darkBackground}
+                $dark-color={colors.lightBackground}
+                fontFamily="Poppins_400Regular"
+              >
+                Contact
+              </Text>
+            </Pressable>
+            <Pressable onPress={() => router.push("/privacy-policy")}>
+              <Text
+                $light-color={colors.darkBackground}
+                $dark-color={colors.lightBackground}
+                fontFamily="Poppins_400Regular"
+              >
+                Privacy Policy
+              </Text>
+            </Pressable>
+            <Pressable onPress={() => router.push("/terms")}>
+              <Text
+                $light-color={colors.darkBackground}
+                $dark-color={colors.lightBackground}
+                fontFamily="Poppins_400Regular"
+              >
+                Terms of Service
+              </Text>
+            </Pressable>
+          </HStack>
+        </VStack>
+      </Animated.View>
+    );
+  };
 
   return (
     <VStack flex={1} alignItems="center">
