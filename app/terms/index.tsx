@@ -34,6 +34,15 @@ export default function TermsIndexScreen() {
             AIVidly Terms of Service
           </Text>
         </Pressable>
+        <Pressable onPress={() => router.push("/terms/coldsmith")}>
+          <Text
+            color={colors.primary}
+            fontFamily="Poppins_500Medium"
+            textDecorationLine="underline"
+          >
+            Coldsmith Terms of Service
+          </Text>
+        </Pressable>
         {/* Add links for other apps here */}
       </VStack>
     </Animated.View>

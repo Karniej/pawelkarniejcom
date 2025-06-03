@@ -34,6 +34,15 @@ export default function PrivacyPolicyIndexScreen() {
             AIVidly Privacy Policy
           </Text>
         </Pressable>
+        <Pressable onPress={() => router.push("/privacy-policy/coldsmith")}>
+          <Text
+            color={colors.primary}
+            fontFamily="Poppins_500Medium"
+            textDecorationLine="underline"
+          >
+            Coldsmith Privacy Policy
+          </Text>
+        </Pressable>
         {/* Add links for other apps here */}
       </VStack>
     </Animated.View>
