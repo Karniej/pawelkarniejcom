@@ -153,27 +153,24 @@ export default function Home() {
   const youtubeVideos = [
     {
       id: "1",
-      title: "Building AI Apps with React Native",
+      title: "How I Built 10+ Apps and Made $100k+ Revenue 💰",
       thumbnail: "/images/youtube-thumb-1.jpg",
       url: "https://www.youtube.com/@thepawelk/shorts",
+      duration: "0:45",
     },
     {
       id: "2",
-      title: "React Native Performance Tips",
+      title: "React Native vs Flutter: The TRUTH in 2024 🔥",
       thumbnail: "/images/youtube-thumb-2.jpg",
       url: "https://www.youtube.com/@thepawelk/shorts",
+      duration: "0:58",
     },
     {
       id: "3",
-      title: "Mobile Development Insights",
+      title: "5 Mistakes That Will KILL Your App Performance ⚡",
       thumbnail: "/images/youtube-thumb-3.jpg",
       url: "https://www.youtube.com/@thepawelk/shorts",
-    },
-    {
-      id: "4",
-      title: "App Store Success Stories",
-      thumbnail: "/images/youtube-thumb-4.jpg",
-      url: "https://www.youtube.com/@thepawelk/shorts",
+      duration: "1:12",
     },
   ];
 
@@ -370,7 +367,7 @@ export default function Home() {
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
             {youtubeVideos.map((video, index) => (
               <motion.div
                 key={video.id}
@@ -387,14 +384,23 @@ export default function Home() {
                   className="block"
                 >
                   <div className="relative aspect-[9/16] rounded-lg overflow-hidden bg-gradient-to-br from-red-500/20 to-purple-500/20 border border-white/10 group-hover:border-red-500/50 transition-all duration-300">
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+
+                    {/* Duration Badge */}
+                    <div className="absolute top-3 right-3 px-2 py-1 bg-black/80 rounded text-white text-xs font-medium">
+                      {video.duration}
+                    </div>
+
+                    {/* Play Button */}
                     <div className="absolute inset-0 flex items-center justify-center">
-                      <div className="w-12 h-12 rounded-full bg-red-500/80 flex items-center justify-center group-hover:bg-red-500 transition-colors">
+                      <div className="w-12 h-12 rounded-full bg-red-500/80 flex items-center justify-center group-hover:bg-red-500 group-hover:scale-110 transition-all duration-300">
                         <Play className="h-6 w-6 text-white ml-1" />
                       </div>
                     </div>
+
+                    {/* Title */}
                     <div className="absolute bottom-4 left-4 right-4">
-                      <h3 className="text-white text-sm font-medium line-clamp-2">
+                      <h3 className="text-white text-sm font-medium line-clamp-3 leading-tight">
                         {video.title}
                       </h3>
                     </div>
