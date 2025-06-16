@@ -150,6 +150,7 @@ export default function Home() {
     { label: "Articles Written", value: "15+", icon: Zap },
   ];
 
+  // Update these with your actual latest 3 YouTube shorts
   const youtubeVideos = [
     {
       id: "1",
@@ -173,6 +174,10 @@ export default function Home() {
       duration: "1:12",
     },
   ];
+
+  // TODO: Implement YouTube API integration
+  // For now, manually update these with your latest 3 videos
+  // See YOUTUBE_SETUP.md for API integration instructions
 
   return (
     <div className="min-h-screen bg-black text-white overflow-hidden">
@@ -315,9 +320,9 @@ export default function Home() {
             </h2>
 
             <p className="text-xl text-zinc-300 max-w-3xl mx-auto mb-8 leading-relaxed">
-              A comprehensive platform connecting app developers, designers, and
-              entrepreneurs. Building the future of mobile app collaboration and
-              innovation.
+              Documenting my journey to $10k MRR with mobile apps. Follow along
+              as I build, launch, and scale multiple React Native applications
+              while sharing every lesson learned.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
