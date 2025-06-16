@@ -298,7 +298,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* The Appiarist Project Showcase */}
+      {/* The Appiarist Project Showcase - COMMENTED OUT FOR NOW */}
+      {/* 
       <section className="relative py-16 px-4 bg-gradient-to-r from-purple-900/20 to-blue-900/20">
         <div className="max-w-7xl mx-auto">
           <motion.div
@@ -346,6 +347,7 @@ export default function Home() {
           </motion.div>
         </div>
       </section>
+      */}
 
       {/* YouTube Reel Section */}
       <section className="relative py-16 px-4">
