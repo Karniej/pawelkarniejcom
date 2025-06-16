@@ -349,107 +349,110 @@ export default function Home() {
       </section>
       */}
 
-      {/* YouTube Reel Section */}
-      <section className="relative py-16 px-4">
-        <div className="max-w-7xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-            className="text-center mb-12"
-          >
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-red-500/20 border border-red-500/30 mb-6">
-              <Youtube className="h-4 w-4 text-red-400" />
-              <span className="text-red-300 text-sm font-medium">
-                Latest Content
-              </span>
-            </div>
+      {/* YouTube Reel Section - HIDDEN FOR NOW */}
+      {false && (
+        <section className="relative py-16 px-4">
+          <div className="max-w-7xl mx-auto">
+            <motion.div
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              transition={{ duration: 0.6 }}
+              viewport={{ once: true }}
+              className="text-center mb-12"
+            >
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-red-500/20 border border-red-500/30 mb-6">
+                <Youtube className="h-4 w-4 text-red-400" />
+                <span className="text-red-300 text-sm font-medium">
+                  Latest Content
+                </span>
+              </div>
 
-            <h2 className="text-3xl md:text-4xl font-heading font-bold mb-4">
-              YouTube Shorts & Insights
-            </h2>
-            <p className="text-lg text-zinc-400 max-w-2xl mx-auto">
-              Quick tips, tutorials, and insights about React Native development
-            </p>
-          </motion.div>
+              <h2 className="text-3xl md:text-4xl font-heading font-bold mb-4">
+                YouTube Shorts & Insights
+              </h2>
+              <p className="text-lg text-zinc-400 max-w-2xl mx-auto">
+                Quick tips, tutorials, and insights about React Native
+                development
+              </p>
+            </motion.div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
-            {youtubeVideos.map((video, index) => (
-              <motion.div
-                key={video.id}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                viewport={{ once: true }}
-                className="group cursor-pointer"
-              >
-                <a
-                  href={video.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="block"
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+              {youtubeVideos.map((video, index) => (
+                <motion.div
+                  key={video.id}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: index * 0.1 }}
+                  viewport={{ once: true }}
+                  className="group cursor-pointer"
                 >
-                  <div className="relative aspect-[9/16] rounded-lg overflow-hidden bg-gradient-to-br from-red-500/20 to-purple-500/20 border border-white/10 group-hover:border-red-500/50 transition-all duration-300">
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+                  <a
+                    href={video.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block"
+                  >
+                    <div className="relative aspect-[9/16] rounded-lg overflow-hidden bg-gradient-to-br from-red-500/20 to-purple-500/20 border border-white/10 group-hover:border-red-500/50 transition-all duration-300">
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
 
-                    {/* Duration Badge */}
-                    <div className="absolute top-3 right-3 px-2 py-1 bg-black/80 rounded text-white text-xs font-medium">
-                      {video.duration}
-                    </div>
+                      {/* Duration Badge */}
+                      <div className="absolute top-3 right-3 px-2 py-1 bg-black/80 rounded text-white text-xs font-medium">
+                        {video.duration}
+                      </div>
 
-                    {/* Play Button */}
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <div className="w-12 h-12 rounded-full bg-red-500/80 flex items-center justify-center group-hover:bg-red-500 group-hover:scale-110 transition-all duration-300">
-                        <Play className="h-6 w-6 text-white ml-1" />
+                      {/* Play Button */}
+                      <div className="absolute inset-0 flex items-center justify-center">
+                        <div className="w-12 h-12 rounded-full bg-red-500/80 flex items-center justify-center group-hover:bg-red-500 group-hover:scale-110 transition-all duration-300">
+                          <Play className="h-6 w-6 text-white ml-1" />
+                        </div>
+                      </div>
+
+                      {/* Title */}
+                      <div className="absolute bottom-4 left-4 right-4">
+                        <h3 className="text-white text-sm font-medium line-clamp-3 leading-tight">
+                          {video.title}
+                        </h3>
                       </div>
                     </div>
+                  </a>
+                </motion.div>
+              ))}
+            </div>
 
-                    {/* Title */}
-                    <div className="absolute bottom-4 left-4 right-4">
-                      <h3 className="text-white text-sm font-medium line-clamp-3 leading-tight">
-                        {video.title}
-                      </h3>
-                    </div>
-                  </div>
-                </a>
-              </motion.div>
-            ))}
-          </div>
+            <div className="text-center">
+              <GradientButton
+                href="https://www.youtube.com/@thepawelk/shorts"
+                variant="secondary"
+                icon={Youtube}
+                className="dark"
+              >
+                View All Videos
+              </GradientButton>
+            </div>
 
-          <div className="text-center">
-            <GradientButton
-              href="https://www.youtube.com/@thepawelk/shorts"
-              variant="secondary"
-              icon={Youtube}
-              className="dark"
+            {/* Small Stats */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              transition={{ duration: 0.6 }}
+              viewport={{ once: true }}
+              className="mt-16 flex flex-wrap justify-center gap-8"
             >
-              View All Videos
-            </GradientButton>
-          </div>
-
-          {/* Small Stats */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-            className="mt-16 flex flex-wrap justify-center gap-8"
-          >
-            {stats.map((stat, index) => (
-              <div key={stat.label} className="text-center">
-                <div className="flex items-center justify-center gap-2 mb-1">
-                  <stat.icon className="h-4 w-4 text-emerald-400" />
-                  <span className="text-2xl font-bold text-white">
-                    {stat.value}
-                  </span>
+              {stats.map((stat, index) => (
+                <div key={stat.label} className="text-center">
+                  <div className="flex items-center justify-center gap-2 mb-1">
+                    <stat.icon className="h-4 w-4 text-emerald-400" />
+                    <span className="text-2xl font-bold text-white">
+                      {stat.value}
+                    </span>
+                  </div>
+                  <div className="text-sm text-zinc-500">{stat.label}</div>
                 </div>
-                <div className="text-sm text-zinc-500">{stat.label}</div>
-              </div>
-            ))}
-          </motion.div>
-        </div>
-      </section>
+              ))}
+            </motion.div>
+          </div>
+        </section>
+      )}
 
       {/* Current Projects Section */}
       <section id="projects" className="relative py-24 px-4">
