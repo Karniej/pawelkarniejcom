@@ -137,7 +137,7 @@ export default function HomeScreen() {
             type="app"
             imageUrl={require("../assets/images/coldsmith.png")}
             title="Coldsmith"
-            link="https://coldsmithapp.com/"
+            link="https://apps.apple.com/pl/app/wim-hof-method-whm-coldsmith/id6469033824"
             description="Tracking your cold exposure sessions on Mobile."
           />
           {/* <Card
