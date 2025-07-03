@@ -78,6 +78,18 @@ export default function AividlyPrivacyPage() {
                 </section>
 
                 <section>
+                  <h2 className="text-2xl font-semibold mb-4">Face Data</h2>
+                  <p className="text-muted-foreground leading-relaxed">
+                    AIVidly may access face data locally on your device to apply
+                    effects or generate media using AI. However, we do not
+                    collect, store, retain, or transmit any face data. All
+                    processing occurs entirely on the user&apos;s device, and no
+                    facial information is saved or shared with us or any third
+                    parties.
+                  </p>
+                </section>
+
+                <section>
                   <h2 className="text-2xl font-semibold mb-4">
                     Third-Party Services
                   </h2>
