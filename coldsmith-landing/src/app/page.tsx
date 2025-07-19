@@ -3,24 +3,9 @@
 "use client";
 
 import { motion } from "framer-motion";
-import Link from "next/link";
-import {
-  ArrowLeft,
-  Snowflake,
-  Timer,
-  TrendingUp,
-  Heart,
-  Zap,
-  Apple,
-} from "lucide-react";
+import { Snowflake, Timer, TrendingUp, Heart, Zap, Apple } from "lucide-react";
 import { GradientButton } from "@/components/ui/gradient-button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 const FeatureCard = ({
   title,
@@ -29,9 +14,9 @@ const FeatureCard = ({
 }: {
   title: string;
   description: string;
-  icon: any;
+  icon: React.ComponentType<{ className?: string }>;
 }) => (
-  <Card className="coldsmith-card">
+  <Card className="coldsmith-card relative">
     <CardHeader>
       <div className="flex items-center gap-3 mb-2">
         <div className="w-12 h-12 p-2.5 rounded-xl bg-blue-500/20 border border-blue-400/30">
@@ -100,9 +85,7 @@ export default function ColdsmithLanding() {
               transition={{ duration: 0.6, delay: 0.3 }}
               className="text-5xl md:text-6xl lg:text-7xl font-heading font-bold mb-6"
             >
-              <span className="bg-gradient-to-r from-blue-400 via-cyan-300 to-blue-500 bg-clip-text text-transparent">
-                Coldsmith
-              </span>
+              <span className="gradient-text">Coldsmith</span>
             </motion.h1>
 
             <motion.p
@@ -131,7 +114,7 @@ export default function ColdsmithLanding() {
               transition={{ duration: 0.6, delay: 0.6 }}
               className="mb-16"
             >
-              <Link
+              <a
                 href="https://apps.apple.com/pl/app/wim-hof-method-whm-coldsmith/id6469033824"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -139,7 +122,7 @@ export default function ColdsmithLanding() {
               >
                 <Apple className="w-6 h-6" />
                 Download on App Store
-              </Link>
+              </a>
             </motion.div>
           </div>
 
@@ -216,9 +199,7 @@ export default function ColdsmithLanding() {
             className="text-center mb-16"
           >
             <h2 className="text-3xl md:text-4xl font-heading font-bold mb-8">
-              <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
-                Why Cold Exposure?
-              </span>
+              <span className="gradient-text">Why Cold Exposure?</span>
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-4xl mx-auto">
               {[
@@ -237,24 +218,26 @@ export default function ColdsmithLanding() {
             </div>
           </motion.div>
 
-          {/* Back to Home */}
-          <div className="text-center">
-            <Link href="/" passHref>
-              <GradientButton>
-                <ArrowLeft className="w-4 h-4 mr-2" />
-                Back to Home
-              </GradientButton>
-            </Link>
-          </div>
+          {/* Final CTA */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 1.0 }}
+            className="text-center"
+          >
+            <h3 className="text-2xl font-heading font-bold mb-4 text-blue-200">
+              Start your cold journey today
+            </h3>
+            <p className="text-zinc-400 mb-8">
+              Track every win—one chill at a time.
+            </p>
+            <GradientButton href="https://apps.apple.com/pl/app/wim-hof-method-whm-coldsmith/id6469033824">
+              <Apple className="w-5 h-5 mr-2" />
+              Get Coldsmith Now
+            </GradientButton>
+          </motion.div>
         </motion.div>
       </div>
-
-      <style jsx global>{`
-        .coldsmith-card {
-          @apply bg-gradient-to-br from-slate-900/80 to-slate-800/60 border border-blue-500/20 backdrop-blur-sm;
-          @apply hover:border-blue-400/40 transition-all duration-300;
-        }
-      `}</style>
     </div>
   );
 }
