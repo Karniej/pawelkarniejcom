@@ -1,36 +1,242 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+<!-- @format -->
 
-## Getting Started
+# Coldsmith Landing Page
 
-First, run the development server:
+A modern, responsive landing page for the Coldsmith app built with Next.js, Tailwind CSS, and Framer Motion.
+
+## 🚀 Quick Start
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 📦 Tech Stack
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- **Next.js 15** - React framework with App Router
+- **TypeScript** - Type safety
+- **Tailwind CSS** - Utility-first CSS framework
+- **shadcn/ui** - Beautiful UI components
+- **Framer Motion** - Smooth animations
+- **Lucide React** - Beautiful icons
 
-## Learn More
+## 🎨 Features
 
-To learn more about Next.js, take a look at the following resources:
+- Cold-themed design with blue/cyan gradients
+- Animated ice particles background
+- Responsive design for all devices
+- App Store download integration
+- Feature showcase cards
+- Benefits section
+- Smooth animations and transitions
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 📁 Project Structure
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```
+coldsmith-landing/
+├── src/
+│   ├── app/
+│   │   ├── globals.css          # Global styles and theme
+│   │   ├── layout.tsx           # Root layout
+│   │   └── page.tsx             # Main landing page
+│   ├── components/
+│   │   └── ui/                  # shadcn/ui components
+│   │       ├── button.tsx
+│   │       ├── card.tsx
+│   │       └── gradient-button.tsx
+│   └── lib/
+│       └── utils.ts             # Utility functions
+├── public/                      # Static assets
+├── netlify.toml                 # Netlify configuration
+├── next.config.js               # Next.js configuration
+├── tailwind.config.ts           # Tailwind configuration
+└── package.json                 # Dependencies and scripts
+```
 
-## Deploy on Vercel
+## 🛠 Available Scripts
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- `npm run dev` - Start development server
+- `npm run build` - Build for production
+- `npm run start` - Start production server
+- `npm run lint` - Run ESLint
+- `npm run deploy` - Build and deploy to Netlify
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 🚀 Deployment Options
+
+### Option 1: Netlify (Recommended)
+
+#### Automatic Deployment from Git
+
+1. **Push to GitHub/GitLab:**
+
+   ```bash
+   git init
+   git add .
+   git commit -m "Initial commit"
+   git remote add origin <your-repo-url>
+   git push -u origin main
+   ```
+
+2. **Connect to Netlify:**
+   - Go to [netlify.com](https://netlify.com)
+   - Click "New site from Git"
+   - Choose your repository
+   - Build settings are already configured in `netlify.toml`
+
+#### Manual Deployment
+
+1. **Build the project:**
+
+   ```bash
+   npm run build
+   ```
+
+2. **Deploy to Netlify:**
+   ```bash
+   npm install -g netlify-cli
+   netlify login
+   netlify deploy --prod --dir=out
+   ```
+
+### Option 2: Vercel
+
+1. **Install Vercel CLI:**
+
+   ```bash
+   npm install -g vercel
+   ```
+
+2. **Deploy:**
+   ```bash
+   vercel --prod
+   ```
+
+### Option 3: Static Hosting (GitHub Pages, etc.)
+
+The project builds to static files in the `out/` directory:
+
+```bash
+npm run build
+# Upload the contents of 'out/' to your static hosting provider
+```
+
+## 🔧 Configuration
+
+### Environment Variables
+
+No environment variables are required for basic functionality.
+
+### Custom Domain
+
+To use a custom domain:
+
+1. **Netlify:** Go to Site Settings > Domain Management
+2. **Vercel:** Go to Project Settings > Domains
+3. Update any hardcoded URLs if needed
+
+### App Store Link
+
+The App Store link is hardcoded in `src/app/page.tsx`. Update it here:
+
+```typescript
+href =
+  "https://apps.apple.com/pl/app/wim-hof-method-whm-coldsmith/id6469033824";
+```
+
+## 📱 Customization
+
+### Colors
+
+The color scheme is defined in `src/app/globals.css`. Key colors:
+
+- Primary: Blue (`#3b82f6`)
+- Secondary: Cyan (`#06b6d4`)
+- Background: Black (`#000000`)
+
+### Content
+
+Main content sections in `src/app/page.tsx`:
+
+- Hero title and description
+- Feature cards
+- Benefits section
+- App Store links
+
+### Images
+
+Replace the screenshot placeholder:
+
+1. Add your app screenshot to `public/`
+2. Update the placeholder section in `src/app/page.tsx`
+
+## 🔄 Moving to Another Repository
+
+### Method 1: Copy Files
+
+```bash
+# Create new repository
+mkdir coldsmith-website
+cd coldsmith-website
+git init
+
+# Copy files (excluding node_modules and .next)
+cp -r ../coldsmith-landing/src .
+cp -r ../coldsmith-landing/public .
+cp ../coldsmith-landing/package.json .
+cp ../coldsmith-landing/package-lock.json .
+cp ../coldsmith-landing/next.config.js .
+cp ../coldsmith-landing/netlify.toml .
+cp ../coldsmith-landing/tailwind.config.ts .
+cp ../coldsmith-landing/tsconfig.json .
+cp ../coldsmith-landing/components.json .
+cp ../coldsmith-landing/postcss.config.mjs .
+cp ../coldsmith-landing/eslint.config.mjs .
+cp ../coldsmith-landing/.gitignore .
+
+# Install dependencies
+npm install
+
+# Test build
+npm run build
+
+# Commit and push
+git add .
+git commit -m "Initial Coldsmith landing page"
+git remote add origin <new-repo-url>
+git push -u origin main
+```
+
+### Method 2: Git Subtree
+
+```bash
+# From the parent repository
+git subtree push --prefix=coldsmith-landing origin coldsmith-branch
+
+# In new repository
+git remote add source <original-repo-url>
+git pull source coldsmith-branch
+```
+
+## 🐛 Troubleshooting
+
+### Build Errors
+
+- **TypeScript errors:** Check `tsconfig.json` configuration
+- **Tailwind classes not working:** Verify `tailwind.config.ts` paths
+- **Import errors:** Check file paths and component exports
+
+### Deployment Issues
+
+- **Static export fails:** Check `next.config.js` configuration
+- **Images not loading:** Ensure `unoptimized: true` in Next.js config
+- **404 on refresh:** Configure your hosting provider for SPA routing
+
+## 📞 Support
+
+For issues specific to the Coldsmith app, contact: contact@pawelkarniej.com
+
+## 📄 License
+
+This project is private and proprietary to Paweł Karniej.
