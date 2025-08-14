@@ -78,7 +78,7 @@ export default function TeleprompterXTermsOfService() {
 
             <Section title="4. Disclaimer">
               <p className="text-zinc-300">
-                The app is provided "as is" without warranties of any kind. We do
+                The app is provided &quot;as is&quot; without warranties of any kind. We do
                 not guarantee uninterrupted or error-free operation.
               </p>
             </Section>
