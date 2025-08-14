@@ -6,12 +6,7 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import { ArrowLeft, Shield, Database, Lock, FileText } from "lucide-react";
 import { GradientButton } from "@/components/ui/gradient-button";
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 const Section = ({
   title,
@@ -45,7 +40,8 @@ export default function TeleprompterXPrivacyPolicy() {
               <Shield className="w-full h-full text-blue-400" />
             </div>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold mb-6">
-              <span className="gradient-text">TeleprompterX</span> Privacy Policy
+              <span className="gradient-text">TeleprompterX</span> Privacy
+              Policy
             </h1>
             <p className="text-xl text-zinc-400 max-w-2xl mx-auto leading-relaxed">
               How we handle data and protect your privacy in TeleprompterX.
@@ -73,8 +69,9 @@ export default function TeleprompterXPrivacyPolicy() {
             <Section title="3. Data Storage & Security">
               <div className="space-y-3 text-zinc-300">
                 <p>
-                  Teleprompter content and preferences are stored locally on your
-                  device. We do not store personal content on external servers.
+                  Teleprompter content and preferences are stored locally on
+                  your device. We do not store personal content on external
+                  servers.
                 </p>
                 <div className="p-4 rounded-lg bg-emerald-500/10 border border-emerald-500/20 text-sm text-emerald-100">
                   We use platform best practices to help keep your data secure.
@@ -123,5 +120,3 @@ export default function TeleprompterXPrivacyPolicy() {
     </div>
   );
 }
-
-

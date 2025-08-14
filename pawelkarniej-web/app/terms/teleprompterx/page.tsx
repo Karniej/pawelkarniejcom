@@ -6,12 +6,7 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import { ArrowLeft, FileText } from "lucide-react";
 import { GradientButton } from "@/components/ui/gradient-button";
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 const Section = ({
   title,
@@ -45,7 +40,8 @@ export default function TeleprompterXTermsOfService() {
               <FileText className="w-full h-full text-blue-400" />
             </div>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold mb-6">
-              <span className="gradient-text">TeleprompterX</span> Terms of Service
+              <span className="gradient-text">TeleprompterX</span> Terms of
+              Service
             </h1>
             <p className="text-xl text-zinc-400 max-w-2xl mx-auto leading-relaxed">
               Key terms and usage conditions for TeleprompterX.
@@ -55,8 +51,8 @@ export default function TeleprompterXTermsOfService() {
           <div className="space-y-8">
             <Section title="1. Acceptance of Terms">
               <p className="text-zinc-300">
-                By downloading or using TeleprompterX, you agree to these Terms of
-                Service. If you do not agree, do not use the app.
+                By downloading or using TeleprompterX, you agree to these Terms
+                of Service. If you do not agree, do not use the app.
               </p>
             </Section>
 
@@ -78,22 +74,23 @@ export default function TeleprompterXTermsOfService() {
 
             <Section title="4. Disclaimer">
               <p className="text-zinc-300">
-                The app is provided &quot;as is&quot; without warranties of any kind. We do
-                not guarantee uninterrupted or error-free operation.
+                The app is provided &quot;as is&quot; without warranties of any
+                kind. We do not guarantee uninterrupted or error-free operation.
               </p>
             </Section>
 
             <Section title="5. Limitation of Liability">
               <p className="text-zinc-300">
-                To the fullest extent permitted by law, we are not liable for any
-                indirect or consequential damages arising from use of the app.
+                To the fullest extent permitted by law, we are not liable for
+                any indirect or consequential damages arising from use of the
+                app.
               </p>
             </Section>
 
             <Section title="6. Changes to Terms">
               <p className="text-zinc-300">
-                We may update these terms from time to time. Continued use of the
-                app after updates constitutes acceptance of the new terms.
+                We may update these terms from time to time. Continued use of
+                the app after updates constitutes acceptance of the new terms.
               </p>
             </Section>
 
@@ -124,5 +121,3 @@ export default function TeleprompterXTermsOfService() {
     </div>
   );
 }
-
-
