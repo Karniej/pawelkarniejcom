@@ -1,3 +1,0 @@
-[build]
-  command = "cd pawelkarniej-web && npm install && npm run build"
-  publish = "pawelkarniej-web/out" 
