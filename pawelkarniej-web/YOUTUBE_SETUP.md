@@ -1,34 +1,39 @@
 <!-- @format -->
 
-# YouTube API Setup
+# YouTube Shorts Automation
 
-To enable automatic fetching of your latest YouTube shorts, you need to set up a YouTube Data API key.
+The home page shows the latest three shorts from your YouTube channel. A build-time script refreshes the data so the static export always ships with up-to-date content.
 
-## Steps:
+## Setup Steps
 
 1. Go to [Google Cloud Console](https://console.developers.google.com/)
-2. Create a new project or select an existing one
-3. Enable the "YouTube Data API v3"
-4. Create credentials (API Key)
-5. Copy the API key
+2. Create (or choose) a project
+3. Enable the **YouTube Data API v3**
+4. Create an API key and copy it
 
-## Environment Variable:
+## Environment Variables
 
-Create a `.env.local` file in the root of the pawelkarniej-web directory and add:
+Set the key in the Netlify dashboard (or in a local `.env.local` file) for the `pawelkarniej-web` app:
 
 ```
 YOUTUBE_API_KEY=your_actual_api_key_here
 ```
 
-## How it works:
+You can optionally override the channel handle (defaults to `thepawelk`):
 
-- The `/api/youtube` endpoint fetches the latest 3 shorts from @thepawelk
-- Videos are automatically displayed with real thumbnails, titles, and durations
-- If the API fails, fallback placeholder videos are shown
-- The data refreshes each time someone visits the page
+```
+YOUTUBE_CHANNEL_HANDLE=thepawelk
+```
 
-## API Limits:
+## How It Works
 
-- YouTube Data API has a daily quota limit
-- Consider implementing caching for production use
-- The current setup fetches data on each page load
+* `npm run build` triggers `scripts/fetch-youtube-shorts.mjs` (via the `prebuild` script)
+* The script resolves the channel ID from the handle, fetches recent uploads, filters for shorts (<60s), and writes the top three to `data/youtube-shorts.json`
+* `app/page.tsx` imports that JSON to render the cards
+* If the API key is missing or the request fails, the previous JSON content is kept as a fallback
+
+## Notes
+
+* The YouTube Data API has daily quotas—three requests per build keeps usage low
+* For local development without an API key you will see the fallback data
+* Commit `data/youtube-shorts.json` so the site has content even when the API is unavailable

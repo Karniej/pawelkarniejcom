@@ -1,0 +1,23 @@
+[
+  {
+    "id": "1",
+    "title": "How I Built 10+ Apps and Made $100k+ Revenue",
+    "thumbnail": "/images/youtube-thumb-1.jpg",
+    "url": "https://www.youtube.com/@thepawelk/shorts",
+    "duration": "0:45"
+  },
+  {
+    "id": "2",
+    "title": "React Native vs Flutter: The Truth in 2024",
+    "thumbnail": "/images/youtube-thumb-2.jpg",
+    "url": "https://www.youtube.com/@thepawelk/shorts",
+    "duration": "0:58"
+  },
+  {
+    "id": "3",
+    "title": "5 Mistakes That Will Kill Your App Performance",
+    "thumbnail": "/images/youtube-thumb-3.jpg",
+    "url": "https://www.youtube.com/@thepawelk/shorts",
+    "duration": "1:12"
+  }
+]
