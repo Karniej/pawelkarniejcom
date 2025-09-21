@@ -1,0 +1,8 @@
+[build]
+  base = "pawelkarniej-web"
+  command = "npm run build"
+  publish = "out"
+
+[build.environment]
+  NODE_VERSION = "20.20.0"
+  PYTHON_VERSION = "3.10"
