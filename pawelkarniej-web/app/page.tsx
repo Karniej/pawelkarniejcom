@@ -27,17 +27,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import youtubeShortsData from "@/data/youtube-shorts.json";
-
-type YouTubeShort = {
-  id: string;
-  title: string;
-  thumbnail: string;
-  url: string;
-  duration: string;
-};
-
-const youtubeShorts = youtubeShortsData as YouTubeShort[];
+// YouTube integration is currently disabled. See YOUTUBE_SETUP.md for details.
 
 export default function Home() {
   const fadeInUp = {
@@ -446,111 +436,12 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Latest YouTube Shorts */}
+      {/* Latest YouTube Shorts (temporarily disabled) */}
+      {/*
       <section className="relative py-24 px-4 bg-white/[0.02]">
-        <div className="max-w-7xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
-          >
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-red-500/20 border border-red-500/30 mb-6">
-              <Youtube className="h-4 w-4 text-red-400" />
-              <span className="text-red-300 text-sm font-medium">
-                Latest Shorts
-              </span>
-            </div>
-
-            <h2 className="text-3xl md:text-4xl font-heading font-bold mb-4">
-              Fresh Drops from YouTube
-            </h2>
-            <p className="text-lg text-zinc-400 max-w-2xl mx-auto">
-              Bite-sized lessons on building and scaling mobile apps.
-            </p>
-          </motion.div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {youtubeShorts.map((video, index) => (
-              <motion.div
-                key={video.id || index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                viewport={{ once: true }}
-                className="group"
-              >
-                <a
-                  href={video.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="block"
-                >
-                  <div className="relative aspect-[9/16] rounded-2xl overflow-hidden border border-white/10 group-hover:border-red-500/40 transition-all duration-300">
-                    <Image
-                      src={video.thumbnail}
-                      alt={video.title}
-                      fill
-                      className="object-cover"
-                      sizes="(max-width: 768px) 100vw, 33vw"
-                      priority={index === 0}
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
-
-                    <div className="absolute top-3 right-3 px-2 py-1 bg-black/80 rounded text-white text-xs font-semibold">
-                      {video.duration}
-                    </div>
-
-                    <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                      <div className="w-12 h-12 rounded-full bg-red-500/80 flex items-center justify-center">
-                        <Play className="h-6 w-6 text-white ml-0.5" />
-                      </div>
-                    </div>
-
-                    <div className="absolute bottom-4 left-4 right-4">
-                      <h3 className="text-white text-sm font-medium line-clamp-3 leading-tight">
-                        {video.title}
-                      </h3>
-                    </div>
-                  </div>
-                </a>
-              </motion.div>
-            ))}
-          </div>
-
-          <div className="text-center mt-12">
-            <GradientButton
-              href="https://www.youtube.com/@thepawelk/shorts"
-              variant="secondary"
-              icon={Youtube}
-              className="dark"
-            >
-              View All Videos
-            </GradientButton>
-          </div>
-
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            viewport={{ once: true }}
-            className="mt-16 flex flex-wrap justify-center gap-8"
-          >
-            {stats.map((stat) => (
-              <div key={stat.label} className="text-center">
-                <div className="flex items-center justify-center gap-2 mb-1">
-                  <stat.icon className="h-4 w-4 text-emerald-400" />
-                  <span className="text-2xl font-bold text-white">
-                    {stat.value}
-                  </span>
-                </div>
-                <div className="text-sm text-zinc-500">{stat.label}</div>
-              </div>
-            ))}
-          </motion.div>
-        </div>
+        ...
       </section>
+      */}
 
       {/* Retired Projects Section */}
       <section className="relative py-24 px-4 bg-white/[0.02]">
