@@ -45,7 +45,7 @@ export default function Home() {
 
   const projects = [
     {
-      title: "Silpho",
+      title: "Silpho App Studio",
       description:
         "App studio helping founders launch React Native MVPs in 4 weeks.",
       image: "/images/silpho.png",
@@ -207,7 +207,7 @@ export default function Home() {
       <div className="absolute inset-0 grid-pattern opacity-20"></div>
 
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center px-4 pt-20">
+      <section className="relative min-h-[70vh] flex items-center px-4 pt-16">
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-col lg:flex-row items-center gap-16">
             {/* Left Content */}
@@ -340,6 +340,47 @@ export default function Home() {
                 </div>
               </div>
             </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* About Me */}
+      <section className="relative pt-12 pb-24 px-4">
+        <div className="max-w-7xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="text-center mb-10"
+          >
+            <h2 className="text-4xl md:text-5xl font-heading font-bold mb-6">
+              About me
+            </h2>
+          </motion.div>
+          <div className="max-w-4xl mx-auto text-lg text-zinc-300 leading-relaxed space-y-6">
+            <p>
+              Hi, I&apos;m Paweł. My career began in logistics, but in 2018 I
+              decided to change direction, taught myself how to code, and
+              started working as a mobile app developer. At first I freelanced
+              for different companies, which gave me experience across many
+              projects and industries.
+            </p>
+            <p>
+              Eventually I wanted more than just client work. I began
+              experimenting with my own app ideas, releasing projects like
+              Newsletterytics, a tool for Beehiiv creators, and AIVidly, a
+              mobile AI video generator. Some apps were small niche products,
+              others were bigger bets, but each one taught me something about
+              development, growth, and marketing.
+            </p>
+            <p>
+              I enjoy the process of turning an idea into a product, finding
+              users, and iterating based on what works. That passion led me to
+              start Silpho, my app studio. Today, I focus on building my own
+              portfolio of apps while also helping others launch their first
+              products and get started in the mobile world.
+            </p>
           </div>
         </div>
       </section>
