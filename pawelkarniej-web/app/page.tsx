@@ -16,8 +16,16 @@ import {
   ExternalLink,
   Play,
   Youtube,
+  Instagram,
   Star,
 } from "lucide-react";
+import type { SVGProps } from "react";
+
+const TikTokIcon = (props: SVGProps<SVGSVGElement>) => (
+  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" {...props}>
+    <path d="M12.65 2H15a5.5 5.5 0 0 0 5 5v2.3a8.3 8.3 0 0 1-5-1.7v6.4a5.6 5.6 0 1 1-5.6-5.6c.24 0 .47.02.7.05v2.35a2.9 2.9 0 1 0 2.9 2.9V2z" />
+  </svg>
+);
 import { GradientButton } from "@/components/ui/gradient-button";
 import {
   Card,
@@ -36,6 +44,16 @@ export default function Home() {
   };
 
   const projects = [
+    {
+      title: "Silpho",
+      description:
+        "App studio helping founders launch React Native MVPs in 4 weeks.",
+      image: "/images/silpho.png",
+      link: "https://silpho.com",
+      type: "web",
+      status: "current",
+      tech: ["React Native", "MVP", "Studio"],
+    },
     {
       title: "Aividly: AI Generated Videos",
       description:
@@ -68,7 +86,8 @@ export default function Home() {
     },
     {
       title: "TeleprompterX",
-      description: "Keep scripts synced with a creator-first teleprompter experience.",
+      description:
+        "Keep scripts synced with a creator-first teleprompter experience.",
       image: "/images/teleprompterx.png",
       link: "/terms/teleprompterx",
       type: "app",
@@ -77,7 +96,8 @@ export default function Home() {
     },
     {
       title: "MoonLatte",
-      description: "A minimalist caffeine tracker that stays entirely on-device.",
+      description:
+        "A minimalist caffeine tracker that stays entirely on-device.",
       image: "/images/moonlatte.png",
       link: "/terms/moonlatte",
       type: "app",
@@ -86,7 +106,8 @@ export default function Home() {
     },
     {
       title: "VidNotes",
-      description: "Private-first video notes to capture ideas without tracking.",
+      description:
+        "Private-first video notes to capture ideas without tracking.",
       image: "/images/vidnotes.png",
       link: "/terms/vidnotes",
       type: "app",
@@ -271,6 +292,30 @@ export default function Home() {
                   >
                     <Mail className="h-5 w-5 group-hover:text-green-400 transition-colors" />
                   </a>
+                  <a
+                    href="https://www.instagram.com/pawelkarniej/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-3 rounded-full bg-white/5 border border-white/10 hover:bg-white/10 transition-all duration-300 group"
+                  >
+                    <Instagram className="h-5 w-5 group-hover:text-pink-400 transition-colors" />
+                  </a>
+                  <a
+                    href="https://www.tiktok.com/@thepawelk"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-3 rounded-full bg-white/5 border border-white/10 hover:bg-white/10 transition-all duration-300 group"
+                  >
+                    <TikTokIcon className="h-5 w-5 group-hover:text-cyan-400 transition-colors" />
+                  </a>
+                  <a
+                    href="https://www.youtube.com/@thepawelk"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-3 rounded-full bg-white/5 border border-white/10 hover:bg-white/10 transition-all duration-300 group"
+                  >
+                    <Youtube className="h-5 w-5 group-hover:text-red-400 transition-colors" />
+                  </a>
                 </div>
               </motion.div>
             </div>
@@ -298,58 +343,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
-      {/* The Appiarist Project Showcase - COMMENTED OUT FOR NOW */}
-      {/* 
-      <section className="relative py-16 px-4 bg-gradient-to-r from-purple-900/20 to-blue-900/20">
-        <div className="max-w-7xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-            className="text-center"
-          >
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-purple-500/20 border border-purple-500/30 mb-6">
-              <Star className="h-4 w-4 text-purple-400" />
-              <span className="text-purple-300 text-sm font-medium">
-                Featured Project
-              </span>
-            </div>
-
-            <h2 className="text-4xl md:text-5xl font-heading font-bold mb-6">
-              <span className="gradient-text">The Appiarist Project</span>
-            </h2>
-
-            <p className="text-xl text-zinc-300 max-w-3xl mx-auto mb-8 leading-relaxed">
-              Documenting my journey to $10k MRR with mobile apps. Follow along
-              as I build, launch, and scale multiple React Native applications
-              while sharing every lesson learned.
-            </p>
-
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <GradientButton
-                href="https://theappiarist.com"
-                variant="primary"
-                icon={ExternalLink}
-                size="lg"
-              >
-                Visit The Appiarist
-              </GradientButton>
-              <GradientButton
-                href="#projects"
-                variant="secondary"
-                className="dark"
-                size="lg"
-              >
-                Learn More
-              </GradientButton>
-            </div>
-          </motion.div>
-        </div>
-      </section>
-      */}
-
 
       {/* Current Projects Section */}
       <section id="projects" className="relative py-24 px-4">
