@@ -62,6 +62,7 @@ export default function Home() {
       link: "https://apps.apple.com/us/app/aividly-ai-video-creator-pro/id6698894140",
       type: "app",
       status: "current",
+      sold: true,
       tech: ["React Native", "AI/ML", "Video Processing"],
     },
     {
@@ -417,7 +418,7 @@ export default function Home() {
                 >
                   <Card className="modern-card h-full glow-effect transition-all duration-300 group-hover:scale-105">
                     <CardHeader>
-                      <div className="flex items-center gap-4 mb-4">
+                      <div className="flex items-start justify-between gap-4 mb-4">
                         <div className="w-16 h-16 relative rounded-xl overflow-hidden bg-white/10 p-2">
                           <Image
                             src={project.image}
@@ -426,13 +427,24 @@ export default function Home() {
                             className="object-contain"
                           />
                         </div>
-                        <Badge
-                          variant={
-                            project.type === "app" ? "default" : "secondary"
-                          }
-                        >
-                          {project.type === "app" ? "Mobile App" : "Web App"}
-                        </Badge>
+                        <div className="flex flex-wrap items-center gap-2">
+                          <Badge
+                            variant={
+                              project.type === "app" ? "default" : "secondary"
+                            }
+                          >
+                            {project.type === "app" ? "Mobile App" : "Web App"}
+                          </Badge>
+                          {project.sold && (
+                            <Badge
+                              variant="outline"
+                              className="gap-1 border-transparent bg-gradient-to-r from-yellow-300 via-amber-400 to-yellow-500 px-3 py-1 text-sm text-black shadow-[0_0_15px_rgba(234,179,8,0.45)]"
+                            >
+                              <Star className="h-3.5 w-3.5" />
+                              Sold
+                            </Badge>
+                          )}
+                        </div>
                       </div>
                       <CardTitle className="text-xl group-hover:text-emerald-400 transition-colors">
                         {project.title}
