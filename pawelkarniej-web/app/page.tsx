@@ -631,6 +631,12 @@ export default function Home() {
           >
             <div className="flex flex-wrap justify-center gap-8">
               <Link
+                href="/blog"
+                className="link-hover text-zinc-400 hover:text-white"
+              >
+                Blog
+              </Link>
+              <Link
                 href="/contact"
                 className="link-hover text-zinc-400 hover:text-white"
               >
