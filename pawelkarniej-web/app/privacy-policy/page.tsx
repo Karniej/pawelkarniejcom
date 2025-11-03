@@ -62,21 +62,6 @@ export default function PrivacyPolicy() {
                 <CardContent>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <a
-                      href="/privacy-policy/aividly"
-                      className="block p-4 rounded-lg bg-white/5 border border-white/10 hover:bg-white/10 hover:border-emerald-500/30 transition-all duration-300 cursor-pointer group hover:scale-105 no-underline"
-                    >
-                      <h3 className="font-semibold text-emerald-400 mb-2 group-hover:text-emerald-300 transition-colors">
-                        AIVidly
-                      </h3>
-                      <p className="text-sm text-zinc-400 mb-3">
-                        AI video generation and processing policies
-                      </p>
-                      <span className="text-emerald-400 text-sm font-medium transition-colors group-hover:underline inline-flex items-center gap-1">
-                        View Policy →
-                      </span>
-                    </a>
-
-                    <a
                       href="/privacy-policy/rhava"
                       className="block p-4 rounded-lg bg-white/5 border border-white/10 hover:bg-white/10 hover:border-blue-500/30 transition-all duration-300 cursor-pointer group hover:scale-105 no-underline"
                     >
@@ -117,6 +102,21 @@ export default function PrivacyPolicy() {
                         Minimal data policy for TeleprompterX
                       </p>
                       <span className="text-blue-400 text-sm font-medium transition-colors group-hover:underline inline-flex items-center gap-1">
+                        View Policy →
+                      </span>
+                    </a>
+
+                    <a
+                      href="/privacy-policy/virgintv"
+                      className="block p-4 rounded-lg bg-white/5 border border-white/10 hover:bg-white/10 hover:border-red-500/30 transition-all duration-300 cursor-pointer group hover:scale-105 no-underline"
+                    >
+                      <h3 className="font-semibold text-red-400 mb-2 group-hover:text-red-300 transition-colors">
+                        Virgin TV Remote
+                      </h3>
+                      <p className="text-sm text-zinc-400 mb-3">
+                        Remote control privacy details for Virgin TV users
+                      </p>
+                      <span className="text-red-400 text-sm font-medium transition-colors group-hover:underline inline-flex items-center gap-1">
                         View Policy →
                       </span>
                     </a>
