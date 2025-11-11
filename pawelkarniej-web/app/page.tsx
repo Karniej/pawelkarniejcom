@@ -116,6 +116,17 @@ export default function Home() {
       tech: ["iOS", "Notes", "Privacy"],
     },
     {
+      title: "Rhava",
+      description:
+        "A wellness accountability companion that helped users stay consistent and was recently sold.",
+      image: "/images/rhava.svg",
+      link: "/contact",
+      type: "app",
+      status: "released",
+      sold: true,
+      tech: ["React Native", "Wellness", "Accountability"],
+    },
+    {
       title: "Countdown Nuts",
       description: "Smart management and tracking of your consumable items.",
       image: "/images/countownnuts.png",
@@ -520,8 +531,8 @@ export default function Home() {
                   className="group"
                 >
                   <Card className="modern-card h-full transition-all duration-300 group-hover:scale-105 group-hover:glow-effect">
-                    <CardHeader className="pb-3">
-                      <div className="w-12 h-12 relative rounded-lg overflow-hidden bg-white/10 p-2 mb-3">
+                    <CardHeader className="pb-3 space-y-3">
+                      <div className="w-12 h-12 relative rounded-lg overflow-hidden bg-white/10 p-2">
                         <Image
                           src={project.image}
                           alt={project.title}
@@ -529,9 +540,20 @@ export default function Home() {
                           className="object-contain"
                         />
                       </div>
-                      <CardTitle className="text-base group-hover:text-emerald-400 transition-colors">
-                        {project.title}
-                      </CardTitle>
+                      <div className="flex items-center justify-between gap-2">
+                        <CardTitle className="text-base group-hover:text-emerald-400 transition-colors">
+                          {project.title}
+                        </CardTitle>
+                        {project.sold && (
+                          <Badge
+                            variant="outline"
+                            className="gap-1 border-transparent bg-gradient-to-r from-yellow-300 via-amber-400 to-yellow-500 px-2.5 py-0.5 text-xs text-black shadow-[0_0_10px_rgba(234,179,8,0.35)]"
+                          >
+                            <Star className="h-3 w-3" />
+                            Sold
+                          </Badge>
+                        )}
+                      </div>
                       <CardDescription className="text-sm text-zinc-400">
                         {project.description}
                       </CardDescription>

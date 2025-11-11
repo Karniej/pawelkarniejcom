@@ -62,16 +62,17 @@ export default function PrivacyPolicy() {
                 <CardContent>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <a
-                      href="/privacy-policy/rhava"
-                      className="block p-4 rounded-lg bg-white/5 border border-white/10 hover:bg-white/10 hover:border-blue-500/30 transition-all duration-300 cursor-pointer group hover:scale-105 no-underline"
+                      href="/privacy-policy/yapperx"
+                      className="block p-4 rounded-lg bg-white/5 border border-white/10 hover:bg-white/10 hover:border-amber-500/30 transition-all duration-300 cursor-pointer group hover:scale-105 no-underline"
                     >
-                      <h3 className="font-semibold text-blue-400 mb-2 group-hover:text-blue-300 transition-colors">
-                        Rhava
+                      <h3 className="font-semibold text-amber-400 mb-2 group-hover:text-amber-300 transition-colors">
+                        YapperX
                       </h3>
                       <p className="text-sm text-zinc-400 mb-3">
-                        General app privacy information for Rhava
+                        Simple privacy overview for the lightweight companion
+                        app
                       </p>
-                      <span className="text-blue-400 text-sm font-medium transition-colors group-hover:underline inline-flex items-center gap-1">
+                      <span className="text-amber-400 text-sm font-medium transition-colors group-hover:underline inline-flex items-center gap-1">
                         View Policy →
                       </span>
                     </a>
