@@ -50,7 +50,7 @@ export default function Home() {
         "App studio helping founders launch React Native MVPs in 4 weeks.",
       image: "/images/silpho.png",
       link: "https://silpho.com",
-      type: "web",
+      type: "studio",
       status: "current",
       tech: ["React Native", "MVP", "Studio"],
     },
@@ -242,6 +242,17 @@ export default function Home() {
   ];
 
   const soldProjects = projects.filter((project) => project.status === "sold");
+
+  const getProjectTypeBadge = (type: string) => {
+    switch (type) {
+      case "app":
+        return "Mobile App";
+      case "studio":
+        return "App Studio";
+      default:
+        return "Web App";
+    }
+  };
 
   // youtube-shorts.json is refreshed during the build by scripts/fetch-youtube-shorts.mjs
 
@@ -476,7 +487,7 @@ export default function Home() {
                               project.type === "app" ? "default" : "secondary"
                             }
                           >
-                            {project.type === "app" ? "Mobile App" : "Web App"}
+                            {getProjectTypeBadge(project.type)}
                           </Badge>
                           {project.sold && (
                             <Badge
@@ -571,7 +582,7 @@ export default function Home() {
                               project.type === "app" ? "default" : "secondary"
                             }
                           >
-                            {project.type === "app" ? "Mobile App" : "Web App"}
+                            {getProjectTypeBadge(project.type)}
                           </Badge>
                           <Badge
                             variant="outline"
