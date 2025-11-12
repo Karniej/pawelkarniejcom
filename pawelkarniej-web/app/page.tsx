@@ -116,6 +116,36 @@ export default function Home() {
       tech: ["iOS", "Notes", "Privacy"],
     },
     {
+      title: "YapperX",
+      description:
+        "A lightweight companion for capturing quick thoughts, routines, and prompts wherever I am.",
+      image: "/images/yapperx.png",
+      link: "/terms/yapperx",
+      type: "app",
+      status: "current",
+      tech: ["iOS", "Productivity", "Minimal"],
+    },
+    {
+      title: "BeatAI",
+      description:
+        "An AI-native music practice coach that listens, scores timing, and keeps musicians accountable.",
+      image: "/images/beatai.png",
+      link: "/contact",
+      type: "app",
+      status: "current",
+      tech: ["React Native", "AI/ML", "Music"],
+    },
+    {
+      title: "FIFTN",
+      description:
+        "Focus timer + smart app blocker for deep work sessions. Learn more at FIFTN.app.",
+      image: "/images/fiftn.png",
+      link: "https://apps.apple.com/us/app/focus-timer-app-block-fiftn/id6753712943",
+      type: "app",
+      status: "current",
+      tech: ["iOS", "Productivity", "Focus"],
+    },
+    {
       title: "Rhava",
       description:
         "Rhava evolved into Bibleily: Speak God Bible after the acquisition, helping people build daily scripture habits.",

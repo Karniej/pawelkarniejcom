@@ -156,6 +156,21 @@ export default function TermsOfService() {
                         View Terms →
                       </span>
                     </div>
+
+                    <div
+                      onClick={() => router.push("/terms/beatai")}
+                      className="p-4 rounded-lg bg-white/5 border border-white/10 hover:bg-white/10 hover:border-sky-500/30 transition-all duration-300 cursor-pointer group hover:scale-105"
+                    >
+                      <h3 className="font-semibold text-sky-400 mb-2 group-hover:text-sky-300 transition-colors">
+                        BeatAI
+                      </h3>
+                      <p className="text-sm text-zinc-400 mb-3">
+                        AI-powered practice coach usage guidelines
+                      </p>
+                      <span className="text-sky-400 text-sm font-medium transition-colors group-hover:underline inline-flex items-center gap-1">
+                        View Terms →
+                      </span>
+                    </div>
                   </div>
                 </CardContent>
               </Card>
