@@ -61,7 +61,7 @@ export default function Home() {
       image: "/images/aividly.png",
       link: "https://apps.apple.com/us/app/aividly-ai-video-creator-pro/id6698894140",
       type: "app",
-      status: "current",
+      status: "sold",
       sold: true,
       tech: ["React Native", "AI/ML", "Video Processing"],
     },
@@ -118,11 +118,11 @@ export default function Home() {
     {
       title: "Rhava",
       description:
-        "A wellness accountability companion that helped users stay consistent and was recently sold.",
+        "Rhava evolved into Bibleily: Speak God Bible after the acquisition, helping people build daily scripture habits.",
       image: "/images/rhava.svg",
-      link: "/contact",
+      link: "https://apps.apple.com/gb/app/bibleily-speak-god-bible/id6747157033",
       type: "app",
-      status: "released",
+      status: "sold",
       sold: true,
       tech: ["React Native", "Wellness", "Accountability"],
     },
@@ -210,6 +210,8 @@ export default function Home() {
     { label: "Years Experience", value: "6+", icon: Code },
     { label: "Articles Written", value: "15+", icon: Zap },
   ];
+
+  const soldProjects = projects.filter((project) => project.status === "sold");
 
   // youtube-shorts.json is refreshed during the build by scripts/fetch-youtube-shorts.mjs
 
@@ -492,6 +494,100 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {soldProjects.length > 0 && (
+        <section id="sold-apps" className="relative py-24 px-4">
+          <div className="max-w-7xl mx-auto">
+            <motion.div
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              transition={{ duration: 0.6 }}
+              viewport={{ once: true }}
+              className="text-center mb-16"
+            >
+              <h2 className="text-4xl md:text-5xl font-heading font-bold mb-6">
+                Sold Apps
+              </h2>
+              <p className="text-xl text-zinc-400 max-w-2xl mx-auto">
+                Products I built, successfully handed off, and now continue their
+                journey with new owners.
+              </p>
+            </motion.div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              {soldProjects.map((project, index) => (
+                <motion.div
+                  key={project.title}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: index * 0.1 }}
+                  viewport={{ once: true }}
+                  className="group"
+                >
+                  <Card className="modern-card h-full glow-effect transition-all duration-300 group-hover:scale-105">
+                    <CardHeader>
+                      <div className="flex items-start justify-between gap-4 mb-4">
+                        <div className="w-16 h-16 relative rounded-xl overflow-hidden bg-white/10 p-2">
+                          <Image
+                            src={project.image}
+                            alt={project.title}
+                            fill
+                            className="object-contain"
+                          />
+                        </div>
+                        <div className="flex flex-col items-end gap-2">
+                          <Badge
+                            variant={
+                              project.type === "app" ? "default" : "secondary"
+                            }
+                          >
+                            {project.type === "app" ? "Mobile App" : "Web App"}
+                          </Badge>
+                          <Badge
+                            variant="outline"
+                            className="gap-1 border-transparent bg-gradient-to-r from-yellow-300 via-amber-400 to-yellow-500 px-3 py-1 text-sm text-black shadow-[0_0_15px_rgba(234,179,8,0.45)]"
+                          >
+                            <Star className="h-3.5 w-3.5" />
+                            Sold
+                          </Badge>
+                        </div>
+                      </div>
+                      <CardTitle className="text-xl group-hover:text-emerald-400 transition-colors">
+                        {project.title}
+                      </CardTitle>
+                      <CardDescription className="text-zinc-400">
+                        {project.description}
+                      </CardDescription>
+                    </CardHeader>
+                    <CardContent>
+                      <div className="space-y-4">
+                        <div className="flex flex-wrap gap-2">
+                          {project.tech.map((tech) => (
+                            <span
+                              key={tech}
+                              className="px-2 py-1 text-xs rounded-full bg-white/5 border border-white/10 text-zinc-300"
+                            >
+                              {tech}
+                            </span>
+                          ))}
+                        </div>
+                        <a
+                          href={project.link}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-2 text-emerald-400 hover:text-emerald-300 transition-colors"
+                        >
+                          Visit App <ExternalLink className="h-4 w-4" />
+                        </a>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* Latest YouTube Shorts (temporarily disabled) */}
       {/*
