@@ -14,10 +14,10 @@ import {
   Code,
   Zap,
   ExternalLink,
-  Play,
   Youtube,
   Instagram,
   Star,
+  Wrench,
 } from "lucide-react";
 import type { SVGProps } from "react";
 
@@ -35,25 +35,11 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { TaglineReveal } from "@/components/tagline-reveal";
 // YouTube integration is currently disabled. See YOUTUBE_SETUP.md for details.
 
 export default function Home() {
-  const fadeInUp = {
-    initial: { opacity: 0, y: 20 },
-    animate: { opacity: 1, y: 0 },
-  };
-
   const projects = [
-    {
-      title: "Silpho App Studio",
-      description:
-        "App studio helping founders launch React Native MVPs in 4 weeks.",
-      image: "/images/silpho.png",
-      link: "https://silpho.com",
-      type: "studio",
-      status: "current",
-      tech: ["React Native", "MVP", "Studio"],
-    },
     {
       title: "Aividly: AI Generated Videos",
       description:
@@ -236,9 +222,9 @@ export default function Home() {
   ];
 
   const stats = [
-    { label: "Apps Launched", value: "10+", icon: Smartphone },
-    { label: "Years Experience", value: "6+", icon: Code },
-    { label: "Articles Written", value: "15+", icon: Zap },
+    { label: "Apps shipped since 2018", value: "25+", icon: Smartphone },
+    { label: "Years of React Native", value: "8", icon: Code },
+    { label: "Apps sold to new owners", value: "2", icon: Star },
   ];
 
   const soldProjects = projects.filter((project) => project.status === "sold");
@@ -247,8 +233,6 @@ export default function Home() {
     switch (type) {
       case "app":
         return "Mobile App";
-      case "studio":
-        return "App Studio";
       default:
         return "Web App";
     }
@@ -279,7 +263,7 @@ export default function Home() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.1 }}
-                className="font-heading text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight"
+                className="font-heading text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight [text-wrap:balance]"
               >
                 <span className="gradient-text">Hi, I&apos;m Paweł</span>
               </motion.h1>
@@ -288,10 +272,11 @@ export default function Home() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.2 }}
-                className="text-xl text-zinc-400 max-w-2xl leading-relaxed"
+                className="text-xl text-zinc-400 max-w-2xl leading-relaxed [text-wrap:pretty]"
               >
-                I&apos;ve been building mobile applications using React Native
-                since 2018.
+                I build mobile apps and AI automations for founders and small
+                teams. Shipping React Native since 2018. When you hire me, I do
+                the work myself, from the first call to the store release.
               </motion.p>
 
               <motion.div
@@ -301,12 +286,12 @@ export default function Home() {
                 className="flex flex-col sm:flex-row gap-4"
               >
                 <GradientButton
-                  href="/contact"
+                  href="#services"
                   variant="primary"
                   icon={ArrowRight}
                   size="lg"
                 >
-                  Get In Touch
+                  See how we can work together
                 </GradientButton>
                 <GradientButton
                   href="#projects"
@@ -314,7 +299,7 @@ export default function Home() {
                   className="dark"
                   size="lg"
                 >
-                  View Projects
+                  View my apps
                 </GradientButton>
               </motion.div>
 
@@ -329,6 +314,7 @@ export default function Home() {
                     href="https://twitter.com/pawelkarniej"
                     target="_blank"
                     rel="noopener noreferrer"
+                    aria-label="Twitter"
                     className="p-3 rounded-full bg-white/5 border border-white/10 hover:bg-white/10 transition-all duration-300 group"
                   >
                     <Twitter className="h-5 w-5 group-hover:text-blue-400 transition-colors" />
@@ -337,12 +323,14 @@ export default function Home() {
                     href="https://github.com/karniej"
                     target="_blank"
                     rel="noopener noreferrer"
+                    aria-label="GitHub"
                     className="p-3 rounded-full bg-white/5 border border-white/10 hover:bg-white/10 transition-all duration-300 group"
                   >
                     <Github className="h-5 w-5 group-hover:text-purple-400 transition-colors" />
                   </a>
                   <a
                     href="mailto:contact@pawelkarniej.com"
+                    aria-label="Email"
                     className="p-3 rounded-full bg-white/5 border border-white/10 hover:bg-white/10 transition-all duration-300 group"
                   >
                     <Mail className="h-5 w-5 group-hover:text-green-400 transition-colors" />
@@ -351,6 +339,7 @@ export default function Home() {
                     href="https://www.instagram.com/pawelkarniej/"
                     target="_blank"
                     rel="noopener noreferrer"
+                    aria-label="Instagram"
                     className="p-3 rounded-full bg-white/5 border border-white/10 hover:bg-white/10 transition-all duration-300 group"
                   >
                     <Instagram className="h-5 w-5 group-hover:text-pink-400 transition-colors" />
@@ -359,6 +348,7 @@ export default function Home() {
                     href="https://www.tiktok.com/@thepawelk"
                     target="_blank"
                     rel="noopener noreferrer"
+                    aria-label="TikTok"
                     className="p-3 rounded-full bg-white/5 border border-white/10 hover:bg-white/10 transition-all duration-300 group"
                   >
                     <TikTokIcon className="h-5 w-5 group-hover:text-cyan-400 transition-colors" />
@@ -367,6 +357,7 @@ export default function Home() {
                     href="https://www.youtube.com/@thepawelk"
                     target="_blank"
                     rel="noopener noreferrer"
+                    aria-label="YouTube"
                     className="p-3 rounded-full bg-white/5 border border-white/10 hover:bg-white/10 transition-all duration-300 group"
                   >
                     <Youtube className="h-5 w-5 group-hover:text-red-400 transition-colors" />
@@ -399,6 +390,178 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Two ways to work with me */}
+      <section id="services" className="relative py-24 px-4 scroll-mt-24">
+        <div className="max-w-7xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-4xl md:text-5xl font-heading font-bold mb-6 [text-wrap:balance]">
+              Two ways to work with me
+            </h2>
+            <p className="text-xl text-zinc-400 max-w-2xl mx-auto [text-wrap:pretty]">
+              Pick the door that matches your problem. Both end in a direct
+              conversation with me, not a sales team.
+            </p>
+          </motion.div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-5xl mx-auto">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              viewport={{ once: true }}
+              className="group"
+            >
+              <Card className="modern-card h-full glow-effect transition-all duration-300">
+                <CardHeader>
+                  <div className="w-14 h-14 rounded-2xl bg-emerald-400/10 border border-emerald-400/20 flex items-center justify-center mb-4">
+                    <Smartphone className="h-7 w-7 text-emerald-400" />
+                  </div>
+                  <CardTitle className="text-2xl">Mobile apps</CardTitle>
+                  <CardDescription className="text-zinc-400 text-base [text-wrap:pretty]">
+                    I take your idea to the App Store and Google Play in four
+                    weeks. Fixed scope, fixed price, iOS and Android in one
+                    build, paywall and subscriptions included.
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <ul className="space-y-3 text-zinc-300 mb-6">
+                    <li className="flex items-start gap-3">
+                      <ArrowRight className="h-5 w-5 text-emerald-400 shrink-0 mt-0.5" />
+                      <span>Sprints from $3,999, store submission in four weeks</span>
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <ArrowRight className="h-5 w-5 text-emerald-400 shrink-0 mt-0.5" />
+                      <span>
+                        If I miss the agreed deadline, you get a refund and keep
+                        the code
+                      </span>
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <ArrowRight className="h-5 w-5 text-emerald-400 shrink-0 mt-0.5" />
+                      <span>Built on the same stack as my own 25+ shipped apps</span>
+                    </li>
+                  </ul>
+                  <div className="space-y-4">
+                    <GradientButton
+                      href="/mobile-apps"
+                      variant="primary"
+                      icon={ArrowRight}
+                    >
+                      See the mobile apps offer
+                    </GradientButton>
+                    <p className="text-sm text-zinc-400">
+                      <Wrench className="inline h-4 w-4 mr-1 text-emerald-400" />
+                      App built with AI and now broken?{" "}
+                      <Link
+                        href="/ai-app-rescue"
+                        className="text-emerald-400 hover:text-emerald-300 underline underline-offset-4"
+                      >
+                        I run a 48 hour rescue audit
+                      </Link>
+                    </p>
+                  </div>
+                </CardContent>
+              </Card>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              viewport={{ once: true }}
+              className="group"
+            >
+              <Card className="modern-card h-full glow-effect transition-all duration-300">
+                <CardHeader>
+                  <div className="w-14 h-14 rounded-2xl bg-blue-400/10 border border-blue-400/20 flex items-center justify-center mb-4">
+                    <Zap className="h-7 w-7 text-blue-400" />
+                  </div>
+                  <CardTitle className="text-2xl">AI automations</CardTitle>
+                  <CardDescription className="text-zinc-400 text-base [text-wrap:pretty]">
+                    I map one recurring workflow in your business and turn it
+                    into a supervised automation. Work arrives prepared, and
+                    the important decisions stay with your team.
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <ul className="space-y-3 text-zinc-300 mb-6">
+                    <li className="flex items-start gap-3">
+                      <ArrowRight className="h-5 w-5 text-blue-400 shrink-0 mt-0.5" />
+                      <span>Free 20 minute fit call to find the right workflow</span>
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <ArrowRight className="h-5 w-5 text-blue-400 shrink-0 mt-0.5" />
+                      <span>Workflow map from $750, delivered in about a week</span>
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <ArrowRight className="h-5 w-5 text-blue-400 shrink-0 mt-0.5" />
+                      <span>Your existing tools stay, approvals stay human</span>
+                    </li>
+                  </ul>
+                  <div className="space-y-4">
+                    <GradientButton
+                      href="/automations"
+                      variant="primary"
+                      icon={ArrowRight}
+                    >
+                      See the automations offer
+                    </GradientButton>
+                    <p className="text-sm text-zinc-400">
+                      Automations ship under{" "}
+                      <a
+                        href="https://silpho.com"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-blue-400 hover:text-blue-300 underline underline-offset-4"
+                      >
+                        Silpho
+                      </a>
+                      , my automations studio.
+                    </p>
+                  </div>
+                </CardContent>
+              </Card>
+            </motion.div>
+          </div>
+
+          {/* Proof strip */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            viewport={{ once: true }}
+            className="mt-16 grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-3xl mx-auto"
+          >
+            {stats.map((stat) => (
+              <div
+                key={stat.label}
+                className="text-center rounded-2xl border border-white/10 bg-white/5 px-4 py-6"
+              >
+                <stat.icon className="h-6 w-6 mx-auto mb-3 text-emerald-400" />
+                <div className="font-heading text-3xl font-bold">
+                  {stat.value}
+                </div>
+                <div className="text-sm text-zinc-400 mt-1">{stat.label}</div>
+              </div>
+            ))}
+          </motion.div>
+        </div>
+      </section>
+
+      <TaglineReveal
+        lines={[
+          "Every product on this page",
+          "was shipped by one person.",
+          "The same person you will talk to.",
+        ]}
+      />
+
       {/* About Me */}
       <section className="relative pt-12 pb-24 px-4">
         <div className="max-w-7xl mx-auto">
@@ -413,7 +576,7 @@ export default function Home() {
               About me
             </h2>
           </motion.div>
-          <div className="max-w-4xl mx-auto text-lg text-zinc-300 leading-relaxed space-y-6">
+          <div className="max-w-4xl mx-auto text-lg text-zinc-300 leading-relaxed space-y-6 [text-wrap:pretty]">
             <p>
               Hi, I&apos;m Paweł. My career began in logistics, but in 2018 I
               decided to change direction, taught myself how to code, and
@@ -431,17 +594,18 @@ export default function Home() {
             </p>
             <p>
               I enjoy the process of turning an idea into a product, finding
-              users, and iterating based on what works. That passion led me to
-              start Silpho, my app studio. Today, I focus on building my own
-              portfolio of apps while also helping others launch their first
-              products and get started in the mobile world.
+              users, and iterating based on what works. That led me to start
+              Silpho, my automations studio, where I build supervised AI
+              systems for service businesses. Today I split my time between
+              client work, both mobile apps and automations, and my own
+              portfolio of apps.
             </p>
           </div>
         </div>
       </section>
 
       {/* Current Projects Section */}
-      <section id="projects" className="relative py-24 px-4">
+      <section id="projects" className="relative py-24 px-4 scroll-mt-24">
         <div className="max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0 }}
@@ -451,10 +615,10 @@ export default function Home() {
             className="text-center mb-16"
           >
             <h2 className="text-4xl md:text-5xl font-heading font-bold mb-6">
-              Currently Working On
+              Currently working on
             </h2>
             <p className="text-xl text-zinc-400 max-w-2xl mx-auto">
-              Building the next generation of AI-powered mobile applications
+              My own portfolio of AI powered mobile applications
             </p>
           </motion.div>
 
@@ -547,7 +711,7 @@ export default function Home() {
               className="text-center mb-16"
             >
               <h2 className="text-4xl md:text-5xl font-heading font-bold mb-6">
-                Sold Apps
+                Sold apps
               </h2>
               <p className="text-xl text-zinc-400 max-w-2xl mx-auto">
                 Products I built, successfully handed off, and now continue their
@@ -648,7 +812,7 @@ export default function Home() {
             className="text-center mb-16"
           >
             <h2 className="text-4xl md:text-5xl font-heading font-bold mb-6">
-              Retired Projects
+              Retired projects
             </h2>
             <p className="text-xl text-zinc-400 max-w-2xl mx-auto">
               Products I brought to life, learned from, and have since sunset
@@ -723,11 +887,11 @@ export default function Home() {
             className="text-center mb-16"
           >
             <h2 className="text-4xl md:text-5xl font-heading font-bold mb-6">
-              Technical Writing
+              Technical writing
             </h2>
             <p className="text-xl text-zinc-400 max-w-2xl mx-auto">
-              Sharing knowledge about React Native development and mobile app
-              best practices
+              Guides for LogRocket and Netguru, plus my own writing about
+              shipping mobile apps
             </p>
           </motion.div>
 
@@ -775,6 +939,18 @@ export default function Home() {
               </motion.div>
             ))}
           </div>
+
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="mt-12 text-center"
+          >
+            <GradientButton href="/blog" variant="secondary" className="dark">
+              Read more on my blog
+            </GradientButton>
+          </motion.div>
         </div>
       </section>
 
@@ -789,6 +965,24 @@ export default function Home() {
             className="text-center space-y-8"
           >
             <div className="flex flex-wrap justify-center gap-8">
+              <Link
+                href="/mobile-apps"
+                className="link-hover text-zinc-400 hover:text-white"
+              >
+                Mobile apps
+              </Link>
+              <Link
+                href="/automations"
+                className="link-hover text-zinc-400 hover:text-white"
+              >
+                Automations
+              </Link>
+              <Link
+                href="/ai-app-rescue"
+                className="link-hover text-zinc-400 hover:text-white"
+              >
+                AI app rescue
+              </Link>
               <Link
                 href="/blog"
                 className="link-hover text-zinc-400 hover:text-white"
@@ -815,7 +1009,18 @@ export default function Home() {
               </Link>
             </div>
             <p className="text-zinc-500">
-              © 2024 Pawel Karniej. All rights reserved.
+              <a
+                href="https://silpho.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="link-hover hover:text-zinc-300"
+              >
+                Silpho
+              </a>{" "}
+              is my automations studio.
+            </p>
+            <p className="text-zinc-500">
+              © 2026 Pawel Karniej. All rights reserved.
             </p>
           </motion.div>
         </div>
