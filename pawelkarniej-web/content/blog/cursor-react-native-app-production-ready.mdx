@@ -1,0 +1,137 @@
+---
+title: "Cursor built your React Native app? How to make it production-ready"
+date: "2026-05-24"
+excerpt: "Cursor can help you build a React Native prototype fast. Here is what still needs to happen before the app can support users, payments, analytics, and App Store launch."
+tags: ["cursor-react-native", "ai-app-rescue", "react-native", "production-ready", "expo"]
+featuredImage: "/favicon.png"
+---
+
+# Cursor built your React Native app? How to make it production-ready
+
+Cursor is strong for speed. It can help generate screens, wire components, explain errors, and move a React Native prototype forward quickly.
+
+But a Cursor-built app is not automatically production-ready.
+
+The risk is that the app looks finished because the visible screens exist, while the launch layer is still missing: auth durability, subscription logic, analytics, crash reporting, App Store preparation, and a code structure a real developer can maintain.
+
+## Cursor is useful, but it optimizes locally
+
+Most AI coding sessions solve the problem directly in front of the prompt.
+
+That means Cursor may:
+
+- add a package without checking the full Expo SDK impact
+- patch an error in one screen while duplicating logic from another
+- create a new helper instead of using the existing one
+- make a flow work once without handling recovery states
+- generate UI before product state is defined
+
+This is not a moral failing. It is the difference between local code generation and product architecture.
+
+## Step 1: freeze feature generation
+
+If the app is already fragile, stop adding screens.
+
+Before another prompt, define the launch version:
+
+- one target user
+- one core AI workflow
+- one onboarding path
+- one monetization model
+- one activation event
+- one App Store submission target
+
+More features make the cleanup harder. Production readiness starts by reducing the surface area.
+
+## Step 2: audit dependencies and builds
+
+Run the app on a real iOS device or simulator through the same path you expect users to take.
+
+Check:
+
+- Expo SDK is not artificially downgraded
+- EAS build works
+- native modules are compatible
+- iOS permissions are configured
+- environment variables are separated from code
+- package lockfile is stable
+
+If the app only works inside a preview or development environment, it is not production-ready.
+
+## Step 3: centralize auth and subscription state
+
+Cursor-built apps often scatter user state.
+
+Production apps need one clear answer to:
+
+- who is the current user?
+- has onboarding been completed?
+- is the user paid?
+- can the user access the core feature?
+- what happens when the subscription expires?
+- what happens after logout?
+
+If every screen checks those questions differently, the app will leak paid features, block legitimate users, or create support issues.
+
+## Step 4: make the AI workflow robust
+
+The core AI flow needs more than a prompt and a response.
+
+Add:
+
+- input validation
+- loading state
+- retry state
+- provider error handling
+- cost guardrails
+- result persistence
+- analytics for success and failure
+- a graceful fallback when the model times out
+
+Founders often underestimate this layer because the first demo works. Real users create messy inputs and unstable network conditions.
+
+## Step 5: prepare the business layer
+
+Production-ready means the app can become a business.
+
+That requires:
+
+- onboarding that reaches activation
+- paywall that controls access
+- subscription products configured correctly
+- restore purchases
+- analytics funnel
+- crash reporting
+- App Store listing assets
+- privacy policy and support URL
+- launch plan
+
+Cursor can help implement parts of this, but the system needs a product owner who knows what to ask for and what to reject.
+
+## When to bring me in
+
+Bring the app into [AI App Rescue](/ai-app-rescue) when:
+
+- Cursor keeps fixing one bug and creating another
+- you cannot explain the state model
+- purchases exist but entitlements are unreliable
+- App Store submission is unclear
+- the app works in demo but breaks in real flows
+
+I audit the code, decides what survives, and fixes or rebuilds the critical path to make the product launch-ready.
+
+Read next:
+
+- [React Native AI app code audit checklist](/blog/react-native-ai-app-code-audit-checklist)
+- [AI-generated React Native paywalls need RevenueCat logic](/blog/ai-generated-react-native-paywall-revenuecat)
+- [Fix or rebuild your AI-built React Native app?](/blog/fix-or-rebuild-ai-built-react-native-app)
+
+## FAQ
+
+### Is Cursor bad for React Native?
+
+No. Cursor is useful for speed, debugging, and code assistance. The problem starts when founders treat generated code as a finished product without auditing architecture, dependencies, auth, payments, and analytics.
+
+### Can I work with a Cursor-built codebase?
+
+Yes. If it is React Native or Expo, I can audit it, stabilize the salvageable parts, or rebuild the critical path on a clean launch stack.

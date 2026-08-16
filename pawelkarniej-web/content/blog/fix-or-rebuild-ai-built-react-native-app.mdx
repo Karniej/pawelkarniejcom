@@ -1,0 +1,230 @@
+---
+title: "Fix or rebuild your AI-built React Native app?"
+date: "2026-05-28"
+excerpt: "A practical triage framework for founders stuck with a vibe-coded React Native or Expo app: what to keep, what to fix, and when to rebuild."
+tags: ["ai-app-rescue", "react-native", "vibe-coded-app", "expo", "technical-debt"]
+featuredImage: "/favicon.png"
+---
+
+# Fix or rebuild your AI-built React Native app?
+
+The hardest moment with an AI-built app is not the first demo. It is the point where the demo works, but every real launch task exposes another hidden problem.
+
+Authentication is half-wired. The paywall screen exists but does not control access. Expo packages are outdated. The same API call happens in three places. Analytics are missing. App Store submission is still a mystery.
+
+At that point, founders ask the right question:
+
+> Should I fix this codebase or rebuild it?
+
+This article gives you a practical triage framework for React Native and Expo apps built with AI tools like Cursor, Lovable, Bolt, Replit, or coding agents.
+
+## The wrong question: can the code be fixed?
+
+Almost any code can be fixed.
+
+That does not mean fixing it is the best business decision.
+
+The real question is:
+
+> Can this codebase become launch-ready faster than rebuilding the critical path on a clean foundation?
+
+If the answer is yes, rescue it. If the answer is no, rebuild the parts that matter and stop paying for technical debt.
+
+## What "launch-ready" actually means
+
+A launch-ready AI mobile app is not just a working demo.
+
+It needs:
+
+- stable onboarding
+- reliable authentication
+- one clear AI workflow
+- payment and subscription logic
+- entitlement checks
+- analytics events
+- crash reporting
+- clean App Store metadata
+- privacy policy and account deletion
+- support for loading, empty, and error states
+- code another developer can understand
+
+If your AI-built app does not have these, it may still be valuable. But it is not finished.
+
+## Keep the AI-generated code if these are true
+
+### 1. The core user journey is understandable
+
+Open the app and trace the path:
+
+1. user lands
+2. user signs up
+3. user reaches the main value
+4. user sees the paywall
+5. user pays or continues free
+6. user returns later
+
+If that flow is clear in the code and the UI, the project may be salvageable.
+
+If every screen has its own state, API calls, and payment assumptions, you are not looking at a product. You are looking at disconnected demos.
+
+### 2. Dependencies are not fighting the app
+
+Check the basics:
+
+- Expo SDK version
+- React Native version
+- navigation library
+- auth provider SDK
+- RevenueCat, Stripe, or StoreKit integration
+- native permissions
+- build tooling
+
+If the AI tool installed outdated packages but the damage is isolated, fixing may be reasonable.
+
+If the app only builds because the AI downgraded Expo or forced incompatible versions together, rebuilding the foundation may be faster.
+
+### 3. Screens can be reused
+
+AI tools often produce useful UI. Even if the logic is bad, the screens may contain good product thinking:
+
+- onboarding copy
+- dashboard layout
+- result screens
+- settings
+- empty states
+- brand direction
+
+You do not need to throw all of that away. A rescue can keep the visual layer while rebuilding the business logic underneath.
+
+### 4. The main AI workflow works on a real device
+
+Do not trust the browser preview. Do not trust a mock response.
+
+Test the main AI action on device:
+
+- upload or input works
+- API call succeeds
+- loading state is clear
+- output is saved
+- errors are handled
+- cost is predictable
+
+If the core AI workflow works, rescue is more likely. If it only works with fake data or breaks on device, the app needs deeper work.
+
+## Rebuild the critical path if these are true
+
+### 1. Auth, onboarding, and payment logic are tangled
+
+This is the biggest warning sign.
+
+If the code cannot clearly answer:
+
+- is the user logged in?
+- has onboarding been completed?
+- is the user paid?
+- what plan do they have?
+- what screen should they see next?
+
+then the app is not safe to launch. These rules control revenue and retention. They should not be spread randomly across screens.
+
+### 2. Every bug fix creates another bug
+
+This usually means the architecture has no boundaries.
+
+You fix onboarding and break the dashboard. You fix the dashboard and break auth. You update a package and the app no longer builds.
+
+That is not normal "startup mess." That is a sign the foundation is too fragile.
+
+### 3. Business logic is duplicated
+
+Common AI-generated patterns:
+
+- three different subscription checks
+- two API clients
+- duplicate user types
+- repeated auth guards
+- similar screens with copied logic
+- dead helper functions
+
+Duplication makes launch dangerous because no one knows which code path is real.
+
+### 4. The App Store requirements were ignored
+
+If the app has subscriptions, user accounts, health claims, AI-generated content, or sensitive data, App Store requirements shape the product.
+
+Rebuild or refactor if the app is missing:
+
+- account deletion
+- privacy policy URL
+- subscription disclosure
+- restore purchases
+- terms of service
+- permission explanations
+- safety or moderation flows where needed
+
+You do not want to discover these after the build is submitted.
+
+## The rescue decision matrix
+
+Use this simple rule:
+
+| Situation | Recommendation |
+|---|---|
+| UI is good, logic is messy | Keep UI, rebuild critical path |
+| Packages are mostly current | Rescue likely works |
+| Expo was downgraded or native build is broken | Rebuild foundation |
+| Auth and payment are unclear | Rebuild critical path |
+| One or two flows are broken | Rescue sprint |
+| Every change breaks something else | Rebuild |
+| App Store checklist is missing | Rescue plus launch readiness work |
+| Product scope is too broad | Cut scope before fixing code |
+
+## What an AI App Rescue Audit should produce
+
+A useful audit does not end with "this code is bad."
+
+It should produce a decision:
+
+1. what survives
+2. what gets fixed
+3. what gets rebuilt
+4. what gets cut from v1
+5. what blocks App Store submission
+6. what the rescue sprint costs
+
+That is the difference between a code review and a launch plan.
+
+## How I approach AI app rescue
+
+I am not trying to become a cheap bug-fixing desk for vibe-coded apps.
+
+The offer is narrower:
+
+> I help founders move from AI-built prototype to launch-ready mobile product.
+
+That means I care about the code, but only because the code supports the business outcome:
+
+- users can onboard
+- users can pay
+- the core AI workflow works
+- analytics tell you what happened
+- the app can be submitted
+- the repo can be handed off
+
+Sometimes that means fixing the existing app. Sometimes it means rebuilding the critical path on a clean stack.
+
+## Start with the $499 audit
+
+If you are stuck, do not start with a full rebuild. Start with a triage pass.
+
+The [AI App Rescue Audit](/ai-app-rescue) reviews the React Native or Expo codebase, checks the launch blockers, and gives you a fixed rescue path. If you move into a sprint, the audit credits toward the work.
+
+You will know whether the app should be fixed, rebuilt, or abandoned.
+
+That clarity is worth getting before you spend another month asking an AI agent to patch the same broken foundation.
+
+## Related reading
+
+- [Why AI-built React Native apps break before launch](/blog/why-ai-built-react-native-apps-break-before-launch)
+- [What your AI-built Expo app still needs before App Store submission](/blog/ai-built-expo-app-app-store-submission-checklist)
+- [See my pricing](/mobile-apps)

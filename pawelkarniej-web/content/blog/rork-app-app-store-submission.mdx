@@ -1,0 +1,124 @@
+---
+title: "Rork app App Store submission: the production-ready path"
+date: "2026-07-15"
+excerpt: "Before submitting a Rork app, check the native build, auth, payments, privacy, analytics, and App Store assets that preview cannot prove."
+tags: ["rork-app-app-store-submission", "tool-to-launch", "app-store-readiness"]
+featuredImage: "/favicon.png"
+---
+
+# Rork app App Store submission: the production-ready path
+
+*Your Rork app works in preview, but the first release build exposes everything the happy path did not test.*
+
+## TL;DR
+
+Rork can build a native app and send it toward App Store Connect, but pressing Publish is not the same as shipping a production-ready product. First identify whether the project uses Rork Pro's React Native and Expo path or Rork Max's SwiftUI path. Then test the actual release build through TestFlight, not only the browser or companion preview. Verify authentication after restart, account deletion, backend security, subscriptions, restore purchases, analytics, crash reporting, privacy disclosures, screenshots, and reviewer access. Fix isolated release defects. Audit the project when ownership is unclear. Rebuild the critical path when state, data access, or payments are tangled enough that every patch creates another failure.
+
+## Key facts at a glance
+
+- Rork's current product has two native foundations: React Native with Expo for Rork Pro and SwiftUI for Rork Max.
+- Rork can automate build and submission work, but Apple still reviews the app, listing, privacy answers, payments, and reviewer path.
+- A preview proves that a development path renders. TestFlight proves much more about signing, native configuration, startup, and production services.
+- Digital subscriptions need real App Store products, entitlement checks, restore purchases, and tested failure states.
+- Apps that let users create accounts need an in-app account deletion path and accurate privacy disclosures.
+- Keep the existing code when the release path is stable and failures are contained. Rebuild the critical path when core state has no clear owner.
+
+## Diagnosis: find what is actually broken before submission
+
+The weak question is, "How do I press Publish?" Rork's [official App Store guide](https://docs.rork.com/store-guides/publish-app-store) already explains the mechanical path: configure the app, connect the required accounts, build, and send the result to App Store Connect.
+
+The useful question is, "What evidence says this app deserves to be submitted?"
+
+Start with the code foundation. Rork's [current FAQ](https://rork.com/faq) describes Rork Pro as a React Native and Expo workflow and Rork Max as a native SwiftUI workflow. That distinction changes the debugging path, package model, and handoff. Do not apply Expo fixes to a SwiftUI project or assume an Expo Go preview represents a native release build.
+
+For either path, inspect five boundaries:
+
+1. **Release build:** Can a clean TestFlight install open, finish onboarding, and complete the main user outcome?
+2. **Identity:** Does the same account survive restart, token refresh, sign-out, sign-in, and deletion?
+3. **Data and AI services:** Are secrets kept off the client, access rules enforced on the backend, and slow or failed requests handled?
+4. **Revenue:** Does a real sandbox purchase grant the correct entitlement, and can the user restore it after reinstalling?
+5. **Store package:** Do the privacy answers, screenshots, support links, review notes, and test account match the submitted build?
+
+Preview-heavy development often breaks at these boundaries because each visible screen can work while the shared system remains inconsistent. Auth may be copied into several views. A paid flag may live in local storage instead of receipt-backed entitlement state. An API key may be bundled into the client. The app can look finished while analytics, crash reporting, account deletion, and App Store assets do not exist.
+
+That is not a reason to attack Rork. It is a reason to separate generation speed from release evidence. The editor can shorten implementation work. It cannot decide whether your product's failure states, data rules, and store claims are correct.
+
+## What changes between preview, TestFlight, and App Review
+
+A preview is useful for layout, navigation, and the main interaction. It is weak evidence for production configuration. Release builds introduce signing, native capabilities, production environment variables, permission descriptions, real service endpoints, and cold-start behavior.
+
+Run a TestFlight pass like a reviewer and a paying customer:
+
+- Install the app on a device that has never run it.
+- Deny each optional permission once and confirm that the app recovers.
+- Create an account, kill the app, reopen it, sign out, and sign back in.
+- Interrupt the core workflow with a slow connection or failed request.
+- Buy the subscription in sandbox, confirm access, reinstall, and restore purchases.
+- Delete the account in the app and verify the signed-out state.
+- Open every support, privacy, and terms link from the submitted build.
+- Confirm that analytics and crash reports identify the release version and failed step.
+
+Apple's [publishing overview](https://developer.apple.com/help/app-store-connect/manage-your-apps-availability/overview-of-publishing-your-app-on-the-app-store) separates choosing a build, completing availability and metadata, submitting for review, and resolving review issues. Rork can reduce the toolchain work around the build. It does not remove the product and review work around that build.
+
+Payments deserve their own pass. A generated paywall is only UI until App Store products, price disclosures, purchase handling, entitlements, cancellation behavior, and restore purchases agree. Paid access should read from one central entitlement layer. If several screens each decide whether the user is paid, repair that state model before submission.
+
+## Fix path: publish, repair, or rebuild
+
+Choose **direct submission** when TestFlight is stable, auth and purchases survive lifecycle changes, backend access is controlled, and the remaining work is store metadata or one contained release defect. Finish the [App Store submission checklist](/blog/app-store-submission-checklist-2026), give Apple a working review account when needed, and submit the tested build.
+
+Choose **audit and repair** when the native project builds but you cannot explain who owns session state, entitlement state, or data access. Freeze new features. Trace one path from install to paid result, then repair it in dependency order: build, auth, core workflow, payments, analytics, account deletion, and store assets. [AI App Rescue](/ai-app-rescue) is my triage route when the fix-versus-rebuild decision is the blocker.
+
+Choose **critical-path rebuild** when the app only works in one exact preview path, private services are called directly from the client, auth and payment state are duplicated, or each release fix produces a different failure. Preserve useful screens, copy, assets, product rules, backend logic, and validated user feedback. Replace the unstable mobile path instead of protecting generated code for its own sake.
+
+If the product is sound but nobody owns onboarding, revenue infrastructure, analytics, App Store assets, and submission as one release, use a fixed launch path. my AI Product Launch Sprint is productized around that shipping discipline, not an open-ended queue of tickets.
+
+## Comparison
+
+| Path | Cost | Best for | Risk |
+|---|---:|---|---|
+| Direct Rork submission | Rork plan, Apple account, and service costs | Stable native app with tested auth, payments, and TestFlight build | A successful upload can be mistaken for launch readiness |
+| [Kickstart](/mobile-apps) | $499 | DIY founder who wants the $199 boilerplate, 1-on-1 help, code review, and 30-day support | Founder still owns implementation and submission |
+| my Product Build Sprint | $3,999 with iOS and Android included | Focused app needing a 4-week done-for-you path | Fixed scope requires cutting nonessential features |
+| my Product Build Sprint + Growth | $5,999 with iOS and Android included | Revenue-ready app that also needs full launch assets and ASO | Higher spend than a contained repair |
+
+The Launch path includes a 30-day ready-to-ship guarantee or full refund. Compare the current package fit on [my pricing](/mobile-apps) before deciding whether the Rork project needs review, repair, or full delivery.
+
+## FAQ
+
+### Can a Rork app be submitted to the App Store?
+
+Yes. Rork provides native app workflows and built-in publishing paths that can send a build to App Store Connect. The app still needs a complete listing, production testing, and Apple approval before it is live.
+
+### Is pressing Publish in Rork the final App Store step?
+
+No. Submission automation gets the build into Apple's workflow. You still need to select the release build, complete metadata and privacy details, configure availability, answer review questions, and respond if Apple finds an issue.
+
+### Does Rork preview prove the app is production-ready?
+
+No. Preview is useful evidence for screens and the happy path. TestFlight is the minimum useful checkpoint for release startup, native configuration, real service settings, lifecycle behavior, and device testing.
+
+### What should I test before submitting a Rork app?
+
+Test fresh install, onboarding, session restoration, sign-out, the core user outcome, network failures, purchases, restore purchases, account deletion, and cold start. Also inspect analytics, crash reporting, privacy answers, screenshots, support links, and reviewer credentials.
+
+### Will Apple reject an app because it was built with Rork or AI?
+
+Apple reviews the submitted product and its behavior, not whether an AI tool helped create it. Practical rejection risks include crashes, incomplete features, broken payments, inaccurate metadata, missing account deletion, thin functionality, and privacy disclosures that do not match the app.
+
+### Do I need RevenueCat or another entitlement system?
+
+You need a reliable way to connect App Store purchases to paid access. RevenueCat is one common path for React Native subscription apps, but the key requirement is consistent entitlement logic, restore purchases, identity handling, and tested store configuration.
+
+### When should I fix the Rork project instead of rebuilding it?
+
+Fix it when the native foundation produces a stable release build and the defects are isolated to known systems. Rebuild the critical path when auth, payments, navigation, or data access are duplicated or coupled so tightly that repairs keep causing regressions.
+
+### Which service fits an almost-finished Rork app?
+
+Use Kickstart when you can implement the remaining work with focused review and support. Use AI App Rescue when you need an audit and triage decision, or a launch sprint when I need to own the production and App Store path.
+
+## Next steps
+
+- [Compare my Product Build Sprint packages](/mobile-apps)
+- Turn the Rork prototype into a revenue-ready mobile product
+- [Run the App Store submission checklist](/blog/app-store-submission-checklist-2026)

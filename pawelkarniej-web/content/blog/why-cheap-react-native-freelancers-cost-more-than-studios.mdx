@@ -1,0 +1,151 @@
+---
+title: "Why hiring a 'cheap React Native freelancer' costs more than a productized studio"
+date: "2026-02-19"
+excerpt: "The math on cheap freelancers always looks great until month four. Real breakdown of why the $4,000 quote becomes a $14,000 project."
+tags: ["react-native-freelancer", "freelancer-vs-studio", "mobile-app-cost", "scope-creep"]
+featuredImage: "/favicon.png"
+---
+
+# Why hiring a 'cheap React Native freelancer' costs more than a productized studio
+
+*The $4,000 quote that turned into $14,000 plus six months of stress.*
+
+## TL;DR
+
+Cheap freelancer quotes are loss leaders. They price the visible work at $3,000 to $5,000 and recover the rest as change orders, missed deadlines, and rebuild costs. By month three, the average "cheap freelancer" project costs $9,000 to $15,000 with a partially-shipped app. A $3,999 productized studio sprint ships in four weeks with paywalls, analytics, and ASO included. The all-in lifetime cost favors the studio for any app you plan to keep running. This article shows the real numbers from 25 launches.
+
+## Key facts at a glance
+
+- The average freelancer-built MVP needs a rebuild within 12 months. Real cost of the rebuild: $5,000 to $20,000.
+- Freelancer quotes typically exclude paywalls, analytics, App Store submission, and post-launch fixes. Each is a billed change order.
+- Calendar time on freelancer projects averages 8 to 14 weeks for what a productized studio ships in 3.
+- Quality is bimodal: about 30 percent of freelancer hires deliver excellent work, 70 percent ship something that needs significant remediation.
+- The only honest cheap path is DIY with a [Ship React Native boilerplate](/mobile-apps) ($199), not a $4,000 freelancer.
+
+---
+
+## The seductive cheap quote
+
+You post a job. You get 40 proposals. The one that catches your eye says something like:
+
+> "Hi! I'm a senior React Native developer with 5 years of experience. I can build your app for $3,500 in 6 weeks. I include design, development, and testing. Let's chat!"
+
+It's tempting. It's three to five times cheaper than the productized studio quote. The freelancer has a portfolio. The references check out. You sign.
+
+Six months later you've spent $11,000 and your app isn't live.
+
+This article explains how that math happens and what to look for.
+
+## Where the cheap quote goes wrong
+
+### Trap 1: scope is stated as features, not infrastructure
+
+The cheap quote says "auth, main feature, paywall." Each is a feature with a vague checkmark next to it. None is broken into the 8 to 15 sub-tasks each one actually requires.
+
+Example: "paywall" sounds like one screen. Real paywall is product fetch from RevenueCat, the paywall screen itself, the success state, the error state, restore purchases, expired subscription, churn win-back, receipt validation, and analytics events. That's 9 sub-tasks.
+
+When the freelancer hits any of those sub-tasks, it becomes a change order or a delay.
+
+### Trap 2: design is "I'll figure it out"
+
+The cheap quote doesn't include real design rounds. The freelancer slaps a Bootstrap-flavored layout on the screens and calls it done. You ask for changes. Each round is a billed extension.
+
+Real cost of design after the fact: $500 to $2,500 across 3 to 5 rounds.
+
+### Trap 3: nobody owns the launch
+
+The freelancer quote ends at "submission ready." Submission itself is your problem. Screenshots are your problem. App Store copy is your problem. Keyword research is your problem.
+
+You're suddenly the project manager AND the marketing lead AND the storefront designer for an app you paid someone else to build.
+
+Most founders who go this route end up not launching for 2 to 4 weeks past "submission ready" because the launch ops they didn't budget for are blocking.
+
+### Trap 4: post-launch is a separate engagement
+
+The cheap freelancer ships, you launch, real users surface bugs in week one. The freelancer is on another client now. Bug fixes are a new engagement at the freelancer's hourly rate.
+
+Real cost of bug-shield work: $1,000 to $3,000 over the first month.
+
+### Trap 5: technical debt compounds fast
+
+Cheap freelancers ship cheap code. State management is a tangle. Analytics events are inconsistent. Subscription logic has race conditions. The architecture decisions you made on day one become the rebuild cost you eat in month 12.
+
+Real cost of v2 rebuild: $5,000 to $20,000 depending on how much survives.
+
+---
+
+## The real numbers from 25 launches
+
+I have data on what founders pay all-in across the four paths over the first 12 months:
+
+| Path | Build | Change orders | Launch ops | Bug fixes | Month-12 rebuild | All-in 12 months |
+|---|---|---|---|---|---|---|
+| DIY boilerplate ($199) | $199 + your time | 0 | DIY | DIY | maybe none | $200 to $2,000 |
+| Cheap freelancer ($3-5k) | $3,500 | $2,000 to $4,000 | $500 to $2,000 | $1,000 to $3,000 | $5,000 to $15,000 | $12,000 to $29,500 |
+| Productized studio ($3,999) | $3,999 | $0 (locked) | included | 4-week shield included | rare | $2,000 to $5,000 |
+| Traditional agency ($50k+) | $60,000 | $10,000 to $30,000 | included | retainer | $0 (still on retainer) | $80,000 to $150,000+ |
+
+The cheap-freelancer path is the most expensive non-agency option once you account for change orders and rebuild costs.
+
+The full economics with each path's strengths and weaknesses are in [the cost-of-mobile-app pillar](/blog/how-much-does-it-cost-to-build-a-mobile-app-in-2026).
+
+---
+
+## When a cheap freelancer IS the right call
+
+Three cases where it works:
+
+1. **You're a technical founder reviewing every line of code.** You can catch the quality shortcuts. You can architect on top of their work. You're effectively an experienced lead with extra hands.
+2. **Your scope is genuinely custom and outside any boilerplate's coverage.** Heavy native modules, BLE integration, specialized computer vision. A studio can't help you, an agency is overkill, a senior freelancer is the right fit.
+3. **You're in a market where freelancer hourly rates are 5 to 10x lower.** A $20-an-hour senior dev in a low-cost region can deliver excellently for $2,000 to $4,000 if you're set up to manage them.
+
+For the standard B2C consumer app with auth, paywall, and an AI feature: don't hire a cheap freelancer. The math doesn't work.
+
+---
+
+## The middle path: $499 Kickstart
+
+If $3,999 feels like too much commitment but you don't trust a $4,000 freelancer, the [$499 Kickstart tier](/mobile-apps) is the bridge. You buy the [Ship React Native boilerplate](/mobile-apps) ($199 value), get a 1-hour live build session with the founder, get a code review of your implementation, and get 4 weeks of priority email support.
+
+That's enough to ship most consumer apps if you're a capable React or React Native developer. You keep the $4,000 you would have given to the freelancer.
+
+If you decide partway through that you'd rather hand it off, the $499 credits against the $3,999 Product Build Sprint fee. No wasted money.
+
+---
+
+## FAQ
+
+### How do I find a cheap freelancer who actually delivers?
+
+Three signals. First: 5+ apps live in the App Store today, with codebase walk-through on a call. Second: their quote explicitly names paywalls, analytics, and submission. Third: they commit to a date, not just a price. Anyone who refuses to commit to a date is the one who'll miss it.
+
+### Why do I charge so little if freelancers are 'cheap' at $4,000?
+
+I reuse the [Ship React Native](/mobile-apps) boilerplate and a productized process across every client. About 60 to 80 percent of the code already exists. I'm charging for customization and launch ops, not for rebuilding auth and payments. Freelancers rebuild from scratch every time, which is why their effective hourly rate has to be higher to make the math work.
+
+### Can I get a freelancer to use Ship React Native and skip the agency markup?
+
+Yes. Buy the boilerplate ($199), then hire a freelancer to customize it. You'll save on the rebuild trap. You still own the launch ops yourself. This is a legitimate path for founders with a clear spec and the time to project-manage.
+
+### What's the actual quality difference?
+
+Productized studios get the same playbook right on the 26th client. Freelancers get it right on the 5th to 10th project. The quality difference shrinks if your freelancer has shipped a lot. The reliability difference doesn't shrink because freelancers have other clients pulling their attention.
+
+### Do I hire freelancers I can avoid?
+
+I am one founder doing the work hands-on. No subcontractors, no offshore back-office. You get the founder on every call. That's deliberately the model.
+
+### What about Upwork or Toptal?
+
+Both are fine sourcing channels for legitimate senior freelancers. The platform doesn't change the economics described above. Apply the same three signals (5+ shipped apps, explicit scope, date commitment) regardless of where you find the freelancer.
+
+---
+
+**Next steps:**
+- [See the productized alternative at $3,999 →](/mobile-apps)
+- [Or get help shipping yourself with Kickstart at $499 →](/mobile-apps)
+- [Browse 16 apps shipped on this stack →](/apps)
+
+**Related deep dives:**
+- [How much does it cost to build a mobile app in 2026?](/blog/how-much-does-it-cost-to-build-a-mobile-app-in-2026)
+- [React Native agency vs freelancer vs MVP studio](/blog/react-native-agency-vs-freelancer-vs-mvp-studio)

@@ -1,0 +1,168 @@
+---
+title: "How to Fix an AI App Before Launch"
+date: "2026-07-23"
+excerpt: "Fix an AI-built app before launch by triaging auth, payments, analytics, device builds, and App Store blockers in the right order."
+tags: ["fix-ai-app-before-launch", "ai-app-rescue", "production-readiness"]
+featuredImage: "/favicon.png"
+---
+
+# How to Fix an AI App Before Launch
+
+*Your AI-built prototype looks finished in preview, but the real device build, login, paywall, or App Store path keeps exposing another launch blocker.*
+
+## TL;DR
+
+To fix an AI app before launch, stop adding features and test the complete paid-user path in a release build. Diagnose the foundation first: build configuration, dependencies, authentication, data access, payments, analytics, account deletion, privacy, and store submission. Repair blockers in that order because a polished screen cannot compensate for broken identity or entitlement state. Keep the code when the main flow is understandable and failures are isolated. Rebuild the critical path when auth, payments, and navigation disagree about user state or each patch breaks another flow. If nobody can produce that decision confidently, get a code and launch-readiness audit before spending more time.
+
+## Key facts at a glance
+
+- A browser preview or Expo Go session does not prove that a TestFlight or production build works.
+- Authentication must survive app restarts, expired sessions, password resets, logout, and account deletion.
+- A paywall screen is unfinished until purchases, entitlements, restore purchases, and failure states work together.
+- Analytics and crash reporting must be installed before launch if you want evidence about failures and conversion.
+- App Store work includes privacy answers, account deletion, store assets, reviewer access, and submission.
+- Fix isolated failures, but rebuild the critical path when user, navigation, and payment state are tangled.
+
+## Diagnosis: identify what is actually broken
+
+Do not begin with a list of visual bugs. Begin with one traceable launch path:
+
+1. A new user installs the release build.
+2. The user creates an account or signs in.
+3. The user completes onboarding.
+4. The user reaches the app's main value.
+5. The user sees an appropriate paywall.
+6. A purchase grants the correct access.
+7. The user can return later, restore access, manage the account, and delete it.
+
+Run that path on a real device with production-like configuration. Record the first point where expected and actual state diverge.
+
+### The app only works in preview
+
+Preview environments may provide development variables, mock data, or native capabilities that differ from a signed build. An app that renders in a browser can still fail during EAS build, crash in TestFlight, or call the wrong backend.
+
+Look for a specific boundary failure: an absent environment variable, incompatible native package, undeclared permission, or development-only data assumption.
+
+### Auth, navigation, and data disagree
+
+Generated apps often represent the same user in several places. One screen reads an auth session, another reads local storage, and a third checks a profile record. This can send a paid user back to onboarding or leave deleted account data cached.
+
+Write down the authoritative source for session, onboarding, profile, and subscription state. If the team cannot name one source for each, the problem is architectural, not cosmetic.
+
+### The paywall is a screen instead of a revenue system
+
+A working purchase button is only one step. Mobile revenue also needs product loading, entitlement checks, restore purchases, expiration handling, and clear error states. Paid access should follow the entitlement, not a local Boolean set after a tap.
+
+Test a new purchase, failed purchase, restore, expired access, and app reinstall. If those states produce contradictory access, do not launch.
+
+### Nobody can see failures
+
+Without analytics and crash reporting, the team cannot distinguish a weak offer from a broken funnel. A failed AI request or paywall error can look like poor demand.
+
+At minimum, trace signup, onboarding completion, first successful core action, paywall view, purchase attempt, purchase result, and entitlement activation. Add enough error context to identify the failing step without exposing private user data.
+
+### Store requirements were left until the end
+
+App Store readiness changes the product. Accounts need deletion, subscriptions need accurate terms and restore behavior, and privacy answers must match the submitted build. Reviewers may also need credentials and instructions.
+
+If these are still described as "metadata work," the launch plan is incomplete.
+
+## Fix path: repair in production-risk order
+
+### 1. Freeze features and preserve a known state
+
+Stop prompting for new screens while the foundation is moving. Keep a known working revision, define the launch-critical flow, and separate blockers from later improvements.
+
+### 2. Make the release build repeatable
+
+Confirm the intended Expo and React Native versions, remove package mismatches, and document required environment variables. Install the release candidate on a device. Fix build and startup before polishing screens.
+
+If the app uses EAS or TestFlight, treat those as test environments for the real artifact. Passing Expo Go is not an acceptable substitute.
+
+### 3. Establish one identity and data path
+
+Centralize session handling, protected navigation, profile loading, and logout. Test refresh, password reset, account deletion, and slow-network behavior. Verify that backend authorization isolates each user's records.
+
+This is also the point to remove exposed secrets and move privileged operations out of client code. Rotating a leaked key without fixing where it is used only postpones the problem.
+
+### 4. Connect payment state to product access
+
+Fetch real products, handle errors, support restores, and make entitlements the source of access. Test what the app shows before, during, and after a sandbox transaction.
+
+Keep analytics close to this flow. You need to know whether users saw the paywall, attempted a purchase, completed it, and reached the paid feature.
+
+### 5. Harden the core AI action
+
+The main AI workflow needs loading, timeout, retry, invalid-input, and provider-error states. It should not charge twice after a repeated tap or lose a completed result in the background.
+
+Check that request limits and server-side controls match the product's paid promise. A convincing response with no failure handling is still prototype behavior.
+
+### 6. Finish the mobile business layer
+
+Add crash reporting, funnel analytics, legal links, account deletion, permission explanations, store assets, reviewer notes, and support details. Verify that privacy disclosures match the shipped libraries and services.
+
+Use the [App Store submission checklist](/blog/app-store-submission-checklist-2026) for the submission layer, but do not confuse a complete listing with a stable binary.
+
+### 7. Run release-candidate QA
+
+Test the critical flow on supported devices. Include fresh install, expired session, denied permission, interrupted network, failed purchase, restore purchase, and account deletion. Re-run it after every launch-blocking fix.
+
+The goal is not zero defects across every future feature. The goal is evidence that the release candidate can acquire a user, deliver value, collect revenue, recover from expected failures, and satisfy store requirements.
+
+## Decide whether to fix or rebuild
+
+Fix the current codebase when the release build is repeatable, the main flow can be traced, dependencies are supportable, and failures stay within clear boundaries. Reusing screens and working product logic can shorten the path.
+
+Rebuild the critical path when several versions of user state compete, business logic is copied across screens, core packages were downgraded to silence errors, or every repair creates a new regression. That does not always mean discarding the entire app. Keep useful product decisions, UI, assets, and isolated working modules while replacing the unstable route from install to paid value.
+
+If the evidence is mixed, use the deeper [fix-or-rebuild decision framework](/blog/fix-or-rebuild-ai-built-react-native-app). An [AI App Rescue](/ai-app-rescue) audit or triage should end with a specific keep, repair, rebuild, or cut decision, not a vague list of code smells.
+
+## Comparison
+
+| Path | Cost | Best for | Risk |
+|---|---:|---|---|
+| Repair the current repo yourself | Time plus tools | Technical founders with isolated failures and a traceable critical path | Repeated patches can hide structural problems |
+| [Ship React Native Full](/mobile-apps) | $199 | Founders rebuilding on a production-oriented DIY boilerplate | You still own implementation, testing, and submission |
+| [Kickstart](/mobile-apps) | $499 | DIY builders who need the boilerplate, 1-on-1 help, code review, and 30-day support | A guided path cannot replace done-for-you execution |
+| AI App Rescue | Scoped after triage | Founders with an existing AI-built app and uncertain repair depth | The audit may show that critical-path rebuilding is cheaper than patching |
+| [my Product Build Sprint](/mobile-apps) | $1,999 iOS or $2,999 iOS plus Android | Founders who need a 3-week done-for-you build and launch path | Fixed scope requires disciplined decisions about v1 |
+
+## FAQ
+
+### Can an AI-generated app be fixed before launch?
+
+Yes, when the main user flow is understandable and the failures are isolated. The useful parts may include the product concept, screens, copy, or working logic even if auth, payments, or build configuration need repair.
+
+### What should I fix first in an AI-built mobile app?
+
+Fix the release build and startup path first, then identity and data access, payments, the core product action, observability, and store requirements. That order prevents cosmetic work from hiding a broken foundation.
+
+### Is a working Expo Go preview enough for launch?
+
+No. Expo Go is useful during development, but it does not prove that your signed production build, native modules, permissions, environment variables, or TestFlight runtime are correct.
+
+### When should I stop asking an AI coding tool to patch bugs?
+
+Stop when changes no longer have a clear boundary, the tool repeats incompatible fixes, or one repair breaks unrelated flows. At that point, preserve the current revision and get a human diagnosis of the critical path.
+
+### Do I need analytics before the first launch?
+
+Yes, for the events that explain activation and revenue. Without them, you cannot tell whether users rejected the product or encountered a silent failure before reaching value.
+
+### How do I know whether the paywall is production-ready?
+
+Test product loading, purchase success, purchase failure, entitlement activation, restore purchases, expiration, reinstall, and app restart. Paid access must follow the verified entitlement across those states.
+
+### Will App Review find security or backend authorization problems?
+
+Do not treat App Review as a security audit. Your team remains responsible for authorization, secret handling, data isolation, and safe backend behavior even if the submitted app passes review.
+
+### Should I fix everything before submitting to TestFlight?
+
+No. TestFlight is useful for testing the real release artifact, so use it before every product detail is polished. Build, startup, auth, data, payments, and the core value path should be stable enough that testers can generate useful evidence.
+
+## Next steps
+
+- [Compare my Product Build Sprint options and pricing](/mobile-apps).
+- [Start with AI App Rescue when the existing code needs triage](/ai-app-rescue).
+- [Use the fix-or-rebuild framework to decide what survives](/blog/fix-or-rebuild-ai-built-react-native-app).

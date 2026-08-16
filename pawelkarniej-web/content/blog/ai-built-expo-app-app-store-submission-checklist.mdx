@@ -1,0 +1,212 @@
+---
+title: "AI-built Expo app? What still needs to happen before App Store submission"
+date: "2026-05-27"
+excerpt: "A launch-readiness checklist for founders who built an Expo or React Native app with AI tools and now need authentication, payments, analytics, and App Store submission."
+tags: ["expo", "app-store-submission", "ai-built-apps", "react-native", "vibe-coding"]
+featuredImage: "/favicon.png"
+---
+
+# AI-built Expo app? What still needs to happen before App Store submission
+
+An AI tool can help you build an Expo app fast. It can generate screens, routes, components, forms, and a convincing first demo.
+
+But App Store submission exposes everything the demo did not prove.
+
+If your app was built with Cursor, Lovable, Bolt, Replit, or another AI-assisted workflow, this checklist shows what still needs to happen before you can treat it as a launch-ready mobile product.
+
+## 1. Confirm the Expo foundation is healthy
+
+Before you polish screens, make sure the app is not sitting on a broken foundation.
+
+Check:
+
+- Expo SDK version is current enough for your target launch
+- React Native version matches the Expo SDK
+- native dependencies are compatible
+- EAS build works
+- iOS build works on device
+- permissions are configured intentionally
+- no web-only package is used in a native-only flow
+- package lockfile is clean
+
+AI tools sometimes install packages until the error disappears. That does not mean the foundation is healthy. If the AI downgraded Expo or forced incompatible packages together, fix that before touching product polish.
+
+## 2. Lock the product scope
+
+AI-generated apps often have too many half-built features.
+
+Before App Store work, define the v1:
+
+- one target user
+- one core AI workflow
+- one paid promise
+- one onboarding path
+- one monetization model
+- one primary success metric
+
+Everything else is optional.
+
+The biggest launch mistake is trying to rescue every screen the AI generated. Some of those screens are not product. They are debris.
+
+## 3. Make authentication production-ready
+
+Auth has to work beyond the happy path.
+
+Checklist:
+
+- sign up
+- login
+- logout
+- session restore
+- password reset or magic link flow
+- protected routes
+- account deletion
+- user profile state
+- onboarding completion state
+- paid entitlement state
+
+Test this on device, not just in preview.
+
+If auth is tangled with screen state, fix it before launch. Broken auth creates support issues, App Store review risk, and user trust problems.
+
+## 4. Wire the paywall as a system, not a screen
+
+For subscription apps, the paywall is business infrastructure.
+
+You need:
+
+- RevenueCat, StoreKit, Google Play Billing, or Stripe configured correctly
+- products fetched from the store
+- restore purchases
+- trial eligibility handling
+- expired subscription handling
+- entitlement checks
+- purchase success state
+- purchase error state
+- analytics events for paywall view, trial start, purchase, restore, and cancel signals
+
+AI tools often generate a beautiful paywall that does not control access. That is not monetization. That is a mockup.
+
+## 5. Add analytics before users arrive
+
+Do not wait until after launch to add analytics.
+
+Minimum event model:
+
+- app opened
+- onboarding started
+- onboarding completed
+- account created
+- core AI action started
+- core AI action succeeded
+- core AI action failed
+- paywall viewed
+- trial started
+- purchase completed
+- restore purchases tapped
+- subscription status changed
+
+Analytics should tell you whether the app is working as a business. If users drop, you need to know where. If the AI workflow is expensive, you need to know how often it runs.
+
+## 6. Add crash reporting and error visibility
+
+If the app breaks after launch and you cannot see why, you are guessing.
+
+Add:
+
+- crash reporting
+- API error logging
+- AI provider failure logging
+- payment error logging
+- build version tracking
+- device and platform metadata
+
+This does not have to be complex. It just has to exist before real users arrive.
+
+## 7. Clean the navigation and state model
+
+AI-built apps often make navigation decisions inside random components. That becomes painful when auth, onboarding, and paid access arrive.
+
+Your navigation should clearly answer:
+
+- What does a logged-out user see?
+- What does a logged-in but not-onboarded user see?
+- What does a free user see?
+- What does a paid user see?
+- What happens after purchase?
+- What happens after logout?
+
+If these answers are scattered across the app, the user experience will break.
+
+## 8. Prepare App Store requirements early
+
+App Store submission needs more than a binary.
+
+Prepare:
+
+- app name
+- subtitle
+- description
+- keywords
+- screenshots
+- app icon
+- privacy policy
+- terms of service
+- support URL
+- account deletion flow
+- subscription disclosure
+- age rating answers
+- data collection answers
+- permission usage explanations
+
+If your app uses AI, be careful with claims. Do not overpromise accuracy, diagnosis, financial advice, or professional outcomes unless the product is designed and reviewed for that category.
+
+## 9. Test the real device flow
+
+Simulator and preview testing are not enough.
+
+Before submission, test:
+
+- fresh install
+- slow network
+- denied permissions
+- invalid input
+- failed AI response
+- failed purchase
+- restore purchases
+- logout and login
+- app kill and reopen
+- subscription status changes
+
+AI-generated apps often pass the perfect path and fail the second path. App Store review and early users will find the second path fast.
+
+## 10. Decide whether to rescue or rebuild
+
+If the app is close, rescue it.
+
+If the foundations are wrong, rebuild the critical path.
+
+Do not spend 4 weeks fighting a codebase that should have been replaced in week one. The purpose of a rescue is not to preserve every generated file. The purpose is to launch a stable product.
+
+## How I help
+
+my [AI App Rescue](/ai-app-rescue) track is built for this exact gap.
+
+I review AI-built React Native and Expo apps, decide whether the code should be fixed or rebuilt, then turn the product into something launchable:
+
+- stable auth and onboarding
+- paywall and subscriptions
+- analytics and crash reporting
+- launch assets
+- App Store submission support
+- repo and infrastructure handoff
+- 4-week bug shield
+
+The first step is the $499 Rescue Audit. It gives you a concrete answer: fix, rebuild, or abandon.
+
+## Related reading
+
+- [Why AI-built React Native apps break before launch](/blog/why-ai-built-react-native-apps-break-before-launch)
+- [Fix or rebuild your AI-built React Native app?](/blog/fix-or-rebuild-ai-built-react-native-app)
+- [App Store submission checklist for 2026](/blog/app-store-submission-checklist-2026)
+- [Book my Product Build Sprint call](/contact)

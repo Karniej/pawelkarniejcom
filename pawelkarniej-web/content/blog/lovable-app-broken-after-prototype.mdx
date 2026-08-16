@@ -1,0 +1,153 @@
+---
+title: "Lovable app broken after prototype? What to fix before launch"
+date: "2026-07-01"
+excerpt: "If your Lovable prototype breaks after the demo, diagnose auth, state, backend, mobile, and launch gaps before you keep prompting."
+tags: ["lovable-app-broken-after-prototype", "ai-app-rescue", "prototype-repair"]
+featuredImage: "/favicon.png"
+---
+
+# Lovable app broken after prototype? What to fix before launch
+
+*Your Lovable app looked convincing in preview, but the first real user flow exposed broken auth, missing data, unstable state, or a product that cannot reach the App Store.*
+
+## TL;DR
+
+If a Lovable app breaks after the prototype stage, stop adding features and diagnose the launch path first. The problem is often not one bug. It is usually a weak boundary between UI, auth, database state, payments, mobile behavior, and production requirements. Fix the app if the product flow is clear, the data model is usable, and the broken parts are isolated. Rebuild the critical path if login, state, backend logic, or mobile launch requirements are tangled across screens. Use [AI App Rescue](/ai-app-rescue) when you need an outside read on what is salvageable before spending more weeks prompting.
+
+## Key facts at a glance
+
+- A Lovable prototype can prove the product shape without being production-ready.
+- Broken auth, missing Supabase rules, duplicated state, and fragile API calls are common after several prompt cycles.
+- The first decision is not "can this bug be fixed?" It is "can this code support users, payments, analytics, and release?"
+- Keep the prototype's copy, screens, data assumptions, and product lessons when they are useful.
+- Rebuild the critical path when the foundation hides too much risk.
+- Mobile launch adds work Lovable usually does not finish: native builds, App Store assets, account deletion, privacy answers, and TestFlight QA.
+- my [pricing](/mobile-apps) paths cover DIY support, done-for-you launch, and revenue-ready mobile product work.
+
+## Diagnosis: what is actually broken
+
+The most expensive mistake is treating every failure as an isolated prompt problem.
+
+When founders say "my Lovable app is broken," they usually mean one of these:
+
+- login works in preview but fails after refresh
+- users can see the wrong data or no data
+- Supabase tables exist, but row-level security is unclear
+- a feature works once, then breaks after a new prompt
+- loading states never resolve
+- generated code duplicated the same business rule in several files
+- the app has no clear path to iOS, Android, TestFlight, or App Review
+- the UI looks done, but there is no account deletion, analytics, crash reporting, or payment state
+
+That list mixes bugs with missing product infrastructure. A button not firing is a bug. A logged-in state that depends on local assumptions scattered through five screens is an architecture problem. A beautiful paywall with no entitlement logic is not a payment system. A web app that looks good on desktop is not a mobile app ready for App Store review.
+
+The diagnostic question is simple: what state is the app in when it breaks?
+
+Write down the exact user state:
+
+- signed out
+- signed in
+- onboarding incomplete
+- onboarding complete
+- free user
+- paid user
+- expired user
+- deleted account
+- user with failed payment
+- user returning after closing the app
+
+If the app cannot answer those states cleanly, more prompting will usually move the bug around. It may fix the visible screen while making the system harder to reason about.
+
+## Why Lovable prototypes break after the demo
+
+Lovable is strong at compressing the first phase: screens, flows, copy, basic interactions, and a working product shape. The failure appears when the prototype starts needing production guarantees.
+
+The first cause is prompt drift. Early prompts create a simple structure. Later prompts patch one visible issue at a time. The generated code can end up with new helpers, duplicated components, overlapping database calls, and state checks that only work for the happy path.
+
+The second cause is missing ownership boundaries. Production apps need clear places for auth, data access, business rules, payments, analytics, error handling, and navigation. Prototype code often lets screens do too much. That feels fast until every screen becomes a partial backend client, a partial state manager, and a partial product rules engine.
+
+The third cause is mobile mismatch. If your goal is a mobile product, a web prototype still leaves native work:
+
+- iOS and Android build strategy
+- mobile navigation patterns
+- RevenueCat, StoreKit, Google Play Billing, or another payment path
+- account deletion
+- privacy labels and support pages
+- App Store screenshots and listing copy
+- TestFlight device testing
+- crash reporting and analytics
+
+The fourth cause is weak launch evidence. A prototype can show what the product should feel like, but production needs proof that users can complete the full journey. That journey starts before signup and ends after payment, restore purchase, logout, deletion, and return sessions.
+
+## Fix path: repair, audit, or rebuild
+
+Do not start by asking whether Lovable is good or bad. That is too vague to help. Start by deciding which parts of the work are valuable.
+
+Keep the prototype when it gives you:
+
+- a clear target user
+- useful copy
+- a credible screen flow
+- reusable brand direction
+- a sensible data model
+- a validated core workflow
+- product decisions that would take time to rediscover
+
+Repair the existing app when the breakage is narrow. Examples: a single query is wrong, a screen has a broken import, a route guard is missing, or a Supabase policy needs correction. In this case, export the code, inspect it locally, test the failing path, and write a small fix with a repeatable check.
+
+Audit before repairing when the symptoms cross boundaries. If auth affects onboarding, onboarding affects payments, and payments affect feature access, you need a state map before a patch. This is where [AI App Rescue](/ai-app-rescue) fits: the goal is to decide what survives, what gets fixed, and what should be rebuilt.
+
+Rebuild the critical path when the app has no trustworthy foundation. That does not mean throwing away the product. It means keeping the product evidence and rebuilding the parts that decide whether users can sign up, receive value, pay, return, and pass review.
+
+For mobile products, the rebuild path often means React Native or Expo. If you are technical and want a guided starting point, [Kickstart](/mobile-apps) gives you the Ship React Native boilerplate, a 1-on-1 session, code review, and 30-day support for $499. If you want the app built for you, the Launch and Launch + Growth paths on [pricing](/mobile-apps) are the cleaner comparison.
+
+## Comparison
+
+| Path | Cost | Best for | Risk |
+|---|---:|---|---|
+| Keep prompting Lovable | Tool credits plus your time | Small UI fixes and early product exploration | Can create more duplicated logic and hide root causes |
+| Export and repair yourself | Your time, or $199 for Ship React Native if you move to a mobile boilerplate | Technical founders with isolated bugs | Easy to under-scope auth, payments, and App Store work |
+| Kickstart | $499 | Founders who can build but want setup guidance and code review | Still requires you to execute the build |
+| AI App Rescue | Scoped after triage | Founders unsure whether to fix or rebuild | Requires accepting that some generated code may be discarded |
+| Launch sprint | $3,999 with iOS and Android included | Founders who want a focused done-for-you mobile app path | Scope must stay tight enough for the sprint |
+| Launch + Growth scope | $5,999 with iOS and Android included | Revenue-ready apps that also need optimized assets and ASO | More investment before market proof |
+
+## FAQ
+
+### Can a broken Lovable app still be useful?
+
+Yes. The code may be weak while the product work is valuable. Screens, copy, user flows, data assumptions, and the core promise can all survive a repair or rebuild.
+
+### Should I keep asking Lovable to fix the bug?
+
+Only if the bug is isolated and you can verify the fix. If each fix breaks another screen, stop prompting and map the state model. That pattern usually means the app has an architecture problem.
+
+### When should I rebuild instead of repair?
+
+Rebuild when auth, navigation, backend calls, and business rules are tangled across screens. Also rebuild when there is no clear mobile release path and the product must ship to the App Store. Keep the product decisions, not the fragile implementation.
+
+### Is this different from the Lovable-to-App-Store problem?
+
+Yes. A Lovable-to-App-Store question is about mobile launch path. A broken-after-prototype question is about whether the existing product foundation can survive real users. Read [Can a Lovable app go to the App Store?](/blog/lovable-app-to-app-store) for the launch-path version.
+
+### What should I check first in the code?
+
+Start with auth and data ownership. Confirm where sessions are stored, how protected routes load, whether Supabase policies match user ownership, and whether screens duplicate the same state checks.
+
+### What about payments?
+
+Do not wire payments on top of unstable auth. A mobile app needs product loading, purchase flow, entitlement checks, restore purchases, expired subscriptions, and analytics events. A paywall screen alone is not enough.
+
+### Can I fix a Lovable app directly?
+
+I can audit and triage AI-built apps through [AI App Rescue](/ai-app-rescue). The result may be a repair plan, a critical-path rebuild, or a recommendation to start fresh for the mobile app.
+
+### How do I know if I need Launch or Launch + Growth?
+
+Use Launch when you need a focused, revenue-ready mobile app with the core AI workflow, paywall, subscriptions, essential analytics, and both store submissions. Use Launch + Growth when the same product also needs ASO research, optimized listings, expanded screenshots, preview video, launch creatives, and a post-launch optimization pass.
+
+## Next steps
+
+- Compare my fixed launch paths on [pricing](/mobile-apps).
+- Bring the repo or prototype to [AI App Rescue](/ai-app-rescue) if you need a fix-versus-rebuild decision.
+- Read [Can a Lovable app go to the App Store?](/blog/lovable-app-to-app-store) if the broken prototype needs to become a mobile app.

@@ -1,0 +1,148 @@
+---
+title: "Cursor React Native app audit: what to check before launch"
+date: "2026-06-30"
+excerpt: "A practical audit for Cursor-built React Native apps that need stable auth, payments, analytics, TestFlight, and App Store readiness."
+tags: ["cursor-react-native-app-audit", "ai-app-rescue", "react-native-audit"]
+featuredImage: "/favicon.png"
+---
+
+# Cursor React Native app audit: what to check before launch
+
+*Your Cursor-built React Native app looks close, but every launch task exposes another weak spot.*
+
+## TL;DR
+
+A Cursor React Native app audit should answer one question: can this codebase become launch-ready faster than rebuilding the critical path? Audit the foundation, Expo or React Native version, dependency health, navigation, authentication, subscription logic, analytics, error handling, AI workflow, and App Store readiness. The common failure is not that Cursor wrote "bad code." The failure is that prompt-by-prompt progress creates disconnected decisions. If the main user journey is clear and the build works on device, fix it. If auth, payments, and state are tangled, rebuild the critical path before you spend more time prompting.
+
+## Key facts at a glance
+
+- A working preview is not the same as a working TestFlight build.
+- Cursor often helps fastest when the app already has clear architecture and small tasks.
+- Audit the launch path first: onboarding, auth, core feature, paywall, analytics, settings, account deletion.
+- Broken package versions and Expo downgrades are foundation problems, not polish tasks.
+- A paywall screen does not mean subscriptions, restore purchases, and entitlements work.
+- Fix the existing code when the main flow is understandable and the build chain is healthy.
+- Rebuild the critical path when every screen has its own state model or payment rule.
+
+## Diagnosis: what is usually broken
+
+The strongest counterargument to "it is almost done" is simple: the app has not been tested under launch conditions.
+
+Cursor can generate screens, wire components, explain errors, and move a React Native project quickly. That speed is useful. The audit starts by refusing to confuse visible progress with product readiness.
+
+Open the repo and trace one user path:
+
+1. user opens the app
+2. user signs up or continues as allowed
+3. user completes onboarding
+4. user reaches the core feature
+5. user hits a paywall or free limit
+6. user pays, restores, or exits
+7. user returns after the app restarts
+8. user can manage account, privacy, and deletion
+
+If the code cannot answer those states cleanly, the app is not ready for users. It might still be salvageable, but it needs diagnosis before more feature prompts.
+
+The first broken layer is usually the foundation. Check the Expo SDK or React Native version, package lockfile, native modules, build scripts, EAS configuration, iOS bundle identifier, Android package name, and environment variables. If Cursor fixed a dependency error by downgrading Expo or installing a second library that does the same job, the app may run locally while the native build path is unstable.
+
+The second broken layer is state. Cursor tends to solve the current prompt. That can leave auth state in one screen, onboarding state in another, subscription state in a context file, and cached user data in local storage. The app works until a real user logs out, restores a purchase, loses network, or returns after a session expires.
+
+The third broken layer is revenue. AI-generated apps often have a paywall that looks finished but does not control access. A production mobile paywall needs store products, purchase errors, restore purchases, entitlement checks, trial handling, expired subscription handling, and analytics. If paid access depends on a local boolean or a button tap, revenue is not wired.
+
+The fourth broken layer is App Store readiness. App Review does not care that a demo looked good. It cares about account deletion, privacy policy, support URL, subscription disclosure, review notes, test accounts, permission strings, crash behavior, and whether the app does what the listing claims.
+
+The diagnosis should produce a plain answer:
+
+- what is broken
+- why it happened
+- whether the code should be fixed
+- which parts should be rebuilt
+- what blocks TestFlight or App Store submission
+
+That is the difference between an audit and another round of debugging.
+
+## Fix path: audit, repair, or rebuild
+
+Start with the code that controls the business, not the prettiest screen.
+
+First, prove the build. Run the app on a real simulator or device, then run a production-minded build path. For Expo projects, that means checking EAS configuration and native dependency compatibility. For bare React Native, check iOS pods, Android Gradle, bundle identifiers, signing assumptions, and native permission setup. If the project cannot produce a reliable build, do not spend time polishing UI.
+
+Second, map the main journey. Write down the state machine in plain language:
+
+- signed out
+- signed in
+- onboarding incomplete
+- onboarding complete
+- free
+- trialing
+- paid
+- expired
+- deleted or deletion requested
+
+If those states do not exist in the code, create them before adding more features. If they exist in three different ways, consolidate them. This is where many Cursor-built apps either become fixable or show that the critical path should be rebuilt.
+
+Third, audit integrations. Supabase, Firebase, RevenueCat, Stripe, OpenAI, Anthropic, analytics, crash reporting, and push notifications all have setup outside the visible app. A generated wrapper around an API call is not the same as a production integration. Check keys, environments, error handling, retry behavior, user ownership, and what happens when the provider fails.
+
+Fourth, cut scope. Many Cursor projects contain half-finished screens because the tool makes extra screens cheap. Shipping does not get easier because the file tree is bigger. Pick the smallest version that can support users, payments, analytics, and App Store review. Remove or hide anything that does not support that launch path.
+
+Use this rule for fix versus rebuild:
+
+- Fix if the build works, the main journey is traceable, dependencies are current enough, and the bad code is isolated.
+- Rebuild the critical path if auth, onboarding, payments, and navigation are tangled together.
+- Rebuild the foundation if Expo or native dependencies were bent out of shape just to clear errors.
+- Start with an audit if you cannot tell which category you are in.
+
+my [AI App Rescue](/ai-app-rescue) is built for this exact moment: a founder has a Cursor, Lovable, Bolt, Replit, or similar AI-built prototype and needs a launch decision, not another vague code review. The audit should tell you whether to repair the existing repo, rebuild the critical path, or move into a fixed launch sprint.
+
+For a broader checklist, read [Cursor built your React Native app? How to make it production-ready](/blog/cursor-react-native-app-production-ready). If the issue is not Cursor-specific, the [React Native AI app code audit checklist](/blog/react-native-ai-app-code-audit-checklist) is the supporting guide.
+
+## Comparison
+
+| Path | Cost | Best for | Risk |
+|---|---:|---|---|
+| Keep prompting in Cursor | Your time | Small isolated bugs with a healthy architecture | Can make tangled state worse |
+| DIY code audit | $0 plus time | Technical founders who can read React Native, Expo, auth, and payment code | Blind spots around App Store and revenue flows |
+| Kickstart | $499 | Founders who want the boilerplate, 1-on-1 review, code review, and support | You still own implementation |
+| AI App Rescue audit | $499 | Cursor-built apps that need a fix-versus-rebuild decision | Audit may show the code is not worth saving |
+| Launch sprint | $3,999 with iOS and Android included | Founders who want a 4-week done-for-you app with a 30-day ready-to-ship guarantee | Scope must fit the productized launch package |
+| Launch + Growth scope | $5,999 with iOS and Android included | Revenue-ready apps that also need full launch assets and ASO | Higher budget and tighter prioritization required |
+
+## FAQ
+
+### Is Cursor good enough for building a React Native app?
+
+Yes, but the audit should be blunt about what "good enough" means. Cursor can accelerate implementation when the architecture, stack, and task boundaries are clear. It cannot prove App Store readiness just because the preview runs.
+
+### What should a Cursor React Native app audit check first?
+
+Check the main launch path before individual files. Onboarding, auth, core feature, paywall, analytics, settings, account deletion, and restart behavior matter more than whether one component is pretty. If that path is unclear, the app is not launch-ready.
+
+### When should I stop prompting Cursor and ask for a review?
+
+Stop when each fix creates a new bug, when you cannot explain the state model, or when the app only works in one happy path. Those are architecture symptoms. More prompts can still help, but only after the codebase has a clear repair plan.
+
+### Is a Cursor-built app more likely to fail App Store review?
+
+Not because Cursor was used. The risk is that AI-built apps often skip account deletion, privacy details, subscription disclosure, restore purchases, test accounts, support URLs, and stable device behavior. App Review sees those missing pieces, not the tool that wrote the code.
+
+### How do I know whether to fix or rebuild?
+
+Fix when the project builds reliably, the main flow is understandable, and the broken parts are isolated. Rebuild the critical path when auth, payments, navigation, and user state are mixed across screens. Rebuild the foundation when dependency choices make production builds fragile.
+
+### Does an audit include payment and RevenueCat checks?
+
+It should. A mobile app audit that skips entitlement logic is incomplete for a subscription app. Check product IDs, purchase flow, restore purchases, trial states, expired users, access control, and analytics events around the paywall.
+
+### Can Kickstart help if I want to keep building myself?
+
+Yes. [Kickstart](/mobile-apps) is the better fit when you want the Ship React Native boilerplate, a 1-on-1 session, code review, and support while still doing the build yourself. It is not a done-for-you rescue sprint.
+
+### What if the audit says the app needs a rebuild?
+
+That is useful information, not a failure. A rebuild can preserve the product idea, brand, copy, useful screens, and validated decisions while replacing the risky launch path. The expensive mistake is spending another month preserving code that should not ship.
+
+## Next steps
+
+- [See my pricing for Launch and Launch + Growth scopes](/mobile-apps)
+- [Start with AI App Rescue](/ai-app-rescue)
+- [Read the Cursor production-readiness guide](/blog/cursor-react-native-app-production-ready)

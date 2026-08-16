@@ -1,0 +1,163 @@
+---
+title: "RevenueCat entitlement not working in React Native? What to fix before launch"
+date: "2026-07-06"
+excerpt: "If RevenueCat purchases succeed but paid access stays locked, audit entitlement IDs, app user IDs, cache, sandbox, restore, and access gates."
+tags: ["revenuecat-entitlement-not-working-react-native", "revenue-blocker", "react-native-payments"]
+featuredImage: "/favicon.png"
+---
+
+# RevenueCat entitlement not working in React Native? What to fix before launch
+
+*Your user paid, RevenueCat shows activity, but the React Native app still treats them as free.*
+
+## TL;DR
+
+When a RevenueCat entitlement is not working in a React Native app, the problem is usually not the paywall screen. It is the link between product configuration, entitlement identifiers, customer identity, cached customer info, restore purchases, and the feature gate that unlocks paid access. Check the entitlement ID in code first, then confirm the product is attached to that entitlement, the same app user ID is used before and after auth, customer info is refreshed after purchase, and the paid feature reads entitlement state from one central access layer. If those checks are scattered across screens, audit before patching.
+
+## Key facts at a glance
+
+- A successful purchase does not prove the app is checking the correct entitlement.
+- Product IDs and entitlement IDs are different strings and should not be mixed.
+- React Native apps often break paid access when anonymous RevenueCat users later sign in.
+- Sandbox and TestFlight testing can expose cache, restore, and identity bugs before review.
+- Paid features should check a central subscription state, not a local paywall button result.
+- Rebuild the payment layer when purchase logic is copied across screens or tied to unstable auth.
+- Use [AI App Rescue](/ai-app-rescue) when the bug crosses config, code, auth, and architecture.
+
+## Diagnose the entitlement failure before touching UI
+
+The dangerous version of this bug is quiet: the purchase completes, the founder sees the customer in RevenueCat, but the app still opens the paywall, hides the premium feature, or forgets access after restart.
+
+That is a revenue blocker. It also makes App Store review harder because subscriptions must behave predictably.
+
+Start with the exact symptom:
+
+- The paywall always shows after purchase.
+- Restore purchases says it worked, but the feature remains locked.
+- iOS works and Android does not, or the reverse.
+- Sandbox works locally but TestFlight fails.
+- Anonymous users unlock access, then lose it after account signup.
+- The paid feature unlocks once, then locks again after app restart.
+
+Each symptom points to a different layer. Do not ask an AI agent to "fix RevenueCat" without mapping which layer is broken. That prompt often produces another local boolean or a fake success state that hides the real issue.
+
+### Check entitlement IDs, not product IDs
+
+The first check is boring and common: your code might be checking the wrong string.
+
+RevenueCat has products, offerings, packages, and entitlements. The product is what the store sells. The entitlement is the access level your app cares about.
+
+If your code checks `customerInfo.entitlements.active["monthly_pro"]` but the entitlement is named `premium`, the user can pay and still never unlock the feature.
+
+Use one constant for the entitlement identifier. Put it near the subscription service:
+
+```ts
+const PREMIUM_ENTITLEMENT_ID = "premium";
+```
+
+Then make the app ask one question: does the current customer have that entitlement active?
+
+### Confirm the product is attached to the entitlement
+
+If the code checks the right entitlement but RevenueCat never grants it, inspect the dashboard configuration. The product must be connected to the entitlement through the correct offering and package setup.
+
+For generated apps, this is often where the prototype stops. The UI fetches offerings, displays a price, and calls purchase. That can look finished, but it is not finished until the active entitlement unlocks the real feature.
+
+### Verify app user ID before auth and after auth
+
+RevenueCat identity bugs are easy to miss in React Native because many apps start with an anonymous user, then create an account later.
+
+If the app configures RevenueCat anonymously on launch, completes a purchase, then signs the user into Supabase, Firebase, or a custom backend without correctly identifying the RevenueCat customer, the subscription can be attached to a different customer than the one your app checks after login.
+
+The fix is not always a one-line call. Configure RevenueCat early enough for product loading, identify the user when auth has a stable user ID, avoid changing IDs on every app start, and keep your backend user model aligned with the RevenueCat customer.
+
+If auth is unstable, fix auth before payments. Revenue depends on knowing who the user is.
+
+## Fix the access path, not just the purchase button
+
+The purchase button is only one moment. A production subscription flow has to work across app launch, signup, logout, restore, expired subscription, failed payment, and offline state.
+
+Create a central subscription layer. It should own:
+
+- `configure` and `identify`
+- offerings loading
+- purchase calls
+- restore purchases
+- customer info refresh
+- entitlement checks
+- loading and error states
+- analytics events
+
+Screens should not call RevenueCat directly unless they are part of that layer. Feature screens should ask a simple access question and render the correct state.
+
+This is the difference between a paywall that worked once in preview and a paid app that can survive users.
+
+### Refresh customer info after purchase and restore
+
+After purchase, do not assume the UI should unlock because a promise resolved. Read the customer info returned by RevenueCat or fetch fresh customer info, then update your central subscription state.
+
+The same rule applies to restore purchases. A restore button should refresh customer info, check the entitlement, update app state, and send the user to the paid feature when access exists.
+
+Track paywall viewed, offerings loaded, purchase started, purchase completed, purchase failed, customer info refreshed, restore tapped, restore successful, and paid feature accessed.
+
+Without those events, you cannot tell whether the issue is store setup, RevenueCat configuration, auth identity, cache, or a broken gate.
+
+### Decide fix versus rebuild
+
+Fix the existing implementation when the app has one clear subscription helper, stable auth, a single entitlement identifier, and only one or two configuration mistakes.
+
+Audit before fixing when the purchase works on one platform but not another, when anonymous and signed-in users behave differently, or when the app cannot reproduce the same result across sandbox, TestFlight, and a clean install.
+
+Rebuild the payment layer when RevenueCat code is copied into multiple screens, paid access is stored in local state, auth changes the user identity unpredictably, or there is no single source of truth for free, trialing, paid, expired, and unknown users.
+
+Rebuild the app only when the payment bug exposes a larger foundation problem: tangled auth, duplicated navigation, state scattered across screens, no backend ownership, and no path to App Store readiness. That is where an [AI-built paywall needs RevenueCat logic, not just UI](/blog/ai-generated-react-native-paywall-revenuecat), and where a narrow bug fix can become a launch decision.
+
+## Comparison
+
+| Path | Cost | Best for | Risk |
+|---|---:|---|---|
+| Self-fix RevenueCat config | $0 | Clean app with one typo or missing product attachment | You may hide an identity or restore bug until TestFlight |
+| Ship React Native Full | $199 | Founder wants a cleaner RevenueCat, auth, navigation, and AI app foundation | You still own implementation and QA |
+| Kickstart | $499 | Mostly working React Native app that needs 1-on-1 review | Scope is advisory, not done-for-you repair |
+| Launch sprint | $3,999 with iOS and Android included | Founder wants me to ship a focused app with App Store execution | Wrong fit for a small config fix |
+| Launch + Growth scope | $5,999 with iOS and Android included | Subscription app needs a full rebuild plus optimized assets and ASO | Higher spend than a narrow rescue |
+
+## FAQ
+
+### Why does RevenueCat show the purchase but my React Native app still shows the paywall?
+
+The app may be checking the wrong entitlement ID, reading stale customer info, or checking a different RevenueCat customer than the one that purchased. Start by logging the active entitlements from customer info after purchase and after app restart. Then compare the app user ID in RevenueCat with the user ID your auth system thinks is signed in.
+
+### Is this a RevenueCat bug or my code?
+
+Most launch blockers are configuration, identity, or app-state bugs, not RevenueCat outages. Treat it as your integration until you can prove the product is attached to the entitlement, the SDK uses the right API key, the app user ID is stable, and a fresh customer info read still lacks the expected entitlement.
+
+### Should I check entitlement state inside every premium screen?
+
+Every premium screen can ask whether access exists, but they should all ask the same central subscription layer. Do not copy RevenueCat calls into every screen. That creates inconsistent loading, restore, cache, and expired-subscription behavior.
+
+### Do I need restore purchases?
+
+Yes for a consumer mobile subscription app. Users reinstall apps, move devices, and test through sandbox or TestFlight. Restore should refresh customer info and unlock access when the active entitlement exists, not just display a generic success message.
+
+### Why does the entitlement work before login but fail after signup?
+
+The purchase may be attached to an anonymous RevenueCat customer while the signed-in app checks a different customer ID. Fix the identity flow so RevenueCat uses a stable app user ID after auth and does not create a new unrelated customer every time the user signs in.
+
+### Can an AI coding tool fix this?
+
+It can help edit a known bug, but it needs a precise target. "Fix RevenueCat" is too broad. Give it the entitlement ID, app user ID flow, customer info logs, restore behavior, and the screen that gates paid access, or get a human audit before it adds more state.
+
+### When should I book AI App Rescue instead of debugging more?
+
+Book [AI App Rescue](/ai-app-rescue) when the issue crosses auth, RevenueCat, navigation, analytics, and App Store readiness. If you cannot explain where paid access is decided, more prompting will probably add patches instead of clarity.
+
+### Where do I pricing fit if I want the app shipped?
+
+Use [pricing](/mobile-apps) to pick the level of help. Ship React Native Full is the $199 DIY boilerplate, Kickstart is the $499 boilerplate plus 1-on-1 path, Launch is a done-for-you revenue-ready build, and Launch + Growth adds the full asset and ASO optimization system.
+
+## Next steps
+
+- [Compare my pricing](/mobile-apps)
+- [Bring the codebase to AI App Rescue](/ai-app-rescue)
+- [Read the RevenueCat paywall logic guide](/blog/ai-generated-react-native-paywall-revenuecat)

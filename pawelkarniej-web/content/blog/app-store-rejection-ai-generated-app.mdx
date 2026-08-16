@@ -1,0 +1,131 @@
+---
+title: "Will Apple reject an AI-generated app? The real launch risks"
+date: "2026-05-19"
+excerpt: "Apple does not reject apps simply because AI helped build them, but AI-generated apps often miss privacy, payments, account deletion, metadata, and review requirements."
+tags: ["app-store-rejection", "ai-generated-app", "app-store-submission", "ai-app-rescue", "mobile-launch"]
+featuredImage: "/favicon.png"
+---
+
+# Will Apple reject an AI-generated app? The real launch risks
+
+Apple does not reject an app simply because AI helped build it.
+
+The risk is different: AI-generated apps often miss the boring product and compliance details that App Store review checks. The demo may work, but the launch package is incomplete.
+
+If you built your app with Cursor, Lovable, Bolt, Replit, or another AI workflow, audit these areas before submission.
+
+## 1. The app must have real value
+
+Thin wrappers are risky.
+
+If the app is only a generic chat box with no specific user outcome, Apple review can question the value. The stronger path is a focused use case:
+
+- specific audience
+- specific workflow
+- clear output
+- native mobile value
+- differentiated onboarding
+- useful saved history or personalization
+
+AI can power the feature. It should not be the whole product definition.
+
+## 2. Payments must follow platform rules
+
+If you sell digital features inside an iOS app, native in-app purchase rules may apply.
+
+Launch risks include:
+
+- Stripe used where in-app purchases are required
+- subscription copy missing required disclosures
+- restore purchases missing
+- trial terms unclear
+- paid feature access not tied to entitlement state
+- prices hardcoded differently from App Store Connect
+
+AI-generated paywall UI is not enough. The payment system must work and comply.
+
+## 3. Account deletion must exist when accounts exist
+
+If users create accounts, Apple expects account deletion support.
+
+That means:
+
+- visible deletion path
+- backend deletion or request handling
+- privacy policy alignment
+- clear support route
+
+AI tools often generate signup but skip deletion. That can block review.
+
+## 4. Privacy details must match the app
+
+Check:
+
+- privacy policy
+- App Store privacy labels
+- tracking disclosures
+- analytics providers
+- crash reporting
+- AI provider data handling
+- user-generated content storage
+- permissions requested by native modules
+
+If the app asks for permissions it does not need, or the privacy policy does not match the code, fix that before review.
+
+## 5. Metadata and screenshots need to match reality
+
+Do not overpromise.
+
+Review can fail or users can churn if:
+
+- screenshots show features that are not included
+- subscription benefits are vague
+- AI claims are exaggerated
+- categories are wrong
+- support URL is missing
+- review notes are weak
+- test account is missing for protected apps
+
+AI-generated marketing copy often sounds confident while being imprecise. Tighten it.
+
+## 6. The app must work on device
+
+Review is not impressed by a local demo.
+
+Test:
+
+- fresh install
+- login
+- logout
+- account deletion
+- purchase
+- restore
+- core AI workflow
+- no-network behavior
+- slow-network behavior
+- cold start
+- release build
+
+If the app only works in development preview, it is not ready for submission.
+
+## What I check before submission
+
+my [AI App Rescue](/ai-app-rescue) track reviews App Store blockers as part of the rescue path: privacy, account deletion, paywall rules, metadata, screenshots, support URLs, analytics, and release build readiness.
+
+If the code is salvageable, I fix the launch blockers. If the foundation is broken, I rebuild the critical path.
+
+Related:
+
+- [AI-built Expo app submission checklist](/blog/ai-built-expo-app-app-store-submission-checklist)
+- [AI-generated React Native paywalls need RevenueCat logic](/blog/ai-generated-react-native-paywall-revenuecat)
+- [Lovable app to App Store](/blog/lovable-app-to-app-store)
+
+## FAQ
+
+### Does Apple ban AI-generated apps?
+
+No. The issue is not whether AI helped write the code. The issue is whether the app provides value, follows payment rules, handles privacy, works on device, and meets review requirements.
+
+### What causes most AI-built app submission problems?
+
+The common problems are fake or incomplete payments, missing account deletion, mismatched privacy details, thin product value, unstable release builds, and weak review notes.

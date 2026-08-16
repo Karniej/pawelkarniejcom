@@ -1,0 +1,119 @@
+---
+title: "React Native App Store submission service: what you actually need before launch"
+date: "2026-07-03"
+excerpt: "Before you hire help, verify the build, signing, privacy, paywall, analytics, and review assets a React Native submission service should own."
+tags: ["react-native-app-store-submission-service", "app-store-submission", "react-native-launch"]
+featuredImage: "/favicon.png"
+---
+
+# React Native App Store submission service: what you actually need before launch
+
+*Your React Native app runs locally, but the last mile into TestFlight and App Review is where signing, privacy, paywalls, and metadata start failing.*
+
+## TL;DR
+
+A React Native App Store submission service is useful when you have a real app but lack release discipline. A weak service only uploads a build. A useful one checks the production build, bundle IDs, certificates, privacy details, account deletion, in-app purchases, RevenueCat entitlement behavior, analytics, crash reporting, screenshots, review notes, and handoff. If the code is unstable, submission help will not save it. Choose DIY, Kickstart, Launch, or Launch + Growth based on whether your blocker is knowledge, review confidence, a broken production path, or the need for full launch assets and ASO.
+
+## Key facts at a glance
+
+- App Store submission is not a single upload. It is the final test of build, signing, privacy, metadata, and product logic.
+- React Native apps fail review for normal mobile reasons: broken auth, missing account deletion, unclear subscriptions, crashes, bad screenshots, and mismatched privacy answers.
+- A service should inspect the release build, not just the debug preview or simulator run.
+- If your app sells digital access on iOS, the paywall, restore purchases, entitlement state, and disclosure copy must be correct before submission.
+- AI-built prototypes often need production hardening before App Review because preview success does not prove TestFlight stability.
+- If the app cannot pass TestFlight reliably, submit later. Fix the foundation first.
+
+## Diagnosis: what is broken before submission
+
+The mistake is thinking App Store submission starts inside App Store Connect. It starts in the repo.
+
+By the time a React Native app is ready to submit, the production path should already work on a real device. The app should install as a release build, open without a developer menu, restore the user session, show the correct paid or free state, handle network failure, delete an account if accounts exist, and produce crash reports if something goes wrong. App Review is not where you discover these basics.
+
+Most stuck founders are dealing with one of four problems.
+
+First, the build works only in development. The Metro server hides missing assets, debug auth state, ignored environment variables, and native module problems. A release build removes those crutches. That is why an app can look fine in Expo Go or a simulator and crash as soon as it enters TestFlight.
+
+Second, signing and store setup are inconsistent. Bundle IDs, app identifiers, provisioning profiles, App Store Connect records, entitlements, push notification certificates, and EAS credentials all need to point to the same app. A service that skips this check can waste days chasing symptoms.
+
+Third, the business layer is incomplete. App Store review cares whether users can understand what they are buying, restore purchases, delete accounts, see required legal links, and use the core feature without hidden manual setup. A pretty paywall screen is not enough if the entitlement state disappears after restart.
+
+Fourth, the app was generated or patched past the point where no one trusts the code path. This shows up as duplicated auth helpers, payment logic inside random screens, stale Expo packages, environment variables stored in the wrong place, and screens that work only when visited in one exact order. At that point, submission is not the blocker. Production readiness is.
+
+## Fix path: what a real submission service should do
+
+A good React Native App Store submission service starts with triage, not upload.
+
+The first step is to freeze scope. No new features, no redesign, no extra onboarding branch. The only job is to prove the version that will be submitted can survive real-device use, TestFlight, and review. If a feature is not critical to approval or first revenue, cut it from the release.
+
+Next, build the production artifact. For Expo apps, that usually means an EAS production build and a clean submit path. For bare React Native apps, it means Xcode archive health, Release scheme behavior, native dependency checks, and signing sanity. The release build should be tested on at least one physical device before anyone touches store metadata.
+
+Then inspect the required product systems:
+
+- auth and session restore
+- onboarding completion state
+- account deletion and legal links
+- paywall display, purchase, restore, and entitlement refresh
+- analytics events for signup, onboarding, paywall view, purchase start, purchase success, purchase failure, and core feature use
+- crash reporting in the release build
+- privacy answers that match actual SDK behavior
+- App Store screenshots, subtitle, description, keywords, age rating, and reviewer notes
+
+If these systems are missing, you have a fix decision.
+
+Fix the existing code when the app installs, the navigation is sane, dependencies are current enough, auth has one source of truth, and the paid state can be centralized without rewriting the whole app. This is the fastest path when the app is messy but structurally understandable.
+
+Use an audit when you cannot tell whether the app is salvageable. This is common with Cursor, Lovable, Bolt, Replit, Rork, and similar tool-assisted builds. The right question is not "Can someone submit this?" The right question is "What must be true before this deserves to be submitted?"
+
+Rebuild the critical path when the app has no stable data model, the SDK foundation is damaged, screens duplicate business logic, or the preview is mostly a web demo pretending to be a native product. Rebuilding is not failure. It is often cheaper than forcing a fragile prototype through a review process it cannot survive.
+
+I am built around that distinction. For founder-led builds, [Kickstart](/mobile-apps) gives you the boilerplate plus 1-on-1 review and support. For done-for-you submission and launch work, [my Product Build Sprint pricing](/mobile-apps) covers fixed-scope iOS or iOS plus Android paths. For AI prototypes that need product, revenue, analytics, and App Store execution, the AI product launch sprint is the cleaner path than paying someone to upload unstable code.
+
+## Comparison
+
+| Path | Cost | Best for | Risk |
+|---|---:|---|---|
+| DIY with Ship React Native Full | $199 | Technical founders who can own signing, builds, metadata, and review fixes | You still own every App Store, TestFlight, privacy, and paywall mistake |
+| Kickstart | $499 | Founders who can build but want the boilerplate, 1-on-1, code review, and 30-day support | You still execute the submission work yourself |
+| Launch | $3,999 with iOS and Android included | Founders who want a 4-week done-for-you path with submission discipline | Scope must stay tight enough for the fixed launch path |
+| Launch + Growth | $5,999 with iOS and Android included | Revenue-ready products that also need full launch assets and ASO | More budget than a simple upload, but stronger for discovery and store conversion |
+| Generic submission-only help | Quote-based | Apps that are already production-ready and only need App Store Connect execution | Can hide the real problem if the app itself is not ready |
+
+## FAQ
+
+### What should a React Native App Store submission service include?
+
+It should include release build verification, signing checks, App Store Connect setup, privacy and legal review, metadata, screenshots, TestFlight flow, and actual submission. For paid apps or subscriptions, it should also verify paywall disclosures, purchases, restore purchases, and entitlement behavior.
+
+### Can someone submit my React Native app without changing the code?
+
+Sometimes, but only if the app is already production-ready. If the release build crashes, auth breaks after restart, account deletion is missing, or the paywall bypasses entitlements, the code must change before submission.
+
+### Do I need TestFlight before App Store submission?
+
+Yes, if you care about avoidable rejections and launch-day crashes. TestFlight is where you confirm the release build installs, opens, logs in, purchases, restores, and records crashes outside the local development setup.
+
+### Does React Native make App Store approval harder?
+
+No. Apple reviews the app experience, not whether the UI was written in React Native. The common failures are normal mobile failures: broken functionality, unclear payments, missing privacy details, bad metadata, or crashes.
+
+### What if my app was built with Cursor, Lovable, Bolt, or Replit?
+
+Do not submit the preview just because it looks finished. AI-built apps often need a production audit for dependencies, native modules, auth state, payment logic, privacy requirements, analytics, crash reporting, and store assets. If the critical path is sound, fix it. If the foundation is tangled, rebuild the launch path.
+
+### Can I use Stripe instead of Apple in-app purchases?
+
+It depends on what you sell and where the purchase is consumed. Digital access consumed inside an iOS app usually needs Apple's in-app purchase system, often managed through RevenueCat. Physical goods, services outside the app, and some business cases have different rules, so check this before building the payment flow.
+
+### Should I hire submission help or rebuild the app first?
+
+Rebuild first if the app cannot produce a stable release build, has no trustworthy auth state, or scatters payment logic through many screens. Hire submission help when the product works and the remaining problem is release execution.
+
+### Which offer fits this problem?
+
+Use [Ship React Native](/mobile-apps) if you want the $199 DIY boilerplate. Use [Kickstart](/mobile-apps) if you want review and guidance. Use [Launch or Launch + Growth](/mobile-apps) if you want me to own the fixed-scope path to a ready-to-ship mobile app.
+
+## Next steps
+
+- [Compare my Product Build Sprint packages](/mobile-apps)
+- Turn an AI prototype into a revenue-ready app
+- [Run the App Store submission checklist before you submit](/blog/app-store-submission-checklist-2026)

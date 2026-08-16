@@ -1,0 +1,220 @@
+---
+title: "MVP cost calculator: scope vs price for a 2026 mobile app"
+date: "2026-05-06"
+excerpt: "A working framework to estimate mobile app MVP cost based on scope. Plug in your features, get a realistic 2026 budget range across all four delivery paths."
+tags: ["mvp-cost-calculator", "mobile-app-cost", "scope-estimation", "indie-app-budget"]
+featuredImage: "/favicon.png"
+---
+
+# MVP cost calculator: scope versus price for a 2026 mobile app
+
+*Pen and paper math instead of "request a quote" forms.*
+
+## TL;DR
+
+You can estimate a mobile app MVP budget in 5 minutes if you know your scope. The formula is: (core feature complexity) plus (revenue infrastructure) plus (AI complexity) plus (platform count) plus (custom integrations) equals scope tier. Each tier maps to a cost range across the four delivery paths (DIY, Kickstart, productized, freelancer, agency). This article gives you the scoring framework and example apps mapped to actual 2026 prices. By the end you'll know whether your idea fits a $3,999 productized sprint or whether it requires the $50,000+ agency tier.
+
+## Key facts at a glance
+
+- Most consumer mobile app MVPs in 2026 fit Tier 1 or Tier 2 scope: under $8,000 to ship, productized.
+- Custom integrations (BLE, complex backend, third-party hardware) push scope into Tier 3 quickly.
+- Multi-platform (iOS + Android) typically adds 30 to 50 percent to scope and cost.
+- AI complexity: a single LLM call adds little to scope. Multi-step AI pipelines add significantly.
+- Revenue infrastructure (paywalls, analytics, retention loops) is universal scope and shouldn't be a "nice to have."
+
+---
+
+## The 5-factor scoring framework
+
+Score your app on each of 5 factors, 1 to 5. Add the scores. Multiply by 1.0 (iOS only) or 1.4 (iOS + Android). The result is your scope tier.
+
+### Factor 1: core feature complexity (1 to 5)
+
+- 1: single screen with one input and one output (note-taking, simple tracker)
+- 2: 2 to 3 screens with linear flow (basic AI utility, basic tracker)
+- 3: 4 to 6 screens with branching and state (typical AI app, full subscription tracker)
+- 4: 7+ screens with complex state, real-time, or multi-user (chat apps, marketplaces)
+- 5: bespoke UX (game-like, multi-step pipelines, novel interaction)
+
+### Factor 2: revenue infrastructure (1 to 5)
+
+- 1: no paywall, no monetization in v1 (rare; usually a mistake)
+- 2: simple paywall (free trial → paid, one tier)
+- 3: standard paywall + analytics + retention (typical productized scope)
+- 4: complex pricing (multiple tiers, credits, in-app purchases on top of subscription)
+- 5: marketplace, B2B-style, or revenue-share with creators or third parties
+
+### Factor 3: AI complexity (1 to 5)
+
+- 1: no AI
+- 2: single LLM call (text in, text out)
+- 3: multimodal (image in, classification out, or text in, image out)
+- 4: multi-step AI pipeline (multiple model calls, intermediate state, error recovery)
+- 5: custom training, fine-tuning, or vector database
+
+### Factor 4: platform count (multiplier, not additive)
+
+- 1.0: iOS only
+- 1.4: iOS + Android
+- 1.6: iOS + Android + web
+
+### Factor 5: custom integrations (1 to 5)
+
+- 1: standard auth and APIs only
+- 2: one third-party SDK beyond standard (Mixpanel, Amplitude, RevenueCat are standard)
+- 3: 2 to 3 third-party SDKs or one custom backend integration
+- 4: BLE, hardware peripherals, or specialized real-time
+- 5: complex enterprise integrations (Salesforce, HIPAA-compliant data flows, custom AI infra)
+
+### The math
+
+Sum factors 1, 2, 3, 5. Multiply by the platform multiplier (factor 4). Round to nearest integer.
+
+Result is your scope score. Map to tier:
+
+| Scope score | Tier | Productized fit | Realistic price range (2026) |
+|---|---|---|---|
+| 4 to 8 | Tier 1 | [my Product Build Sprint $3,999](/mobile-apps) | $300 (DIY) to $5,000 (freelancer) |
+| 9 to 12 | Tier 2 | Launch if the product loop remains narrow; otherwise custom | $1,500 to $15,000 |
+| 13 to 18 | Tier 3 | Custom Development (quote) | $10,000 to $40,000 |
+| 19 to 25 | Tier 4 | Agency engagement | $40,000 to $150,000+ |
+| 26+ | Tier 5 | Specialized agency | $100,000 to $400,000+ |
+
+Launch + Growth is not a higher implementation-complexity tier. It keeps the same controlled product scope as Launch and adds the full asset, store-conversion, and ASO optimization system.
+
+---
+
+## Worked examples
+
+### Example 1: AI Pill Identifier (iOS only)
+
+- Core feature complexity: 2 (camera, scan, result, save)
+- Revenue infrastructure: 3 (standard paywall + analytics)
+- AI complexity: 3 (multimodal vision)
+- Platform: 1.0 (iOS only)
+- Custom integrations: 1 (standard SDKs)
+
+Sum: 2 + 3 + 3 + 1 = 9. Times 1.0 = 9. **Tier 2.**
+
+Productized fit: my Product Build Sprint ($3,999) easily handles the revenue-ready product. Launch + Growth ($5,999) fits when you also want optimized store assets and ASO support.
+
+### Example 2: AI Voice-Cloning Video Dubber (iOS + Android)
+
+- Core feature complexity: 4 (media upload, multi-step pipeline UI, history)
+- Revenue infrastructure: 4 (subscription + credit packs for heavy users)
+- AI complexity: 4 (multi-step: transcribe, translate, voice-clone, render)
+- Platform: 1.4 (iOS + Android)
+- Custom integrations: 3 (ElevenLabs, OpenAI, video processing pipeline)
+
+Sum: 4 + 4 + 4 + 3 = 15. Times 1.4 = 21. **Tier 4 (agency engagement).**
+
+Productized fit: this one is at the top end of Custom Development and probably better suited to an agency. Aividly is a smaller version of this idea that fit Tier 3.
+
+### Example 3: Newsletter Analytics Tracker (iOS only)
+
+- Core feature complexity: 3 (dashboard with charts, multiple data views, widgets)
+- Revenue infrastructure: 3 (paywall + analytics)
+- AI complexity: 2 (single LLM call for insights)
+- Platform: 1.0 (iOS only)
+- Custom integrations: 2 (Beehiiv API integration)
+
+Sum: 3 + 3 + 2 + 2 = 10. Times 1.0 = 10. **Tier 2.**
+
+Productized fit: my Product Build Sprint if the dashboard can be controlled around one reporting loop. Choose [Launch + Growth ($5,999)](/mobile-apps) when the product also needs expanded launch assets and ASO. [Newsletterytics](/apps) demonstrates the reporting pattern.
+
+### Example 4: Basic Habit Tracker (iOS only)
+
+- Core feature complexity: 2 (3 to 4 screens, simple state)
+- Revenue infrastructure: 2 (simple paywall)
+- AI complexity: 1 (no AI)
+- Platform: 1.0 (iOS only)
+- Custom integrations: 1 (standard SDKs)
+
+Sum: 2 + 2 + 1 + 1 = 6. Times 1.0 = 6. **Tier 1.**
+
+Productized fit: [my Product Build Sprint ($3,999)](/mobile-apps) easily, with room.
+
+### Example 5: B2B SaaS Companion App (iOS + Android + web)
+
+- Core feature complexity: 4 (auth, multi-tenant, real-time)
+- Revenue infrastructure: 4 (B2B subscription + admin console)
+- AI complexity: 2 (single LLM call)
+- Platform: 1.6 (all three)
+- Custom integrations: 4 (SSO, custom backend, webhooks)
+
+Sum: 4 + 4 + 2 + 4 = 14. Times 1.6 = 22. **Tier 4 (agency engagement).**
+
+Productized fit: outside my productized scope. Refer to a mid-market agency.
+
+---
+
+## How to use this in practice
+
+Before you commission any quote:
+
+1. Score your idea on the 5 factors.
+2. Calculate your tier.
+3. Match the tier to a delivery path from the table above.
+4. Filter your shortlist of vendors to the path that matches your tier.
+
+If a freelancer or agency quotes you a price wildly outside the tier range, ask them to itemize. Either they're underbidding (red flag for hidden costs) or overbidding (often the agency tax).
+
+---
+
+## What scope creep does to the math
+
+Each "but I also want…" addition can move you up a tier. Common ones:
+
+- "Add web in v1" → factor 4 jumps from 1.0 to 1.6 (50 percent budget increase)
+- "Add a marketplace where users sell to each other" → factor 2 jumps from 3 to 5 (and complexity in legal/Apple compliance)
+- "Add custom AI training" → factor 3 jumps from 3 to 5
+- "Sync across devices in real-time" → factor 5 jumps by 2
+
+The discipline to stay in v1 scope is the difference between a $3,999 launch and a $20,000 launch. The full reasoning for one-magical-moment v1 is in [the magical moment post](/blog/the-one-magical-ai-moment-pick-the-right-feature).
+
+---
+
+## FAQ
+
+### Is this calculator accurate?
+
+It's calibrated to 2026 productized-studio and freelancer pricing across about 50 real apps I have either shipped or quoted. Accuracy is roughly plus or minus 30 percent.
+
+### What if my idea is genuinely novel and doesn't fit?
+
+Truly novel apps (Tier 4 to 5) need an agency or specialized studio. The calculator is a tool for the common 70 to 80 percent of consumer app ideas, which fit Tier 1 to 3.
+
+### How do I get a more accurate estimate?
+
+Two ways. (1) Talk to a productized studio with published pricing; if they accept your scope at the published price, that's your number. (2) Get itemized quotes from 2 to 3 vendors and compare line items, not just totals.
+
+### What if my factor scores look wrong?
+
+The 1-to-5 scoring is rough on purpose. Consistency matters more than precision. Score everything against the same anchor.
+
+### Does this work for non-mobile apps?
+
+Web-only apps follow different cost dynamics. The calculator is mobile-specific.
+
+### What about ongoing costs after launch?
+
+Hosting, AI API, RevenueCat, App Store fees: $50 to $500 a month at indie scale. See [the cost-of-mobile-app post](/blog/how-much-does-it-cost-to-build-a-mobile-app-in-2026) for full breakdown.
+
+### Can I use this to get my quote?
+
+Yes. Score your idea to see whether the product itself fits Launch or needs a custom build on the [pricing page](/mobile-apps). Then choose Launch + Growth only if you also need the expanded asset and ASO system. If the product fits Custom or above, [book a call](/contact) and I'll quote.
+
+### What if I'm wrong about scope?
+
+Common. The kickoff call is partly there to recalibrate scope before you commit cash. Most projects move 1 tier from initial estimate; that's normal.
+
+---
+
+**Next steps:**
+- [See my pricing tiers →](/mobile-apps)
+- [Or DIY with Ship React Native →](/mobile-apps)
+- [Or read the full cost breakdown →](/blog/how-much-does-it-cost-to-build-a-mobile-app-in-2026)
+
+**Related deep dives:**
+- [Hidden costs of mobile app development](/blog/hidden-costs-mobile-app-development-12-line-items-quotes-miss)
+- [Build an iOS app for under $2,000](/blog/build-an-ios-app-for-under-2000)

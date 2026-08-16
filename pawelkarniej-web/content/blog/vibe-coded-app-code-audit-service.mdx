@@ -1,0 +1,130 @@
+---
+title: "Vibe-coded app code audit service: what founders should expect"
+date: "2026-07-13"
+excerpt: "Learn what a vibe-coded app audit should inspect, what the report must decide, and when to fix, rebuild, or prepare for mobile launch."
+tags: ["vibe-coded-app-code-audit-service", "ai-app-rescue", "production-readiness"]
+featuredImage: "/favicon.png"
+---
+
+# Vibe-coded app code audit service: what founders should expect
+
+*Your prototype looks finished in preview, but nobody can tell you whether the code is safe to ship, cheap to fix, or better to rebuild.*
+
+## TL;DR
+
+A vibe-coded app code audit service should do more than scan files and list style problems. It should reproduce the build, trace the main user journey, inspect authentication and data access, verify payment and entitlement logic, test release behavior, and identify App Store blockers. The useful output is a decision: fix isolated defects, rebuild the critical path, or replace an unstable foundation. For a mobile app, the audit must cover TestFlight, account deletion, privacy, analytics, crash reporting, paywalls, and submission assets. If the reviewer never runs the app or cannot explain the fix-versus-rebuild threshold, you are buying a report, not a shipping plan.
+
+## Key facts at a glance
+
+- A working preview proves a screen can render, not that a release build is production-ready.
+- Automated scanners can find known patterns, but they cannot judge whether the product journey is coherent.
+- Auth, payments, state, and data ownership deserve priority over component cleanup.
+- A mobile audit must include real-device or release-build behavior, not only browser testing.
+- Every finding should include evidence, user impact, severity, and a recommended action.
+- Fix the app when defects are isolated and the main journey is understandable.
+- Rebuild the critical path when business rules are duplicated across screens and integrations cannot be trusted.
+
+## Diagnosis: what is actually broken in a vibe-coded app
+
+The strongest argument against buying an audit is that another AI prompt can review the repository for free. That works for a narrow question such as finding an exposed key or explaining one function. It does not settle whether the app can survive real users, mobile release builds, subscription state, and App Review.
+
+Vibe-coded apps tend to fail at the boundaries between visible features. Cursor, Lovable, Bolt, Replit, Rork, and similar tools can create a convincing happy path. The hidden cases arrive later: a session expires, a purchase succeeds but access stays locked, or the release build cannot read an environment variable.
+
+The code may contain several versions of the same truth. One screen reads the auth provider, another reads cached storage, and a third trusts local state. A paywall button may set `isPremium` locally while RevenueCat or the store says something else. These product-state failures appear after restart, restore, logout, network loss, or subscription expiration.
+
+Mobile adds another layer. Expo Go, a simulator, TestFlight, and an App Store release are different environments. Native permissions, signing, deep links, store product IDs, account deletion, and privacy answers sit outside the preview. An audit that ignores those boundaries can call the code clean while the app remains unshippable.
+
+## What a paid code audit service should inspect
+
+Start with proof that the project can produce a release. The reviewer should identify the React Native and Expo versions, inspect the lockfile, check native-module compatibility, review build configuration, and verify production secrets and environment variables. Forced dependency resolutions or an unexplained SDK downgrade make the foundation part of the diagnosis.
+
+Next, trace one complete user journey:
+
+1. Fresh install and first open.
+2. Signup, login, and session restoration.
+3. Onboarding and the core product action.
+4. Paywall, purchase, restore, and access control.
+5. App restart, expired state, logout, and account deletion.
+
+This sequence exposes architecture problems quickly. The reviewer should identify the source of truth for identity, onboarding, paid access, and saved data. If each screen answers differently, more local patches will make the system harder to reason about.
+
+Authentication and data access need direct inspection. The audit should check token storage, redirect and deep-link handling, route protection, backend authorization, user ownership, and deletion behavior. A user interface that hides another user's record is not security. The backend or database policy must reject unauthorized access even when someone bypasses the screen.
+
+Revenue needs its own pass. For mobile subscriptions, inspect store product mapping, RevenueCat or native billing configuration, entitlement checks, restore purchases, failures, cancellation and expiration states, and access after restart. The audit should also confirm that paywall events and purchase outcomes reach analytics. A polished paywall with no trustworthy entitlement gate is still a mockup.
+
+Finally, inspect the production layer: crash reporting, analytics, error states, retry behavior, AI cost controls, privacy disclosures, App Store assets, support routes, test accounts, and review notes. The [React Native AI app code audit checklist](/blog/react-native-ai-app-code-audit-checklist) gives the full technical surface.
+
+## What the audit should deliver
+
+A useful audit is prioritized. It should not bury a broken purchase flow below naming conventions and unused imports. Each material finding needs four things:
+
+- Evidence: the file, configuration, runtime behavior, or failed flow that proves the issue.
+- Impact: what a founder, user, payment, or reviewer experiences because of it.
+- Severity: whether it blocks shipping, threatens data or revenue, or can wait.
+- Action: fix the defect, replace a subsystem, remove scope, or rebuild the critical path.
+
+The report should separate launch blockers from maintainability debt. Duplicated styling may be harmless for version one. A client-side entitlement boolean is a revenue blocker. Missing account deletion can block App Review.
+
+The reviewer should also state what can be kept. Screens, assets, copy, product decisions, and isolated logic may survive even when auth or payments need replacement.
+
+## Fix path: repair, rebuild the critical path, or restart
+
+Choose a targeted fix when the release build works, dependencies are coherent, the main journey has clear state ownership, and defects are isolated. Examples include one broken deep link, a mismatched product identifier, an incomplete restore flow, or missing analytics events. The repair has a boundary, and testing can prove it is closed.
+
+Rebuild the critical path when the screens are reusable but auth, navigation, payments, API calls, or state are tangled together. Keep the product decisions and visible work. Replace the layer that controls identity, data, revenue, and the core user outcome. This is often the shortest route when every attempted fix breaks another screen.
+
+Restart on a clean foundation when the project cannot build reliably, packages are incompatible, environments are unmanaged, or nobody can trace data ownership.
+
+If you cannot make this decision yourself, [AI App Rescue](/ai-app-rescue) is my audit and triage path for React Native and Expo apps built with Cursor, Lovable, Bolt, Replit, Rork, or similar tools. The point is not open-ended bug fixing. The point is a shipping decision tied to production readiness.
+
+## Comparison
+
+| Path | Cost | Best for | Risk |
+|---|---:|---|---|
+| Automated scan | Varies | Finding known dependency, secret, and syntax risks | Misses product state, mobile release behavior, and business logic |
+| DIY audit | $0 plus your time | Technical founders who can test builds, auth, payments, and App Store requirements | Familiarity with the code can hide structural problems |
+| Ship React Native Full | $199 | Starting again with a DIY production boilerplate | You still own the migration, implementation, and launch |
+| Kickstart | $499 | Founders who want the boilerplate, 1-on-1, code review, and 30-day support | It is guided DIY, not done-for-you repair |
+| AI App Rescue | See current offer | Existing AI-built mobile apps that need audit and triage | The diagnosis may show that parts of the code should be replaced |
+| Launch sprint | $3,999 with iOS and Android included | A 4-week done-for-you launch with a defined productized scope | The app must fit the launch package |
+| Launch + Growth scope | $5,999 with iOS and Android included | A revenue-ready build that also needs full assets and ASO | Higher spend than repairing a healthy, isolated defect |
+
+## How to choose a reviewer
+
+Ask what the reviewer will run, not only what they will read. A mobile reviewer should cover release builds, device behavior, auth, subscriptions, analytics, account deletion, privacy, and store submission. A browser-only audit is incomplete for an Expo or React Native launch.
+
+Ask for the decision rule before granting access. What triggers a targeted fix, critical-path rebuild, or launch block? Clear answers matter more than the number of findings.
+
+Use controlled repository and service access. Do not paste production credentials into chat or commit them for convenience. Replace exposed credentials and remove reviewer access when the work ends.
+
+## FAQ
+
+### What is a vibe-coded app code audit?
+
+It is a technical and production-readiness review of an app built substantially with AI coding tools. The audit checks whether the build, architecture, auth, data, payments, analytics, and mobile launch path can support real users.
+
+### Is an automated security scan enough?
+
+No. A scan is useful for known vulnerabilities, exposed secrets, and dependency risks. It cannot reliably decide whether user state, entitlement logic, or the complete mobile journey behaves correctly.
+
+### Should the auditor run the app?
+
+Yes. Static review alone misses configuration and runtime failures. For a mobile product, the reviewer should test the closest available release path and identify anything that still needs device, TestFlight, or store verification.
+
+### Does a code audit include App Store readiness?
+
+It should if the service claims mobile production readiness. Code quality alone does not cover account deletion, privacy answers, permission copy, subscriptions, screenshots, support URLs, test accounts, and review notes.
+
+### How do I know whether to fix or rebuild?
+
+Fix isolated failures when the build and main state model are healthy. Rebuild the critical path when auth, payments, navigation, and business rules have no clear ownership. Replace the foundation when reliable release builds cannot be produced without fragile workarounds.
+
+### Is Kickstart the same as AI App Rescue?
+
+No. [Kickstart](/mobile-apps) is a $499 guided DIY path with the boilerplate, 1-on-1, code review, and 30-day support. AI App Rescue is positioned around auditing and triaging an existing AI-built mobile app.
+
+## Next steps
+
+- [Compare my Product Build Sprint and Launch + Growth pricing](/mobile-apps)
+- [Start with AI App Rescue audit and triage](/ai-app-rescue)
+- [Use the React Native AI app code audit checklist](/blog/react-native-ai-app-code-audit-checklist)
