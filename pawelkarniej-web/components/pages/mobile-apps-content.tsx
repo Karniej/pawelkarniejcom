@@ -23,6 +23,8 @@ import {
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { TaglineReveal } from "@/components/tagline-reveal";
+import { AppQuickNav } from "@/components/sections/app-quick-nav";
+import { getFeaturedApps } from "@/lib/apps-data";
 
 const sprints = [
   {
@@ -180,6 +182,12 @@ export function MobileAppsContent() {
           </motion.p>
         </div>
       </section>
+
+      <AppQuickNav
+        apps={getFeaturedApps()}
+        linkBase="/apps/"
+        navLabel="Apps I have shipped"
+      />
 
       {/* Problem → solution */}
       <section className="relative px-4 py-24 bg-white/[0.02]">

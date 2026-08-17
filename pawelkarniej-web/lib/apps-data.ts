@@ -17,6 +17,8 @@ export type AppShowcaseItem = {
   results?: string[];
   appStoreUrl?: string;
   acquired?: boolean;
+  /** Offer and /apps carousel. Keep this list short and production-only. */
+  featured?: boolean;
 };
 
 // Every live app, shown with a full section on /our-work and a case study
@@ -28,6 +30,7 @@ export const appShowcases: AppShowcaseItem[] = [
   {
     id: "vidnotes",
     title: "VidNotes",
+    featured: true,
     description: "Transcribe any video into notes, summaries, and flashcards.",
     tagline: "Video to notes and flashcards",
     icon: "/images/apps/vidnotes/icon.png",
@@ -63,6 +66,7 @@ export const appShowcases: AppShowcaseItem[] = [
   {
     id: "aividly",
     title: "Aividly",
+    featured: true,
     description: "AI video, image and voiceover creator. Built and sold.",
     tagline: "AI video creator, acquired",
     icon: "/images/apps/aividly/icon.png",
@@ -108,6 +112,7 @@ export const appShowcases: AppShowcaseItem[] = [
   {
     id: "teleprompter",
     title: "Teleprompter Pro X",
+    featured: true,
     description: "Autocue for iPad. Read scripts on camera.",
     tagline: "Autocue for iPad",
     icon: "/images/apps/teleprompter/icon.png",
@@ -137,6 +142,7 @@ export const appShowcases: AppShowcaseItem[] = [
   {
     id: "newsletterytics",
     title: "Newsletterytics",
+    featured: true,
     description: "Beehiiv newsletter analytics on the go.",
     tagline: "Beehiiv analytics on the go",
     icon: "/images/apps/newsletterytics/icon.png",
@@ -179,6 +185,7 @@ export const appShowcases: AppShowcaseItem[] = [
   {
     id: "coldsmith",
     title: "Coldsmith",
+    featured: true,
     description: "Cold plunge and ice bath timer with Wim Hof breathwork.",
     tagline: "Cold plunge and breathwork",
     icon: "/images/apps/coldsmith/icon.png",
@@ -325,6 +332,7 @@ export const appShowcases: AppShowcaseItem[] = [
   {
     id: "fiftn",
     title: "FIFTN",
+    featured: true,
     description: "Focus timer and app blocker. Earn your screen time.",
     tagline: "Earn your screen time",
     icon: "/images/apps/fiftn/icon.png",
@@ -450,6 +458,7 @@ export const appShowcases: AppShowcaseItem[] = [
   {
     id: "yapperx",
     title: "YapperX",
+    featured: true,
     description: "Speechnotes. Talk to AI and generate X posts.",
     tagline: "Voice notes to X posts",
     icon: "/images/apps/yapperx/icon.png",
@@ -607,4 +616,8 @@ export const getAppById = (id: string): AppShowcaseItem | undefined => {
 
 export const getAllApps = (): AppShowcaseItem[] => {
   return appShowcases;
+};
+
+export const getFeaturedApps = (): AppShowcaseItem[] => {
+  return appShowcases.filter((app) => app.featured);
 };
