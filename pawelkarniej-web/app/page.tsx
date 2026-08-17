@@ -34,32 +34,13 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
 import { TaglineReveal } from "@/components/tagline-reveal";
-import { getFeaturedApps } from "@/lib/apps-data";
+import { getAllApps, getFeaturedApps } from "@/lib/apps-data";
 // YouTube integration is currently disabled. See YOUTUBE_SETUP.md for details.
 
 export default function Home() {
   const liveApps = getFeaturedApps().filter((app) => !app.acquired);
-
-  const soldApps = [
-    {
-      title: "Aividly: AI Generated Videos",
-      description:
-        "Create short AI videos on your phone using cutting-edge AI models.",
-      image: "/images/aividly.png",
-      link: "https://apps.apple.com/us/app/aividly-ai-video-creator-pro/id6698894140",
-      tech: ["React Native", "AI/ML", "Video Processing"],
-    },
-    {
-      title: "Rhava",
-      description:
-        "Rhava evolved into Bibleily: Speak God Bible after the acquisition, helping people build daily scripture habits.",
-      image: "/images/rhava.svg",
-      link: "https://apps.apple.com/gb/app/bibleily-speak-god-bible/id6747157033",
-      tech: ["React Native", "Wellness", "Accountability"],
-    },
-  ];
+  const marqueeApps = getAllApps();
 
   const articles = [
     {
@@ -90,8 +71,8 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-black text-white overflow-hidden">
-      {/* Background Grid Pattern */}
-      <div className="absolute inset-0 grid-pattern opacity-20"></div>
+      {/* Film grain texture */}
+      <div className="grain-overlay" aria-hidden="true"></div>
 
       {/* Hero Section */}
       <section className="relative min-h-[70vh] flex items-center px-4 pt-16">
@@ -108,30 +89,32 @@ export default function Home() {
               </motion.div>
 
               <motion.h1
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.1 }}
+                initial={{ opacity: 0, y: 24, filter: "blur(8px)" }}
+                animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                transition={{ duration: 0.8, delay: 0.1, ease: [0.32, 0.72, 0, 1] }}
                 className="font-heading text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight [text-wrap:balance]"
               >
-                <span className="gradient-text">Hi, I&apos;m Paweł</span>
+                <span className="gradient-text block">25+ apps shipped.</span>
+                <span className="gradient-text block">Yours is next.</span>
               </motion.h1>
 
               <motion.p
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.2 }}
+                transition={{ duration: 0.7, delay: 0.25, ease: [0.32, 0.72, 0, 1] }}
                 className="text-xl text-zinc-400 max-w-2xl leading-relaxed [text-wrap:pretty]"
               >
-                I build mobile apps and AI automations for founders and small
-                teams. Shipping React Native since 2018. When you hire me, I do
-                the work myself, from the first call to the store release.
+                I&apos;m Paweł Karniej. I build mobile apps and AI automations
+                for founders and small teams, shipping React Native since 2018.
+                You talk to me directly, and I do the work myself, from the
+                first call to the store release.
               </motion.p>
 
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.3 }}
-                className="flex flex-col sm:flex-row gap-4"
+                transition={{ duration: 0.7, delay: 0.4, ease: [0.32, 0.72, 0, 1] }}
+                className="flex flex-col sm:flex-row items-start sm:items-center gap-6"
               >
                 <GradientButton
                   href="#services"
@@ -141,14 +124,13 @@ export default function Home() {
                 >
                   See how we can work together
                 </GradientButton>
-                <GradientButton
+                <a
                   href="#proof"
-                  variant="secondary"
-                  className="dark"
-                  size="lg"
+                  className="group inline-flex items-center gap-2 text-base font-semibold text-zinc-300 transition-colors duration-300 hover:text-white focus-ring rounded-full"
                 >
                   View my apps
-                </GradientButton>
+                  <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+                </a>
               </motion.div>
 
               <motion.div
@@ -163,52 +145,52 @@ export default function Home() {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label="Twitter"
-                    className="p-3 rounded-full bg-white/5 border border-white/10 hover:bg-white/10 transition-all duration-300 group"
+                    className="p-3 rounded-xl border border-white/10 text-zinc-400 transition-all duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] hover:border-white/20 hover:bg-white/5 active:scale-[0.98] focus-ring group"
                   >
-                    <Twitter className="h-5 w-5 group-hover:text-blue-400 transition-colors" />
+                    <Twitter className="h-5 w-5 group-hover:text-white transition-colors" />
                   </a>
                   <a
                     href="https://github.com/karniej"
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label="GitHub"
-                    className="p-3 rounded-full bg-white/5 border border-white/10 hover:bg-white/10 transition-all duration-300 group"
+                    className="p-3 rounded-xl border border-white/10 text-zinc-400 transition-all duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] hover:border-white/20 hover:bg-white/5 active:scale-[0.98] focus-ring group"
                   >
-                    <Github className="h-5 w-5 group-hover:text-purple-400 transition-colors" />
+                    <Github className="h-5 w-5 group-hover:text-white transition-colors" />
                   </a>
                   <a
                     href="mailto:contact@pawelkarniej.com"
                     aria-label="Email"
-                    className="p-3 rounded-full bg-white/5 border border-white/10 hover:bg-white/10 transition-all duration-300 group"
+                    className="p-3 rounded-xl border border-white/10 text-zinc-400 transition-all duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] hover:border-white/20 hover:bg-white/5 active:scale-[0.98] focus-ring group"
                   >
-                    <Mail className="h-5 w-5 group-hover:text-green-400 transition-colors" />
+                    <Mail className="h-5 w-5 group-hover:text-white transition-colors" />
                   </a>
                   <a
                     href="https://www.instagram.com/pawelkarniej/"
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label="Instagram"
-                    className="p-3 rounded-full bg-white/5 border border-white/10 hover:bg-white/10 transition-all duration-300 group"
+                    className="p-3 rounded-xl border border-white/10 text-zinc-400 transition-all duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] hover:border-white/20 hover:bg-white/5 active:scale-[0.98] focus-ring group"
                   >
-                    <Instagram className="h-5 w-5 group-hover:text-pink-400 transition-colors" />
+                    <Instagram className="h-5 w-5 group-hover:text-white transition-colors" />
                   </a>
                   <a
                     href="https://www.tiktok.com/@thepawelk"
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label="TikTok"
-                    className="p-3 rounded-full bg-white/5 border border-white/10 hover:bg-white/10 transition-all duration-300 group"
+                    className="p-3 rounded-xl border border-white/10 text-zinc-400 transition-all duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] hover:border-white/20 hover:bg-white/5 active:scale-[0.98] focus-ring group"
                   >
-                    <TikTokIcon className="h-5 w-5 group-hover:text-cyan-400 transition-colors" />
+                    <TikTokIcon className="h-5 w-5 group-hover:text-white transition-colors" />
                   </a>
                   <a
                     href="https://www.youtube.com/@thepawelk"
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label="YouTube"
-                    className="p-3 rounded-full bg-white/5 border border-white/10 hover:bg-white/10 transition-all duration-300 group"
+                    className="p-3 rounded-xl border border-white/10 text-zinc-400 transition-all duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] hover:border-white/20 hover:bg-white/5 active:scale-[0.98] focus-ring group"
                   >
-                    <Youtube className="h-5 w-5 group-hover:text-red-400 transition-colors" />
+                    <Youtube className="h-5 w-5 group-hover:text-white transition-colors" />
                   </a>
                 </div>
               </motion.div>
@@ -216,14 +198,14 @@ export default function Home() {
 
             {/* Right Content - Profile Image */}
             <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
+              initial={{ opacity: 0, y: 24 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.9, delay: 0.3, ease: [0.32, 0.72, 0, 1] }}
               className="relative"
             >
               <div className="relative w-80 h-80 lg:w-96 lg:h-96">
-                <div className="absolute inset-0 bg-gradient-to-r from-emerald-400 to-blue-500 rounded-full blur-3xl opacity-20 animate-pulse"></div>
-                <div className="relative w-full h-full rounded-full overflow-hidden border-4 border-white/20 bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-sm">
+                <div className="absolute inset-0 -rotate-3 rounded-3xl border border-emerald-400/20 bg-emerald-400/5"></div>
+                <div className="relative h-full w-full rotate-2 overflow-hidden rounded-3xl border border-white/10 shadow-[0_24px_80px_-24px_rgba(52,211,153,0.25)] transition-transform duration-700 ease-[cubic-bezier(0.32,0.72,0,1)] hover:rotate-0">
                   <Image
                     src="/images/me.jpg"
                     alt="Pawel Karniej"
@@ -236,6 +218,35 @@ export default function Home() {
             </motion.div>
           </div>
         </div>
+      </section>
+
+      {/* App icon marquee */}
+      <section aria-label="Icons of apps I shipped" className="relative py-12">
+        <div className="marquee-mask overflow-hidden">
+          <div className="flex w-max animate-marquee gap-6 pr-6">
+            {[...marqueeApps, ...marqueeApps].map((app, index) => (
+              <Link
+                key={`${app.id}-${index}`}
+                href={`/apps/${app.id}`}
+                aria-label={`${app.title} case study`}
+                tabIndex={index >= marqueeApps.length ? -1 : undefined}
+                className="group relative block h-14 w-14 shrink-0 overflow-hidden rounded-xl border border-white/10 grayscale transition-all duration-700 ease-[cubic-bezier(0.32,0.72,0,1)] hover:scale-110 hover:grayscale-0 focus-ring"
+              >
+                <Image
+                  src={app.icon}
+                  alt={`${app.title} app icon`}
+                  fill
+                  sizes="56px"
+                  className="object-cover"
+                />
+              </Link>
+            ))}
+          </div>
+        </div>
+        <p className="mt-6 text-center text-sm text-zinc-500">
+          Every icon is a real app I shipped. Hover one, click it, read its
+          story.
+        </p>
       </section>
 
       {/* Two ways to work with me */}
@@ -460,123 +471,6 @@ export default function Home() {
             <GradientButton href="/apps" variant="secondary" className="dark">
               See all my apps
             </GradientButton>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Sold apps */}
-      <section id="sold-apps" className="relative py-24 px-4 bg-white/[0.02]">
-        <div className="max-w-7xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-4xl md:text-5xl font-heading font-bold mb-6">
-              Sold apps
-            </h2>
-            <p className="text-xl text-zinc-400 max-w-2xl mx-auto">
-              Products I built, successfully handed off, and now continue their
-              journey with new owners.
-            </p>
-          </motion.div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-            {soldApps.map((project, index) => (
-              <motion.div
-                key={project.title}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                viewport={{ once: true }}
-                className="group"
-              >
-                <Card className="modern-card h-full glow-effect transition-all duration-300 group-hover:scale-105">
-                  <CardHeader>
-                    <div className="flex items-start justify-between gap-4 mb-4">
-                      <div className="w-16 h-16 relative rounded-xl overflow-hidden bg-white/10 p-2">
-                        <Image
-                          src={project.image}
-                          alt={project.title}
-                          fill
-                          className="object-contain"
-                        />
-                      </div>
-                      <div className="flex flex-col items-end gap-2">
-                        <Badge variant="default">Mobile App</Badge>
-                        <Badge
-                          variant="outline"
-                          className="gap-1 border-transparent bg-gradient-to-r from-yellow-300 via-amber-400 to-yellow-500 px-3 py-1 text-sm text-black shadow-[0_0_15px_rgba(234,179,8,0.45)]"
-                        >
-                          <Star className="h-3.5 w-3.5" />
-                          Sold
-                        </Badge>
-                      </div>
-                    </div>
-                    <CardTitle className="text-xl group-hover:text-emerald-400 transition-colors">
-                      {project.title}
-                    </CardTitle>
-                    <CardDescription className="text-zinc-400">
-                      {project.description}
-                    </CardDescription>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="space-y-4">
-                      <div className="flex flex-wrap gap-2">
-                        {project.tech.map((tech) => (
-                          <span
-                            key={tech}
-                            className="px-2 py-1 text-xs rounded-full bg-white/5 border border-white/10 text-zinc-300"
-                          >
-                            {tech}
-                          </span>
-                        ))}
-                      </div>
-                      <a
-                        href={project.link}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 text-emerald-400 hover:text-emerald-300 transition-colors"
-                      >
-                        Visit App <ExternalLink className="h-4 w-4" />
-                      </a>
-                    </div>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Graveyard teaser */}
-      <section className="relative py-24 px-4">
-        <div className="max-w-3xl mx-auto text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-            className="rounded-3xl border border-white/10 bg-white/[0.03] px-8 py-12"
-          >
-            <h2 className="font-heading text-2xl md:text-3xl font-bold [text-wrap:balance]">
-              Not every app made it
-            </h2>
-            <p className="mt-4 text-lg text-zinc-400 [text-wrap:pretty]">
-              I killed some of my own products, and I write down why. The
-              honest version, not the highlight reel.
-            </p>
-            <div className="mt-8">
-              <GradientButton
-                href="/graveyard"
-                variant="secondary"
-                className="dark"
-              >
-                Visit the graveyard
-              </GradientButton>
-            </div>
           </motion.div>
         </div>
       </section>
