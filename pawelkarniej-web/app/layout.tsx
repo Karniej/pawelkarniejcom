@@ -23,9 +23,10 @@ const outfit = Outfit({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://pawelkarniej.com"),
   title: "Paweł Karniej | Mobile apps and AI automations",
   description:
-    "I build mobile apps and AI automations for founders and small teams. Shipping React Native since 2018, with 25+ apps launched and two sold.",
+    "I build mobile apps and AI automations for founders and small teams. Shipping React Native since 2018, with 20+ apps launched and two sold.",
   icons: {
     icon: [
       { url: "/favicon.ico" },
@@ -44,7 +45,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Paweł Karniej | Mobile apps and AI automations",
     description:
-      "I build mobile apps and AI automations for founders and small teams. Shipping React Native since 2018, with 25+ apps launched and two sold.",
+      "I build mobile apps and AI automations for founders and small teams. Shipping React Native since 2018, with 20+ apps launched and two sold.",
     url: "https://pawelkarniej.com",
     siteName: "Pawel Karniej",
     images: [
@@ -62,7 +63,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Paweł Karniej | Mobile apps and AI automations",
     description:
-      "I build mobile apps and AI automations for founders and small teams. Shipping React Native since 2018, with 25+ apps launched and two sold.",
+      "I build mobile apps and AI automations for founders and small teams. Shipping React Native since 2018, with 20+ apps launched and two sold.",
     creator: "@pawelkarniej",
     images: ["/og-image.png"],
   },

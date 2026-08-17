@@ -24,6 +24,7 @@ import {
 import { Badge } from "@/components/ui/badge";
 import { TaglineReveal } from "@/components/tagline-reveal";
 import { AppQuickNav } from "@/components/sections/app-quick-nav";
+import { ProductProofSection } from "@/components/sections/product-proof";
 import { getFeaturedApps } from "@/lib/apps-data";
 
 const sprints = [
@@ -73,17 +74,17 @@ const steps = [
   {
     icon: MessageCircle,
     title: "1. We scope it on a call",
-    body: "You tell me what the app must do. I cut it to the one core loop that earns money and give you a fixed price. No estimate ranges, no surprises later.",
+    body: "You tell me what the app must do. I cut it to the one core loop that earns money and give you one fixed price.",
   },
   {
     icon: Smartphone,
     title: "2. I build it in four weeks",
-    body: "I do the design, code, paywall, and analytics myself. You see progress builds along the way, on your own phone, not in slide decks.",
+    body: "I do the design, code, paywall, and analytics myself. You test progress builds on your own phone along the way.",
   },
   {
     icon: Rocket,
     title: "3. Your app goes to the stores",
-    body: "I handle App Store and Google Play submission, including the review back and forth. You end the sprint with a live product, not a repository.",
+    body: "I handle App Store and Google Play submission, including the review back and forth. You end the sprint with a submitted store build and the full repository.",
   },
 ];
 
@@ -101,7 +102,7 @@ const faqs = [
   {
     question: "Who actually does the work?",
     answer:
-      "I do. There is no team behind the curtain and no handoff to a junior developer. The person you talk to on the first call writes the code and submits the app.",
+      "I handle the first call, write the code, and submit the app myself.",
   },
   {
     question: "Do I own the code?",
@@ -154,8 +155,8 @@ export function MobileAppsContent() {
             className="text-xl text-zinc-400 leading-relaxed [text-wrap:pretty]"
           >
             I design, build, and submit revenue ready iOS and Android apps
-            myself. One fixed price, one person responsible, and a deadline
-            with a refund behind it.
+            myself. One fixed price, one person responsible, and a deadline with
+            a refund behind it.
           </motion.p>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -178,7 +179,7 @@ export function MobileAppsContent() {
             transition={{ duration: 0.5, delay: 0.4 }}
             className="text-sm text-zinc-500"
           >
-            25+ apps shipped since 2018, including two that sold to new owners.
+            20+ apps shipped since 2018, including two that sold to new owners.
           </motion.p>
         </div>
       </section>
@@ -189,24 +190,21 @@ export function MobileAppsContent() {
         navLabel="Apps I have shipped"
       />
 
+      <ProductProofSection />
+
       {/* Problem → solution */}
       <section className="relative px-4 py-24 bg-white/[0.02]">
         <div className="mx-auto max-w-4xl space-y-6 text-lg text-zinc-300 leading-relaxed [text-wrap:pretty]">
           <h2 className="font-heading text-3xl md:text-4xl font-bold text-white text-center mb-10 [text-wrap:balance]">
-            Most app projects die between the quote and the launch
+            One fixed scope from the first call to store submission
           </h2>
           <p>
-            Agencies quote a range, staff your project with people you never
-            meet, and bill for months. Cheap freelancers underbid, then the
-            missing scope shows up as change requests. Either way, you pay for
-            time instead of a product.
+            The sprint covers product scoping, design, code, paywall, analytics,
+            and submission to both stores.
           </p>
           <p>
-            I sell the product. A sprint has a fixed scope, a fixed price, and
-            a four week deadline that ends with your app submitted to both
-            stores. I have shipped my own apps this way since 2018, so every
-            decision comes from launches, not from a project management
-            playbook.
+            The work has one fixed price and a four week submission deadline. I
+            have shipped my own apps this way since 2018.
           </p>
         </div>
       </section>
@@ -220,8 +218,8 @@ export function MobileAppsContent() {
             </h2>
             <p className="text-xl text-zinc-400 max-w-2xl mx-auto [text-wrap:pretty]">
               Both include iOS and Android, a paywall, subscriptions, and store
-              submission. The difference is how much launch firepower comes
-              with it.
+              submission. The difference is how much launch firepower comes with
+              it.
             </p>
           </div>
 
@@ -315,10 +313,10 @@ export function MobileAppsContent() {
             The four week guarantee
           </h2>
           <p className="text-lg text-zinc-300 leading-relaxed [text-wrap:pretty]">
-            If I miss the agreed store submission deadline, you receive a
-            refund and you keep the code. Your reservation deposit is
-            refundable any time before kickoff. The risk of the deadline sits
-            with me, where it belongs.
+            If I miss the agreed store submission deadline, you receive a refund
+            and you keep the code. Your reservation deposit is refundable any
+            time before kickoff. The risk of the deadline sits with me, where it
+            belongs.
           </p>
         </div>
       </section>
@@ -427,8 +425,8 @@ export function MobileAppsContent() {
             Ready to scope your app?
           </h2>
           <p className="text-xl text-zinc-400 [text-wrap:pretty]">
-            Tell me what you want to build. You will leave the call with a
-            fixed price and a clear scope, whether or not we work together.
+            Tell me what you want to build. I will turn it into a fixed scope
+            and price.
           </p>
           <div className="flex justify-center">
             <GradientButton

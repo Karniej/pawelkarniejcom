@@ -25,6 +25,12 @@ const config = {
         heading: ["var(--font-outfit)", "system-ui", "sans-serif"],
       },
       colors: {
+        // Yellow sampled from the hero portrait background (avg #FEC602)
+        selfmade: {
+          DEFAULT: "#FEC602",
+          deep: "#B45309",
+          hover: "#E5B202",
+        },
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",

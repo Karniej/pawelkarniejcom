@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-const GENERIC_TAGS = new Set(["ai-built-apps", "vibe-coding", "silpho"]);
+const GENERIC_TAGS = new Set(["ai-built-apps", "vibe-coding"]);
 
 function hashSlug(slug: string): number {
   let hash = 0;

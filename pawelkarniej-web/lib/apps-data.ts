@@ -24,7 +24,7 @@ export type AppShowcaseItem = {
 // Every live app, shown with a full section on /our-work and a case study
 // page at /apps/<id>. Names, icons, and screenshots pulled from the actual
 // App Store listings (see scripts/fetch-appstore-assets.mjs). Verified live
-// under the Pawel Karniej or Silpho LLC developer accounts, except Aividly,
+// under the Pawel Karniej developer account, except Aividly,
 // which we built and later sold to its current owner.
 export const appShowcases: AppShowcaseItem[] = [
   {
@@ -606,7 +606,6 @@ export const appShowcases: AppShowcaseItem[] = [
 export const DEVELOPER_PAGES = {
   pawelKarniej:
     "https://apps.apple.com/pl/developer/pawel-karniej/id1693356080",
-  silphoLLC: "https://apps.apple.com/pl/developer/silpho-llc/id1870904612",
 };
 
 export const getAppById = (id: string): AppShowcaseItem | undefined => {

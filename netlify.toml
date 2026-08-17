@@ -6,3 +6,13 @@
 [build.environment]
   NODE_VERSION = "20.18.0"
   PYTHON_VERSION = "3.10"
+
+[[redirects]]
+  from = "/blog/what-1999-actually-buys-you-silpho-launch-breakdown"
+  to = "/blog/what-1999-actually-buys-you-product-build-sprint/"
+  status = 301
+
+[[redirects]]
+  from = "/blog/what-1999-actually-buys-you-silpho-launch-breakdown/"
+  to = "/blog/what-1999-actually-buys-you-product-build-sprint/"
+  status = 301
