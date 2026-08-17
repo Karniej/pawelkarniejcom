@@ -192,23 +192,6 @@ export function MobileAppsContent() {
 
       <ProductProofSection />
 
-      {/* Problem → solution */}
-      <section className="relative px-4 py-24 bg-white/[0.02]">
-        <div className="mx-auto max-w-4xl space-y-6 text-lg text-zinc-300 leading-relaxed [text-wrap:pretty]">
-          <h2 className="font-heading text-3xl md:text-4xl font-bold text-white text-center mb-10 [text-wrap:balance]">
-            One fixed scope from the first call to store submission
-          </h2>
-          <p>
-            The sprint covers product scoping, design, code, paywall, analytics,
-            and submission to both stores.
-          </p>
-          <p>
-            The work has one fixed price and a four week submission deadline. I
-            have shipped my own apps this way since 2018.
-          </p>
-        </div>
-      </section>
-
       {/* Pricing */}
       <section id="pricing" className="relative px-4 py-24 scroll-mt-24">
         <div className="max-w-7xl mx-auto">
