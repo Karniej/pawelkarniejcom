@@ -17,7 +17,8 @@ export function TaglineReveal({ lines }: { lines: string[] }) {
   return (
     <section className="relative py-24 px-4">
       <div className="mx-auto max-w-[680px]">
-        <p className="font-heading text-4xl md:text-5xl font-bold tracking-tight [text-wrap:balance]">
+        {/* Animate opacity instead of a fixed color so the reveal follows the theme */}
+        <p className="font-heading text-4xl md:text-5xl font-bold tracking-tight [text-wrap:balance] text-black dark:text-white">
           {lines.map((line, lineIndex) => (
             <span key={lineIndex} className="block">
               {line.split(" ").map((word) => {
@@ -25,8 +26,8 @@ export function TaglineReveal({ lines }: { lines: string[] }) {
                 return (
                   <motion.span
                     key={`${lineIndex}-${index}`}
-                    initial={{ color: "rgba(255,255,255,0.3)" }}
-                    whileInView={{ color: "rgba(255,255,255,1)" }}
+                    initial={{ opacity: 0.3 }}
+                    whileInView={{ opacity: 1 }}
                     viewport={{ once: true, margin: "-20% 0px -20% 0px" }}
                     transition={{
                       duration: 0.7,

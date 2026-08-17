@@ -25,6 +25,11 @@ const config = {
         heading: ["var(--font-outfit)", "system-ui", "sans-serif"],
       },
       colors: {
+        // Selfmade.dev yellow, carried over from the first version of this site
+        selfmade: {
+          DEFAULT: "#FDBB0B",
+          deep: "#B45309",
+        },
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",

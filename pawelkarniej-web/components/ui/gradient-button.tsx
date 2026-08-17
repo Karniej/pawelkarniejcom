@@ -10,9 +10,10 @@ import { LucideIcon } from "lucide-react";
 type GradientVariant = "primary" | "secondary" | "accent";
 
 const gradientVariants: Record<GradientVariant, string> = {
-  primary: "from-white via-gray-200 to-gray-300",
+  primary:
+    "from-zinc-400 via-zinc-300 to-zinc-500 dark:from-white dark:via-gray-200 dark:to-gray-300",
   secondary: "from-gray-400 via-zinc-300 to-slate-400",
-  accent: "from-emerald-400 via-emerald-300 to-emerald-500",
+  accent: "from-selfmade via-amber-300 to-amber-500",
 };
 
 interface GradientButtonProps {
@@ -78,7 +79,7 @@ const GradientButton = ({
       {/* Button */}
       <div
         className={cn(
-          "relative rounded-full bg-white text-black font-medium flex items-center justify-center transition-all duration-300 group-hover:bg-gray-50 cursor-pointer",
+          "relative rounded-full bg-black text-white group-hover:bg-zinc-900 dark:bg-white dark:text-black dark:group-hover:bg-gray-50 font-medium flex items-center justify-center transition-all duration-300 cursor-pointer",
           sizeClasses[size],
           className,
         )}
@@ -101,7 +102,7 @@ const GradientButton = ({
       {/* Button */}
       <div
         className={cn(
-          "relative rounded-full bg-zinc-900/90 backdrop-blur-sm text-white font-medium flex items-center justify-center transition-all duration-300 group-hover:bg-zinc-800/90 border border-white/10 cursor-pointer",
+          "relative rounded-full bg-white/90 text-black group-hover:bg-zinc-100/90 border-black/10 dark:bg-zinc-900/90 dark:text-white dark:group-hover:bg-zinc-800/90 dark:border-white/10 backdrop-blur-sm font-medium flex items-center justify-center transition-all duration-300 border cursor-pointer",
           sizeClasses[size],
           className,
         )}
@@ -158,7 +159,7 @@ const GradientButton = ({
       <button
         onClick={onClick}
         className={cn(
-          "relative rounded-full bg-white text-black font-medium flex items-center justify-center transition-all duration-300 group-hover:bg-gray-50",
+          "relative rounded-full bg-black text-white group-hover:bg-zinc-900 dark:bg-white dark:text-black dark:group-hover:bg-gray-50 font-medium flex items-center justify-center transition-all duration-300",
           sizeClasses[size],
           className,
         )}
@@ -181,7 +182,7 @@ const GradientButton = ({
       <button
         onClick={onClick}
         className={cn(
-          "relative rounded-full bg-zinc-900/90 backdrop-blur-sm text-white font-medium flex items-center justify-center transition-all duration-300 group-hover:bg-zinc-800/90 border border-white/10",
+          "relative rounded-full bg-white/90 text-black group-hover:bg-zinc-100/90 border-black/10 dark:bg-zinc-900/90 dark:text-white dark:group-hover:bg-zinc-800/90 dark:border-white/10 backdrop-blur-sm font-medium flex items-center justify-center transition-all duration-300 border",
           sizeClasses[size],
           className,
         )}
