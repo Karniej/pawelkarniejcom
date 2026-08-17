@@ -180,7 +180,7 @@ export function AboutAndVideos() {
             />
           </div>
 
-          <div className="flex flex-col justify-center p-8 sm:p-12 lg:p-16">
+          <div className="flex flex-col justify-center p-8 sm:p-10 lg:p-12">
             <p className="flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.22em] text-selfmade-deep dark:text-selfmade">
               <Podcast className="h-5 w-5" />
               The podcast
@@ -238,7 +238,7 @@ export function AboutAndVideos() {
           {podcastEpisodes.map((episode) => (
             <article
               key={episode.id}
-              className="grid items-center gap-6 border-t border-black/10 p-6 dark:border-white/10 sm:p-8 lg:col-span-2 lg:grid-cols-[minmax(0,0.9fr)_minmax(320px,1.1fr)]"
+              className="grid items-center gap-6 border-t border-black/10 p-5 dark:border-white/10 sm:p-6 lg:col-span-2 lg:grid-cols-[minmax(0,0.9fr)_minmax(320px,1.1fr)]"
             >
               <div>
                 <p className="text-xs font-semibold uppercase tracking-[0.16em] text-zinc-500">
