@@ -11,7 +11,6 @@ import {
   Mail,
   Twitter,
   Smartphone,
-  Code,
   Zap,
   Youtube,
   Instagram,
@@ -75,9 +74,9 @@ export default function Home() {
   const marqueeApps = getAllApps();
 
   const stats = [
-    { label: "Apps shipped since 2018", value: "25+", icon: Smartphone },
-    { label: "Years of React Native", value: "8", icon: Code },
+    { label: "Apps shipped", value: "20+", icon: Smartphone },
     { label: "Apps sold to new owners", value: "2", icon: Star },
+    { label: "Workflow at a time", value: "1", icon: Zap },
   ];
 
   return (
@@ -98,8 +97,12 @@ export default function Home() {
                 transition={{ duration: 0.8, delay: 0.1, ease: [0.32, 0.72, 0, 1] }}
                 className="font-heading text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight [text-wrap:balance]"
               >
-                <span className="gradient-text block">25+ apps shipped.</span>
-                <span className="gradient-text block">Yours is next.</span>
+                <span className="gradient-text block">
+                  I build products that ship—
+                </span>
+                <span className="gradient-text block">
+                  and systems that run.
+                </span>
               </motion.h1>
 
               <motion.p
