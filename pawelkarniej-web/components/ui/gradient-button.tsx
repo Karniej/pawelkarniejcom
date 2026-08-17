@@ -10,8 +10,7 @@ import { LucideIcon } from "lucide-react";
 type GradientVariant = "primary" | "secondary" | "accent";
 
 const gradientVariants: Record<GradientVariant, string> = {
-  primary:
-    "from-zinc-400 via-zinc-300 to-zinc-500 dark:from-white dark:via-gray-200 dark:to-gray-300",
+  primary: "from-selfmade via-amber-300 to-amber-500",
   secondary: "from-gray-400 via-zinc-300 to-slate-400",
   accent: "from-selfmade via-amber-300 to-amber-500",
 };
@@ -79,7 +78,7 @@ const GradientButton = ({
       {/* Button */}
       <div
         className={cn(
-          "relative rounded-full bg-black text-white group-hover:bg-zinc-900 dark:bg-white dark:text-black dark:group-hover:bg-gray-50 font-medium flex items-center justify-center transition-all duration-300 cursor-pointer",
+          "relative rounded-full bg-selfmade text-zinc-950 group-hover:bg-selfmade-hover font-semibold flex items-center justify-center transition-all duration-300 cursor-pointer",
           sizeClasses[size],
           className,
         )}
@@ -159,7 +158,7 @@ const GradientButton = ({
       <button
         onClick={onClick}
         className={cn(
-          "relative rounded-full bg-black text-white group-hover:bg-zinc-900 dark:bg-white dark:text-black dark:group-hover:bg-gray-50 font-medium flex items-center justify-center transition-all duration-300",
+          "relative rounded-full bg-selfmade text-zinc-950 group-hover:bg-selfmade-hover font-semibold flex items-center justify-center transition-all duration-300",
           sizeClasses[size],
           className,
         )}

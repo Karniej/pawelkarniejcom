@@ -58,12 +58,12 @@ export function SiteNav() {
 
   return (
     <>
-      {/* Desktop: floating glass pill */}
+      {/* Desktop: floating Selfmade yellow pill */}
       <nav
         aria-label="Main navigation"
         className="fixed top-0 inset-x-0 z-50 hidden md:flex justify-center pointer-events-none"
       >
-        <div className="pointer-events-auto mt-6 flex items-center gap-1 rounded-full border border-black/10 bg-white/70 dark:border-white/10 dark:bg-black/60 px-3 py-2 backdrop-blur-xl">
+        <div className="pointer-events-auto mt-6 flex items-center gap-1 rounded-full border border-black/10 bg-selfmade px-3 py-2 shadow-[0_10px_30px_-12px_rgba(253,187,11,0.7)]">
           {NAV_LINKS.map((link) => (
             <Link
               key={link.href}
@@ -72,42 +72,42 @@ export function SiteNav() {
               className={cn(
                 "rounded-full px-3 py-2 text-sm font-semibold transition-all duration-700 ease-[cubic-bezier(0.32,0.72,0,1)]",
                 isActive(link.href)
-                  ? "bg-black/10 text-black dark:bg-white/10 dark:text-white"
-                  : "text-zinc-600 hover:bg-black/5 hover:text-black dark:text-zinc-400 dark:hover:bg-white/5 dark:hover:text-white",
+                  ? "bg-black/15 text-zinc-950"
+                  : "text-zinc-800 hover:bg-black/10 hover:text-zinc-950",
               )}
             >
               {link.label}
             </Link>
           ))}
-          <ThemeToggle className="ml-1 h-9 w-9" />
+          <ThemeToggle className="ml-1 h-9 w-9 text-zinc-800 hover:bg-black/10 hover:text-zinc-950 dark:text-zinc-800 dark:hover:bg-black/10 dark:hover:text-zinc-950" />
         </div>
       </nav>
 
-      {/* Mobile: hamburger that morphs into an X, full screen glass overlay */}
+      {/* Mobile: yellow hamburger that morphs into an X, full-screen yellow overlay */}
       <div className="fixed top-4 right-4 z-50 flex items-center gap-3 md:hidden">
-        <ThemeToggle className="h-12 w-12 border border-black/10 bg-white/70 dark:border-white/10 dark:bg-black/60 backdrop-blur-xl" />
+        <ThemeToggle className="h-12 w-12 border border-black/10 bg-selfmade text-zinc-900 hover:bg-selfmade-hover hover:text-zinc-950 dark:text-zinc-900 dark:hover:bg-selfmade-hover dark:hover:text-zinc-950" />
         <button
           type="button"
           aria-label={open ? "Close menu" : "Open menu"}
           aria-expanded={open}
           onClick={() => setOpen((v) => !v)}
-          className="relative flex h-12 w-12 items-center justify-center rounded-full border border-black/10 bg-white/70 dark:border-white/10 dark:bg-black/60 backdrop-blur-xl focus:outline-none focus-visible:ring-2 focus-visible:ring-selfmade active:scale-[0.98] transition-all duration-700 ease-[cubic-bezier(0.32,0.72,0,1)]"
+          className="relative flex h-12 w-12 items-center justify-center rounded-full border border-black/10 bg-selfmade focus:outline-none focus-visible:ring-2 focus-visible:ring-selfmade active:scale-[0.98] transition-all duration-700 ease-[cubic-bezier(0.32,0.72,0,1)]"
         >
           <span
             className={cn(
-              "absolute h-0.5 w-5 bg-black dark:bg-white transition-all duration-700 ease-[cubic-bezier(0.32,0.72,0,1)]",
+              "absolute h-0.5 w-5 bg-zinc-950 transition-all duration-700 ease-[cubic-bezier(0.32,0.72,0,1)]",
               open ? "rotate-45" : "-translate-y-1.5",
             )}
           />
           <span
             className={cn(
-              "absolute h-0.5 w-5 bg-black dark:bg-white transition-all duration-700 ease-[cubic-bezier(0.32,0.72,0,1)]",
+              "absolute h-0.5 w-5 bg-zinc-950 transition-all duration-700 ease-[cubic-bezier(0.32,0.72,0,1)]",
               open ? "opacity-0" : "opacity-100",
             )}
           />
           <span
             className={cn(
-              "absolute h-0.5 w-5 bg-black dark:bg-white transition-all duration-700 ease-[cubic-bezier(0.32,0.72,0,1)]",
+              "absolute h-0.5 w-5 bg-zinc-950 transition-all duration-700 ease-[cubic-bezier(0.32,0.72,0,1)]",
               open ? "-rotate-45" : "translate-y-1.5",
             )}
           />
@@ -121,7 +121,7 @@ export function SiteNav() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.4, ease: [0.32, 0.72, 0, 1] }}
-            className="fixed inset-0 z-40 flex items-center justify-center bg-white/80 dark:bg-black/80 backdrop-blur-3xl md:hidden"
+            className="fixed inset-0 z-40 flex items-center justify-center bg-selfmade md:hidden"
           >
             <nav aria-label="Mobile navigation">
               <ul className="space-y-6 text-center">
@@ -143,8 +143,8 @@ export function SiteNav() {
                       className={cn(
                         "font-heading text-3xl font-bold",
                         isActive(link.href)
-                          ? "text-black dark:text-white"
-                          : "text-zinc-500 dark:text-zinc-400",
+                          ? "text-zinc-950"
+                          : "text-zinc-800",
                       )}
                     >
                       {link.label}

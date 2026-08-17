@@ -29,6 +29,7 @@ const config = {
         selfmade: {
           DEFAULT: "#FDBB0B",
           deep: "#B45309",
+          hover: "#E5A90A",
         },
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
