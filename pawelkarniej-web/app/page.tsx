@@ -87,6 +87,18 @@ export default function Home() {
 
       {/* Hero Section */}
       <section className="relative min-h-[70vh] flex items-center px-4 pt-16">
+        <video
+          className="hero-background-video"
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="metadata"
+          aria-hidden="true"
+        >
+          <source src="/videos/home-hero.mp4" type="video/mp4" />
+        </video>
+        <div className="hero-background-overlay" aria-hidden="true"></div>
         <div className="hero-aurora" aria-hidden="true"></div>
         <div className="relative z-10 max-w-7xl mx-auto">
           <div className="flex flex-col lg:flex-row items-center gap-16">
