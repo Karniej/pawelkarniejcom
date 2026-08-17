@@ -332,7 +332,6 @@ export const appShowcases: AppShowcaseItem[] = [
   {
     id: "fiftn",
     title: "FIFTN",
-    featured: true,
     description: "Focus timer and app blocker. Earn your screen time.",
     tagline: "Earn your screen time",
     icon: "/images/apps/fiftn/icon.png",
