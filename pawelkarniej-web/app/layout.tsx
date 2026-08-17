@@ -4,6 +4,7 @@ import "./globals.css";
 import type { Metadata } from "next";
 import { Outfit } from "next/font/google";
 import { ThemeProvider } from "@/components/theme-provider";
+import { SiteNav } from "@/components/site-nav";
 import localFont from "next/font/local";
 import AnalyticsScripts from "@/components/analytics-scripts";
 
@@ -22,9 +23,9 @@ const outfit = Outfit({
 });
 
 export const metadata: Metadata = {
-  title: "Pawel Karniej | React Native Developer",
+  title: "Paweł Karniej | Mobile apps and AI automations",
   description:
-    "Hi! I'm Paweł and I build apps using React Native since 2018. Creator of AI-powered mobile applications and technical writer.",
+    "I build mobile apps and AI automations for founders and small teams. Shipping React Native since 2018, with 25+ apps launched and two sold.",
   icons: {
     icon: [
       { url: "/favicon.ico" },
@@ -41,9 +42,9 @@ export const metadata: Metadata = {
     shortcut: [{ url: "/favicon.png" }],
   },
   openGraph: {
-    title: "Pawel Karniej | React Native Developer",
+    title: "Paweł Karniej | Mobile apps and AI automations",
     description:
-      "Hi! I'm Paweł and I build apps using React Native since 2018. Creator of AI-powered mobile applications and technical writer.",
+      "I build mobile apps and AI automations for founders and small teams. Shipping React Native since 2018, with 25+ apps launched and two sold.",
     url: "https://pawelkarniej.com",
     siteName: "Pawel Karniej",
     images: [
@@ -59,9 +60,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Pawel Karniej | React Native Developer",
+    title: "Paweł Karniej | Mobile apps and AI automations",
     description:
-      "Hi! I'm Paweł and I build apps using React Native since 2018. Creator of AI-powered mobile applications and technical writer.",
+      "I build mobile apps and AI automations for founders and small teams. Shipping React Native since 2018, with 25+ apps launched and two sold.",
     creator: "@pawelkarniej",
     images: ["/og-image.png"],
   },
@@ -83,7 +84,16 @@ export default function RootLayout({
         className={`${geist.variable} ${outfit.variable} font-sans antialiased`}
       >
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
-          <main className="flex min-h-screen flex-col">{children}</main>
+          <a
+            href="#main-content"
+            className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-[60] focus:rounded-lg focus:bg-white focus:px-3 focus:py-2 focus:text-black"
+          >
+            Skip to content
+          </a>
+          <SiteNav />
+          <main id="main-content" className="flex min-h-screen flex-col">
+            {children}
+          </main>
           <AnalyticsScripts />
         </ThemeProvider>
       </body>
