@@ -1,0 +1,220 @@
+---
+title: "App Store submission checklist 2026: 47 things that trip founders up"
+date: "2026-04-09"
+excerpt: "Every Apple App Store rejection trigger that actually happens in 2026, plus the fix for each. Save weeks of rejection cycles by checking these before submission."
+tags: ["app-store-submission", "app-store-rejection", "aso", "launch-checklist"]
+featuredImage: "/favicon.png"
+---
+
+# App Store submission checklist 2026: 47 things that trip founders up
+
+*The full punch list before you click submit.*
+
+## TL;DR
+
+The average first-time iOS submission gets rejected once or twice. Most rejections are predictable. This 47-item checklist covers the rejection triggers, metadata gotchas, design violations, IAP rules, privacy requirements, and the post-submission steps founders forget. Run through this before clicking "Submit for Review" and you'll cut your rejection cycles from 2 to 4 down to 0 to 1. The full checklist is in scope on every [my Product Build Sprint](/mobile-apps); this article gives it to you for free.
+
+## Key facts at a glance
+
+- 30 to 50 percent of first-time iOS submissions get rejected. The number drops to under 10 percent after a few launches because the rejections become predictable.
+- Apple review time averaged 2 to 7 days in 2026, up from 24 hours in 2022 to 2024.
+- Privacy manifest (PrivacyInfo.xcprivacy) is mandatory and the most common rejection trigger for new apps.
+- Account deletion is mandatory for any app with account creation. Skipping it is an automatic rejection.
+- Most metadata-related rejections are fixable in under an hour.
+
+---
+
+## Pre-submission checklist (47 items)
+
+### Account and signing
+
+1. Apple Developer Program enrollment is current ($99 a year)
+2. Bundle ID matches between Xcode, App Store Connect, and any push certificates
+3. Distribution certificate is valid and not expiring within 4 weeks
+4. App Store Connect role: you have appropriate access to submit
+5. Provisioning profiles are fresh
+
+### Privacy and legal
+
+6. Privacy manifest (PrivacyInfo.xcprivacy) declares all required APIs and reasons
+7. App Transport Security (ATS) is configured (HTTPS-only or specific exceptions documented)
+8. Privacy policy URL is live and reachable
+9. Terms of service URL is live and reachable
+10. App Tracking Transparency (ATT) prompt appears if you collect IDFA-related data
+11. NSUserTrackingUsageDescription strings are written for each prompt
+12. Account deletion flow exists in-app (mandatory if you have account creation)
+13. Data Safety Form (Play Store) is filled if you're cross-platform
+14. App Privacy Details in App Store Connect match what your code actually does
+
+### App functionality
+
+15. Core feature works on first launch without configuration the user shouldn't have to do
+16. App doesn't crash on launch on any test device
+17. Sign-in with Apple is implemented if you offer third-party social sign-in (Apple's parity rule)
+18. Push notification opt-in prompt appears with a clear justification
+19. Network failure states show clear errors, not blank screens
+20. Loading states exist for any operation taking more than 200 ms
+21. Empty states exist for lists, search results, and primary screens
+
+### Subscriptions and IAP
+
+22. Subscription terms are clearly disclosed before purchase (price, period, auto-renewal)
+23. Restore purchases button is visible and functional in settings or paywall
+24. Auto-renewable subscription terms link to Apple's standard EULA or your own
+25. The "free trial" disclosure mentions when billing starts
+26. RevenueCat or Stripe webhook is wired to your backend if you grant entitlements server-side
+27. Receipt validation is implemented (server-side preferred)
+28. Sandbox testing was completed across at least 3 test purchase scenarios
+
+### Design and UX
+
+29. App icon meets Apple's spec (1024x1024, no transparency, no rounded corners on the source)
+30. App icon doesn't include the word "App" or competitor names
+31. Touch targets are at least 44x44 points
+32. Color contrast meets accessibility minimums (use Xcode's Accessibility Inspector)
+33. Dynamic type is supported (text scales with system font size)
+34. Dark mode is functional or explicitly opted out
+35. VoiceOver labels exist for important interactive elements
+36. App handles device rotation if it doesn't lock orientation
+
+### Metadata and store assets
+
+37. App name (30 characters max) doesn't claim trademarked terms you don't own
+38. Subtitle (30 characters max) is benefit-focused, not keyword-stuffed
+39. Description's first 3 lines lead with the value prop (the rest doesn't show without "more")
+40. Keywords (100 characters) are comma-separated, no spaces wasted
+41. Screenshots: 3 to 5 per device size, optimized for App Store conversion
+42. App preview video is 15 to 30 seconds, shows the magical moment
+43. Age rating questionnaire matches actual app content
+44. Category and subcategory match what users would search for
+
+### Final pre-submit
+
+45. TestFlight build was tested by at least one external user (not the dev who built it)
+46. Crash reports from TestFlight are reviewed and fixed
+47. The "Notes for Reviewer" field in App Store Connect explains any non-obvious feature or test account
+
+---
+
+## The 7 most common rejections in 2026
+
+### 1. Privacy manifest missing or incomplete
+
+The fix: add `PrivacyInfo.xcprivacy` declaring every required API your app or its SDKs use. Apple publishes the list of "required reason APIs." Match each to a justified reason.
+
+Time to fix: 1 to 4 hours.
+
+### 2. Account deletion missing
+
+The fix: implement an in-app flow that deletes the user's account and data. Even if it's just an email-based request, a flow must exist.
+
+Time to fix: 4 to 8 hours.
+
+### 3. Subscription terms unclear
+
+The fix: the screen showing the price must also show the period, auto-renewal disclosure, and a link to terms. The default RevenueCat paywall template handles this; custom paywalls often don't.
+
+Time to fix: 2 to 4 hours.
+
+### 4. Sign-in with Apple missing
+
+The fix: if you offer social sign-in via Google, Facebook, or anything else, you must also offer Sign in with Apple. Add it.
+
+Time to fix: 1 to 2 days.
+
+### 5. App functionality broken or unclear
+
+The fix: review the rejection screenshot, find the broken flow, fix it. Common: the reviewer can't get past onboarding because the app needs an account that requires phone verification.
+
+Time to fix: variable, often 4 to 16 hours.
+
+### 6. Metadata or screenshot violations
+
+The fix: re-read the App Store Review Guidelines section 2.3 (accurate metadata) and 5 (legal). Remove competitor names, trademarked claims, or anything that misrepresents the app.
+
+Time to fix: 1 to 4 hours.
+
+### 7. IAP outside the App Store payment system
+
+The fix: digital goods sold inside an iOS app must use Apple IAP. Stripe is fine for physical goods, services consumed outside the app, or B2B reader apps. If you violated this, reroute the payment flow to RevenueCat or Apple IAP.
+
+Time to fix: 2 to 5 days depending on backend depth.
+
+---
+
+## After you submit
+
+1. Review submission notes in App Store Connect daily for the first 7 days
+2. If rejected, read the citation closely; rejections always cite a specific guideline section
+3. Reply via Resolution Center with the fix or with a clarification if you think the rejection is in error
+4. Resubmit promptly; app review queues you again from the back
+
+Apple review time averaged 2 to 7 days in 2026. Your launch plan should buffer this.
+
+---
+
+## What about Google Play
+
+Google Play submission is generally less strict than Apple but has its own gotchas:
+
+- Data Safety Form is mandatory (similar to Apple's privacy details)
+- Sensitive permissions (SMS, call log) require declaration with justification
+- Closed testing track is required for new apps before production rollout
+- Privacy policy URL is mandatory
+
+Most Apple-compliant apps clear Google Play submission with minor metadata adjustments.
+
+---
+
+## How I handle this for clients
+
+The full 47-item checklist runs on every my Product Build Sprint by default. The boilerplate ([Ship React Native](/mobile-apps)) ships with privacy manifest, account deletion, ATT prompts, and Sign in with Apple already wired. The launch kit (in the Launch tier at [$3,999](/mobile-apps)) covers metadata, screenshots, copy, and the actual submission to Apple and Google.
+
+In 25+ launches I've cleared most submissions on the first review.
+
+---
+
+## FAQ
+
+### How long does the average review take in 2026?
+
+2 to 7 days for healthy submissions. Up to 14 days during peak seasons (holiday period in November and December).
+
+### Can I expedite a review?
+
+Yes, in limited cases via App Store Connect's Expedited Review request. Apple grants it for critical bug fixes, time-sensitive launches, or media moments. Don't abuse it; repeated requests get denied.
+
+### What if I keep getting rejected?
+
+Read the rejection emails closely. Each cites a guideline. Map your fix to the cited guideline. If you've been rejected 3+ times, book a call with [a React Native consultant](/blog/hire-a-react-native-consultant-for-an-hour) or upgrade to [my Product Build Sprint](/mobile-apps).
+
+### Do I need a separate Apple Developer Program account for a company?
+
+Apple Developer Program (Individual) is fine for solo founders. Apple Developer Program (Organization) is required if you want a company name on the listing or D-U-N-S verification. Org enrollment takes 1 to 4 weeks.
+
+### What's the difference between TestFlight and a real submission?
+
+TestFlight is for internal/beta testing with up to 10,000 users. Production submission is the public release on the App Store. TestFlight reviews are usually faster but separate from the production review.
+
+### Does the privacy manifest also apply to Google Play?
+
+No, that's an Apple requirement. Google Play has its own Data Safety Form which serves a similar disclosure purpose.
+
+### Can I use App Store Connect API to automate?
+
+Yes. fastlane or Apple's official API can automate metadata, screenshots, and TestFlight builds. Most production teams (and the Ship React Native boilerplate) use EAS Submit for this.
+
+### What about Apple's review for in-app updates?
+
+Apple requires every binary update to go through review. Code-only updates (no metadata changes) usually clear in under 24 hours. EAS Update (OTA) doesn't require Apple review for JS-only changes.
+
+---
+
+**Next steps:**
+- [Have me handle the full submission for you ($3,999) →](/mobile-apps)
+- [Or DIY with the boilerplate that ships compliant ($199) →](/mobile-apps)
+- [Or get help with a code review and 1-on-1 ($499) →](/mobile-apps)
+
+**Related deep dives:**
+- [Hidden costs of mobile app development](/blog/hidden-costs-mobile-app-development-12-line-items-quotes-miss)
+- [How to launch an AI mobile app in 4 weeks](/blog/how-to-launch-an-ai-mobile-app-in-30-days)

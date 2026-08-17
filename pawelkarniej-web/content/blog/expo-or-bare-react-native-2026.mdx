@@ -1,0 +1,178 @@
+---
+title: "Expo or bare React Native in 2026: when each makes sense"
+date: "2026-05-01"
+excerpt: "Honest decision guide for Expo managed vs bare React Native in 2026. The lines have moved; the right choice has changed."
+tags: ["expo", "react-native", "expo-vs-bare", "react-native-stack"]
+featuredImage: "/favicon.png"
+---
+
+# Expo or bare React Native in 2026: when each makes sense
+
+*The "bare workflow when you outgrow Expo" myth has been wrong for two years. Here's the real picture.*
+
+## TL;DR
+
+In 2026, Expo managed workflow with EAS Build is the right default for almost every React Native project. The historical "bare workflow when you need native modules" decision rule no longer applies because Expo SDK 53+ supports virtually every native API through config plugins or first-class APIs. Pick bare workflow only when you have a specific native module that can't be wrapped, or you're contributing to React Native core itself. Most "I went bare for flexibility" stories cost the team 3 to 6 months and shipped slower apps. This article walks through the real 2026 decision framework.
+
+## Key facts at a glance
+
+- Expo SDK 53 (late 2024) and SDK 54 (early 2026) added support for nearly all production-grade native APIs.
+- Config plugins and Expo Modules let you wrap any native code without ejecting.
+- EAS Build, EAS Update, and EAS Submit handle CI/CD, OTA updates, and store submission as a managed service.
+- The Expo team employs significant React Native core contributors; the managed and bare workflows are converging fast.
+- Going "bare" in 2026 is a genuine engineering decision, not a default upgrade path.
+
+---
+
+## What changed in 2024 to 2026
+
+For years the conventional wisdom said: "start with Expo for prototyping, eject to bare React Native when you need flexibility." That advice was correct in 2018 to 2022. It's mostly wrong now.
+
+What changed:
+
+1. **Expo Modules.** First-class API for writing native code that runs in both managed and bare workflows. You can write Swift or Kotlin in your Expo project without ejecting.
+2. **Config plugins.** Modify native iOS and Android configuration from JavaScript at build time. Almost every "I need to edit Info.plist" use case is solved.
+3. **EAS Build.** Cloud-managed build pipeline that handles signing, provisioning, and submission. No more managing Xcode, Android Studio, or fastlane locally.
+4. **First-class native APIs in Expo SDK.** HealthKit, App Tracking Transparency, In-App Purchases (via expo-iap), background fetch, push notifications, BLE (via expo-bluetooth), camera (high-fidelity), file system, secure storage, biometrics. Expo covers almost everything.
+5. **Reanimated, gesture handler, and other core libraries** are first-class in managed workflow.
+
+The result: the historical "bare workflow gives you more flexibility" argument applies only to a small set of edge cases.
+
+---
+
+## When to pick Expo managed (the default in 2026)
+
+Pick Expo if any of these apply:
+
+- You're shipping a B2C consumer mobile app with standard features (auth, paywalls, AI, media).
+- You want EAS Build to handle CI/CD and submissions.
+- You want OTA updates via EAS Update.
+- You want the fastest path from idea to App Store.
+- You don't have a strong reason to manage Xcode and Android Studio locally.
+
+This covers roughly 95 percent of mobile app projects in 2026.
+
+The [Ship React Native boilerplate](/mobile-apps) uses Expo managed workflow because it's the right call for the apps I ship.
+
+---
+
+## When to pick bare workflow
+
+Pick bare React Native if any of these apply:
+
+- You're using a native module that has no Expo wrapper and can't reasonably be wrapped (very rare in 2026).
+- You're working in a tightly-controlled enterprise environment where the build pipeline must run on-premise without external services.
+- You're contributing to React Native core itself.
+- You're on a long-running project that started bare in 2020 and the migration cost outweighs the benefits.
+- You need to share native code (Swift/Kotlin) with a separate native iOS/Android team in the same monorepo.
+
+The hard truth: most bare-workflow projects in 2026 are bare for historical reasons, not current technical reasons.
+
+---
+
+## Side-by-side comparison
+
+| Dimension | Expo managed (with EAS) | Bare React Native |
+|---|---|---|
+| Time from idea to first build | Hours | Days to weeks |
+| Native module flexibility (2026) | Very high | Maximum |
+| Build infrastructure | Managed by EAS | DIY (Xcode, Android Studio, fastlane) |
+| OTA updates | Managed (EAS Update) | DIY (CodePush is deprecated as of 2025) |
+| App Store submission | Managed (EAS Submit) | DIY (fastlane, manual, or third-party) |
+| Native code (Swift, Kotlin) | Via Expo Modules | Direct |
+| Cost for production projects | $0 to $99/month for EAS | Engineering time |
+| Hiring difficulty | Easy (broad RN talent pool) | Slightly harder (bare-config experience needed) |
+| Ship velocity | Fastest | Slower |
+
+---
+
+## The "but what if I outgrow Expo" worry
+
+Two scenarios where this comes up:
+
+### Scenario 1: you need a native module that doesn't exist
+
+In 2026 this is rare. Before you accept it, check:
+
+- Is there an Expo wrapper? (Search npm for `expo-` plus the module name.)
+- Is there a community wrapper? (Search npm for `react-native-` plus the module name.)
+- Can you write a thin Expo Module wrapper around the native code yourself? (1 to 3 days for most cases.)
+
+If all three answers are no, bare workflow is justified. But "I might need this someday" isn't a reason to start bare.
+
+### Scenario 2: you need exotic build configuration
+
+Examples: special signing requirements, hybrid app architectures, custom CI pipeline. Most of these are solvable with Expo config plugins.
+
+If you genuinely can't solve it with config plugins, bare workflow is justified. Still rare in 2026.
+
+---
+
+## What about ejecting from managed to bare?
+
+The migration path exists (`npx expo prebuild`) but it's a one-way door for most projects. Once you've ejected, going back to managed requires undoing all the native code changes.
+
+The right framing: don't think of bare as "managed plus more." Think of bare as a separate workflow with its own tradeoffs. Pick the right one upfront and commit.
+
+---
+
+## Performance differences
+
+For 99 percent of apps, there's no performance difference between managed and bare. The runtime is the same React Native runtime.
+
+The 1 percent: extremely performance-critical apps (real-time multiplayer games, low-level video processing) might benefit from native modules that bare gives you more flexibility around. Even then, Reanimated, gesture handler, and Skia in managed workflow cover most performance-critical UX needs.
+
+---
+
+## What the React Native team itself says
+
+In 2024 the React Native team announced an alignment with Expo, recommending Expo managed workflow as the default for new projects. The bare workflow remains supported but is no longer the recommended starting point.
+
+This isn't a marketing pivot. The capability gap has actually closed.
+
+---
+
+## FAQ
+
+### Will Expo support every native API I'd ever need?
+
+For consumer apps: yes, in 2026. For enterprise or specialized apps (defense, regulated medical, deep IoT integration): probably yes, but verify the specific APIs you need before committing.
+
+### How much does EAS cost?
+
+Free tier covers small projects. Production tier is $99 per month for unlimited builds and team features. Most indie founders stay on the free tier; agencies and small teams move to production for the build queue priority.
+
+### Is there a performance penalty for managed workflow?
+
+No. The runtime is identical. Bundle sizes are sometimes slightly larger because Expo includes more APIs by default; this is negligible after Hermes optimization.
+
+### What about apps that started before SDK 53?
+
+If your app is on Expo SDK 50 or later, upgrading to SDK 53 or 54 is straightforward. If you're on SDK 49 or earlier, you'll have a few breaking-change migrations but not a workflow change.
+
+### Can I add native code to a managed Expo project?
+
+Yes. Expo Modules let you write Swift and Kotlin and call it from JavaScript. You stay on managed workflow.
+
+### What if I need over-the-air updates?
+
+EAS Update is the official tool. It supports rollouts, channels, and rollbacks. Microsoft's CodePush is deprecated as of 2025, so don't start there.
+
+### Is React Native New Architecture (Fabric, Turbo Modules) available in managed?
+
+Yes. New Architecture is enabled by default in SDK 54+ for new managed projects. Existing projects can opt in via config.
+
+### What's my stance?
+
+my [Ship React Native boilerplate](/mobile-apps) and every client build use Expo managed workflow with EAS. The boilerplate ships with EAS Build, EAS Update, and EAS Submit configured. I've shipped 25+ apps on this stack.
+
+---
+
+**Next steps:**
+- [Get the Expo-based Ship React Native boilerplate →](/mobile-apps)
+- [Compare React Native boilerplates →](/blog/react-native-boilerplates-compared-2026)
+- [Or have me ship the app for you →](/mobile-apps)
+
+**Related deep dives:**
+- [React Native agency vs freelancer vs MVP studio](/blog/react-native-agency-vs-freelancer-vs-mvp-studio)
+- [How to launch an AI mobile app in 4 weeks](/blog/how-to-launch-an-ai-mobile-app-in-30-days)

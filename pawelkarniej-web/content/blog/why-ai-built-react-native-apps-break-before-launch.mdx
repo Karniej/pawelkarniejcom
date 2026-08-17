@@ -1,0 +1,211 @@
+---
+title: "Why AI-built React Native apps break before launch"
+date: "2026-05-29"
+excerpt: "AI tools can generate a convincing React Native demo fast. Here is why those apps often break before App Store launch, and what founders should fix first."
+tags: ["ai-built-apps", "react-native", "vibe-coding", "expo", "app-launch"]
+featuredImage: "/favicon.png"
+---
+
+# Why AI-built React Native apps break before launch
+
+AI tools are very good at creating the first version of an app. Cursor, Lovable, Bolt, Replit, v0-style generators, and coding agents can produce screens, navigation, mock data, and a convincing demo quickly.
+
+That is useful. It is also not the same as a launchable mobile product.
+
+The gap shows up when the founder tries to add real users, authentication, subscriptions, analytics, push notifications, App Store submission, and support for edge cases. The app that looked finished in a demo suddenly becomes fragile.
+
+This article explains why AI-built React Native and Expo apps break before launch, how to diagnose the damage, and when to fix the existing code versus rebuild the critical path.
+
+## The short version
+
+Most AI-built mobile apps fail for the same reason: the AI optimizes for visible progress, not production reliability.
+
+It will generate screens before it understands the data model. It will wire happy-path flows before it handles errors. It will install packages before checking whether they match your Expo SDK. It will duplicate logic because duplication is faster than architecture.
+
+That is why many AI-built apps feel 80 percent done and then take months to finish.
+
+## The common failure modes
+
+### 1. The app has screens, but no product architecture
+
+AI tools are strong at layout. They can create a dashboard, onboarding screen, profile page, chat screen, and settings panel fast.
+
+The problem is that layout is not architecture.
+
+A real React Native app needs clear separation between:
+
+- UI components
+- navigation
+- API clients
+- state management
+- authentication state
+- subscription state
+- analytics events
+- error and loading states
+- storage and cache behavior
+
+AI-generated code often blends those together. Business logic ends up inside screens. API calls live inside button handlers. Subscription checks are copied into multiple components. The app works until the first real change.
+
+### 2. Authentication is only half-wired
+
+Auth is where many AI-built apps start collapsing.
+
+Common issues:
+
+- login works, but logout leaves stale state
+- protected routes are not really protected
+- session refresh is missing
+- onboarding does not know whether the user is paid
+- account deletion is not implemented
+- error states are generic or missing
+
+For App Store launch, auth is not just a sign-in screen. It affects navigation, privacy, data deletion, onboarding, support, and subscription access.
+
+### 3. Packages are outdated or incompatible
+
+React Native and Expo move fast. AI agents often suggest package versions that worked months ago but do not match your current SDK.
+
+That can create:
+
+- broken native builds
+- Expo SDK downgrades
+- dependency conflicts
+- old navigation APIs
+- packages that do not work on device
+- web-only libraries inside a mobile app
+
+If an AI tool downgrades Expo to make one package install, the app may look fixed while the foundation gets worse.
+
+### 4. Payments are treated like a button
+
+Subscription apps need more than a "Go Pro" screen.
+
+A launchable paywall needs:
+
+- product fetching from RevenueCat, StoreKit, Google Play, or Stripe
+- restore purchases
+- expired entitlement handling
+- trial eligibility
+- success states
+- cancellation and churn signals
+- analytics for views, starts, purchases, and restores
+- access control for paid features
+
+AI tools often generate the paywall UI but skip the revenue logic. That is the difference between a demo and a business.
+
+### 5. Analytics are missing or meaningless
+
+Founders need to know what happens after launch:
+
+- where users drop during onboarding
+- whether the first AI action succeeds
+- whether the paywall is seen
+- whether users start a trial
+- which feature drives retention
+- whether AI costs are under control
+
+AI-generated apps usually do not include a clean event model. If analytics are added later, the events often become inconsistent and hard to trust.
+
+### 6. Error handling covers the happy path only
+
+The demo works because the demo path is perfect.
+
+Real users create different problems:
+
+- slow connections
+- failed uploads
+- invalid images
+- API timeouts
+- expired sessions
+- payment interruptions
+- denied permissions
+- empty states
+- partial data
+
+Production mobile apps are built around these edge cases. AI-generated prototypes often skip them because they are invisible during the first demo.
+
+### 7. App Store work is postponed until too late
+
+App Store submission is not a final checkbox.
+
+It affects the product:
+
+- privacy policy
+- account deletion
+- subscription disclosure
+- screenshot requirements
+- permissions copy
+- in-app purchase rules
+- content moderation if users generate content
+- review risk for AI claims
+
+If the AI-built app was never shaped around App Store rules, the launch can stall after the code is "done."
+
+## Fix or rebuild?
+
+The right question is not "Can this code be fixed?"
+
+Almost any code can be fixed if you spend enough time. The better question is:
+
+> Is this code cheaper to stabilize than to rebuild around the real product flow?
+
+Keep the code if:
+
+- the core navigation is sane
+- dependencies are current
+- screens are reusable
+- data flow is understandable
+- the main feature works on device
+- there is no hidden mess in auth or payments
+
+Rebuild the critical path if:
+
+- every fix creates two new bugs
+- the AI downgraded core packages
+- state is duplicated across screens
+- auth, paywall, and onboarding are tangled
+- no one can explain where data lives
+- App Store requirements were ignored
+
+For many AI-built apps, the answer is not "full rebuild." It is a critical-path rebuild: keep the brand, screens, and product idea, but rebuild the foundations that make the app launchable.
+
+## What a AI App Rescue Audit may uncover
+
+I start rescue work with a $499 audit focused on launch readiness, not endless cleanup. The result is a repair, rebuild, or stop decision plus a fixed-scope implementation quote.
+
+The goal is to turn an AI-built React Native or Expo prototype into a mobile product that can support users, charge money, produce data, and pass store review.
+
+That usually means:
+
+- stabilizing the core flow
+- fixing authentication and navigation
+- cleaning state management
+- removing duplicate or dead code
+- upgrading Expo and dependencies safely
+- wiring paywalls and subscriptions
+- adding analytics and crash reporting
+- preparing App Store assets and submission blockers
+- deciding what to cut from v1
+
+If the foundation is bad, I rebuild the critical path instead of charging you to polish technical debt.
+
+## The practical next step
+
+If you built your app with an AI tool and now feel stuck, start with a triage pass:
+
+1. What must work for a user to reach value?
+2. What must work for the app to charge?
+3. What must work for App Store approval?
+4. What code can survive?
+5. What should be rebuilt?
+
+That is exactly what the [AI App Rescue Audit](/ai-app-rescue) is for.
+
+You do not need another demo. You need a launch path.
+
+## Related reading
+
+- [Fix or rebuild an AI-built React Native app](/blog/fix-or-rebuild-ai-built-react-native-app)
+- [What your AI-built Expo app still needs before App Store submission](/blog/ai-built-expo-app-app-store-submission-checklist)
+- [How to launch an AI mobile app in 4 weeks](/blog/how-to-launch-an-ai-mobile-app-in-30-days)
+- [See my pricing](/mobile-apps)

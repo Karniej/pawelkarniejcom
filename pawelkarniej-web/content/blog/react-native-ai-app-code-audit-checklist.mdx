@@ -1,0 +1,181 @@
+---
+title: "React Native AI app code audit checklist"
+date: "2026-05-25"
+excerpt: "A code audit checklist for React Native and Expo apps built with AI tools: architecture, dependencies, auth, payments, analytics, App Store readiness, and rebuild risk."
+tags: ["react-native-code-audit", "ai-app-rescue", "expo", "technical-debt", "app-launch"]
+featuredImage: "/favicon.png"
+---
+
+# React Native AI app code audit checklist
+
+If an AI tool helped build your React Native or Expo app, you need a code audit before you keep investing.
+
+Not because AI-generated code is always bad. Because the demo can hide the exact problems that make launch expensive: broken auth, fake paywalls, outdated dependencies, duplicated business logic, missing analytics, and App Store blockers.
+
+Use this checklist to decide whether the project is ready to fix, ready to launch, or ready to rebuild.
+
+## 1. Project foundation
+
+Check the basic health of the app:
+
+- Expo SDK version
+- React Native version
+- TypeScript configuration
+- package lockfile
+- EAS build configuration
+- iOS bundle identifier
+- Android package name
+- environment variables
+- native permissions
+- secrets handling
+
+Red flags:
+
+- Expo was downgraded to satisfy one package
+- multiple packages solve the same job
+- build works locally but not in EAS
+- secrets are hardcoded
+- there is no clear production environment
+
+## 2. Architecture
+
+Open the file tree and look for structure.
+
+A launchable app should make it obvious where these live:
+
+- screens
+- reusable components
+- navigation
+- API clients
+- state stores
+- auth helpers
+- payment helpers
+- analytics events
+- constants and configuration
+
+AI-built apps often put business logic into screens because that is the fastest way to make a demo appear functional. That becomes expensive when you need to change pricing, onboarding, or entitlements.
+
+## 3. Authentication
+
+Audit every auth state:
+
+- signed out
+- signed in
+- email not verified, if relevant
+- onboarding incomplete
+- onboarding complete
+- paid
+- unpaid
+- expired subscription
+- deleted account
+
+Then test:
+
+- signup
+- login
+- logout
+- password reset or magic link
+- session restore
+- account deletion
+- route protection
+
+If logout does not fully clear state, or protected screens flash before auth loads, the app is not ready.
+
+## 4. Payments and subscriptions
+
+For subscription apps, audit both purchase flow and access control.
+
+Check:
+
+- RevenueCat, StoreKit, Google Play Billing, or Stripe setup
+- store product IDs
+- entitlement logic
+- restore purchases
+- purchase failure state
+- trial eligibility
+- expired subscriptions
+- subscription status after app restart
+- server-side receipt or webhook plan, if needed
+
+If the paywall exists only as UI, do not call the app revenue-ready.
+
+## 5. AI workflow
+
+Most AI apps have one core workflow. Audit it like a product system, not a button.
+
+Check:
+
+- prompt inputs
+- prompt templates
+- model provider
+- error handling
+- retries
+- rate limits
+- loading states
+- empty states
+- result storage
+- abuse prevention
+- cost controls
+
+An AI workflow that works once in a demo can still fail under real usage because latency, malformed inputs, and cost ceilings were ignored.
+
+## 6. Analytics and crash reporting
+
+At minimum, production launch needs:
+
+- crash reporting
+- onboarding funnel
+- activation event
+- paywall events
+- purchase events
+- retention events
+- core workflow success and failure events
+
+If analytics are missing, you are flying blind. If analytics are sprinkled manually in random screens, you will get inconsistent data.
+
+## 7. App Store readiness
+
+Audit:
+
+- privacy policy
+- account deletion
+- support URL
+- metadata
+- screenshots
+- subscription disclosure
+- permissions copy
+- Sign in with Apple, if required
+- review notes
+- test account
+
+AI tools do not usually build the App Store layer. You need to handle it before submission, not after rejection.
+
+## 8. Fix-vs-rebuild score
+
+Give the app a simple score:
+
+- 0 to 2 major issues: fix and launch
+- 3 to 5 major issues: rescue sprint
+- 6+ major issues: rebuild the critical path
+
+Major issues include broken builds, broken auth, fake payments, duplicated state, no analytics, incompatible dependencies, or unclear data ownership.
+
+## What I audit
+
+my [AI App Rescue Audit](/ai-app-rescue) covers the same surface: architecture, dependencies, auth, API, payments, analytics, AI workflow, App Store readiness, and whether the code should be fixed or rebuilt.
+
+Related guides:
+
+- [Fix a vibe-coded React Native app](/blog/fix-vibe-coded-app-react-native)
+- [AI-built Expo app submission checklist](/blog/ai-built-expo-app-app-store-submission-checklist)
+- [Did an AI agent downgrade your Expo SDK?](/blog/expo-sdk-downgraded-by-ai-agent)
+
+## FAQ
+
+### What is the most important thing to audit first?
+
+Start with the main user journey: onboarding, auth, core value, paywall, and return session. If that path is broken, polishing individual screens is wasted effort.
+
+### Do AI-built apps always need a rebuild?
+
+No. Many need targeted rescue. The rebuild decision depends on whether the foundation is cheaper to repair than to replace.

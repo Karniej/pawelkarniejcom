@@ -1,0 +1,183 @@
+---
+title: "React Native boilerplates compared in 2026: Ship React Native vs Ignite vs others"
+date: "2026-03-05"
+excerpt: "Honest comparison of the React Native boilerplates that matter in 2026. Strengths, weaknesses, what's actually included, and which one fits your project."
+tags: ["react-native-boilerplate", "ship-react-native", "ignite-boilerplate", "expo-boilerplate"]
+featuredImage: "/favicon.png"
+---
+
+# React Native boilerplates compared in 2026: Ship React Native vs Ignite vs others
+
+*The boilerplates founders actually ship with, ranked by what's in the box.*
+
+## TL;DR
+
+For shipping a real revenue-generating mobile app in 2026, three boilerplates are worth considering. [Ship React Native](/mobile-apps) ($199 lifetime) is the production stack behind 25+ shipped apps with auth, RevenueCat payments, AI hooks, and full launch infrastructure. Ignite (free, Infinite Red) is the largest open-source choice with strong tooling but no revenue infrastructure. Expo's official starter (free) is good for learning but light on production patterns. The "best boilerplate" depends on whether you want pure code or the launch-ready stack with subscriptions and AI wired in.
+
+## Key facts at a glance
+
+- A boilerplate saves 3 to 6 weeks of setup time on an average mobile app launch.
+- The cost gap between free and paid boilerplates is 0 to 250 dollars; the time savings are 80 to 200 hours.
+- Most "free" React Native starters ship without paywalls, analytics, or App Store assets.
+- Ship React Native is the only boilerplate listed here with explicit AI hooks, RevenueCat, and ASO assets bundled.
+- Migrating between boilerplates mid-project is rarely worth it; pick one and commit.
+
+---
+
+## Side by side
+
+| Dimension | [Ship React Native](/mobile-apps) | Ignite | Expo Starter | Other paid kits |
+|---|---|---|---|---|
+| Price | $199 lifetime | Free (open source) | Free | $49 to $299 |
+| RevenueCat / subscriptions | Wired | Add yourself | Add yourself | Sometimes |
+| Supabase auth | Wired | Add yourself | Add yourself | Varies |
+| AI hooks (OpenAI, Claude) | Wired | Add yourself | Add yourself | Rare |
+| Onboarding screens | Included | Basic | None | Varies |
+| Paywall flow | Included | None | None | Sometimes |
+| Analytics adapter | Included | None | None | Rare |
+| App Store assets | Included | None | None | Rare |
+| Privacy manifest | Included | None | None | Rare |
+| Account deletion flow | Included | None | None | Rare |
+| TypeScript first-class | Yes | Yes | Yes | Varies |
+| Maintained by | Paweł Karniej | Infinite Red | Expo team | Various |
+| Used in production by | 25+ shipped apps | Many | Many | Varies |
+
+---
+
+## Ship React Native: the production stack
+
+What you get: a working Expo + React Native + TypeScript app with everything a commercial mobile app needs. Auth flows, RevenueCat subscriptions, navigation, theming, paywall screens, AI hooks (OpenAI and Anthropic Claude), onboarding, settings, account deletion, privacy manifest.
+
+Best for: founders shipping a revenue-ready app in 2026 who want to skip 3 to 6 weeks of plumbing. Indie hackers who value time over the $199 fee. Agencies and freelancers who want to standardize across client work.
+
+Tradeoffs: $199 isn't free. The patterns are opinionated; if you want a totally different architecture, you'll fight the boilerplate.
+
+Use case fit: scan-and-identify apps, AI chat companions, AI media transformers, AI tutors, behavior trackers, any standard B2C consumer app with subscriptions. The exact stack behind [25+ apps I shipped](/apps).
+
+[Get Ship React Native ($199)](/mobile-apps).
+
+## Ignite (Infinite Red): the popular open source choice
+
+What you get: a battle-tested open-source React Native template with strong tooling. Storybook, MobX-state-tree, generators, navigation. Maintained by a serious React Native consultancy.
+
+Best for: developers who want the largest free open-source codebase with active maintenance. Mid-market projects where the engineering team will customize heavily. Teams that prefer MobX over Zustand or Redux.
+
+Tradeoffs: no revenue infrastructure (paywalls, RevenueCat) out of the box. No AI hooks. No App Store assets. You'll add 3 to 6 weeks of production work.
+
+Use case fit: any React Native project where you have engineering capacity to add the production layer yourself.
+
+## Expo Starter: the official baseline
+
+What you get: a clean Expo + React Native + TypeScript starter with navigation. Maintained by the Expo team.
+
+Best for: learning. Prototyping. Throwaway hackathon builds.
+
+Tradeoffs: it's a starter, not a production kit. You'll add everything else yourself. The gap between this and shippable is 80 to 200 hours.
+
+Use case fit: students, learners, prototype builds. Not for shipping a commercial app.
+
+## Other paid kits
+
+A handful of paid React Native templates exist on Gumroad, ThemeForest, and similar marketplaces. Quality varies wildly. Most are visual templates (UI kits) rather than functional kits. Few include subscriptions or AI hooks.
+
+How to evaluate: open the demo. Try to find the paywall flow, the analytics adapter, the AI integration, the account deletion. If those don't exist, it's a UI kit not a production kit.
+
+---
+
+## How to pick
+
+### Pick Ship React Native if
+
+- You want to ship a commercial app in 30 to 60 days.
+- You value your time at more than $5 an hour (which is everyone).
+- You're shipping a B2C consumer app with subscriptions or AI.
+- You want the same stack used in [my 25+ shipped apps](/apps).
+
+### Pick Ignite if
+
+- You have engineering capacity for the production layer.
+- You prefer MobX-state-tree.
+- You want the largest open-source codebase with active maintenance.
+- Your project has unusual architectural needs that require a flexible base.
+
+### Pick Expo Starter if
+
+- You're learning React Native.
+- You're building a prototype that won't ship.
+- You want to make every architectural decision yourself.
+
+### Pick another paid kit if
+
+- The kit specifically covers your niche (e.g., e-commerce, marketplace, dating apps) better than the generalist kits.
+- You've verified the kit includes the production layer (paywalls, analytics, App Store assets).
+
+---
+
+## The "but I'll just build my own" trap
+
+Many engineers think they'll save money by skipping the boilerplate. The math:
+
+- $199 boilerplate saves 80 to 200 hours of setup.
+- At a self-imputed $50 to $100 hourly rate, that's $4,000 to $20,000 of opportunity cost.
+- The cost ratio is 20x to 100x in favor of buying the boilerplate.
+
+Even if you LOVE building infrastructure, you'd write a worse paywall flow than the one I have tested across 25+ apps. The boilerplate isn't a shortcut; it's a production-quality reference implementation.
+
+---
+
+## What about going up a level: Kickstart or full Launch?
+
+Three tiers exist past the boilerplate:
+
+- **[Ship React Native](/mobile-apps) at $199**: pure DIY. You ship.
+- **[Kickstart at $499](/mobile-apps)**: boilerplate + 1-on-1 build session + code review + 4 weeks of priority email support.
+- **[Launch at $3,999](/mobile-apps)**: done-for-you. I build and submit the scoped iOS and Android product in four weeks.
+
+If you're a capable developer who just wants to skip the production-layer reinvention, Ship React Native is the right tier. If you want a senior on speed-dial, Kickstart. If you don't want to write code, Launch.
+
+---
+
+## FAQ
+
+### Is Ship React Native really the same as what I use for client work?
+
+Yes. The boilerplate is the production version of the stack I ship every my client launch on. Same auth, same RevenueCat config, same AI hooks. You get the pattern, not a tutorial repo.
+
+### Does Ship React Native support Android too?
+
+Yes. Both platforms work from the same codebase. Android-specific configurations (Play Console, data safety form) are in the boilerplate.
+
+### What if Expo deprecates something I use?
+
+The boilerplate is on the Expo managed workflow. I update for Expo SDK upgrades and you get the updates as a Ship React Native customer. The patterns are stable across SDK versions.
+
+### Can I customize the design heavily?
+
+Yes. Theming uses a tokens system that lets you swap colors, fonts, and layout primitives without touching component logic. Most apps customize the design layer entirely; the structural code stays.
+
+### Is there a JavaScript-only version?
+
+No. Ship React Native is TypeScript-first because the productivity gains in mobile dev (catching state-shape bugs, navigation params, API typing) are too significant to skip.
+
+### How does Ship React Native handle iOS-specific vs Android-specific code?
+
+The boilerplate uses platform-specific files (.ios.ts, .android.ts) for the small set of native differences. Most code is shared. Apple-specific features (HealthKit, App Tracking Transparency) are guarded with platform checks.
+
+### What if I get stuck?
+
+[Kickstart at $499](/mobile-apps) gets you a 1-hour live build session, a code review, and 4 weeks of priority email support. The boilerplate alone is DIY; Kickstart is when you want help.
+
+### Is the licensing really lifetime?
+
+Yes. Buy once, use forever. Updates included. Use on unlimited personal and client projects.
+
+---
+
+**Next steps:**
+- [Get Ship React Native ($199 lifetime) →](/mobile-apps)
+- [Or get Kickstart with a 1-on-1 + code review ($499) →](/mobile-apps)
+- [Or have me ship the whole app for you ($3,999) →](/mobile-apps)
+
+**Related deep dives:**
+- [How to launch an AI mobile app in 4 weeks](/blog/how-to-launch-an-ai-mobile-app-in-30-days)
+- [What $3,999 actually buys you](/blog/what-1999-actually-buys-you-silpho-launch-breakdown)

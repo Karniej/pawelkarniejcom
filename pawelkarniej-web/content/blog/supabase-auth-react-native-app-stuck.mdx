@@ -1,0 +1,122 @@
+---
+title: "Supabase auth React Native app stuck? Fix the launch blocker"
+date: "2026-07-07"
+excerpt: "React Native Supabase auth can look fixed in preview and still trap users in stale sessions. Diagnose storage, redirects, listeners, and RLS before launch."
+tags: ["supabase-auth-react-native-app-stuck", "production-hardening", "react-native-auth"]
+featuredImage: "/favicon.png"
+---
+
+# Supabase auth React Native app stuck? Fix the launch blocker
+
+*Your app logs users in during testing, then gets stuck on a spinner, misses the callback, or traps the user in a stale session when it matters.*
+
+## TL;DR
+
+If Supabase auth is stuck in a React Native app, the broken part is usually not the login button. It is the session boundary between Supabase, secure storage, deep links, navigation, row-level security, and your app's loading state. Fix it if the failure is isolated: one bad redirect URI, one missing auth listener cleanup, one wrong storage adapter, or one policy blocking the next query. Rebuild the critical path if auth state is duplicated across screens, payments depend on unclear user ownership, or the app only works in one exact test path. Production auth must survive restart, token refresh, sign-out, account deletion, and App Store review.
+
+## Key facts at a glance
+
+- A login that works in Expo Go or a simulator is not proof that mobile auth is production-ready.
+- Supabase auth bugs often appear as stuck loading states because the app waits forever for a session, profile row, or redirect callback.
+- React Native needs deliberate session storage, foreground refresh handling, and deep link configuration.
+- Row-level security can make auth look broken when the session is valid but the first protected query returns nothing.
+- Do not wire subscriptions, onboarding completion, or premium access on top of unstable auth.
+- Fix the existing app when one boundary is broken. Rebuild the auth path when state ownership is scattered.
+- AI-built prototypes often need a rescue audit because auth, navigation, backend calls, and paywall state were patched independently.
+
+## Diagnosis: what is actually broken
+
+Start by naming the symptom precisely. "Supabase auth is stuck" usually means one of six things.
+
+First, the user signs in and the app stays on a loading spinner. The session may exist in Supabase, but your app never exits the initial auth check because a profile fetch, policy, or listener fails silently.
+
+Second, OAuth succeeds in the browser but never returns to the app. The user is created in Supabase, yet React Native does not receive the redirect. That points to deep links, redirect URL mismatch, or a web-first flow inside a native shell.
+
+Third, the app signs in once, then loses the session after restart. That is a storage problem. Supabase can persist sessions, but React Native needs storage that behaves predictably on device, not just in a local preview.
+
+Fourth, sign-out appears to work but protected screens still flash, or the old user can still see cached data. That is a state cleanup bug. The app is carrying user-specific data after the session changed.
+
+Fifth, sign-up works but the app cannot load the user's data. This is often row-level security. The session is valid, but policies do not allow the first table read or insert.
+
+Sixth, password reset, magic links, or email confirmation work in one environment and fail in TestFlight. Localhost, Expo development URLs, production bundle identifiers, and App Store builds each need different callback assumptions.
+
+All six failures can produce the same UI: a spinner, a blank screen, or a route that never changes. Prompting an AI tool to "fix auth" may patch the visible screen while leaving the real boundary unclear.
+
+## Fix path: isolate the auth boundary before patching screens
+
+Treat auth as a product system, not a component. A production React Native app needs one source of truth for the session, one place where session changes are observed, and one clear handoff from loading to signed-out to signed-in states.
+
+The first fix is to remove ambiguity from startup. On cold launch, the app should answer four questions in order: do I have a stored session, is it still valid, can I load the minimal user record, and which route should the user see? Each answer needs a timeout, error state, and event log.
+
+The second fix is to separate session state from profile state. Supabase auth tells you who the user is. Your `profiles` table tells you what your product knows about that user. If profile creation fails, show a recoverable setup error, create the missing row, or route to onboarding.
+
+The third fix is to make redirects boring. OAuth, email confirmation, password reset, and magic-link flows should all land in one callback path that parses the incoming URL, updates the Supabase session, and routes from the resulting state. Test this in a development build and in TestFlight.
+
+The fourth fix is to clean up listeners and cached user data. A common bug is registering `onAuthStateChange` in several places, then letting each screen route on its own. Keep the listener high in the app tree, unsubscribe when needed, and make screens read from the same auth provider.
+
+The fifth fix is to test row-level security with real users. Create two test accounts. Confirm each can read only its own rows, insert onboarding data, and restore state after reinstall. If the first protected query fails, log the policy error during QA.
+
+The sixth fix is to delay revenue logic until auth is stable. RevenueCat entitlements, App Store purchases, trials, restore purchases, and account deletion all depend on knowing which user owns the session.
+
+Use [AI App Rescue](/ai-app-rescue) when the symptoms cross boundaries. If login affects onboarding, onboarding affects the paywall, and the paywall affects protected content, the job is no longer "fix a button." It is production hardening.
+
+## Decide fix versus rebuild
+
+Fix the existing app when the broken part is easy to isolate. Good signs: one auth provider, one Supabase client, one navigation guard, current enough dependencies, and clear logs around session changes. In that case, correct the storage adapter, redirect URI, listener lifecycle, profile creation, or RLS policy without rewriting the app.
+
+Audit before fixing when the app has several symptoms. Google login hangs, email sign-up creates a user without a profile, logout leaves old data visible, and the paywall sometimes unlocks for the wrong state. Any one bug might be small. Together they say the app does not have a trustworthy auth model.
+
+Rebuild the critical path when auth decisions are scattered through screens. If every route checks Supabase directly, several components create profile rows, and payment state lives in local component state, a patch will be fragile. Keep the screens, copy, brand, and validated user flow. Replace the part that decides identity, ownership, paid access, and launch readiness.
+
+For technical founders, [Kickstart](/mobile-apps) can make sense when you want the Ship React Native foundation, a 1-on-1 setup session, code review, and 30-day support for $499. For founders who want the launch path handled, compare the fixed packages on [pricing](/mobile-apps).
+
+## Comparison
+
+| Path | Cost | Best for | Risk |
+|---|---:|---|---|
+| Keep prompting the AI tool | Tool cost plus your time | One visible UI bug with a clear reproduction | May move the auth bug into navigation, profile loading, or payments |
+| DIY repair with Ship React Native | $199 | Technical founders who can own Supabase, deep links, storage, and QA | You still own TestFlight, App Review, RLS, and subscription edge cases |
+| Kickstart | $499 | Founders who can build but want setup help, code review, and 30-day support | Requires you to keep implementation discipline after the session |
+| AI App Rescue | Scoped after triage | Apps with tangled auth, onboarding, backend, and paywall symptoms | Some generated code may need to be replaced |
+| Launch | $3,999 with iOS and Android included | Founders who want a done-for-you mobile launch path | Scope must fit the fixed launch package |
+| Launch + Growth | $5,999 with iOS and Android included | Revenue-ready apps that also need optimized assets and ASO | Overkill if the only issue is one redirect URL |
+
+## FAQ
+
+### Why does Supabase auth get stuck in React Native?
+
+Because mobile auth crosses more boundaries than web auth. The app has to persist a session, refresh tokens, listen for auth changes, handle deep links, load profile data, and route the user. If one boundary never resolves, the UI often sits on a spinner.
+
+### Is this a Supabase bug or my app's bug?
+
+It can be either, but most launch blockers come from integration decisions. Bad redirect URLs, duplicated listeners, missing storage configuration, and row-level security mistakes are app-level issues. Library bugs are possible, but you should prove the app's auth state machine first.
+
+### Can I ship if login works once on my phone?
+
+No. Test login, logout, restart, expired session, password reset, email confirmation, account deletion, and a second user with separate data. A single successful login only proves the happy path.
+
+### Why does the user exist in Supabase but the app still looks logged out?
+
+The auth provider can create the user while the app fails to receive or persist the session. OAuth redirects and magic links are common causes. Another common cause is that the session exists, but the next profile query fails and your app treats that as signed out.
+
+### Should I disable email confirmation to avoid deep-link issues?
+
+You can disable it during early testing, but do not treat that as a production fix. If your product uses email confirmation, magic links, or password resets, deep links need to work in the real mobile build.
+
+### What should I check before adding payments?
+
+Confirm that auth has one source of truth, protected routes do not flash, profile rows are created reliably, and sign-out clears user-specific data. Then add payments. Revenue logic depends on identity and ownership.
+
+### When should I rebuild instead of fixing Supabase auth?
+
+Rebuild when the app has no single auth boundary. If session checks, profile creation, navigation guards, and paid access are scattered across many screens, fixing one symptom will not make the product trustworthy.
+
+### Can I fix an AI-built app with Supabase auth problems?
+
+I can audit React Native and Expo apps through [AI App Rescue](/ai-app-rescue). The output is a fix-versus-rebuild decision, not blind patching. If the foundation is salvageable, repair it. If not, rebuild the critical path.
+
+## Next steps
+
+- Compare fixed launch paths on [pricing](/mobile-apps).
+- Bring the stuck auth flow to [AI App Rescue](/ai-app-rescue) if you need a fix-versus-rebuild decision.
+- Read the broader rescue checklist for [fixing a vibe-coded React Native app](/blog/fix-vibe-coded-app-react-native).

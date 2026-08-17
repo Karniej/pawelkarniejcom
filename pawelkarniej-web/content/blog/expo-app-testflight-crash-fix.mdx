@@ -1,0 +1,173 @@
+---
+title: "Expo app TestFlight crash fix: what to check before launch"
+date: "2026-07-02"
+excerpt: "A practical triage guide for Expo apps that work locally but crash in TestFlight, with fix versus rebuild decision rules."
+tags: ["expo-app-testflight-crash-fix", "launch-blockers", "testflight"]
+featuredImage: "/favicon.png"
+---
+
+# Expo app TestFlight crash fix: what to check before launch
+
+*Your Expo app worked in preview, passed the simulator, then crashed the moment TestFlight became real.*
+
+## TL;DR
+
+If an Expo app crashes in TestFlight, treat it as a release-build failure, not a random Apple problem. The usual causes are missing environment variables, native modules that worked in Expo Go but were not included correctly, incompatible package versions, broken startup logic, bad auth or payment initialization, or a JavaScript exception that only appears in production mode. Pull device logs first, reproduce with an EAS preview or production build, then decide whether you are fixing one launch blocker or rebuilding a fragile foundation. If the crash sits near auth, payments, onboarding, or App Store submission, it is worth a structured rescue pass before more prompting.
+
+## Key facts at a glance
+
+- A TestFlight crash means the app reached a real iOS release environment and failed there.
+- Expo Go success does not prove that native modules, production env vars, or release startup logic are correct.
+- The first useful artifact is a device log or crash report, not another guess from the last changed file.
+- Startup crashes often come from auth, Firebase, Supabase, RevenueCat, deep linking, fonts, splash screens, or missing config.
+- Fix the crash before polishing screenshots, App Store copy, or ASO.
+- Rebuild the foundation if dependency versions, native modules, and startup state cannot be explained cleanly.
+- AI-built Expo apps need production hardening before TestFlight, especially around accounts, paywalls, analytics, and account deletion.
+
+## Diagnosis: why the TestFlight build crashes
+
+The strongest wrong assumption is that TestFlight broke the app. It usually did not. TestFlight exposed a difference between the development environment and the release environment.
+
+Expo Go is generous. It provides a development shell, prebuilt native modules, a live Metro connection, and a workflow optimized for quick iteration. TestFlight is the opposite. It is a signed iOS build, with bundled JavaScript, configured native modules, production initialization, release-mode behavior, and whatever environment variables made it into the build.
+
+The app can look finished in a preview while still missing launch-critical pieces:
+
+- production API keys
+- RevenueCat products and entitlements
+- Supabase redirect URLs
+- required config plugins
+- release-compatible package versions
+- error handling during startup
+
+The most common symptom is brutal: the app opens, flashes the splash screen, then closes. Sometimes it hangs on a blank screen. Sometimes login or purchase initialization kills the app before the first screen renders.
+
+That is not a UI bug. It is a production-readiness bug.
+
+For AI-assisted builds, the pattern is sharper. Tools like Cursor, Bolt, Replit, Rork, and similar workflows can generate working screens quickly, but they often optimize for the next visible error. A package gets added without checking iOS release behavior, Expo gets downgraded to silence a warning, or auth code gets copied into multiple screens until preview works.
+
+The result is a codebase that can demo, but cannot survive TestFlight.
+
+## Fix path: isolate the release-only failure
+
+Start with logs. Do not start by rewriting the screen that happened to appear before the crash.
+
+1. Install the TestFlight build on a physical device.
+2. Reproduce the crash from a fresh install.
+3. Pull the device log from Xcode Organizer, macOS Console, or the device logs available through your normal iOS debugging setup.
+4. Look for the first real exception, not the last cascading message.
+5. Fix one cause, rebuild, and retest from a clean install.
+
+The first exception matters because later messages often describe consequences. For example, "main has not been registered" can happen after an earlier module fails during startup. The useful question is which import, config value, or native module failed before React Native could render.
+
+Check these areas first.
+
+### 1. Environment variables and production config
+
+Local Expo development can hide missing config. TestFlight cannot.
+
+Verify every production value: API base URL, Supabase keys, Firebase config, RevenueCat SDK key, AI gateway endpoint, redirect schemes, bundle ID, deep links, and EAS build profile variables.
+
+If a key exists locally but not in EAS, the app may crash before it can show a useful error. Startup code should fail closed with a visible error screen during internal testing, not crash the whole app.
+
+### 2. Native modules that Expo Go masked
+
+Expo Go does not prove that every native dependency is present in your standalone build. If you added camera, notifications, RevenueCat, gesture handling, maps, in-app purchases, file access, or auth SDKs, confirm that the dependency is installed with the correct Expo-compatible version and that any config plugin work is present.
+
+Run the normal Expo health checks, then inspect recently added packages. If the crash appeared after a dependency change, assume the native layer is guilty until proven otherwise.
+
+### 3. Startup code doing too much
+
+Release builds punish fragile startup code.
+
+Bad startup patterns include:
+
+- initializing payments before auth state is known
+- calling an API during module import
+- reading secure storage before the app is ready
+- assuming a user object exists
+- routing before session restore finishes
+- throwing errors inside providers
+
+The app shell should be boring. It should load config, restore session, decide the first route, and show a controlled state if something fails.
+
+### 4. Auth and payment logic
+
+Crashes near login, account creation, restore purchases, or paywall load are high-risk because those flows control revenue and review readiness.
+
+Auth must answer whether the user is logged in, whether the session is valid, whether onboarding is complete, and what happens after logout or account deletion.
+
+Payments must answer whether products can be fetched, whether restore purchases works, whether entitlement checks control access, and whether sandbox and production products are mapped correctly.
+
+If these answers are scattered across screens, do not keep patching blindly. You need a code audit, because the crash is probably a symptom of tangled state.
+
+### 5. App Store readiness work that touches runtime
+
+Some submission work changes the binary, not just the listing. Privacy manifests, permissions, sign-in providers, universal links, push notifications, and subscription setup can all alter release behavior. Fix the TestFlight crash before store polish. Screenshots do not matter if the reviewer cannot open the app.
+
+## Decide fix versus rebuild
+
+Use this rule: fix the existing app if the failure is isolated and the launch path is understandable. Rebuild the foundation if every answer requires archaeology.
+
+Fix it when:
+
+- the crash has one clear exception
+- Expo SDK and React Native versions are aligned
+- native modules are known and necessary
+- auth state has one source of truth
+- payment logic is centralized
+- a developer can explain the startup flow
+
+Rebuild the critical path when:
+
+- Expo was downgraded or forced to satisfy one package
+- package installs require force flags
+- the same auth or entitlement check appears in multiple places
+- release builds fail for different reasons after each fix
+- there is no clear owner for onboarding, auth, paid access, and navigation state
+- App Store requirements were never considered in the product flow
+
+A rebuild does not mean throwing away the product. Keep the validated idea, copy, screens, brand, and working AI workflow if they are useful. Replace the foundation that blocks launch.
+
+my [AI App Rescue](/ai-app-rescue) exists for this decision point: audit the Expo or React Native app, identify the real blockers, and decide whether to fix, rebuild, or move into a launch sprint.
+
+## Comparison
+
+| Path | Cost | Best for | Risk |
+|---|---:|---|---|
+| DIY log triage | $0 plus your time | Technical founders with a clean Expo app and one clear crash | Slow if the first error is only a symptom |
+| Kickstart | $499 | Builders who need the boilerplate, a 1-on-1 session, code review, and 30-day support | Best when you can still do the implementation |
+| AI App Rescue Audit | $499 | AI-built apps where the fix versus rebuild decision is unclear | Audit may show the current code should not be preserved |
+| Launch sprint | $3,999 with iOS and Android included | Founders who need a 4-week done-for-you launch path | Scope must fit the productized sprint |
+| Launch + Growth scope | $5,999 with iOS and Android included | Revenue-ready apps that also need optimized assets and ASO | Overkill for a single isolated crash |
+
+## FAQ
+
+### Why does my Expo app work locally but crash in TestFlight?
+
+Local Expo development and TestFlight are different environments. TestFlight uses a signed release build, bundled JavaScript, production config, and real native module behavior. A missing key, incompatible dependency, or startup exception can be invisible locally and fatal in release.
+
+### Can an AI-generated Expo app pass TestFlight?
+
+Yes, if it is hardened like a production app. The risky part is not that AI helped build it. The risky part is missing production layers: auth state, payments, entitlement checks, crash reporting, analytics, privacy, account deletion, and release-build testing.
+
+### When should I stop trying to patch the crash?
+
+Stop when each fix creates a new failure or when no one can explain the startup flow. That usually means the crash is not isolated. At that point, run a structured audit and decide whether to rebuild the critical path.
+
+### What should I fix before resubmitting to TestFlight?
+
+Fix the root crash, then retest from a fresh install on device. After that, verify signup, login, logout, account deletion, paywall load, restore purchases, denied permissions, slow network, and the main AI workflow if the app has one.
+
+### Does App Store submission require more than fixing the crash?
+
+Yes. A non-crashing build is only the floor. You still need privacy answers, account deletion if accounts exist, subscription disclosure if you sell subscriptions, store assets, support links, App Store metadata, and reviewer notes.
+
+### Can I just fix the crash without rebuilding the app?
+
+Sometimes. If the codebase is salvageable, a rescue path can stabilize the launch blockers. If the Expo foundation, auth, payments, and navigation are tangled, rebuilding the critical path is usually the shorter route to shipping.
+
+## Next steps
+
+- [Compare my Product Build Sprint options and pricing](/mobile-apps)
+- [Start with AI App Rescue if the codebase needs triage](/ai-app-rescue)
+- [Read the App Store submission checklist before you submit again](/blog/app-store-submission-checklist-2026)

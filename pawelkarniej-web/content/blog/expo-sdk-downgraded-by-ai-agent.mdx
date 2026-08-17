@@ -1,0 +1,138 @@
+---
+title: "Did an AI agent downgrade your Expo SDK? Fix the foundation first"
+date: "2026-05-20"
+excerpt: "AI coding tools sometimes downgrade Expo or install incompatible packages to clear errors. Here is how to recover the React Native foundation before launch."
+tags: ["expo-sdk", "ai-generated-code", "react-native", "dependency-cleanup", "ai-app-rescue"]
+featuredImage: "/favicon.png"
+---
+
+# Did an AI agent downgrade your Expo SDK? Fix the foundation first
+
+One of the fastest ways to damage an Expo app is letting an AI agent solve dependency errors without constraints.
+
+The app may compile after the prompt. The deeper problem is that the AI may have downgraded Expo, installed stale packages, mixed incompatible native modules, or forced versions that make launch harder later.
+
+If that happened, do not keep building features. Fix the foundation first.
+
+## Why AI agents downgrade Expo
+
+AI coding tools optimize for the immediate error.
+
+If a package complains about your current Expo SDK, an AI agent may suggest:
+
+- downgrading Expo
+- changing React Native versions
+- installing an older library
+- forcing peer dependencies
+- replacing a package with a random alternative
+- deleting lockfiles and reinstalling until it works
+
+That can clear the current terminal error while creating a worse build system.
+
+## Symptoms of a damaged Expo foundation
+
+Look for:
+
+- EAS build fails after local dev works
+- iOS simulator works but physical device fails
+- package installs require force flags
+- Expo Doctor reports version mismatches
+- native modules fail during prebuild
+- random Metro errors return after every install
+- one dependency requires old React Native assumptions
+- lockfile changes massively after tiny package updates
+
+If this is happening, feature work is premature.
+
+## Recovery step 1: define the target SDK
+
+Pick the Expo SDK you want to launch on.
+
+Then align:
+
+- Expo version
+- React Native version
+- React version
+- Expo modules
+- navigation library
+- native dependencies
+- EAS config
+
+Do not let the project drift because one package is inconvenient. Replace the package before you poison the foundation.
+
+## Recovery step 2: remove duplicate or unnecessary packages
+
+AI tools often install overlapping libraries.
+
+Examples:
+
+- two form libraries
+- multiple storage libraries
+- multiple state managers
+- old and new navigation packages
+- web packages in a mobile flow
+- unused UI libraries
+
+Every unnecessary package increases build risk. Remove what is not actively supporting the launch path.
+
+## Recovery step 3: test builds before product polish
+
+Before UI polish, verify:
+
+- `npm install` or `pnpm install` is clean
+- Expo Doctor passes or has understood warnings
+- local iOS run works
+- EAS build works
+- permissions are configured
+- environment variables are present
+- release build opens on device
+
+If release builds fail, the app is not close to launch, no matter how good the screens look.
+
+## Recovery step 4: audit native modules
+
+Native modules are where AI-generated apps often break.
+
+For each module, ask:
+
+- does the app actually need it?
+- is it Expo-compatible?
+- does it require config plugin work?
+- does it need permissions copy?
+- does it affect App Store privacy details?
+- does it work in a release build?
+
+If the AI installed a native module for a feature you are not launching, remove it.
+
+## When to rebuild
+
+Rebuild the foundation if:
+
+- dependency conflicts are constant
+- Expo SDK was downgraded without a clear reason
+- native modules are patched manually
+- release builds are unreliable
+- the project cannot be updated without breaking
+- build configuration is impossible to explain
+
+You can often keep screens and assets while rebuilding the mobile foundation.
+
+## What I do
+
+my [AI App Rescue Audit](/ai-app-rescue) checks the React Native and Expo foundation before touching polish. If the dependency tree is salvageable, I stabilize it. If not, I rebuild the critical path on a clean launch stack.
+
+Read next:
+
+- [React Native AI app code audit checklist](/blog/react-native-ai-app-code-audit-checklist)
+- [AI-built Expo app submission checklist](/blog/ai-built-expo-app-app-store-submission-checklist)
+- [Cursor built your React Native app?](/blog/cursor-react-native-app-production-ready)
+
+## FAQ
+
+### Is downgrading Expo always bad?
+
+No, but it should be a deliberate technical decision. If an AI agent downgraded Expo just to make one package install, audit the decision immediately.
+
+### Should I update Expo before fixing app bugs?
+
+If the current SDK blocks release builds or creates dependency conflicts, fix the foundation first. Otherwise every bug fix sits on unstable ground.

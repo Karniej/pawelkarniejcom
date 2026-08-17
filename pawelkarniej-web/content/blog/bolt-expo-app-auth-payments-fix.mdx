@@ -1,0 +1,131 @@
+---
+title: "Bolt Expo app with broken auth or payments? What to fix first"
+date: "2026-05-22"
+excerpt: "If an AI-generated Bolt or Expo app has broken authentication, payment, or subscription flows, use this order of operations before you keep patching screens."
+tags: ["bolt-app", "expo", "auth", "payments", "ai-app-rescue"]
+featuredImage: "/favicon.png"
+---
+
+# Bolt Expo app with broken auth or payments? What to fix first
+
+When an AI-generated Expo app starts breaking, founders usually chase the most visible bug.
+
+That is backwards.
+
+If auth or payments are broken, the issue is often not one screen. It is the app's state model. Fixing individual errors without understanding state is how a simple prototype turns into weeks of patching.
+
+## First, map the real user states
+
+Before editing code, write down every state the app needs to handle:
+
+- signed out
+- signed in
+- onboarding incomplete
+- onboarding complete
+- free user
+- trialing user
+- paid user
+- expired user
+- user with failed purchase
+- deleted account
+
+If the app does not have a clear model for these states, auth and payment bugs will keep returning.
+
+## Fix auth before payments
+
+Do not wire subscription logic on top of unstable auth.
+
+Auth should answer:
+
+- who is the user?
+- is the session restored on app open?
+- can protected screens load before auth is ready?
+- does logout clear local state?
+- is account deletion supported?
+- does onboarding know which user it belongs to?
+
+If these are unclear, payment logic will attach to the wrong assumptions.
+
+## Then fix entitlement logic
+
+The paywall is not the source of truth.
+
+The app needs an entitlement layer that decides:
+
+- can this user access the feature?
+- did the purchase succeed?
+- did restore purchases work?
+- has the subscription expired?
+- what happens if product loading fails?
+- what happens after app restart?
+
+Many AI-built apps create a paywall screen and then let users bypass it because no entitlement system exists.
+
+## Keep payment code out of random screens
+
+Payment logic should not be copied into every feature screen.
+
+Use a central purchase or subscription helper for:
+
+- product loading
+- purchase call
+- restore call
+- entitlement refresh
+- purchase error state
+- analytics events
+
+Then screens should ask one simple question: can this user access the feature?
+
+## Add analytics while fixing the flow
+
+Do not wait until launch.
+
+Track:
+
+- signup
+- onboarding complete
+- paywall viewed
+- product loaded
+- purchase started
+- purchase completed
+- purchase failed
+- restore tapped
+- restore successful
+- paid feature accessed
+
+These events reveal whether your fix actually works.
+
+## Avoid the patch trap
+
+The patch trap looks like this:
+
+1. prompt the AI to fix login
+2. login works, onboarding breaks
+3. prompt it to fix onboarding
+4. onboarding works, paywall breaks
+5. prompt it to fix paywall
+6. paid state disappears after restart
+
+At that point, you do not have a bug list. You have an architecture problem.
+
+## When to use a rescue sprint
+
+Use [AI App Rescue](/ai-app-rescue) when auth, payments, and state are tangled enough that you cannot trust the product.
+
+I audit the codebase, decides what can stay, and fixes or rebuilds the core flow so the app can launch with onboarding, subscriptions, analytics, and App Store preparation.
+
+Read next:
+
+- [AI-generated React Native paywalls need RevenueCat logic](/blog/ai-generated-react-native-paywall-revenuecat)
+- [React Native AI app code audit checklist](/blog/react-native-ai-app-code-audit-checklist)
+- [AI-built Expo app submission checklist](/blog/ai-built-expo-app-app-store-submission-checklist)
+
+## FAQ
+
+### Should I fix auth or payments first?
+
+Fix auth first. Payment and entitlement logic depend on knowing who the user is and what state they are in.
+
+### Why does my AI-generated paywall work once and then break?
+
+Because many generated paywalls are screens, not systems. They often skip entitlement refresh, restore purchases, subscription expiry, and app restart state.
