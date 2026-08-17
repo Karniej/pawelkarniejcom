@@ -7,7 +7,7 @@ import { canonical } from "@/lib/blog-seo";
 export const metadata: Metadata = {
   title: "The graveyard: apps I built and killed | Paweł Karniej",
   description:
-    "Products I shipped to the App Store and later killed, with the honest reason for each one. FIFTN, Fishify, and the rest of the story behind 25+ shipped apps.",
+    "Products I shipped to the App Store and later killed, with the honest reason for each one. FIFTN, Fishify, and the rest of the story behind 20+ shipped apps.",
   alternates: { canonical: canonical("/graveyard") },
 };
 
@@ -73,8 +73,7 @@ const entries: GraveyardEntry[] = [
     name: "Selfmade.dev",
     kind: "Blog",
     image: "/images/selfmadedev.png",
-    whatItWas:
-      "My first blog about programming and React Native development.",
+    whatItWas: "My first blog about programming and React Native development.",
     whyItDied:
       "It did not die so much as move. The writing now lives on this site.",
     liveUrl: "/blog",
@@ -177,8 +176,8 @@ export default function GraveyardPage() {
               The apps that lived
             </h2>
             <p className="mt-4 text-zinc-400 [text-wrap:pretty]">
-              Killing the wrong products is what keeps the right ones alive.
-              The survivors are on the App Store today.
+              Killing the wrong products is what keeps the right ones alive. The
+              survivors are on the App Store today.
             </p>
             <div className="mt-6 flex flex-col justify-center gap-3 sm:flex-row">
               <Link

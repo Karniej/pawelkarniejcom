@@ -24,6 +24,7 @@ import {
 import { Badge } from "@/components/ui/badge";
 import { TaglineReveal } from "@/components/tagline-reveal";
 import { AppQuickNav } from "@/components/sections/app-quick-nav";
+import { ProductProofSection } from "@/components/sections/product-proof";
 import { getFeaturedApps } from "@/lib/apps-data";
 
 const sprints = [
@@ -154,8 +155,8 @@ export function MobileAppsContent() {
             className="text-xl text-zinc-400 leading-relaxed [text-wrap:pretty]"
           >
             I design, build, and submit revenue ready iOS and Android apps
-            myself. One fixed price, one person responsible, and a deadline
-            with a refund behind it.
+            myself. One fixed price, one person responsible, and a deadline with
+            a refund behind it.
           </motion.p>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -178,7 +179,7 @@ export function MobileAppsContent() {
             transition={{ duration: 0.5, delay: 0.4 }}
             className="text-sm text-zinc-500"
           >
-            25+ apps shipped since 2018, including two that sold to new owners.
+            20+ apps shipped since 2018, including two that sold to new owners.
           </motion.p>
         </div>
       </section>
@@ -188,6 +189,8 @@ export function MobileAppsContent() {
         linkBase="/apps/"
         navLabel="Apps I have shipped"
       />
+
+      <ProductProofSection />
 
       {/* Problem → solution */}
       <section className="relative px-4 py-24 bg-white/[0.02]">
@@ -202,11 +205,10 @@ export function MobileAppsContent() {
             time instead of a product.
           </p>
           <p>
-            I sell the product. A sprint has a fixed scope, a fixed price, and
-            a four week deadline that ends with your app submitted to both
-            stores. I have shipped my own apps this way since 2018, so every
-            decision comes from launches, not from a project management
-            playbook.
+            I sell the product. A sprint has a fixed scope, a fixed price, and a
+            four week deadline that ends with your app submitted to both stores.
+            I have shipped my own apps this way since 2018, so every decision
+            comes from launches, not from a project management playbook.
           </p>
         </div>
       </section>
@@ -220,8 +222,8 @@ export function MobileAppsContent() {
             </h2>
             <p className="text-xl text-zinc-400 max-w-2xl mx-auto [text-wrap:pretty]">
               Both include iOS and Android, a paywall, subscriptions, and store
-              submission. The difference is how much launch firepower comes
-              with it.
+              submission. The difference is how much launch firepower comes with
+              it.
             </p>
           </div>
 
@@ -315,10 +317,10 @@ export function MobileAppsContent() {
             The four week guarantee
           </h2>
           <p className="text-lg text-zinc-300 leading-relaxed [text-wrap:pretty]">
-            If I miss the agreed store submission deadline, you receive a
-            refund and you keep the code. Your reservation deposit is
-            refundable any time before kickoff. The risk of the deadline sits
-            with me, where it belongs.
+            If I miss the agreed store submission deadline, you receive a refund
+            and you keep the code. Your reservation deposit is refundable any
+            time before kickoff. The risk of the deadline sits with me, where it
+            belongs.
           </p>
         </div>
       </section>
@@ -427,8 +429,8 @@ export function MobileAppsContent() {
             Ready to scope your app?
           </h2>
           <p className="text-xl text-zinc-400 [text-wrap:pretty]">
-            Tell me what you want to build. You will leave the call with a
-            fixed price and a clear scope, whether or not we work together.
+            Tell me what you want to build. You will leave the call with a fixed
+            price and a clear scope, whether or not we work together.
           </p>
           <div className="flex justify-center">
             <GradientButton

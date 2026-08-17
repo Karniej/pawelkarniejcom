@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { DEVELOPER_PAGES, getFeaturedApps } from "@/lib/apps-data";
 import { AppQuickNav } from "@/components/sections/app-quick-nav";
 import { IndividualAppShowcase } from "@/components/sections/individual-app-showcase";
@@ -7,7 +8,7 @@ import { IndividualAppShowcase } from "@/components/sections/individual-app-show
 export const metadata: Metadata = {
   title: "Apps I have built and shipped | Paweł Karniej",
   description:
-    "Production apps I have shipped and sold: VidNotes, Aividly, Teleprompter Pro X, Newsletterytics, Coldsmith, YapperX, and FIFTN.",
+    "Production apps I have shipped and sold: VidNotes, Aividly, Rhava, Teleprompter Pro X, Newsletterytics, Coldsmith, and YapperX.",
   alternates: { canonical: "https://pawelkarniej.com/apps" },
 };
 
@@ -41,6 +42,39 @@ export default function AppsPage() {
           />
         ))}
 
+        <section className="bg-white/[0.02] px-4 py-20">
+          <div className="mx-auto grid max-w-5xl items-center gap-8 rounded-3xl border border-white/10 bg-white/[0.03] p-7 md:grid-cols-[auto_1fr_auto] md:p-10">
+            <div className="relative h-20 w-20 overflow-hidden rounded-2xl border border-white/10 bg-white p-2">
+              <Image
+                src="/images/rhava.svg"
+                alt="Rhava app icon"
+                fill
+                className="object-contain p-2"
+              />
+            </div>
+            <div className="text-left">
+              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-amber-300">
+                Second app sold
+              </p>
+              <h2 className="mt-2 font-heading text-3xl font-bold">
+                Rhava became Bibleily
+              </h2>
+              <p className="mt-3 leading-relaxed text-zinc-400">
+                I sold Rhava in 2025. Its new owner brought the distribution the
+                original product did not have and continued it as Bibleily.
+              </p>
+            </div>
+            <a
+              href="https://apps.apple.com/gb/app/bibleily-speak-god-bible/id6747157033"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="rounded-full border border-white/15 px-5 py-2.5 text-sm font-semibold text-zinc-200 transition hover:border-amber-300/50 hover:text-amber-300"
+            >
+              Open Bibleily
+            </a>
+          </div>
+        </section>
+
         <section className="px-4 pb-24 pt-8 text-center">
           <div className="mx-auto max-w-3xl rounded-3xl border border-white/10 bg-white/[0.03] p-8">
             <h2 className="font-heading text-2xl font-semibold [text-wrap:balance]">
@@ -61,11 +95,14 @@ export default function AppsPage() {
                 rel="noopener noreferrer"
                 className="rounded-full border border-white/15 px-5 py-2.5 text-sm text-zinc-200 transition hover:border-emerald-400/40 hover:text-emerald-300"
               >
-                Silpho LLC apps
+                More apps I shipped
               </a>
             </div>
             <p className="mt-6 text-sm text-zinc-500">
-              <Link href="/mobile-apps" className="text-emerald-300 hover:underline">
+              <Link
+                href="/mobile-apps"
+                className="text-emerald-300 hover:underline"
+              >
                 Book a mobile sprint
               </Link>
             </p>

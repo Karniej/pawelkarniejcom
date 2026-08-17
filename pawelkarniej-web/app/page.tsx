@@ -32,8 +32,9 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { TaglineReveal } from "@/components/tagline-reveal";
-import { getAllApps, getFeaturedApps } from "@/lib/apps-data";
-// YouTube integration is currently disabled. See YOUTUBE_SETUP.md for details.
+import { ProductProofSection } from "@/components/sections/product-proof";
+import { AboutAndVideos } from "@/components/sections/about-and-videos";
+import { getFeaturedApps } from "@/lib/apps-data";
 
 const SOCIAL_LINKS = [
   {
@@ -69,8 +70,7 @@ const SOCIAL_LINKS = [
 ];
 
 export default function Home() {
-  const liveApps = getFeaturedApps().filter((app) => !app.acquired);
-  const marqueeApps = getAllApps();
+  const marqueeApps = getFeaturedApps();
 
   const stats = [
     { label: "Apps shipped", value: "20+" },
@@ -93,21 +93,29 @@ export default function Home() {
               <motion.h1
                 initial={{ opacity: 0, y: 24, filter: "blur(8px)" }}
                 animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-                transition={{ duration: 0.8, delay: 0.1, ease: [0.32, 0.72, 0, 1] }}
+                transition={{
+                  duration: 0.8,
+                  delay: 0.1,
+                  ease: [0.32, 0.72, 0, 1],
+                }}
                 className="font-heading text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight [text-wrap:balance]"
               >
                 <span className="gradient-text block">
-                  I build products that ship—
+                  I build products that ship.
                 </span>
                 <span className="gradient-text block">
-                  and systems that run.
+                  I build systems that run.
                 </span>
               </motion.h1>
 
               <motion.p
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.7, delay: 0.25, ease: [0.32, 0.72, 0, 1] }}
+                transition={{
+                  duration: 0.7,
+                  delay: 0.25,
+                  ease: [0.32, 0.72, 0, 1],
+                }}
                 className="text-xl text-zinc-600 dark:text-zinc-400 max-w-2xl leading-relaxed [text-wrap:pretty]"
               >
                 I&apos;m Paweł Karniej. I build mobile apps and AI automations
@@ -119,7 +127,11 @@ export default function Home() {
               <motion.dl
                 initial={{ opacity: 0, y: 16 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.32, ease: [0.32, 0.72, 0, 1] }}
+                transition={{
+                  duration: 0.6,
+                  delay: 0.32,
+                  ease: [0.32, 0.72, 0, 1],
+                }}
                 className="grid grid-cols-3 gap-4 max-w-lg"
               >
                 {stats.map((stat) => (
@@ -138,7 +150,11 @@ export default function Home() {
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.7, delay: 0.4, ease: [0.32, 0.72, 0, 1] }}
+                transition={{
+                  duration: 0.7,
+                  delay: 0.4,
+                  ease: [0.32, 0.72, 0, 1],
+                }}
                 className="flex flex-col sm:flex-row items-start sm:items-center gap-6"
               >
                 <GradientButton
@@ -191,7 +207,11 @@ export default function Home() {
             <motion.div
               initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.9, delay: 0.3, ease: [0.32, 0.72, 0, 1] }}
+              transition={{
+                duration: 0.9,
+                delay: 0.3,
+                ease: [0.32, 0.72, 0, 1],
+              }}
               className="relative"
             >
               <div className="relative w-80 h-80 lg:w-96 lg:h-96">
@@ -283,7 +303,9 @@ export default function Home() {
                   <ul className="space-y-3 text-zinc-700 dark:text-zinc-300 mb-6">
                     <li className="flex items-start gap-3">
                       <ArrowRight className="h-5 w-5 text-selfmade-deep dark:text-selfmade shrink-0 mt-0.5" />
-                      <span>Sprints from $3,999, store submission in four weeks</span>
+                      <span>
+                        Sprints from $3,999, store submission in four weeks
+                      </span>
                     </li>
                     <li className="flex items-start gap-3">
                       <ArrowRight className="h-5 w-5 text-selfmade-deep dark:text-selfmade shrink-0 mt-0.5" />
@@ -294,7 +316,9 @@ export default function Home() {
                     </li>
                     <li className="flex items-start gap-3">
                       <ArrowRight className="h-5 w-5 text-selfmade-deep dark:text-selfmade shrink-0 mt-0.5" />
-                      <span>Built on the same stack as my own 20+ shipped apps</span>
+                      <span>
+                        Built on the same stack as my own 20+ shipped apps
+                      </span>
                     </li>
                   </ul>
                   <div className="space-y-4">
@@ -335,23 +359,29 @@ export default function Home() {
                   <CardTitle className="text-2xl">AI automations</CardTitle>
                   <CardDescription className="text-zinc-600 dark:text-zinc-400 text-base [text-wrap:pretty]">
                     I map one recurring workflow in your business and turn it
-                    into a supervised automation. Work arrives prepared, and
-                    the important decisions stay with your team.
+                    into a supervised automation. Work arrives prepared, and the
+                    important decisions stay with your team.
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
                   <ul className="space-y-3 text-zinc-700 dark:text-zinc-300 mb-6">
                     <li className="flex items-start gap-3">
                       <ArrowRight className="h-5 w-5 text-blue-600 dark:text-blue-400 shrink-0 mt-0.5" />
-                      <span>Free 20 minute fit call to find the right workflow</span>
+                      <span>
+                        Free 20 minute fit call to find the right workflow
+                      </span>
                     </li>
                     <li className="flex items-start gap-3">
                       <ArrowRight className="h-5 w-5 text-blue-600 dark:text-blue-400 shrink-0 mt-0.5" />
-                      <span>Workflow map from $750, delivered in about a week</span>
+                      <span>
+                        Workflow map from $750, delivered in about a week
+                      </span>
                     </li>
                     <li className="flex items-start gap-3">
                       <ArrowRight className="h-5 w-5 text-blue-600 dark:text-blue-400 shrink-0 mt-0.5" />
-                      <span>Your existing tools stay, approvals stay human</span>
+                      <span>
+                        Your existing tools stay, approvals stay human
+                      </span>
                     </li>
                   </ul>
                   <div className="space-y-4">
@@ -378,113 +408,9 @@ export default function Home() {
         ]}
       />
 
-      {/* Proof of work */}
-      <section id="proof" className="relative py-24 px-4 scroll-mt-24">
-        <div className="max-w-7xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-4xl md:text-5xl font-heading font-bold mb-6">
-              Proof of work
-            </h2>
-            <p className="text-xl text-zinc-600 dark:text-zinc-400 max-w-2xl mx-auto [text-wrap:pretty]">
-              Apps I still run, live on the App Store today. Every one built
-              start to finish by me.
-            </p>
-          </motion.div>
+      <ProductProofSection />
 
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 max-w-5xl mx-auto">
-            {liveApps.map((app, index) => (
-              <motion.div
-                key={app.id}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.08 }}
-                viewport={{ once: true }}
-                className="group"
-              >
-                <Link
-                  href={`/apps/${app.id}`}
-                  className="block h-full rounded-2xl border border-black/10 dark:border-white/10 bg-black/5 dark:bg-white/5 p-5 text-center transition-all duration-300 hover:border-selfmade/40 dark:hover:border-selfmade/30 hover:bg-black/10 dark:hover:bg-white/10 group-hover:scale-105"
-                >
-                  <div className="w-16 h-16 relative rounded-2xl overflow-hidden mx-auto mb-4">
-                    <Image
-                      src={app.icon}
-                      alt={`${app.title} app icon`}
-                      fill
-                      className="object-cover"
-                    />
-                  </div>
-                  <div className="font-semibold group-hover:text-selfmade-deep dark:group-hover:text-selfmade transition-colors">
-                    {app.title}
-                  </div>
-                  <div className="text-sm text-zinc-600 dark:text-zinc-400 mt-1 [text-wrap:balance]">
-                    {app.tagline}
-                  </div>
-                </Link>
-              </motion.div>
-            ))}
-          </div>
-
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-            className="mt-12 text-center"
-          >
-            <GradientButton href="/apps" variant="secondary" className="dark">
-              See all my apps
-            </GradientButton>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* About Me */}
-      <section className="relative pt-12 pb-24 px-4">
-        <div className="max-w-7xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-            className="text-center mb-10"
-          >
-            <h2 className="text-4xl md:text-5xl font-heading font-bold mb-6">
-              About me
-            </h2>
-          </motion.div>
-          <div className="max-w-4xl mx-auto text-lg text-zinc-700 dark:text-zinc-300 leading-relaxed space-y-6 [text-wrap:pretty]">
-            <p>
-              Hi, I&apos;m Paweł. My career began in logistics, but in 2018 I
-              decided to change direction, taught myself how to code, and
-              started working as a mobile app developer. At first I freelanced
-              for different companies, which gave me experience across many
-              projects and industries.
-            </p>
-            <p>
-              Eventually I wanted more than client work, so I started shipping
-              my own apps. Some were small niche products, others were bigger
-              bets, but each one taught me something about development, growth,
-              and marketing. Today I split my time between client work, both
-              mobile apps and automations, and my own portfolio. I also build{" "}
-              <a
-                href="https://silpho.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-zinc-900 dark:text-zinc-100 underline underline-offset-4 hover:text-black dark:hover:text-white"
-              >
-                Silpho
-              </a>
-              , my operations product.
-            </p>
-          </div>
-        </div>
-      </section>
+      <AboutAndVideos />
 
       {/* Final CTA */}
       <section className="relative py-24 px-4">

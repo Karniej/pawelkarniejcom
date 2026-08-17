@@ -2,6 +2,9 @@
 
 # YouTube Shorts Automation
 
+> Deprecated. The current homepage uses the public YouTube feed described in
+> `YOUTUBE_FEED.md`. It does not require an API key.
+
 The home page shows the latest three shorts from your YouTube channel. A build-time script refreshes the data so the static export always ships with up-to-date content.
 
 ## Setup Steps
@@ -27,13 +30,13 @@ YOUTUBE_CHANNEL_HANDLE=thepawelk
 
 ## How It Works
 
-* `npm run build` triggers `scripts/fetch-youtube-shorts.mjs` (via the `prebuild` script)
-* The script resolves the channel ID from the handle, fetches recent uploads, filters for shorts (<60s), and writes the top three to `data/youtube-shorts.json`
-* `app/page.tsx` imports that JSON to render the cards
-* If the API key is missing or the request fails, the previous JSON content is kept as a fallback
+- `npm run build` triggers `scripts/fetch-youtube-shorts.mjs` (via the `prebuild` script)
+- The script resolves the channel ID from the handle, fetches recent uploads, filters for shorts (<60s), and writes the top three to `data/youtube-shorts.json`
+- `app/page.tsx` imports that JSON to render the cards
+- If the API key is missing or the request fails, the previous JSON content is kept as a fallback
 
 ## Notes
 
-* The YouTube Data API has daily quotas—three requests per build keeps usage low
-* For local development without an API key you will see the fallback data
-* Commit `data/youtube-shorts.json` so the site has content even when the API is unavailable
+- The YouTube Data API has daily quotas—three requests per build keeps usage low
+- For local development without an API key you will see the fallback data
+- Commit `data/youtube-shorts.json` so the site has content even when the API is unavailable
