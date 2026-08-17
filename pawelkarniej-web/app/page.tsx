@@ -87,18 +87,11 @@ export default function Home() {
 
       {/* Hero Section */}
       <section className="relative min-h-[70vh] flex items-center px-4 pt-16">
-        <div className="max-w-7xl mx-auto">
+        <div className="hero-aurora" aria-hidden="true"></div>
+        <div className="relative z-10 max-w-7xl mx-auto">
           <div className="flex flex-col lg:flex-row items-center gap-16">
             {/* Left Content */}
             <div className="flex-1 space-y-8">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5 }}
-              >
-                <span className="status-badge">Available for new projects</span>
-              </motion.div>
-
               <motion.h1
                 initial={{ opacity: 0, y: 24, filter: "blur(8px)" }}
                 animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
