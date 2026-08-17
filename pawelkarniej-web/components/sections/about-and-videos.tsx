@@ -235,47 +235,29 @@ export function AboutAndVideos() {
             </div>
           </div>
 
-          {podcastEpisodes.length > 0 ? (
-            <div className="border-t border-black/10 p-8 dark:border-white/10 sm:p-12 lg:col-span-2">
-              <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
-                <div>
-                  <p className="text-xs font-semibold uppercase tracking-[0.2em] text-zinc-500">
-                    From the RSS feed
-                  </p>
-                  <h3 className="mt-2 font-heading text-2xl font-bold sm:text-3xl">
-                    Latest episodes
-                  </h3>
-                </div>
-                <p className="text-sm text-zinc-500">
-                  Updated during every site build
+          {podcastEpisodes.map((episode) => (
+            <article
+              key={episode.id}
+              className="grid items-center gap-6 border-t border-black/10 p-6 dark:border-white/10 sm:p-8 lg:col-span-2 lg:grid-cols-[minmax(0,0.9fr)_minmax(320px,1.1fr)]"
+            >
+              <div>
+                <p className="text-xs font-semibold uppercase tracking-[0.16em] text-zinc-500">
+                  Latest episode · {formatPublishedDate(episode.publishedAt)}
+                  {episode.duration ? " · " + episode.duration : ""}
                 </p>
+                <h3 className="mt-3 font-heading text-xl font-bold leading-snug [text-wrap:pretty] sm:text-2xl">
+                  {episode.title}
+                </h3>
               </div>
-
-              <div className="mt-8 grid gap-5 lg:grid-cols-3">
-                {podcastEpisodes.map((episode) => (
-                  <article
-                    key={episode.id}
-                    className="rounded-2xl border border-black/10 bg-black/[0.03] p-5 dark:border-white/10 dark:bg-black/20"
-                  >
-                    <p className="text-xs font-semibold uppercase tracking-[0.16em] text-zinc-500">
-                      {formatPublishedDate(episode.publishedAt)}
-                      {episode.duration ? " · " + episode.duration : ""}
-                    </p>
-                    <h4 className="mt-3 min-h-[3.5rem] font-heading text-lg font-bold leading-snug [text-wrap:pretty]">
-                      {episode.title}
-                    </h4>
-                    <audio
-                      controls
-                      preload="none"
-                      src={episode.audioUrl}
-                      aria-label={"Play " + episode.title}
-                      className="mt-5 w-full"
-                    />
-                  </article>
-                ))}
-              </div>
-            </div>
-          ) : null}
+              <audio
+                controls
+                preload="none"
+                src={episode.audioUrl}
+                aria-label={"Play " + episode.title}
+                className="w-full"
+              />
+            </article>
+          ))}
         </motion.div>
       </section>
     </>

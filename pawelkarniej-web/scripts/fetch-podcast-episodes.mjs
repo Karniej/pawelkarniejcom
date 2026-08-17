@@ -57,7 +57,7 @@ const main = async () => {
 
     const xml = await response.text();
     const items = [...xml.matchAll(/<item>([\s\S]*?)<\/item>/g)]
-      .slice(0, 3)
+      .slice(0, 1)
       .map((match) => match[1]);
 
     const episodes = items
