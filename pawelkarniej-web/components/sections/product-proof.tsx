@@ -13,15 +13,34 @@ const proofApps = ["aividly", "vidnotes"]
   .map((id) => getAppById(id))
   .filter((app): app is AppShowcaseItem => Boolean(app));
 
-const buyerQuote = {
-  quote:
-    "I bought AIVidly from him because the app shipped as a real business — subscriptions, analytics, App Store execution, retention loops, all done. I didn't have to fix anything.",
-  name: "Duc Lai",
-  context: "AIVidly buyer and VidNotes co-founder",
-};
-
-const RHAVA_APP_STORE_URL =
-  "https://apps.apple.com/gb/app/bibleily-speak-god-bible/id6747157033";
+const quotes = [
+  {
+    quote: [
+      "I bought AIVidly from him because the app shipped as a real business: subscriptions, analytics, App Store execution, retention loops, all done. I didn't have to fix anything.",
+      "We then chose to co-found VidNotes together because, having seen how he ships, I didn't want to launch another AI product without him.",
+    ],
+    name: "Duc Lai",
+    role: "Founder, AAAI Studio",
+    context: "Bought AIVidly. Co-founded VidNotes with Paweł.",
+    image: "/images/testimonials/duc-lai-x-avatar.jpg",
+    href: "https://x.com/aaaistudio",
+    linkLabel: "@aaaistudio",
+    objectClass: "object-cover",
+  },
+  {
+    quote: [
+      "I had an app idea. Paweł turned it into a real business in 4 weeks.",
+      "In 4 weeks the entire product was live: AI conversation flows, a subscription paywall with trials, onboarding, analytics, and a full App Store submission handled.",
+    ],
+    name: "Calbert Clarke",
+    role: "Founder, Bibleily",
+    context: "Founder of Bibleily, an AI app for conversations with Scripture.",
+    image: "/images/testimonials/calbert-clarke-bibleily.png",
+    href: "https://bibleily.com/",
+    linkLabel: "bibleily.com",
+    objectClass: "object-cover object-top",
+  },
+];
 
 export function ProductProofSection() {
   return (
@@ -38,14 +57,14 @@ export function ProductProofSection() {
           className="mx-auto max-w-3xl text-center"
         >
           <p className="text-sm font-semibold uppercase tracking-[0.22em] text-selfmade">
-            Product proof
+            Products I shipped
           </p>
           <h2 className="mt-5 font-heading text-4xl font-bold [text-wrap:balance] md:text-6xl">
-            Real products, real stores, real handoffs
+            Products I shipped and founders bought
           </h2>
           <p className="mt-6 text-xl leading-relaxed text-zinc-400 [text-wrap:pretty]">
-            These are not portfolio mockups. You can open the products, inspect
-            the store listings, and read what happened after launch.
+            AIVidly and VidNotes show the product, store, and business work
+            behind my mobile app offer.
           </p>
         </motion.div>
 
@@ -122,63 +141,69 @@ export function ProductProofSection() {
           ))}
         </div>
 
-        <div className="mt-24 grid gap-6 lg:grid-cols-[1.15fr_0.85fr]">
-          <motion.figure
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="rounded-3xl border border-selfmade/25 bg-selfmade/[0.06] p-7 sm:p-10"
-          >
-            <Quote className="h-9 w-9 text-selfmade" aria-hidden="true" />
-            <blockquote className="mt-6 font-heading text-2xl leading-relaxed [text-wrap:pretty] md:text-3xl">
-              “{buyerQuote.quote}”
-            </blockquote>
-            <figcaption className="mt-7 border-t border-white/10 pt-5">
-              <span className="block font-semibold">{buyerQuote.name}</span>
-              <span className="mt-1 block text-sm text-zinc-400">
-                {buyerQuote.context}
-              </span>
-            </figcaption>
-          </motion.figure>
-
-          <motion.article
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.08 }}
-            className="flex flex-col rounded-3xl border border-white/10 bg-white/[0.04] p-7 sm:p-10"
-          >
-            <div className="flex items-center gap-4">
-              <div className="relative h-16 w-16 overflow-hidden rounded-2xl border border-white/10 bg-white p-2">
-                <Image
-                  src="/images/rhava.svg"
-                  alt="Rhava app icon"
-                  fill
-                  className="object-contain p-2"
-                />
-              </div>
-              <div>
-                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-amber-300">
-                  Second app sold
-                </p>
-                <h3 className="mt-1 font-heading text-2xl font-bold">Rhava</h3>
-              </div>
-            </div>
-            <p className="mt-6 flex-1 text-lg leading-relaxed text-zinc-300 [text-wrap:pretty]">
-              I sold Rhava in 2025. Its new owner turned it into Bibleily and
-              brought the distribution that the original product did not have.
-            </p>
-            <a
-              href={RHAVA_APP_STORE_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="mt-7 inline-flex items-center gap-2 text-sm font-semibold text-selfmade transition hover:text-yellow-200"
+        <div className="mt-24 space-y-8">
+          {quotes.map((item) => (
+            <motion.figure
+              key={item.name}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.15 }}
+              transition={{ duration: 0.6 }}
+              className="rounded-3xl border border-white/10 bg-white/[0.04] p-7 sm:p-10"
             >
-              See what Rhava became
-              <ExternalLink className="h-4 w-4" />
-            </a>
-          </motion.article>
+              <div className="grid gap-10 lg:grid-cols-[0.75fr_1.25fr] lg:items-start">
+                <figcaption className="space-y-5">
+                  <div className="flex items-center gap-4">
+                    <a
+                      href={item.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="relative h-20 w-20 shrink-0 overflow-hidden rounded-2xl border border-white/15"
+                    >
+                      <Image
+                        src={item.image}
+                        alt={item.name}
+                        fill
+                        sizes="80px"
+                        className={item.objectClass}
+                      />
+                    </a>
+                    <div>
+                      <strong className="block font-heading text-2xl">
+                        {item.name}
+                      </strong>
+                      <span className="mt-1 block text-sm text-zinc-400">
+                        {item.role}
+                      </span>
+                    </div>
+                  </div>
+                  <p className="text-sm leading-relaxed text-zinc-400 [text-wrap:pretty]">
+                    {item.context}
+                  </p>
+                  <a
+                    href={item.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 text-sm font-semibold text-zinc-300 transition hover:text-selfmade"
+                  >
+                    {item.linkLabel}
+                    <ExternalLink className="h-4 w-4" />
+                  </a>
+                </figcaption>
+                <blockquote>
+                  <Quote
+                    className="mb-6 h-9 w-9 text-selfmade"
+                    aria-hidden="true"
+                  />
+                  <div className="space-y-5 font-heading text-xl leading-relaxed [text-wrap:pretty] md:text-2xl">
+                    {item.quote.map((paragraph) => (
+                      <p key={paragraph}>{paragraph}</p>
+                    ))}
+                  </div>
+                </blockquote>
+              </div>
+            </motion.figure>
+          ))}
         </div>
 
         <div className="mt-12 text-center">

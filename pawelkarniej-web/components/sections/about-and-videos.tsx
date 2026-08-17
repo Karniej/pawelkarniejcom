@@ -21,7 +21,7 @@ const milestones = [
   {
     label: "Now",
     title: "I build the product and the system around it.",
-    body: "I work directly with founders and small teams. There is no sales handoff and no junior team behind the work.",
+    body: "I work directly with founders and small teams, from the first product decision through release.",
   },
 ];
 
@@ -53,21 +53,8 @@ export function AboutAndVideos() {
               I learned to ship by putting my own products on the line.
             </h2>
             <p className="mt-7 text-xl leading-relaxed text-zinc-600 dark:text-zinc-400 [text-wrap:pretty]">
-              I know the difference between a demo and a product because I have
-              owned the launches, support, subscriptions, store reviews, and
-              failed bets myself.
-            </p>
-            <p className="mt-6 text-lg leading-relaxed text-zinc-700 dark:text-zinc-300 [text-wrap:pretty]">
-              I also build{" "}
-              <a
-                href="https://silpho.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="font-semibold underline decoration-selfmade/60 underline-offset-4 transition hover:text-selfmade-deep dark:hover:text-selfmade"
-              >
-                Silpho
-              </a>
-              , my operations product.
+              I have owned launches, support, subscriptions, store reviews, and
+              product bets from the first build through the result.
             </p>
           </motion.div>
 

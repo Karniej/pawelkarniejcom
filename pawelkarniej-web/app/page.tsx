@@ -34,7 +34,7 @@ import {
 import { TaglineReveal } from "@/components/tagline-reveal";
 import { ProductProofSection } from "@/components/sections/product-proof";
 import { AboutAndVideos } from "@/components/sections/about-and-videos";
-import { getFeaturedApps } from "@/lib/apps-data";
+import { getAllApps } from "@/lib/apps-data";
 
 const SOCIAL_LINKS = [
   {
@@ -70,7 +70,7 @@ const SOCIAL_LINKS = [
 ];
 
 export default function Home() {
-  const marqueeApps = getFeaturedApps();
+  const marqueeApps = getAllApps();
 
   const stats = [
     { label: "Apps shipped", value: "20+" },
@@ -274,8 +274,8 @@ export default function Home() {
               Two ways to work with me
             </h2>
             <p className="text-xl text-zinc-600 dark:text-zinc-400 max-w-2xl mx-auto [text-wrap:pretty]">
-              Pick the door that matches your problem. Both end in a direct
-              conversation with me, not a sales team.
+              Choose mobile apps or AI automations. I scope and deliver both
+              directly.
             </p>
           </motion.div>
 
@@ -510,18 +510,6 @@ export default function Home() {
                 Terms of Service
               </Link>
             </div>
-            <p className="text-zinc-500">
-              I also build{" "}
-              <a
-                href="https://silpho.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="link-hover hover:text-zinc-700 dark:hover:text-zinc-300"
-              >
-                Silpho
-              </a>
-              , my operations product.
-            </p>
             <p className="text-zinc-500">
               © 2026 Pawel Karniej. All rights reserved.
             </p>
