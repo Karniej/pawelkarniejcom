@@ -9,7 +9,6 @@ import {
   Map,
   Workflow,
   UserCheck,
-  ExternalLink,
 } from "lucide-react";
 import { GradientButton } from "@/components/ui/gradient-button";
 import {
@@ -71,11 +70,6 @@ const faqs = [
     question: "Why is the first deployment not priced on this page?",
     answer:
       "Because the real scope is not knowable before the map exists. Publishing a number here would anchor the project at the cost of the smallest version of it. The map gives us both a scope we can price honestly.",
-  },
-  {
-    question: "What is Silpho?",
-    answer:
-      "Silpho is my automations studio, and this offer ships under it. You still work with me directly on every engagement.",
   },
 ];
 
@@ -261,17 +255,6 @@ export function AutomationsContent() {
               Book the free fit call
             </GradientButton>
           </div>
-          <p className="text-sm text-zinc-500 inline-flex items-center gap-1 justify-center">
-            This offer ships under my studio,{" "}
-            <a
-              href="https://silpho.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="link-hover text-blue-400 hover:text-blue-300 inline-flex items-center gap-1"
-            >
-              silpho.com <ExternalLink className="h-3 w-3" />
-            </a>
-          </p>
         </div>
       </section>
     </div>

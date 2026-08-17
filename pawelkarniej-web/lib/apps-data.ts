@@ -190,7 +190,7 @@ export const appShowcases: AppShowcaseItem[] = [
     tagline: "Cold plunge and breathwork",
     icon: "/images/apps/coldsmith/icon.png",
     detailedDescription:
-      "Coldsmith is a wellness app for cold plunge, ice bath, and breathwork practitioners. Guided Wim Hof-method breathing sessions, cold exposure timers, streak tracking, and heart-rate integration via HealthKit. Built on Silpho Core with subscription paywalls, onboarding, and retention loops. Idea to App Store in 2 weeks.",
+      "Coldsmith is a wellness app for cold plunge, ice bath, and breathwork practitioners. Guided Wim Hof-method breathing sessions, cold exposure timers, streak tracking, and heart-rate integration via HealthKit. It ships with subscription paywalls, onboarding, and retention loops. Idea to App Store in 2 weeks.",
     category: "Health & Wellness",
     features: [
       "Guided Wim Hof breathwork sessions",
@@ -332,7 +332,6 @@ export const appShowcases: AppShowcaseItem[] = [
   {
     id: "fiftn",
     title: "FIFTN",
-    featured: true,
     description: "Focus timer and app blocker. Earn your screen time.",
     tagline: "Earn your screen time",
     icon: "/images/apps/fiftn/icon.png",

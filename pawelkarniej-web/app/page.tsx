@@ -512,18 +512,6 @@ export default function Home() {
                     >
                       See the automations offer
                     </GradientButton>
-                    <p className="text-sm text-zinc-400">
-                      Automations ship under{" "}
-                      <a
-                        href="https://silpho.com"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-blue-400 hover:text-blue-300 underline underline-offset-4"
-                      >
-                        Silpho
-                      </a>
-                      , my automations studio.
-                    </p>
                   </div>
                 </CardContent>
               </Card>
@@ -594,11 +582,18 @@ export default function Home() {
             </p>
             <p>
               I enjoy the process of turning an idea into a product, finding
-              users, and iterating based on what works. That led me to start
-              Silpho, my automations studio, where I build supervised AI
-              systems for service businesses. Today I split my time between
-              client work, both mobile apps and automations, and my own
-              portfolio of apps.
+              users, and iterating based on what works. Today I split my time
+              between client work, both mobile apps and automations, and my
+              own portfolio of apps. I also build{" "}
+              <a
+                href="https://silpho.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-zinc-100 underline underline-offset-4 hover:text-white"
+              >
+                Silpho
+              </a>
+              , my operations product.
             </p>
           </div>
         </div>
@@ -1009,6 +1004,7 @@ export default function Home() {
               </Link>
             </div>
             <p className="text-zinc-500">
+              I also build{" "}
               <a
                 href="https://silpho.com"
                 target="_blank"
@@ -1016,8 +1012,8 @@ export default function Home() {
                 className="link-hover hover:text-zinc-300"
               >
                 Silpho
-              </a>{" "}
-              is my automations studio.
+              </a>
+              , my operations product.
             </p>
             <p className="text-zinc-500">
               © 2026 Pawel Karniej. All rights reserved.
