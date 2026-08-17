@@ -6,6 +6,7 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { ArrowUpRight, PlayCircle, Podcast, Youtube } from "lucide-react";
 import youtubeVideos from "@/data/youtube-videos.json";
+import podcastEpisodes from "@/data/podcast-episodes.json";
 
 const milestones = [
   {
@@ -88,71 +89,6 @@ export function AboutAndVideos() {
         </div>
       </section>
 
-      <section className="relative px-4 py-24 bg-black/[0.03] dark:bg-white/[0.02]">
-        <motion.div
-          initial={{ opacity: 0, y: 18 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="mx-auto grid max-w-7xl overflow-hidden rounded-[2rem] border border-black/10 bg-white shadow-xl dark:border-white/10 dark:bg-white/[0.04] lg:grid-cols-[0.78fr_1.22fr]"
-        >
-          <div className="relative aspect-square min-h-[320px] overflow-hidden bg-zinc-950 lg:aspect-auto">
-            <Image
-              src="/images/fired-by-robots.png"
-              alt="Fired by Robots podcast artwork"
-              fill
-              sizes="(min-width: 1024px) 40vw, 100vw"
-              className="object-cover"
-            />
-          </div>
-
-          <div className="flex flex-col justify-center p-8 sm:p-12 lg:p-16">
-            <p className="flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.22em] text-selfmade-deep dark:text-selfmade">
-              <Podcast className="h-5 w-5" />
-              The podcast
-            </p>
-            <h2 className="mt-5 font-heading text-4xl font-bold [text-wrap:balance] md:text-6xl">
-              Fired by Robots
-            </h2>
-            <p className="mt-6 max-w-2xl text-xl leading-relaxed text-zinc-600 dark:text-zinc-400 [text-wrap:pretty]">
-              I co-host Fired by Robots with Aivars Meijers. We talk about
-              building apps in public, shipping products, growing audiences,
-              and the parts of the work people usually edit out.
-            </p>
-
-            <div className="mt-9 flex flex-wrap gap-x-6 gap-y-4">
-              <a
-                href="https://firedbyrobots.com/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-full bg-selfmade px-6 py-3 font-semibold text-black transition hover:-translate-y-0.5 hover:shadow-lg"
-              >
-                Visit the podcast
-                <ArrowUpRight className="h-4 w-4" />
-              </a>
-              <a
-                href="https://podcasts.apple.com/us/podcast/fired-by-robots/id1896779874"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 py-3 font-semibold transition hover:text-selfmade-deep dark:hover:text-selfmade"
-              >
-                Apple Podcasts
-                <ArrowUpRight className="h-4 w-4" />
-              </a>
-              <a
-                href="https://open.spotify.com/show/033k2vKCq4wYBIdzX2whcZ"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 py-3 font-semibold transition hover:text-selfmade-deep dark:hover:text-selfmade"
-              >
-                Spotify
-                <ArrowUpRight className="h-4 w-4" />
-              </a>
-            </div>
-          </div>
-        </motion.div>
-      </section>
-
       {videos.length > 0 ? (
         <section className="relative px-4 py-24">
           <div className="mx-auto max-w-7xl">
@@ -226,6 +162,122 @@ export function AboutAndVideos() {
           </div>
         </section>
       ) : null}
+      <section className="relative px-4 py-24 bg-black/[0.03] dark:bg-white/[0.02]">
+        <motion.div
+          initial={{ opacity: 0, y: 18 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="mx-auto grid max-w-7xl overflow-hidden rounded-[2rem] border border-black/10 bg-white shadow-xl dark:border-white/10 dark:bg-white/[0.04] lg:grid-cols-[0.78fr_1.22fr]"
+        >
+          <div className="relative aspect-square min-h-[320px] overflow-hidden bg-zinc-950 lg:aspect-auto">
+            <Image
+              src="/images/fired-by-robots.png"
+              alt="Fired by Robots podcast artwork"
+              fill
+              sizes="(min-width: 1024px) 40vw, 100vw"
+              className="object-cover"
+            />
+          </div>
+
+          <div className="flex flex-col justify-center p-8 sm:p-12 lg:p-16">
+            <p className="flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.22em] text-selfmade-deep dark:text-selfmade">
+              <Podcast className="h-5 w-5" />
+              The podcast
+            </p>
+            <h2 className="mt-5 font-heading text-4xl font-bold [text-wrap:balance] md:text-6xl">
+              Fired by Robots
+            </h2>
+            <p className="mt-6 max-w-2xl text-xl leading-relaxed text-zinc-600 dark:text-zinc-400 [text-wrap:pretty]">
+              I co-host Fired by Robots with Aivars Meijers. We talk about
+              building apps in public, shipping products, growing audiences, and
+              the parts of the work people usually edit out.
+            </p>
+
+            <div className="mt-9 flex flex-wrap gap-x-6 gap-y-4">
+              <a
+                href="https://firedbyrobots.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 rounded-full bg-selfmade px-6 py-3 font-semibold text-black transition hover:-translate-y-0.5 hover:shadow-lg"
+              >
+                Visit the podcast
+                <ArrowUpRight className="h-4 w-4" />
+              </a>
+              <a
+                href="https://podcasts.apple.com/us/podcast/fired-by-robots/id1896779874"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 py-3 font-semibold transition hover:text-selfmade-deep dark:hover:text-selfmade"
+              >
+                Apple Podcasts
+                <ArrowUpRight className="h-4 w-4" />
+              </a>
+              <a
+                href="https://open.spotify.com/show/033k2vKCq4wYBIdzX2whcZ"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 py-3 font-semibold transition hover:text-selfmade-deep dark:hover:text-selfmade"
+              >
+                Spotify
+                <ArrowUpRight className="h-4 w-4" />
+              </a>
+              <a
+                href="https://api.riverside.com/hosting/2aslT8FP.rss"
+                target="_blank"
+                rel="noopener noreferrer"
+                type="application/rss+xml"
+                className="inline-flex items-center gap-2 py-3 font-semibold transition hover:text-selfmade-deep dark:hover:text-selfmade"
+              >
+                RSS feed
+                <ArrowUpRight className="h-4 w-4" />
+              </a>
+            </div>
+          </div>
+
+          {podcastEpisodes.length > 0 ? (
+            <div className="border-t border-black/10 p-8 dark:border-white/10 sm:p-12 lg:col-span-2">
+              <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
+                <div>
+                  <p className="text-xs font-semibold uppercase tracking-[0.2em] text-zinc-500">
+                    From the RSS feed
+                  </p>
+                  <h3 className="mt-2 font-heading text-2xl font-bold sm:text-3xl">
+                    Latest episodes
+                  </h3>
+                </div>
+                <p className="text-sm text-zinc-500">
+                  Updated during every site build
+                </p>
+              </div>
+
+              <div className="mt-8 grid gap-5 lg:grid-cols-3">
+                {podcastEpisodes.map((episode) => (
+                  <article
+                    key={episode.id}
+                    className="rounded-2xl border border-black/10 bg-black/[0.03] p-5 dark:border-white/10 dark:bg-black/20"
+                  >
+                    <p className="text-xs font-semibold uppercase tracking-[0.16em] text-zinc-500">
+                      {formatPublishedDate(episode.publishedAt)}
+                      {episode.duration ? " · " + episode.duration : ""}
+                    </p>
+                    <h4 className="mt-3 min-h-[3.5rem] font-heading text-lg font-bold leading-snug [text-wrap:pretty]">
+                      {episode.title}
+                    </h4>
+                    <audio
+                      controls
+                      preload="none"
+                      src={episode.audioUrl}
+                      aria-label={"Play " + episode.title}
+                      className="mt-5 w-full"
+                    />
+                  </article>
+                ))}
+              </div>
+            </div>
+          ) : null}
+        </motion.div>
+      </section>
     </>
   );
 }
