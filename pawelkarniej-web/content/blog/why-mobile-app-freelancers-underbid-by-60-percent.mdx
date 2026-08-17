@@ -1,0 +1,236 @@
+---
+title: "Why mobile app freelancers underbid by 60 percent: the missing scope items"
+date: "2026-05-08"
+excerpt: "The systematic reason freelancer quotes come in 30 to 60 percent lower than what the project actually costs to ship. Math, examples, and how to stress-test a quote."
+tags: ["freelancer-quotes", "mobile-app-cost", "scope-creep", "freelancer-pitfalls"]
+featuredImage: "/favicon.png"
+---
+
+# Why mobile app freelancers underbid by 60 percent: the missing scope items
+
+*Not malice. Just structural. Here's the math.*
+
+## TL;DR
+
+Mobile app freelancers systematically underbid by 30 to 60 percent because their quotes scope visible features but not the production layer (paywalls, analytics, account deletion, App Store assets, ASO, post-launch fixes). When the missing items show up later, they're billed as change orders, padding the real total. This article shows the line items most freelancer quotes leave out, the math on what each adds, and the 5 questions to ask before signing any quote. Productized studios bundle the missing items into a fixed fee, which is why their headline price often beats the freelancer's all-in cost.
+
+## Key facts at a glance
+
+- The visible features of a typical mobile app are 40 to 70 percent of the actual scope.
+- The other 30 to 60 percent (production layer) is what freelancer quotes routinely miss.
+- Average change-order ratio on freelancer projects is 1.4 to 1.8x the original quote.
+- Productized studios bundle the production layer because the stack is reused across clients.
+- The fix is asking specific scope questions, not asking for a "more thorough quote."
+
+---
+
+## The visible vs production layers
+
+Every mobile app has two scope layers:
+
+### Visible features (what the client sees in Figma)
+
+- Onboarding screens
+- Auth (login, signup)
+- Main feature flow
+- Profile / settings
+- Subscription page (often just one screen in Figma)
+
+### Production layer (invisible until it's missing)
+
+- Paywall logic with restore purchases, error states, success states
+- Receipt validation (server-side or via RevenueCat)
+- Account deletion flow (Apple-mandated)
+- Privacy manifest (Apple-mandated)
+- Push notification setup (APNs, FCM)
+- Deep linking and universal links
+- Accessibility (VoiceOver, dynamic type, contrast)
+- Error states across every screen
+- Loading states
+- Network failure handling
+- App icon design
+- App Store screenshots (3 to 5 per device)
+- App preview video
+- Storefront copy
+- ASO keyword research
+- App Store Connect setup and submission
+- Post-launch bug shield (the natural bug wave in week one)
+
+The production layer is what makes the difference between "code that runs in a TestFlight" and "an app that ships and stays alive." Freelancer Figma quotes rarely include it.
+
+---
+
+## The math on what's missing
+
+If your freelancer quote is $4,000 and you compare against everything in [the hidden costs post](/blog/hidden-costs-mobile-app-development-12-line-items-quotes-miss), the realistic add-on cost is:
+
+| Missing item | Real cost when added later |
+|---|---|
+| Paywall logic (full flow) | $500 to $2,000 |
+| Account deletion | $300 to $800 |
+| Privacy manifest | Few hours but eat 1 to 3 day rejection cycle |
+| Push notifications | $500 to $1,500 |
+| Deep linking | $300 to $1,000 |
+| Accessibility | $400 to $1,500 |
+| Error states | $500 to $2,000 |
+| App icon + screenshots | $300 to $1,500 |
+| ASO keyword research | $300 to $1,000 |
+| App Store submission | $300 to $1,000 |
+| Post-launch bug fixes | $1,000 to $3,000 |
+| **Total add-ons** | **$4,000 to $15,000** |
+
+Your $4,000 freelancer becomes $8,000 to $19,000 total. The freelancer wasn't lying; the freelancer was scoping like every freelancer scopes.
+
+---
+
+## Why this happens structurally
+
+Three reasons:
+
+### 1. Freelancers price by feature count
+
+The freelancer reads your Figma, counts the screens, multiplies by hours per screen, and quotes. This works for the visible layer. It fails for the production layer because the production layer doesn't show up in Figma.
+
+### 2. Each freelancer is rebuilding from scratch
+
+A productized studio reuses 60 to 80 percent of the code. A freelancer rebuilds the whole app from a starter. The freelancer needs the same hours per project, regardless of whether they shipped 5 or 50 apps. Their hourly rate has to absorb that.
+
+### 3. Hourly billing incentivizes "I'll handle it later"
+
+If the freelancer scopes everything upfront and quotes $9,000, they lose to the freelancer who quotes $4,000 and bills $5,000 in change orders. The market rewards underscoping.
+
+The fix isn't to find a more honest freelancer. The fix is to read the scope yourself or work with vendors whose business model rewards complete scoping.
+
+---
+
+## How productized studios bundle differently
+
+A productized studio's $3,999 to $5,999 fee includes the entire production layer because:
+
+- The stack is reused, so the marginal cost of "include the paywall flow" is near zero on each new project (it's already written and battle-tested)
+- Scope is locked at kickoff with a fixed fee, so the studio has no incentive to underscope; underscoping eats their margin
+- The price is calibrated against full all-in delivery, not against the freelancer's headline number
+
+My [Product Build Sprint at ,999](/mobile-apps) bundles all 11 to 12 production items that freelancers leave out.
+
+---
+
+## The 5 questions to ask any freelancer quote
+
+If you're going freelancer route, ask these explicitly before signing:
+
+### 1. "Show me the line items for paywall, account deletion, and privacy manifest."
+
+These three are universal requirements. If they're not in the line items, they're change orders.
+
+### 2. "Who is responsible for App Store submission?"
+
+If the answer isn't "I am" with screenshots, copy, and ASO included, you're submitting yourself. Budget for that.
+
+### 3. "What happens when Apple rejects?"
+
+Most rejections are predictable. A freelancer with shipped apps will quote with a buffer for 1 expected rejection. A first-timer won't, and you'll eat the rejection cycles.
+
+### 4. "What's included in post-launch?"
+
+If the answer is "nothing, that's a separate engagement," you'll be hiring back at hourly rates for the natural bug wave.
+
+### 5. "Can I see 3 apps you shipped, in the App Store today, that you'd walk through with me?"
+
+If they can't open the App Store on a call and demo their work, the portfolio isn't real.
+
+---
+
+## A real comparison
+
+Here's what the same app costs across two paths, all-in:
+
+### Path A: $4,000 freelancer
+
+| Item | Cost |
+|---|---|
+| Initial quote (visible features) | $4,000 |
+| Paywall logic add-on | $1,500 |
+| Account deletion + privacy manifest | $700 |
+| Push notifications | $800 |
+| Accessibility fixes (after rejection) | $1,000 |
+| App icon + screenshots | $800 |
+| ASO research | $500 |
+| Apple rejection cycle 1 (re-submit) | $400 |
+| Apple rejection cycle 2 (re-submit) | $400 |
+| Post-launch bug fixes (month 1) | $1,500 |
+| **All-in (10 to 14 weeks)** | **$11,600** |
+
+### Path B: $3,999 my Product Build Sprint
+
+| Item | Cost |
+|---|---|
+| Launch sprint (4 weeks) | $3,999 |
+| All production items | included |
+| App Store submission | included |
+| 4-week bug shield | included |
+| 4-Week Ready-to-Ship Guarantee | included |
+| **All-in (4 weeks)** | **$3,999** |
+
+Same outcome. About 1/6 the cash. About 1/4 the calendar time.
+
+---
+
+## When freelancers DO win on cost
+
+Three real cases:
+
+### 1. Your scope is genuinely outside any productized stack
+
+Heavy native modules, BLE integration, specialized computer vision. A freelancer with that specific expertise will outperform a productized studio because the productized stack doesn't help.
+
+### 2. You're a technical reviewer
+
+You can architect on top of their work. You can spot quality shortcuts. The freelancer effectively becomes extra hands on a project you're leading.
+
+### 3. The freelancer is in a low-cost region with senior-level skill
+
+A $25-an-hour senior dev in Eastern Europe or LATAM can deliver excellently for $2,000 to $4,000 on a clean scope. The math works because their total hours match a US-based freelancer's quote at one-third the rate.
+
+---
+
+## FAQ
+
+### Are all freelancer underbids deliberate?
+
+No. Most are structural. The freelancer literally doesn't think of the missing items because the visible features are what they read in the Figma. It's not malice; it's how feature-counting estimation works.
+
+### Can I write a thorough RFP that prevents underbidding?
+
+You can try. In practice, even a detailed RFP gets quotes that miss things. The right move is to ask the 5 questions above to a shortlist of vetted freelancers, not to write a longer doc.
+
+### Should I just hire two freelancers (one for code, one for ASO)?
+
+Possible but rarely optimal. Coordination overhead between two freelancers eats the cost savings. A productized studio at $3,999 is usually cheaper than two freelancers at $1,500 each plus your time managing them.
+
+### Is the "all-in cost" really 2 to 3x the headline freelancer quote?
+
+Average across many launches: yes. Median is closer to 1.5 to 2x. There's a long tail where projects come in close to budget if the freelancer is exceptional and the scope was clean.
+
+### What about "trust the freelancer, they have great references"?
+
+References tell you about their best projects, not their average. The structural underscoping happens regardless of skill. Even excellent freelancers underbid by 30 percent on average because they're competing in the same market.
+
+### Should I start with a productized studio and switch to a freelancer later?
+
+Yes, this is a healthy pattern. Get the v1 launch on a productized studio for fixed fee. Hire a freelancer for v2 features once you have revenue and clear specs. The freelancer has tighter scope, less risk, and you've already done the production layer.
+
+### Where does my Kickstart fit?
+
+[Kickstart at $499](/mobile-apps) is the bridge tier. You're hiring a senior consultant for a 1-on-1 plus code review plus 4 weeks of priority support, but you're still doing the implementation. It's not a freelancer engagement; it's the consulting layer that helps you build it yourself smart.
+
+---
+
+**Next steps:**
+- [See the productized alternative at $3,999 →](/mobile-apps)
+- [Read what's included in the Launch tier →](/blog/what-1999-actually-buys-you-silpho-launch-breakdown)
+- [Or compare freelancer math more deeply →](/blog/why-cheap-react-native-freelancers-cost-more-than-studios)
+
+**Related deep dives:**
+- [Hidden costs of mobile app development](/blog/hidden-costs-mobile-app-development-12-line-items-quotes-miss)
+- [How much does it cost to build a mobile app in 2026?](/blog/how-much-does-it-cost-to-build-a-mobile-app-in-2026)

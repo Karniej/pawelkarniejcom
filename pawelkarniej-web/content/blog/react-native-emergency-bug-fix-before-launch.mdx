@@ -1,0 +1,138 @@
+---
+title: "React Native emergency bug fix before launch: triage, repair, or rebuild"
+date: "2026-07-16"
+excerpt: "A release-focused triage plan for React Native bugs blocking TestFlight, App Review, payments, auth, or production launch."
+tags: ["react-native-emergency-bug-fix-before-launch", "launch-blockers", "production-readiness"]
+featuredImage: "/favicon.png"
+---
+
+# React Native emergency bug fix before launch: triage, repair, or rebuild
+
+*Your launch date is close, but the release build crashes, auth loses users, or the paywall grants the wrong access.*
+
+## TL;DR
+
+A React Native emergency before launch needs containment before code changes. Freeze features, save the failing build and logs, reproduce the problem in the same release environment, and trace one user path from fresh install to the paid outcome. Fix an isolated bug when its owner, trigger, and regression test are clear. Audit the app when several systems disagree about auth, navigation, payments, or production configuration. Rebuild the critical path when every patch creates another failure or nobody can explain the release state. The objective is not a green preview. It is a stable TestFlight or internal-track build that can survive App Review and real users.
+
+## Key facts at a glance
+
+- A bug that appears only in TestFlight, an Android internal track, or release mode must be reproduced in that environment.
+- Expo Go and a simulator can hide native configuration, signing, production secrets, and lifecycle failures.
+- Auth comes before payments because entitlement state needs a stable user identity.
+- A successful purchase is still broken if access disappears after restart, login, restore, or reinstall.
+- App Store assets, privacy answers, account deletion, analytics, and reviewer access are launch work, not cleanup for later.
+- Fix when the failure is isolated and the release foundation is explainable.
+- Rebuild the critical path when dependencies, state ownership, or native configuration cannot be made predictable with a contained repair.
+
+## Diagnosis: define the emergency before touching code
+
+"The app is broken" is not a useful incident report. Name the build, device, account state, action, and observed result.
+
+Start by writing one failing sentence. For example: "On a fresh TestFlight install, Sign in with Apple returns to the login screen," or "A sandbox purchase succeeds, but premium access disappears after the app restarts." That statement gives the team something testable. "Auth is weird" and "RevenueCat is broken" invite random patches.
+
+Preserve evidence before changing dependencies or native projects:
+
+1. Record the commit and build number that failed.
+2. Save the first useful error, crash log, device, OS, and account state.
+3. Capture the exact steps from fresh install to failure.
+4. Note production variables, bundle IDs, API endpoints, update channels, and store products.
+5. Confirm whether the failure happens before JavaScript starts, during app state restoration, or after a user action.
+
+That last distinction controls the repair path. A startup crash before the first React view may point to a native module, release bundle, or configuration problem. A crash after a button tap may sit in JavaScript, an API response, or state handling. A purchase that succeeds while access stays locked is usually an identity or entitlement-state problem, not a paywall-design problem.
+
+Then map the launch path as one sequence:
+
+`fresh install -> onboarding -> auth -> core outcome -> paywall -> purchase -> entitlement -> restart -> restore -> account deletion`
+
+Mark each step proven, failed, or untested. Polished screens mean little if the app cannot preserve a session, recover from failure, or recognize a returning paid user.
+
+## Fix path: stabilize the release in dependency order
+
+Freeze feature work. The emergency branch should contain only changes required to reproduce, repair, and test the blocker.
+
+Work in this order because later systems depend on earlier ones.
+
+### 1. Prove the release build
+
+Create the same class of binary that failed. For iOS, use TestFlight or an equivalent signed path. For Android, use the internal testing artifact. Confirm production variables, endpoints, bundle identity, permissions, and native modules before debugging screen code.
+
+If the app works in Expo Go but fails after signing, inspect the release-only boundary. Common causes include a missing production variable, incompatible native package, config plugin drift, a file absent from the clean build, or startup work that fails before error reporting initializes. Read the first useful failure, not the final wrapper message.
+
+### 2. Stabilize identity and navigation
+
+Auth must have one owner. The app should be able to answer whether the user is signed in, whether onboarding is complete, and which route should render while session restoration is still loading. If three screens each make those decisions, a timeout fix in one screen will not stabilize the product.
+
+Test signup, login, token refresh, restart, logout, deep-link return, and account deletion. Fix stale sessions before subscriptions. A purchase attached to one anonymous identity and a later login to another can look like an SDK defect.
+
+### 3. Repair the paid-access state machine
+
+Treat the paywall as a system. Store products, purchase handling, user identity, entitlements, restore purchases, cancellation or expiry, and premium route guards must agree. Put paid access behind one shared entitlement source instead of checking a local Boolean in every screen.
+
+Run new, failed, and cancelled purchases, then restart, log in again, reinstall, and restore. Track the results in analytics.
+
+### 4. Close the submission gaps
+
+Fixing the headline bug does not make the app ready for review. Verify fresh install, offline states, permissions, privacy, account deletion, support links, screenshots, subscription copy, review notes, and reviewer credentials. Confirm crash reports and launch analytics arrive from the release build.
+
+Use the [App Store submission checklist](/blog/app-store-submission-checklist-2026) for the full store pass. If the emergency is an Expo build or TestFlight-only crash, compare the failure with the [Expo TestFlight crash triage guide](/blog/expo-app-testflight-crash-fix).
+
+### 5. Decide fix versus rebuild
+
+Fix the existing app when the problem has one reproducible trigger, the dependency tree is current enough to explain, state has clear owners, and a targeted regression test can prove the repair.
+
+Pause for an audit when the release fails across more than one boundary, such as auth plus payments, or when an AI-generated codebase has copied state and API logic across screens. my [AI App Rescue](/ai-app-rescue) is the triage path for apps created with Cursor, Lovable, Bolt, Replit, Rork, or similar tools when the real question is what should survive.
+
+Rebuild the critical path when each patch creates a different failure, signed builds stay unreliable, auth and paid access have no central source, or native dependencies are unexplained. Keep validated screens, copy, assets, product rules, and working backend logic.
+
+## Comparison
+
+| Path | Cost | Best for | Risk |
+|---|---:|---|---|
+| DIY incident triage | $0 plus your time | One reproducible bug with useful logs and a known owner | Launch pressure encourages untested patches |
+| [Ship React Native Full](/mobile-apps) | $199 | Technical founder rebuilding on a production boilerplate | You still own migration, QA, and submission |
+| [Kickstart](/mobile-apps) | $499 | Founder who can implement the fix but needs the boilerplate, 1-on-1 help, code review, and 30-day support | Advice does not replace engineering capacity |
+| AI App Rescue | Scoped after triage | AI-built app with unclear fix-versus-rebuild risk | The audit may show that preserving the current foundation is wasteful |
+| my Product Build Sprint | $3,999 with iOS and Android included | Focused app needing a 4-week done-for-you launch path | The product must fit a fixed launch scope |
+| my Product Build Sprint + Growth | $5,999 with iOS and Android included | Revenue-ready app that also needs full launch assets and ASO | Too much scope for one isolated bug |
+
+my Product Build Sprint includes a 30-day ready-to-ship guarantee or full refund. Use [my pricing](/mobile-apps) to compare the productized paths against the cost of another uncertain patch cycle.
+
+## FAQ
+
+### What counts as a React Native emergency before launch?
+
+A release blocker counts: the signed app will not build, crashes on startup, loses authentication, breaks its core outcome, mishandles purchases, or cannot pass a required submission flow. A cosmetic defect matters, but it is not the first incident unless it prevents use or misrepresents what the user buys.
+
+### Why does the app work locally but fail in TestFlight?
+
+Local development and Expo Go do not reproduce every release condition. The signed build can use different native modules, production variables, permissions, optimization, service endpoints, and startup behavior, so reproduce the problem in the failing binary before changing code.
+
+### Should I upgrade React Native or Expo during an emergency fix?
+
+Only when evidence shows the current version is the cause and the upgrade path is understood. A broad framework upgrade changes too many variables for a contained repair, especially when the launch blocker is an isolated config, identity, or entitlement issue.
+
+### Can an over-the-air update fix the launch blocker?
+
+Sometimes, if the affected app already has a compatible update system and the change stays inside the update's permitted JavaScript and asset boundary. Native modules, permissions, signing, store products, and some startup failures still require a new binary and normal release testing.
+
+### How do I know whether the bug is in RevenueCat or my app?
+
+Separate purchase completion from access control. If the store and RevenueCat record the transaction but the app grants the wrong access, inspect user identity, entitlement identifiers, customer-info refresh, caching, and route guards before blaming the SDK.
+
+### When should I stop asking an AI coding tool to patch the bug?
+
+Stop when two patches fail to explain the cause, when the tool changes dependencies without a version plan, or when the same state rule appears in several screens. AI can help inspect evidence and implement a bounded change, but it cannot replace ownership of the release architecture.
+
+### Is a one-hour consultation enough?
+
+It can be enough when the failure is isolated and you can make the change yourself. Read [when a React Native consultation helps](/blog/hire-a-react-native-consultant-for-an-hour) before choosing Kickstart; use a rescue audit when the codebase itself is the unknown.
+
+### Does fixing the blocker mean the app is ready to submit?
+
+No. The repaired binary still needs a fresh-install test, lifecycle and failure-state checks, privacy and account-deletion review, payment disclosures, screenshots, support links, analytics, crash reporting, and a complete reviewer path.
+
+## Next steps
+
+- [Compare fixed launch paths and pricing](/mobile-apps)
+- [Start with AI App Rescue when the codebase needs triage](/ai-app-rescue)
+- [Decide whether focused React Native consulting is enough](/blog/hire-a-react-native-consultant-for-an-hour)

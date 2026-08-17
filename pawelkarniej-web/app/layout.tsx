@@ -6,6 +6,7 @@ import { Outfit } from "next/font/google";
 import { ThemeProvider } from "@/components/theme-provider";
 import { SiteNav } from "@/components/site-nav";
 import localFont from "next/font/local";
+import AnalyticsScripts from "@/components/analytics-scripts";
 
 // Body font - Geist (using variable font for better performance)
 const geist = localFont({
@@ -93,6 +94,7 @@ export default function RootLayout({
           <main id="main-content" className="flex min-h-screen flex-col">
             {children}
           </main>
+          <AnalyticsScripts />
         </ThemeProvider>
       </body>
     </html>

@@ -1,0 +1,231 @@
+---
+title: "RevenueCat vs Stripe for mobile subscriptions: which to ship with in 2026"
+date: "2026-04-16"
+excerpt: "Honest comparison of RevenueCat and Stripe for mobile app subscription billing in 2026. The cleanest decision rules and the cases where each one wins."
+tags: ["revenuecat", "stripe-mobile", "subscription-billing", "mobile-app-monetization"]
+featuredImage: "/favicon.png"
+---
+
+# RevenueCat vs Stripe for mobile subscriptions: which to ship with in 2026
+
+*The decision is easier than the SDK names suggest.*
+
+## TL;DR
+
+For most iOS-first or iOS + Android consumer mobile apps, RevenueCat is the right pick in 2026. It abstracts Apple StoreKit and Google Play Billing, handles receipts and renewals, and stays free until $2,500 monthly tracked revenue. Use Stripe for mobile only when you have a hybrid web + mobile flow where users buy on web (subscription) and access via mobile, or when Apple's IAP rules don't apply (B2B reader apps, physical goods, services consumed outside the app). Most indie founders default to RevenueCat. Most B2B SaaS companies adding mobile to an existing web product default to Stripe. This article gives the decision rules and the integration patterns.
+
+## Key facts at a glance
+
+- Apple's IAP rules require digital goods sold inside an iOS app to use Apple's payment system. RevenueCat wraps that.
+- Stripe is allowed for physical goods, services consumed outside the app (Uber, Airbnb), and B2B reader apps (Spotify-style flows post the 2024 EU DMA changes).
+- RevenueCat takes 1 percent of subscription revenue after the free tier (above $2,500 MTR).
+- Stripe takes 2.9 percent + $0.30 per transaction for cards plus mobile surcharges.
+- The actual all-in cost for indie apps usually favors RevenueCat once you account for receipt-validation infrastructure.
+
+---
+
+## What each one actually does
+
+### RevenueCat
+
+A mobile-first subscription platform. SDKs for iOS, Android, React Native, Flutter, Unity. Wraps Apple StoreKit and Google Play Billing. Handles:
+
+- Subscription products and entitlements
+- Free trials with intro offers
+- Restore purchases across devices
+- Receipt validation server-side (so your client code stays simple)
+- Webhooks for events (purchased, renewed, canceled, expired, churn)
+- Charts and revenue analytics
+- A/B testing of paywalls (paid tier)
+- Cross-platform subscription state (iOS user logs into Android, sees their subscription)
+
+In practice you call `Purchases.purchase(product)` from your React Native code and RevenueCat handles the rest.
+
+### Stripe
+
+A general-purpose payment platform. Cards, ACH, wire, BNPL. SDKs for web, iOS, Android, etc. For mobile subscriptions:
+
+- Card-based subscription billing
+- Stripe Checkout (web-hosted purchase flow)
+- Stripe Customer Portal (web-hosted self-service)
+- Webhooks for events
+- International tax handling (Stripe Tax)
+
+For iOS apps selling digital goods, Stripe is NOT a substitute for Apple IAP; you'd be violating App Store guidelines. For physical goods or B2B reader apps, Stripe works fine inside iOS.
+
+---
+
+## The decision rules
+
+### Default: RevenueCat
+
+For all of these:
+
+- iOS-first or iOS + Android consumer apps
+- Digital subscriptions (premium content, AI features, in-app credits, ad-free)
+- You don't already have a web checkout
+- You want minimum integration time (under 2 days)
+
+This is roughly 90 percent of indie consumer apps in 2026.
+
+### Pick Stripe when
+
+- You have an existing web product where users buy first, then access via mobile (typical SaaS pattern)
+- You're selling physical goods that users buy in-app (e-commerce)
+- You're a B2B reader app (Apple's 2024 changes allow this in some regions)
+- Users need to manage subscriptions on the web (Stripe Customer Portal is best-in-class)
+
+### Use both when
+
+- You sell on web with Stripe to maximize margin (no Apple cut)
+- Mobile users get content access from their existing Stripe subscription via a custom auth bridge
+- You also offer Apple IAP via RevenueCat for users who prefer to subscribe inside the app
+
+This dual pattern is common for content-first apps (newsletters, courses, podcasts) where most revenue comes from web but mobile is a feature.
+
+---
+
+## Real cost comparison
+
+### Scenario: AI utility app, $9.99 monthly, 1,000 paying users in month 1
+
+| Provider | Revenue | Provider fee | Apple/Google fee | Net to founder |
+|---|---|---|---|---|
+| RevenueCat (free tier) | $9,990 | $0 (under $2,500 MTR? no, but check current tier) | 30% to Apple ($2,997) | $6,993 (year 1: 15% takes it to 85%) |
+| RevenueCat (paid) | $9,990 | $99/mo flat or 1% (~$99) | 30% Apple | ~$6,894 |
+| Stripe (if allowed) | $9,990 | 2.9% + $0.30/txn (~$610) | $0 | $9,380 |
+
+Stripe looks dramatically better, but Stripe is NOT allowed for digital goods in iOS apps. You'd be violating Apple's guidelines.
+
+The realistic comparison is: RevenueCat (which handles Apple IAP for you) vs DIY direct Apple IAP (which you'd have to maintain yourself). RevenueCat wins on dev time saved.
+
+### Scenario: B2B SaaS, $49 monthly, web + mobile
+
+| Provider | Revenue | Provider fee | Net |
+|---|---|---|---|
+| Stripe | $49,000 | 2.9% + $0.30 ($1,510) | $47,490 |
+| RevenueCat (in-app subscribe) | $49,000 | 30% to Apple/Google + RevenueCat 1% | $33,810 |
+
+For B2B with a web-first user, Stripe via the web wins by a lot. Mobile becomes a "log in with your existing subscription" flow.
+
+---
+
+## Integration time
+
+| Provider | First-time integration | With Ship React Native |
+|---|---|---|
+| RevenueCat | 1 to 2 days | Pre-wired |
+| Stripe (web purchase, mobile access) | 2 to 4 days | Custom |
+| Stripe direct in-app (where allowed) | 3 to 7 days | Custom |
+
+RevenueCat in [Ship React Native](/mobile-apps) is wired out of the box. Stripe requires the custom auth bridge if you go hybrid.
+
+---
+
+## What about the Apple-bypass headlines from 2024 to 2025?
+
+The European Union DMA changes (2024) and the US Epic v Apple ruling (mid-2024) allowed limited alternative payment paths for some app categories in some regions. The limits in 2026:
+
+- The changes apply to specific app types (reader apps, certain B2B) and specific regions.
+- Apple still charges a Core Technology Commission on alternative payment users.
+- Implementing alternative payments requires separate compliance and review.
+
+Net effect for indie founders: stay with Apple IAP via RevenueCat unless you have a legal team and a clear category fit.
+
+---
+
+## RevenueCat-specific gotchas
+
+### Gotcha 1: free tier is generous but not unlimited
+
+Free tier covers up to $2,500 monthly tracked revenue. Above that you're on a paid plan ($99 a month flat or 1 percent of revenue, your choice).
+
+### Gotcha 2: cross-platform state requires user identification
+
+RevenueCat tracks subscriptions per "App User ID." If you don't set this on user signup, iOS purchases and Android purchases for the same user appear as different users. Set the App User ID to your auth user ID always.
+
+### Gotcha 3: receipt validation on launch
+
+The default RevenueCat SDK validates receipts on launch. If your backend grants entitlements, you need to wire the webhook so your DB and RevenueCat agree on subscription state.
+
+### Gotcha 4: testing in sandbox is its own thing
+
+Apple sandbox subscriptions renew on accelerated timelines (a "monthly" sandbox subscription renews every 5 minutes). Plan QA cycles around this.
+
+---
+
+## Stripe-specific gotchas
+
+### Gotcha 1: Apple won't let you sell digital goods directly
+
+Don't try to ship a Stripe-direct-in-app flow for digital goods. The app will be rejected. You can route to a web purchase, but then mobile becomes "access via existing subscription" not "purchase."
+
+### Gotcha 2: Tax compliance is on you
+
+Stripe Tax automates calculation but you still need correct configuration. RevenueCat doesn't have this concern because Apple/Google handle tax remittance.
+
+### Gotcha 3: Customer Portal has UX rough edges
+
+Stripe Customer Portal is functional but not customizable beyond branding. For high-end consumer UX you may need a custom subscription management screen.
+
+---
+
+## Recommendation matrix
+
+| Your situation | Recommendation |
+|---|---|
+| iOS-first consumer AI/utility app | RevenueCat |
+| iOS + Android consumer app | RevenueCat |
+| Web-first SaaS with mobile companion | Stripe (web), bridged to mobile |
+| Mostly web, sometimes mobile purchase | Stripe + RevenueCat (both) |
+| Physical goods | Stripe (allowed in-app) |
+| B2B reader app (newsletters, podcasts, audiobooks) | Stripe direct (post-2024 changes, in qualifying regions) |
+| Cross-platform game with virtual currency | RevenueCat + Apple IAP |
+| Marketplace (creators sell to consumers) | Stripe Connect on web, RevenueCat for mobile in-app |
+
+---
+
+## FAQ
+
+### Do I support both?
+
+Yes. The [Ship React Native](/mobile-apps) boilerplate ships with RevenueCat wired by default. Stripe integration is a half-day customization. Every my client launch picks one based on the kickoff scoping.
+
+### What about other providers (Glassfy, Adapty, Qonversion)?
+
+All of them are fine. RevenueCat has the largest ecosystem and best React Native SDK in 2026. Glassfy and Adapty are competitive on features and price; switching costs from RevenueCat are low if you ever need to.
+
+### How much does Apple actually take?
+
+30 percent in the first year for new subscribers, drops to 15 percent for users who maintain a subscription past year 1. The Small Business Program (under $1M annual revenue) is 15 percent across the board. Most indie apps qualify for Small Business and pay 15 percent.
+
+### Can I A/B test paywalls?
+
+RevenueCat has paywall A/B testing as a paid feature. You can also build it yourself with feature flags and Mixpanel for under $50 a month all-in. For pre-launch and v1, ship one paywall variant; A/B test post-launch with real data.
+
+### What about Sign in with Apple?
+
+Required if you offer any third-party social sign-in (Google, Facebook). The auth flow is independent of subscription billing. Both RevenueCat and Stripe work fine alongside Sign in with Apple.
+
+### Is RevenueCat overkill for a single-tier subscription?
+
+No. Even single-tier subscriptions need receipt validation, restore purchases, churn handling, and webhook plumbing. RevenueCat's free tier is 1-day integration; DIY is 1-week minimum.
+
+### What's the cleanest setup for a hybrid web + mobile SaaS?
+
+Subscribe on web via Stripe. Mobile uses your existing auth to detect subscription status from your backend. Optionally offer Apple IAP via RevenueCat as an alternative purchase path for users who prefer mobile signup. Many founders skip the Apple IAP path entirely if web conversion is strong.
+
+### Do I handle migrations?
+
+If you're moving from one provider to another mid-life of an app, that's custom scope. Most migrations are 1 to 3 day projects depending on data depth.
+
+---
+
+**Next steps:**
+- [Get RevenueCat wired in the Ship React Native boilerplate ($199) →](/mobile-apps)
+- [Or have me ship with the right pick for your offer ($3,999) →](/mobile-apps)
+- [Read paywall conversion benchmarks →](/blog/paywall-conversion-benchmarks-indie-apps-2026)
+
+**Related deep dives:**
+- [Hidden costs of mobile app development](/blog/hidden-costs-mobile-app-development-12-line-items-quotes-miss)
+- [How to build a ChatGPT wrapper that makes money](/blog/how-to-build-a-chatgpt-wrapper-app-that-makes-money)

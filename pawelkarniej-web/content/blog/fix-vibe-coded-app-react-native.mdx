@@ -1,0 +1,163 @@
+---
+title: "Fix a vibe-coded React Native app: the rescue checklist"
+date: "2026-05-26"
+excerpt: "A practical checklist for founders who used AI tools to build a React Native app and now need to fix bugs, clean architecture, and prepare for launch."
+tags: ["fix-vibe-coded-app", "react-native", "ai-app-rescue", "vibe-coding", "app-cleanup"]
+featuredImage: "/favicon.png"
+---
+
+# Fix a vibe-coded React Native app: the rescue checklist
+
+A vibe-coded React Native app usually fails in a specific way.
+
+The demo looks close. The screens are there. The AI tool created routes, buttons, forms, and maybe even a paywall. Then the founder tries to launch and the product starts falling apart: auth breaks, the build fails, payments are fake, App Store requirements are missing, and every small change creates another bug.
+
+This is the checklist I use before deciding whether a vibe-coded app should be fixed, rebuilt, or abandoned.
+
+## Start with the launch path, not the file tree
+
+Do not begin by cleaning random components.
+
+Trace the actual user journey:
+
+1. user opens the app
+2. user signs up or skips auth intentionally
+3. user reaches the core value
+4. user hits a paywall or free limit
+5. user pays, restores, or continues
+6. user returns later and the app remembers state
+
+If that path is stable, the app may be salvageable. If the path depends on duplicated state, mock data, and one-off screen logic, the project needs deeper rescue.
+
+## Check whether the React Native foundation is healthy
+
+AI agents often install whatever package makes the current error disappear.
+
+Check:
+
+- Expo SDK and React Native versions match
+- EAS build works
+- iOS build works on a physical device
+- navigation is using a current pattern
+- native modules are compatible with Expo
+- no web-only package controls a mobile feature
+- package lockfile is not a pile of forced resolutions
+
+If the AI downgraded Expo, mixed incompatible dependencies, or patched native build errors without understanding them, fix the foundation before adding features.
+
+## Untangle state and business logic
+
+The most common vibe-coded problem is not ugly UI. It is hidden business logic.
+
+Look for:
+
+- API calls inside button handlers
+- subscription checks copied across screens
+- onboarding completion stored in multiple places
+- auth state controlled by screen components
+- business rules inside UI files
+- duplicated validation logic
+
+Clean React Native apps have separations: UI, state, API, auth, payments, analytics, and storage. Vibe-coded apps often blend those together because the AI optimized for visible output.
+
+## Treat the paywall as infrastructure
+
+A paywall screen is not a monetization system.
+
+Before launch, you need:
+
+- RevenueCat, StoreKit, Google Play Billing, or Stripe configured properly
+- product identifiers that match the store
+- entitlement checks
+- restore purchases
+- expired subscription handling
+- trial eligibility logic
+- analytics events
+- purchase error states
+
+If a user can close the paywall and still access paid features, the paywall is a mockup. If purchases work but the app does not know who is paid after restart, the paywall is still broken.
+
+## Add analytics before you invite users
+
+You cannot fix what you cannot see.
+
+At minimum, track:
+
+- install or first open
+- onboarding start and finish
+- signup
+- core action started
+- core action completed
+- paywall viewed
+- trial started
+- purchase completed
+- purchase failed
+- retention events
+
+Many AI-built apps skip analytics because analytics do not show in the demo. That is exactly why founders get stuck after launch.
+
+## Decide what to keep
+
+A vibe-coded app is not automatically worthless.
+
+Often, you can keep:
+
+- brand direction
+- screen layout
+- copy
+- user flow decisions
+- assets
+- parts of the UI component layer
+- small pieces of working business logic
+
+But you should be willing to replace:
+
+- auth flow
+- payment logic
+- API clients
+- state model
+- analytics
+- navigation assumptions
+- native configuration
+
+The win is not preserving every generated line. The win is shipping a product faster than the AI mess can keep consuming your time.
+
+## When to rebuild instead of fix
+
+Rebuild the critical path if:
+
+- every flow has its own version of user state
+- dependencies are pinned to old or incompatible versions
+- payment logic cannot be trusted
+- auth and navigation are tangled
+- the app cannot build cleanly
+- no developer can explain how the core flow works
+- adding one feature breaks unrelated screens
+
+That does not always mean a full redesign. It often means keeping the useful product decisions and rebuilding the foundation.
+
+## What I do
+
+my [AI App Rescue](/ai-app-rescue) offer has one public entry point: a $499 audit. The audit determines whether the code should receive a focused repair quote or move to a clean Product Build Sprint. The audit fee credits toward either implementation path.
+
+I review the React Native or Expo codebase, identify what is salvageable, and give you a fixed path to launch readiness: auth, onboarding, paywall, analytics, App Store preparation, and a growth plan.
+
+Read next:
+
+- [Fix or rebuild your AI-built React Native app?](/blog/fix-or-rebuild-ai-built-react-native-app)
+- [Why AI-built React Native apps break before launch](/blog/why-ai-built-react-native-apps-break-before-launch)
+- [React Native AI app code audit checklist](/blog/react-native-ai-app-code-audit-checklist)
+
+## FAQ
+
+### Can a vibe-coded React Native app be fixed?
+
+Yes, if the core journey is understandable, dependencies are healthy, and the broken parts are isolated. If auth, state, payments, and navigation are tangled, rebuilding the critical path is usually faster.
+
+### Should I keep asking Cursor or another AI agent to patch the bugs?
+
+Only for isolated issues you understand. If the same bug keeps reappearing in different forms, the problem is usually architecture, not prompt quality.
+
+### How long does a rescue take?
+
+Simple cleanup can take days. A real launch-readiness rescue usually takes 2 to 4 weeks depending on whether the existing code can be salvaged.
