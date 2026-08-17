@@ -31,8 +31,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { TaglineReveal } from "@/components/tagline-reveal";
-import { ProductProofSection } from "@/components/sections/product-proof";
+import { TestimonialsSection } from "@/components/sections/testimonials";
 import { AboutAndVideos } from "@/components/sections/about-and-videos";
 import { getAllApps } from "@/lib/apps-data";
 
@@ -115,10 +114,10 @@ export default function Home() {
                 className="font-heading text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight [text-wrap:balance]"
               >
                 <span className="gradient-text block">
-                  I build products that ship.
+                  I ship your app to the App Store in four weeks.
                 </span>
                 <span className="gradient-text block">
-                  I build systems that run.
+                  I automate the work that repeats every week.
                 </span>
               </motion.h1>
 
@@ -179,13 +178,13 @@ export default function Home() {
                 >
                   See how we can work together
                 </GradientButton>
-                <a
-                  href="#proof"
+                <Link
+                  href="/apps"
                   className="group inline-flex items-center gap-2 text-base font-semibold text-zinc-700 dark:text-zinc-300 transition-colors duration-300 hover:text-black dark:hover:text-white focus-ring rounded-full"
                 >
                   View my apps
                   <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
-                </a>
+                </Link>
               </motion.div>
 
               <motion.div
@@ -244,6 +243,9 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* Testimonials sit directly under the hero: the buyers speak before I do. */}
+      <TestimonialsSection />
 
       {/* App icon marquee */}
       <section aria-label="Icons of apps I shipped" className="relative py-12">
@@ -306,7 +308,7 @@ export default function Home() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
               viewport={{ once: true }}
-              className="group"
+              className="group order-2 lg:order-1"
             >
               <Card className="modern-card h-full glow-effect transition-all duration-300">
                 <CardHeader>
@@ -370,7 +372,9 @@ export default function Home() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.1 }}
               viewport={{ once: true }}
-              className="group"
+              /* Below lg the automations card leads: the automation offer is
+                 the one Paweł wants first on a phone. */
+              className="group order-1 lg:order-2"
             >
               <Card className="modern-card h-full glow-effect transition-all duration-300">
                 <CardHeader>
@@ -420,16 +424,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
-      <TaglineReveal
-        lines={[
-          "Every product on this page",
-          "was shipped by one person.",
-          "The same person you will talk to.",
-        ]}
-      />
-
-      <ProductProofSection />
 
       <AboutAndVideos />
 
