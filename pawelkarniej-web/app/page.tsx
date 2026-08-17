@@ -75,7 +75,7 @@ export default function Home() {
 
   const stats = [
     { label: "Apps shipped", value: "20+", icon: Smartphone },
-    { label: "Apps sold to new owners", value: "2", icon: Star },
+    { label: "Apps sold", value: "2", icon: Star },
     { label: "Workflow at a time", value: "1", icon: Zap },
   ];
 
@@ -276,7 +276,7 @@ export default function Home() {
                     </li>
                     <li className="flex items-start gap-3">
                       <ArrowRight className="h-5 w-5 text-selfmade-deep dark:text-selfmade shrink-0 mt-0.5" />
-                      <span>Built on the same stack as my own 25+ shipped apps</span>
+                      <span>Built on the same stack as my own 20+ shipped apps</span>
                     </li>
                   </ul>
                   <div className="space-y-4">
