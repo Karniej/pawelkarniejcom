@@ -89,14 +89,6 @@ export default function AppsPage() {
               >
                 Paweł Karniej apps
               </a>
-              <a
-                href={DEVELOPER_PAGES.silphoLLC}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="rounded-full border border-white/15 px-5 py-2.5 text-sm text-zinc-200 transition hover:border-emerald-400/40 hover:text-emerald-300"
-              >
-                More apps I shipped
-              </a>
             </div>
             <p className="mt-6 text-sm text-zinc-500">
               <Link

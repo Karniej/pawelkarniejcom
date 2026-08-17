@@ -606,7 +606,6 @@ export const appShowcases: AppShowcaseItem[] = [
 export const DEVELOPER_PAGES = {
   pawelKarniej:
     "https://apps.apple.com/pl/developer/pawel-karniej/id1693356080",
-  silphoLLC: "https://apps.apple.com/pl/developer/silpho-llc/id1870904612",
 };
 
 export const getAppById = (id: string): AppShowcaseItem | undefined => {

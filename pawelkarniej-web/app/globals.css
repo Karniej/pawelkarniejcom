@@ -257,12 +257,12 @@ html {
     transform: translateX(0);
   }
   to {
-    transform: translateX(-50%);
+    transform: translateX(calc(-100% / var(--marquee-segments)));
   }
 }
 
 .animate-marquee {
-  animation: marquee 50s linear infinite;
+  animation: marquee 18s linear infinite;
 }
 
 .animate-marquee:hover {

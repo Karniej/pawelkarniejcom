@@ -16,7 +16,7 @@ import {
   Instagram,
   Wrench,
 } from "lucide-react";
-import type { SVGProps } from "react";
+import type { CSSProperties, SVGProps } from "react";
 
 const TikTokIcon = (props: SVGProps<SVGSVGElement>) => (
   <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" {...props}>
@@ -68,6 +68,8 @@ const SOCIAL_LINKS = [
     icon: Youtube,
   },
 ];
+
+const MARQUEE_SEGMENTS = 6;
 
 export default function Home() {
   const marqueeApps = getAllApps();
@@ -234,29 +236,36 @@ export default function Home() {
       {/* App icon marquee */}
       <section aria-label="Icons of apps I shipped" className="relative py-12">
         <div className="marquee-mask overflow-hidden">
-          <div className="flex w-max animate-marquee gap-6 pr-6">
-            {[...marqueeApps, ...marqueeApps].map((app, index) => (
-              <Link
-                key={`${app.id}-${index}`}
-                href={`/apps/${app.id}`}
-                aria-label={`${app.title} case study`}
-                tabIndex={index >= marqueeApps.length ? -1 : undefined}
-                className="group relative block h-14 w-14 shrink-0 overflow-hidden rounded-xl border border-black/10 dark:border-white/10 grayscale transition-all duration-700 ease-[cubic-bezier(0.32,0.72,0,1)] hover:scale-110 hover:grayscale-0 focus-ring"
-              >
-                <Image
-                  src={app.icon}
-                  alt={`${app.title} app icon`}
-                  fill
-                  sizes="56px"
-                  className="object-cover"
-                />
-              </Link>
-            ))}
+          <div
+            className="flex w-max animate-marquee gap-6 pr-6"
+            style={{ "--marquee-segments": MARQUEE_SEGMENTS } as CSSProperties}
+          >
+            {Array.from({ length: MARQUEE_SEGMENTS }, (_, segmentIndex) =>
+              marqueeApps.map((app) => ({ app, segmentIndex })),
+            )
+              .flat()
+              .map(({ app, segmentIndex }) => (
+                <Link
+                  key={app.id + "-" + segmentIndex}
+                  href={"/apps/" + app.id}
+                  aria-label={app.title + " case study"}
+                  aria-hidden={segmentIndex > 0 ? true : undefined}
+                  tabIndex={segmentIndex > 0 ? -1 : undefined}
+                  className="group relative block h-14 w-14 shrink-0 overflow-hidden rounded-xl border border-black/10 dark:border-white/10 grayscale transition-all duration-700 ease-[cubic-bezier(0.32,0.72,0,1)] hover:scale-110 hover:grayscale-0 focus-ring"
+                >
+                  <Image
+                    src={app.icon}
+                    alt={segmentIndex === 0 ? app.title + " app icon" : ""}
+                    fill
+                    sizes="56px"
+                    className="object-cover"
+                  />
+                </Link>
+              ))}
           </div>
         </div>
         <p className="mt-6 text-center text-sm text-zinc-500">
-          Every icon is a real app I shipped. Hover one, click it, read its
-          story.
+          20+ shipped apps. Select an icon to read its story.
         </p>
       </section>
 
