@@ -162,7 +162,7 @@ export function AboutAndVideos() {
           </div>
         </section>
       ) : null}
-      <section className="relative px-4 py-24 bg-black/[0.03] dark:bg-white/[0.02]">
+      <section className="relative px-4 py-16 bg-black/[0.03] dark:bg-white/[0.02]">
         <motion.div
           initial={{ opacity: 0, y: 18 }}
           whileInView={{ opacity: 1, y: 0 }}
