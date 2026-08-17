@@ -22,10 +22,10 @@ Set the key in the Netlify dashboard (or in a local `.env.local` file) for the `
 YOUTUBE_API_KEY=your_actual_api_key_here
 ```
 
-You can optionally override the channel handle (defaults to `thepawelk`):
+You can optionally override the channel handle (defaults to `pawelkarniej`):
 
 ```
-YOUTUBE_CHANNEL_HANDLE=thepawelk
+YOUTUBE_CHANNEL_HANDLE=pawelkarniej
 ```
 
 ## How It Works

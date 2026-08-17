@@ -112,7 +112,7 @@ export function AboutAndVideos() {
                 </p>
               </div>
               <a
-                href="https://www.youtube.com/@thepawelk"
+                href="https://www.youtube.com/@pawelkarniej"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 font-semibold transition hover:text-selfmade-deep dark:hover:text-selfmade"

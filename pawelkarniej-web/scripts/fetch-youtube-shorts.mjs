@@ -8,7 +8,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const DATA_PATH = path.resolve(__dirname, "../data/youtube-shorts.json");
-const CHANNEL_HANDLE = process.env.YOUTUBE_CHANNEL_HANDLE || "thepawelk";
+const CHANNEL_HANDLE = process.env.YOUTUBE_CHANNEL_HANDLE || "pawelkarniej";
 const API_KEY = process.env.YOUTUBE_API_KEY;
 
 const log = (message) => console.log(`[youtube-shorts] ${message}`);

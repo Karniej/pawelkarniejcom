@@ -7,7 +7,7 @@ import { fileURLToPath } from "url";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const DATA_PATH = path.resolve(__dirname, "../data/youtube-videos.json");
-const CHANNEL_ID = process.env.YOUTUBE_CHANNEL_ID || "UCZFNvtnHjY_8pIEQmD16qiA";
+const CHANNEL_ID = process.env.YOUTUBE_CHANNEL_ID || "UCBrs3Z1NHbj3si5ULKkbwnA";
 const FEED_URL = `https://www.youtube.com/feeds/videos.xml?channel_id=${CHANNEL_ID}`;
 
 const decodeXml = (value) =>
