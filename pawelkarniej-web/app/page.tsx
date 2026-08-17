@@ -36,100 +36,20 @@ import {
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { TaglineReveal } from "@/components/tagline-reveal";
+import { getFeaturedApps } from "@/lib/apps-data";
 // YouTube integration is currently disabled. See YOUTUBE_SETUP.md for details.
 
 export default function Home() {
-  const projects = [
+  const liveApps = getFeaturedApps().filter((app) => !app.acquired);
+
+  const soldApps = [
     {
       title: "Aividly: AI Generated Videos",
       description:
         "Create short AI videos on your phone using cutting-edge AI models.",
       image: "/images/aividly.png",
       link: "https://apps.apple.com/us/app/aividly-ai-video-creator-pro/id6698894140",
-      type: "app",
-      status: "sold",
-      sold: true,
       tech: ["React Native", "AI/ML", "Video Processing"],
-    },
-    {
-      title: "Newsletterytics",
-      description:
-        "Your Beehiiv newsletter statistics and analytics, on the go.",
-      image: "/images/newsletterytics.png",
-      link: "https://apps.apple.com/us/app/newsletterytics-beehiivs-app/id6505141597",
-      type: "app",
-      status: "current",
-      tech: ["React Native", "Analytics", "API Integration"],
-    },
-    {
-      title: "Coldsmith",
-      description:
-        "Track your cold exposure sessions and build mental resilience.",
-      image: "/images/coldsmith.png",
-      link: "https://apps.apple.com/pl/app/wim-hof-method-whm-coldsmith/id6469033824",
-      type: "app",
-      status: "current",
-      tech: ["React Native", "Health", "Tracking"],
-    },
-    {
-      title: "TeleprompterX",
-      description:
-        "Keep scripts synced with a creator-first teleprompter experience.",
-      image: "/images/teleprompterx.png",
-      link: "/terms/teleprompterx",
-      type: "app",
-      status: "current",
-      tech: ["iOS", "Productivity", "Creators"],
-    },
-    {
-      title: "MoonLatte",
-      description:
-        "A minimalist caffeine tracker that stays entirely on-device.",
-      image: "/images/moonlatte.png",
-      link: "/terms/moonlatte",
-      type: "app",
-      status: "current",
-      tech: ["iOS", "Health", "Privacy"],
-    },
-    {
-      title: "VidNotes",
-      description:
-        "Private-first video notes to capture ideas without tracking.",
-      image: "/images/vidnotes.png",
-      link: "/terms/vidnotes",
-      type: "app",
-      status: "current",
-      tech: ["iOS", "Notes", "Privacy"],
-    },
-    {
-      title: "YapperX",
-      description:
-        "A lightweight companion for capturing quick thoughts, routines, and prompts wherever I am.",
-      image: "/images/yapperx.png",
-      link: "/terms/yapperx",
-      type: "app",
-      status: "current",
-      tech: ["iOS", "Productivity", "Minimal"],
-    },
-    {
-      title: "BeatAI",
-      description:
-        "An AI-native music practice coach that listens, scores timing, and keeps musicians accountable.",
-      image: "/images/beatai.png",
-      link: "/contact",
-      type: "app",
-      status: "current",
-      tech: ["React Native", "AI/ML", "Music"],
-    },
-    {
-      title: "FIFTN",
-      description:
-        "Focus timer + smart app blocker for deep work sessions. Learn more at FIFTN.app.",
-      image: "/images/fiftn.png",
-      link: "https://apps.apple.com/us/app/focus-timer-app-block-fiftn/id6753712943",
-      type: "app",
-      status: "current",
-      tech: ["iOS", "Productivity", "Focus"],
     },
     {
       title: "Rhava",
@@ -137,48 +57,7 @@ export default function Home() {
         "Rhava evolved into Bibleily: Speak God Bible after the acquisition, helping people build daily scripture habits.",
       image: "/images/rhava.svg",
       link: "https://apps.apple.com/gb/app/bibleily-speak-god-bible/id6747157033",
-      type: "app",
-      status: "sold",
-      sold: true,
       tech: ["React Native", "Wellness", "Accountability"],
-    },
-    {
-      title: "Countdown Nuts",
-      description: "Smart management and tracking of your consumable items.",
-      image: "/images/countownnuts.png",
-      link: "https://countdownnuts.com/",
-      type: "web",
-      status: "released",
-      tech: ["Next.js", "PWA", "Management"],
-    },
-    {
-      title: "Themegen.xyz",
-      description:
-        "Create and customize dependency-free themes for React Native",
-      image: "/images/themegen.png",
-      link: "https://themegenrn.netlify.app/",
-      type: "web",
-      status: "released",
-      tech: ["React", "Tools", "Theming"],
-    },
-    {
-      title: "The Fitmate App",
-      description: "Find your perfect workout partner and stay motivated.",
-      image: "/images/fitmate.png",
-      link: "https://apps.apple.com/pl/app/the-fitmate-app/id6450453721?l=pl",
-      type: "app",
-      status: "released",
-      tech: ["React Native", "Social", "Fitness"],
-    },
-    {
-      title: "Selfmade.dev",
-      description:
-        "My personal blog about programming and React Native development.",
-      image: "/images/selfmadedev.png",
-      link: "https://selfmadedev.com/",
-      type: "web",
-      status: "released",
-      tech: ["Blog", "Education", "React Native"],
     },
   ];
 
@@ -201,24 +80,6 @@ export default function Home() {
       date: "May 2, 2023",
       publisher: "LogRocket",
     },
-    {
-      title: "Detox Tool for React Native testing",
-      link: "https://www.netguru.com/blog/detox-tool-react-native",
-      date: "May 2, 2023",
-      publisher: "Netguru",
-    },
-    {
-      title: "Common bugs in React Native ScrollView",
-      link: "https://blog.logrocket.com/common-bugs-react-native-scrollview/",
-      date: "Aug 6, 2020",
-      publisher: "LogRocket",
-    },
-    {
-      title: "How to make Tinder-like card animations with React Native",
-      link: "https://blog.logrocket.com/how-to-make-tinder-like-card-animations-with-react-native/",
-      date: "Sep 2, 2019",
-      publisher: "LogRocket",
-    },
   ];
 
   const stats = [
@@ -226,19 +87,6 @@ export default function Home() {
     { label: "Years of React Native", value: "8", icon: Code },
     { label: "Apps sold to new owners", value: "2", icon: Star },
   ];
-
-  const soldProjects = projects.filter((project) => project.status === "sold");
-
-  const getProjectTypeBadge = (type: string) => {
-    switch (type) {
-      case "app":
-        return "Mobile App";
-      default:
-        return "Web App";
-    }
-  };
-
-  // youtube-shorts.json is refreshed during the build by scripts/fetch-youtube-shorts.mjs
 
   return (
     <div className="min-h-screen bg-black text-white overflow-hidden">
@@ -294,7 +142,7 @@ export default function Home() {
                   See how we can work together
                 </GradientButton>
                 <GradientButton
-                  href="#projects"
+                  href="#proof"
                   variant="secondary"
                   className="dark"
                   size="lg"
@@ -550,6 +398,189 @@ export default function Home() {
         ]}
       />
 
+      {/* Proof of work */}
+      <section id="proof" className="relative py-24 px-4 scroll-mt-24">
+        <div className="max-w-7xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-4xl md:text-5xl font-heading font-bold mb-6">
+              Proof of work
+            </h2>
+            <p className="text-xl text-zinc-400 max-w-2xl mx-auto [text-wrap:pretty]">
+              Apps I still run, live on the App Store today. Every one built
+              start to finish by me.
+            </p>
+          </motion.div>
+
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 max-w-5xl mx-auto">
+            {liveApps.map((app, index) => (
+              <motion.div
+                key={app.id}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: index * 0.08 }}
+                viewport={{ once: true }}
+                className="group"
+              >
+                <Link
+                  href={`/apps/${app.id}`}
+                  className="block h-full rounded-2xl border border-white/10 bg-white/5 p-5 text-center transition-all duration-300 hover:border-emerald-400/30 hover:bg-white/10 group-hover:scale-105"
+                >
+                  <div className="w-16 h-16 relative rounded-2xl overflow-hidden mx-auto mb-4">
+                    <Image
+                      src={app.icon}
+                      alt={`${app.title} app icon`}
+                      fill
+                      className="object-cover"
+                    />
+                  </div>
+                  <div className="font-semibold group-hover:text-emerald-400 transition-colors">
+                    {app.title}
+                  </div>
+                  <div className="text-sm text-zinc-400 mt-1 [text-wrap:balance]">
+                    {app.tagline}
+                  </div>
+                </Link>
+              </motion.div>
+            ))}
+          </div>
+
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="mt-12 text-center"
+          >
+            <GradientButton href="/apps" variant="secondary" className="dark">
+              See all my apps
+            </GradientButton>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Sold apps */}
+      <section id="sold-apps" className="relative py-24 px-4 bg-white/[0.02]">
+        <div className="max-w-7xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-4xl md:text-5xl font-heading font-bold mb-6">
+              Sold apps
+            </h2>
+            <p className="text-xl text-zinc-400 max-w-2xl mx-auto">
+              Products I built, successfully handed off, and now continue their
+              journey with new owners.
+            </p>
+          </motion.div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+            {soldApps.map((project, index) => (
+              <motion.div
+                key={project.title}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                viewport={{ once: true }}
+                className="group"
+              >
+                <Card className="modern-card h-full glow-effect transition-all duration-300 group-hover:scale-105">
+                  <CardHeader>
+                    <div className="flex items-start justify-between gap-4 mb-4">
+                      <div className="w-16 h-16 relative rounded-xl overflow-hidden bg-white/10 p-2">
+                        <Image
+                          src={project.image}
+                          alt={project.title}
+                          fill
+                          className="object-contain"
+                        />
+                      </div>
+                      <div className="flex flex-col items-end gap-2">
+                        <Badge variant="default">Mobile App</Badge>
+                        <Badge
+                          variant="outline"
+                          className="gap-1 border-transparent bg-gradient-to-r from-yellow-300 via-amber-400 to-yellow-500 px-3 py-1 text-sm text-black shadow-[0_0_15px_rgba(234,179,8,0.45)]"
+                        >
+                          <Star className="h-3.5 w-3.5" />
+                          Sold
+                        </Badge>
+                      </div>
+                    </div>
+                    <CardTitle className="text-xl group-hover:text-emerald-400 transition-colors">
+                      {project.title}
+                    </CardTitle>
+                    <CardDescription className="text-zinc-400">
+                      {project.description}
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="space-y-4">
+                      <div className="flex flex-wrap gap-2">
+                        {project.tech.map((tech) => (
+                          <span
+                            key={tech}
+                            className="px-2 py-1 text-xs rounded-full bg-white/5 border border-white/10 text-zinc-300"
+                          >
+                            {tech}
+                          </span>
+                        ))}
+                      </div>
+                      <a
+                        href={project.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 text-emerald-400 hover:text-emerald-300 transition-colors"
+                      >
+                        Visit App <ExternalLink className="h-4 w-4" />
+                      </a>
+                    </div>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Graveyard teaser */}
+      <section className="relative py-24 px-4">
+        <div className="max-w-3xl mx-auto text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="rounded-3xl border border-white/10 bg-white/[0.03] px-8 py-12"
+          >
+            <h2 className="font-heading text-2xl md:text-3xl font-bold [text-wrap:balance]">
+              Not every app made it
+            </h2>
+            <p className="mt-4 text-lg text-zinc-400 [text-wrap:pretty]">
+              I killed some of my own products, and I write down why. The
+              honest version, not the highlight reel.
+            </p>
+            <div className="mt-8">
+              <GradientButton
+                href="/graveyard"
+                variant="secondary"
+                className="dark"
+              >
+                Visit the graveyard
+              </GradientButton>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
       {/* About Me */}
       <section className="relative pt-12 pb-24 px-4">
         <div className="max-w-7xl mx-auto">
@@ -573,18 +604,11 @@ export default function Home() {
               projects and industries.
             </p>
             <p>
-              Eventually I wanted more than just client work. I began
-              experimenting with my own app ideas, releasing projects like
-              Newsletterytics, a tool for Beehiiv creators, and AIVidly, a
-              mobile AI video generator. Some apps were small niche products,
-              others were bigger bets, but each one taught me something about
-              development, growth, and marketing.
-            </p>
-            <p>
-              I enjoy the process of turning an idea into a product, finding
-              users, and iterating based on what works. Today I split my time
-              between client work, both mobile apps and automations, and my
-              own portfolio of apps. I also build{" "}
+              Eventually I wanted more than client work, so I started shipping
+              my own apps. Some were small niche products, others were bigger
+              bets, but each one taught me something about development, growth,
+              and marketing. Today I split my time between client work, both
+              mobile apps and automations, and my own portfolio. I also build{" "}
               <a
                 href="https://silpho.com"
                 target="_blank"
@@ -599,280 +623,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Current Projects Section */}
-      <section id="projects" className="relative py-24 px-4 scroll-mt-24">
-        <div className="max-w-7xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-4xl md:text-5xl font-heading font-bold mb-6">
-              Currently working on
-            </h2>
-            <p className="text-xl text-zinc-400 max-w-2xl mx-auto">
-              My own portfolio of AI powered mobile applications
-            </p>
-          </motion.div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {projects
-              .filter((p) => p.status === "current")
-              .map((project, index) => (
-                <motion.div
-                  key={project.title}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
-                  viewport={{ once: true }}
-                  className="group"
-                >
-                  <Card className="modern-card h-full glow-effect transition-all duration-300 group-hover:scale-105">
-                    <CardHeader>
-                      <div className="flex items-start justify-between gap-4 mb-4">
-                        <div className="w-16 h-16 relative rounded-xl overflow-hidden bg-white/10 p-2">
-                          <Image
-                            src={project.image}
-                            alt={project.title}
-                            fill
-                            className="object-contain"
-                          />
-                        </div>
-                        <div className="flex flex-wrap items-center gap-2">
-                          <Badge
-                            variant={
-                              project.type === "app" ? "default" : "secondary"
-                            }
-                          >
-                            {getProjectTypeBadge(project.type)}
-                          </Badge>
-                          {project.sold && (
-                            <Badge
-                              variant="outline"
-                              className="gap-1 border-transparent bg-gradient-to-r from-yellow-300 via-amber-400 to-yellow-500 px-3 py-1 text-sm text-black shadow-[0_0_15px_rgba(234,179,8,0.45)]"
-                            >
-                              <Star className="h-3.5 w-3.5" />
-                              Sold
-                            </Badge>
-                          )}
-                        </div>
-                      </div>
-                      <CardTitle className="text-xl group-hover:text-emerald-400 transition-colors">
-                        {project.title}
-                      </CardTitle>
-                      <CardDescription className="text-zinc-400">
-                        {project.description}
-                      </CardDescription>
-                    </CardHeader>
-                    <CardContent>
-                      <div className="space-y-4">
-                        <div className="flex flex-wrap gap-2">
-                          {project.tech.map((tech) => (
-                            <span
-                              key={tech}
-                              className="px-2 py-1 text-xs rounded-full bg-white/5 border border-white/10 text-zinc-300"
-                            >
-                              {tech}
-                            </span>
-                          ))}
-                        </div>
-                        <a
-                          href={project.link}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="inline-flex items-center gap-2 text-emerald-400 hover:text-emerald-300 transition-colors"
-                        >
-                          View Project <ExternalLink className="h-4 w-4" />
-                        </a>
-                      </div>
-                    </CardContent>
-                  </Card>
-                </motion.div>
-              ))}
-          </div>
-        </div>
-      </section>
-
-      {soldProjects.length > 0 && (
-        <section id="sold-apps" className="relative py-24 px-4">
-          <div className="max-w-7xl mx-auto">
-            <motion.div
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              transition={{ duration: 0.6 }}
-              viewport={{ once: true }}
-              className="text-center mb-16"
-            >
-              <h2 className="text-4xl md:text-5xl font-heading font-bold mb-6">
-                Sold apps
-              </h2>
-              <p className="text-xl text-zinc-400 max-w-2xl mx-auto">
-                Products I built, successfully handed off, and now continue their
-                journey with new owners.
-              </p>
-            </motion.div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              {soldProjects.map((project, index) => (
-                <motion.div
-                  key={project.title}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
-                  viewport={{ once: true }}
-                  className="group"
-                >
-                  <Card className="modern-card h-full glow-effect transition-all duration-300 group-hover:scale-105">
-                    <CardHeader>
-                      <div className="flex items-start justify-between gap-4 mb-4">
-                        <div className="w-16 h-16 relative rounded-xl overflow-hidden bg-white/10 p-2">
-                          <Image
-                            src={project.image}
-                            alt={project.title}
-                            fill
-                            className="object-contain"
-                          />
-                        </div>
-                        <div className="flex flex-col items-end gap-2">
-                          <Badge
-                            variant={
-                              project.type === "app" ? "default" : "secondary"
-                            }
-                          >
-                            {getProjectTypeBadge(project.type)}
-                          </Badge>
-                          <Badge
-                            variant="outline"
-                            className="gap-1 border-transparent bg-gradient-to-r from-yellow-300 via-amber-400 to-yellow-500 px-3 py-1 text-sm text-black shadow-[0_0_15px_rgba(234,179,8,0.45)]"
-                          >
-                            <Star className="h-3.5 w-3.5" />
-                            Sold
-                          </Badge>
-                        </div>
-                      </div>
-                      <CardTitle className="text-xl group-hover:text-emerald-400 transition-colors">
-                        {project.title}
-                      </CardTitle>
-                      <CardDescription className="text-zinc-400">
-                        {project.description}
-                      </CardDescription>
-                    </CardHeader>
-                    <CardContent>
-                      <div className="space-y-4">
-                        <div className="flex flex-wrap gap-2">
-                          {project.tech.map((tech) => (
-                            <span
-                              key={tech}
-                              className="px-2 py-1 text-xs rounded-full bg-white/5 border border-white/10 text-zinc-300"
-                            >
-                              {tech}
-                            </span>
-                          ))}
-                        </div>
-                        <a
-                          href={project.link}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="inline-flex items-center gap-2 text-emerald-400 hover:text-emerald-300 transition-colors"
-                        >
-                          Visit App <ExternalLink className="h-4 w-4" />
-                        </a>
-                      </div>
-                    </CardContent>
-                  </Card>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </section>
-      )}
-
-      {/* Latest YouTube Shorts (temporarily disabled) */}
-      {/*
-      <section className="relative py-24 px-4 bg-white/[0.02]">
-        ...
-      </section>
-      */}
-
-      {/* Retired Projects Section */}
-      <section className="relative py-24 px-4 bg-white/[0.02]">
-        <div className="max-w-7xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-4xl md:text-5xl font-heading font-bold mb-6">
-              Retired projects
-            </h2>
-            <p className="text-xl text-zinc-400 max-w-2xl mx-auto">
-              Products I brought to life, learned from, and have since sunset
-            </p>
-          </motion.div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {projects
-              .filter((p) => p.status === "released")
-              .map((project, index) => (
-                <motion.div
-                  key={project.title}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
-                  viewport={{ once: true }}
-                  className="group"
-                >
-                  <Card className="modern-card h-full transition-all duration-300 group-hover:scale-105 group-hover:glow-effect">
-                    <CardHeader className="pb-3 space-y-3">
-                      <div className="w-12 h-12 relative rounded-lg overflow-hidden bg-white/10 p-2">
-                        <Image
-                          src={project.image}
-                          alt={project.title}
-                          fill
-                          className="object-contain"
-                        />
-                      </div>
-                      <div className="flex items-center justify-between gap-2">
-                        <CardTitle className="text-base group-hover:text-emerald-400 transition-colors">
-                          {project.title}
-                        </CardTitle>
-                        {project.sold && (
-                          <Badge
-                            variant="outline"
-                            className="gap-1 border-transparent bg-gradient-to-r from-yellow-300 via-amber-400 to-yellow-500 px-2.5 py-0.5 text-xs text-black shadow-[0_0_10px_rgba(234,179,8,0.35)]"
-                          >
-                            <Star className="h-3 w-3" />
-                            Sold
-                          </Badge>
-                        )}
-                      </div>
-                      <CardDescription className="text-sm text-zinc-400">
-                        {project.description}
-                      </CardDescription>
-                    </CardHeader>
-                    <CardContent className="pt-0">
-                      <a
-                        href={project.link}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1 text-sm text-emerald-400 hover:text-emerald-300 transition-colors"
-                      >
-                        View <ExternalLink className="h-3 w-3" />
-                      </a>
-                    </CardContent>
-                  </Card>
-                </motion.div>
-              ))}
-          </div>
-        </div>
-      </section>
-
       {/* Articles Section */}
-      <section className="relative py-24 px-4">
+      <section className="relative py-24 px-4 bg-white/[0.02]">
         <div className="max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0 }}
@@ -949,6 +701,44 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Final CTA */}
+      <section className="relative py-24 px-4">
+        <div className="max-w-3xl mx-auto text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+          >
+            <h2 className="text-4xl md:text-5xl font-heading font-bold [text-wrap:balance]">
+              Have an app idea, or a workflow that eats your week?
+            </h2>
+            <p className="mt-6 text-xl text-zinc-400 [text-wrap:pretty]">
+              Tell me what you want to build. You talk to me directly, and I do
+              the work myself.
+            </p>
+            <div className="mt-10 flex flex-col sm:flex-row justify-center gap-4">
+              <GradientButton
+                href="/mobile-apps"
+                variant="primary"
+                icon={ArrowRight}
+                size="lg"
+              >
+                See the mobile apps offer
+              </GradientButton>
+              <GradientButton
+                href="/automations"
+                variant="secondary"
+                className="dark"
+                size="lg"
+              >
+                See the automations offer
+              </GradientButton>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
       {/* Footer */}
       <footer className="relative py-16 px-4 border-t border-white/10">
         <div className="max-w-7xl mx-auto">
@@ -977,6 +767,12 @@ export default function Home() {
                 className="link-hover text-zinc-400 hover:text-white"
               >
                 AI app rescue
+              </Link>
+              <Link
+                href="/graveyard"
+                className="link-hover text-zinc-400 hover:text-white"
+              >
+                Graveyard
               </Link>
               <Link
                 href="/blog"
