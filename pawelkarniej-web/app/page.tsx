@@ -114,7 +114,7 @@ export default function Home() {
                 className="font-heading text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight [text-wrap:balance]"
               >
                 <span className="gradient-text block">
-                  I ship your app to the App Store in four weeks.
+                  I put your app in the App Store and Google Play.
                 </span>
                 <span className="gradient-text block">
                   I automate the work that repeats every week.

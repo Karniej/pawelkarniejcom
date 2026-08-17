@@ -26,7 +26,7 @@ export function TestimonialsSection() {
             What founders say
           </p>
           <h2 className="mt-5 font-heading text-4xl font-bold [text-wrap:balance] md:text-5xl">
-            One bought my app. One hired me and shipped in four weeks.
+            One founder bought my app. One hired me to build his.
           </h2>
         </motion.div>
 
