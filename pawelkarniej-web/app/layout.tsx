@@ -23,6 +23,7 @@ const outfit = Outfit({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://pawelkarniej.com"),
   title: "Paweł Karniej | Mobile apps and AI automations",
   description:
     "I build mobile apps and AI automations for founders and small teams. Shipping React Native since 2018, with 20+ apps launched and two sold.",
