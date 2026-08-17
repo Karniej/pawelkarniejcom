@@ -14,7 +14,6 @@ import {
   Zap,
   Youtube,
   Instagram,
-  Star,
   Wrench,
 } from "lucide-react";
 import type { SVGProps } from "react";
@@ -74,9 +73,9 @@ export default function Home() {
   const marqueeApps = getAllApps();
 
   const stats = [
-    { label: "Apps shipped", value: "20+", icon: Smartphone },
-    { label: "Apps sold", value: "2", icon: Star },
-    { label: "Workflow at a time", value: "1", icon: Zap },
+    { label: "Apps shipped", value: "20+" },
+    { label: "Apps sold", value: "2" },
+    { label: "Workflow at a time", value: "1" },
   ];
 
   return (
@@ -116,6 +115,25 @@ export default function Home() {
                 You talk to me directly, and I do the work myself, from the
                 first call to the store release.
               </motion.p>
+
+              <motion.dl
+                initial={{ opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.32, ease: [0.32, 0.72, 0, 1] }}
+                className="grid grid-cols-3 gap-4 max-w-lg"
+              >
+                {stats.map((stat) => (
+                  <div key={stat.label}>
+                    <dt className="sr-only">{stat.label}</dt>
+                    <dd className="font-heading text-3xl md:text-4xl font-bold tracking-tight">
+                      {stat.value}
+                    </dd>
+                    <p className="mt-1 text-xs md:text-sm text-zinc-600 dark:text-zinc-400">
+                      {stat.label}
+                    </p>
+                  </div>
+                ))}
+              </motion.dl>
 
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
@@ -349,30 +367,6 @@ export default function Home() {
               </Card>
             </motion.div>
           </div>
-
-          {/* Proof strip */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            viewport={{ once: true }}
-            className="mt-16 grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-3xl mx-auto"
-          >
-            {stats.map((stat) => (
-              <div
-                key={stat.label}
-                className="text-center rounded-2xl border border-black/10 dark:border-white/10 bg-black/5 dark:bg-white/5 px-4 py-6"
-              >
-                <stat.icon className="h-6 w-6 mx-auto mb-3 text-selfmade-deep dark:text-selfmade" />
-                <div className="font-heading text-3xl font-bold">
-                  {stat.value}
-                </div>
-                <div className="text-sm text-zinc-600 dark:text-zinc-400 mt-1">
-                  {stat.label}
-                </div>
-              </div>
-            ))}
-          </motion.div>
         </div>
       </section>
 
