@@ -2,7 +2,7 @@
 
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import type { AppShowcaseItem } from "@/lib/apps-data";
 
@@ -41,16 +41,37 @@ export const AppQuickNav = ({
   const velocityRef = useRef(0);
   const lastPointerX = useRef(0);
   const lastPointerT = useRef(0);
+  const [reduceMotion, setReduceMotion] = useState(false);
+
+  useEffect(() => {
+    const media = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const sync = () => setReduceMotion(media.matches);
+    sync();
+    media.addEventListener("change", sync);
+    return () => media.removeEventListener("change", sync);
+  }, []);
 
   useEffect(() => {
     const container = containerRef.current;
     const track = trackRef.current;
     if (!container || !track || apps.length === 0) return;
+    const prefersReduced = () =>
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reduceMotion || prefersReduced()) {
+      track.style.transform = "";
+      for (const el of Array.from(track.children)) {
+        const wrapper = el as HTMLElement;
+        wrapper.style.transform = "";
+        wrapper.style.opacity = "";
+      }
+      return;
+    }
 
     let last = performance.now();
     let frame = 0;
 
     const step = (now: number) => {
+      if (prefersReduced()) return;
       const dt = Math.min(now - last, 100) / 1000;
       last = now;
 
@@ -92,7 +113,7 @@ export const AppQuickNav = ({
 
     frame = requestAnimationFrame(step);
     return () => cancelAnimationFrame(frame);
-  }, [apps.length]);
+  }, [apps.length, reduceMotion]);
 
   if (apps.length === 0) return null;
 
@@ -123,33 +144,58 @@ export const AppQuickNav = ({
     containerRef.current?.releasePointerCapture(e.pointerId);
   };
 
-  const items = [...apps, ...apps];
+  const items = reduceMotion ? apps : [...apps, ...apps];
 
   return (
-    <section className="overflow-hidden bg-black pb-16 pt-10 md:pb-20 md:pt-12">
+    <section
+      className={
+        reduceMotion
+          ? "bg-black pb-16 pt-10 md:pb-20 md:pt-12"
+          : "overflow-hidden bg-black pb-16 pt-10 md:pb-20 md:pt-12"
+      }
+    >
       <div
         ref={containerRef}
         aria-label={navLabel}
-        className="cursor-grab select-none active:cursor-grabbing"
-        style={{ touchAction: "pan-y" }}
-        onPointerDown={onPointerDown}
-        onPointerMove={onPointerMove}
-        onPointerUp={endDrag}
-        onPointerCancel={endDrag}
+        className={
+          reduceMotion
+            ? "overflow-x-auto px-4"
+            : "cursor-grab select-none active:cursor-grabbing"
+        }
+        style={reduceMotion ? undefined : { touchAction: "pan-y" }}
+        onPointerDown={reduceMotion ? undefined : onPointerDown}
+        onPointerMove={reduceMotion ? undefined : onPointerMove}
+        onPointerUp={reduceMotion ? undefined : endDrag}
+        onPointerCancel={reduceMotion ? undefined : endDrag}
       >
-        <div ref={trackRef} className="flex w-max gap-3 will-change-transform">
+        <div
+          ref={trackRef}
+          className={
+            reduceMotion
+              ? "mx-auto flex w-max max-w-full flex-wrap justify-center gap-3"
+              : "flex w-max gap-3 will-change-transform"
+          }
+        >
           {items.map((app, i) => {
-            const looped = i >= apps.length;
+            const looped = !reduceMotion && i >= apps.length;
             return (
               <div
                 key={looped ? `${app.id}-loop` : app.id}
                 className="shrink-0"
-                onMouseEnter={() => {
-                  pausedRef.current = true;
-                }}
-                onMouseLeave={() => {
-                  pausedRef.current = false;
-                }}
+                onMouseEnter={
+                  reduceMotion
+                    ? undefined
+                    : () => {
+                        pausedRef.current = true;
+                      }
+                }
+                onMouseLeave={
+                  reduceMotion
+                    ? undefined
+                    : () => {
+                        pausedRef.current = false;
+                      }
+                }
               >
                 <a
                   href={`${linkBase}${app.id}`}
@@ -157,14 +203,19 @@ export const AppQuickNav = ({
                   tabIndex={looped ? -1 : undefined}
                   draggable={false}
                   onClick={(e) => {
-                    if (movedRef.current > DRAG_SUPPRESS_CLICK_PX) {
+                    if (!reduceMotion && movedRef.current > DRAG_SUPPRESS_CLICK_PX) {
                       e.preventDefault();
                     }
                   }}
-                  className="group flex w-36 flex-col items-center rounded-2xl border border-white/15 bg-white/[0.04] px-3 py-4 text-center transition-all duration-700 hover:-translate-y-2 hover:scale-105 hover:border-emerald-500/40 hover:bg-white/[0.07] hover:shadow-xl hover:shadow-emerald-500/10"
-                  style={{
-                    transitionTimingFunction: "cubic-bezier(0.32, 0.72, 0, 1)",
-                  }}
+                  className="group flex w-36 flex-col items-center rounded-2xl border border-white/15 bg-white/[0.04] px-3 py-4 text-center transition-all duration-700 hover:-translate-y-2 hover:scale-105 hover:border-emerald-500/40 hover:bg-white/[0.07] hover:shadow-xl hover:shadow-emerald-500/10 motion-reduce:translate-y-0 motion-reduce:scale-100 motion-reduce:transition-none motion-reduce:hover:translate-y-0 motion-reduce:hover:scale-100"
+                  style={
+                    reduceMotion
+                      ? undefined
+                      : {
+                          transitionTimingFunction:
+                            "cubic-bezier(0.32, 0.72, 0, 1)",
+                        }
+                  }
                 >
                   <Image
                     src={app.icon}
@@ -172,7 +223,7 @@ export const AppQuickNav = ({
                     width={64}
                     height={64}
                     draggable={false}
-                    className={`h-14 w-14 rounded-[14px] border shadow-lg shadow-black/40 transition-transform duration-700 group-hover:scale-110 ${
+                    className={`h-14 w-14 rounded-[14px] border shadow-lg shadow-black/40 transition-transform duration-700 group-hover:scale-110 motion-reduce:transition-none motion-reduce:group-hover:scale-100 ${
                       app.acquired
                         ? "border-amber-400/60 shadow-amber-500/20"
                         : "border-white/15"
