@@ -307,12 +307,12 @@ html {
   width: 100%;
 }
 
-/* Status badge: Selfmade.dev yellow */
+/* Status badge: portrait yellow */
 .status-badge {
   @apply inline-flex items-center px-3 py-1 rounded-full text-xs font-medium;
-  background: linear-gradient(135deg, rgba(253, 187, 11, 0.2), rgba(253, 187, 11, 0.1));
-  border: 1px solid rgba(253, 187, 11, 0.35);
-  color: rgb(253, 187, 11);
+  background: linear-gradient(135deg, rgba(254, 198, 2, 0.2), rgba(254, 198, 2, 0.1));
+  border: 1px solid rgba(254, 198, 2, 0.35);
+  color: rgb(254, 198, 2);
 }
 
 .light .status-badge {

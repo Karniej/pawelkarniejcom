@@ -25,11 +25,11 @@ const config = {
         heading: ["var(--font-outfit)", "system-ui", "sans-serif"],
       },
       colors: {
-        // Selfmade.dev yellow, carried over from the first version of this site
+        // Yellow sampled from the hero portrait background (avg #FEC602)
         selfmade: {
-          DEFAULT: "#FDBB0B",
+          DEFAULT: "#FEC602",
           deep: "#B45309",
-          hover: "#E5A90A",
+          hover: "#E5B202",
         },
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",

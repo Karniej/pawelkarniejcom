@@ -63,7 +63,7 @@ export function SiteNav() {
         aria-label="Main navigation"
         className="fixed top-0 inset-x-0 z-50 hidden md:flex justify-center pointer-events-none"
       >
-        <div className="pointer-events-auto mt-6 flex items-center gap-1 rounded-full border border-black/10 bg-selfmade px-3 py-2 shadow-[0_10px_30px_-12px_rgba(253,187,11,0.7)]">
+        <div className="pointer-events-auto mt-6 flex items-center gap-1 rounded-full border border-black/10 bg-selfmade px-3 py-2 shadow-[0_10px_30px_-12px_rgba(254,198,2,0.7)]">
           {NAV_LINKS.map((link) => (
             <Link
               key={link.href}
