@@ -119,6 +119,7 @@ export default function Home() {
                 <span className="gradient-text block">
                   Your repeat work off your desk.
                 </span>
+                <span className="gradient-text block">I do both.</span>
               </motion.h1>
 
               <motion.p
@@ -131,10 +132,11 @@ export default function Home() {
                 }}
                 className="text-xl text-zinc-600 dark:text-zinc-400 max-w-2xl leading-relaxed [text-wrap:pretty]"
               >
-                I have shipped more than twenty apps and kept them running after
-                launch: support, subscriptions, store reviews. So I can tell you
-                early which parts of your idea will earn, and which will only
-                cost. You talk to me, and I write the code.
+                I have shipped more than twenty apps and run them after launch:
+                support, subscriptions, store reviews. Then I automated the
+                parts that repeat, one workflow at a time, with approval before
+                anything is sent. I do the same two jobs for founders and small
+                teams, and you talk to the person who writes the code.
               </motion.p>
 
               <motion.dl
