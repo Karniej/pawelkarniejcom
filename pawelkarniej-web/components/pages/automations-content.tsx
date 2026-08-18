@@ -9,6 +9,7 @@ import {
   Map,
   Workflow,
   UserCheck,
+  X,
 } from "lucide-react";
 import { GradientButton } from "@/components/ui/gradient-button";
 import {
@@ -42,6 +43,134 @@ const steps = [
     icon: Workflow,
     title: "3. One production workflow",
     body: "I build the automation around the map, run it in shadow mode next to your team, and hand over a system where work arrives prepared and decisions stay human. Scope and price come from the map, not from a guess.",
+  },
+];
+
+// One day in a supervised system. The numbers and the rows are illustrative,
+// and the page says so, because inventing client metrics is not proof.
+const queue = {
+  counts: [
+    { value: "7", label: "Needs a decision", tone: "text-amber-300" },
+    { value: "12", label: "Awaiting response", tone: "text-blue-300" },
+    { value: "4", label: "Running now", tone: "text-emerald-300" },
+    { value: "18", label: "Completed today", tone: "text-zinc-200" },
+  ],
+  items: [
+    {
+      title: "New lead asks about Saturday availability",
+      action: "Reply with the approved weekend options",
+      state: "Draft prepared",
+      risk: "Low risk",
+      dot: "bg-emerald-400",
+    },
+    {
+      title: "One star review mentions a missed appointment",
+      action: "Escalate before any public answer",
+      state: "Escalation recommended",
+      risk: "High risk",
+      dot: "bg-red-400",
+    },
+    {
+      title: "Carrier invoice is $430 above the approved quote",
+      action: "Compare the quote, the invoice, and the shipment record",
+      state: "3 records attached",
+      risk: "Needs approval",
+      dot: "bg-amber-400",
+    },
+    {
+      title: "Weekly report is ready",
+      action: "Send the checked draft for review",
+      state: "Sources checked",
+      risk: "Ready for review",
+      dot: "bg-blue-400",
+    },
+  ],
+};
+
+// The three shapes most small teams need first. Ported from the work I do on
+// my own operations, then written as what you get, not as a feature list.
+const systems = [
+  {
+    index: "01",
+    title: "Revenue and inbox",
+    description:
+      "Turns calls, forms, and email into qualified next steps, and keeps the whole thread in one place.",
+    capabilities: [
+      "Sort and summarize new enquiries",
+      "Prepare replies and proposal drafts",
+      "Hold the context across a long thread",
+      "Schedule the follow up",
+      "Update the CRM after you approve",
+      "Escalate an unusual commercial request",
+    ],
+    example:
+      "A new enquiry matches your standard service area. The system prepares the reply, attaches the correct service information, and schedules a follow up if the lead stays quiet.",
+  },
+  {
+    index: "02",
+    title: "Operations and exceptions",
+    description:
+      "Watches the work that repeats and pulls the exceptions out of inboxes, documents, and spreadsheets.",
+    capabilities: [
+      "Find missing information and mismatches",
+      "Compare records across two sources",
+      "Prepare the customer or supplier update",
+      "Route a high risk case to a person",
+      "Watch deadlines and open items",
+      "Produce one daily summary",
+    ],
+    example:
+      "A delivery date in a customer email conflicts with the date in your system. The system collects both records and sends the difference to you for a decision.",
+  },
+  {
+    index: "03",
+    title: "Content and reputation",
+    description:
+      "Turns approved material into useful content, and handles review and reputation work without losing your voice.",
+    capabilities: [
+      "Watch reviews and mentions",
+      "Draft answers from approved wording",
+      "Turn one source into several formats",
+      "Keep every claim traceable to a source",
+      "Hold anything sensitive for a person",
+      "Report what was published",
+    ],
+    example:
+      "A new review arrives. The system drafts an answer in your words, attaches the booking record it refers to, and waits for you before it posts.",
+  },
+];
+
+const comparison = {
+  chat: [
+    "Waits for a person to write a prompt",
+    "Returns an answer, not a finished job",
+    "Forgets what is already running",
+    "Hides the records behind the answer",
+    "Stops when the conversation stops",
+    "Is hard to measure",
+  ],
+  system: [
+    "Starts on a real event in your business",
+    "Finishes the job, or asks one clear question",
+    "Holds the state of every open item",
+    "Attaches the records it used",
+    "Runs while nobody watches it",
+    "Reports hours, money, and errors",
+  ],
+};
+
+const measures = [
+  {
+    title: "Revenue",
+    body: "Faster first answer, fewer lost enquiries, more follow ups that actually happen.",
+  },
+  {
+    title: "Cost",
+    body: "Hours returned to the people who do the work, and fewer handoffs per job.",
+  },
+  {
+    title: "Risk",
+    body: "Fewer missed deadlines, fewer wrong invoices paid, and a written record of every action.",
   },
 ];
 
@@ -138,6 +267,80 @@ export function AutomationsContent() {
         </div>
       </section>
 
+      {/* One day in the system */}
+      <section className="relative px-4 pb-24">
+        <div className="mx-auto max-w-5xl">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="overflow-hidden rounded-3xl border border-white/10 bg-white/[0.03]"
+          >
+            <div className="flex items-center justify-between border-b border-white/10 px-6 py-4">
+              <p className="font-heading text-lg font-bold">Your work queue</p>
+              <span className="text-xs font-semibold uppercase tracking-[0.18em] text-zinc-500">
+                Illustrative
+              </span>
+            </div>
+
+            <div className="grid grid-cols-2 md:grid-cols-4">
+              {queue.counts.map((count) => (
+                <div
+                  key={count.label}
+                  className="border-b border-r border-white/10 px-6 py-5 last:border-r-0"
+                >
+                  <p
+                    className={`font-heading text-3xl font-bold ${count.tone}`}
+                  >
+                    {count.value}
+                  </p>
+                  <p className="mt-1 text-xs uppercase tracking-[0.14em] text-zinc-500">
+                    {count.label}
+                  </p>
+                </div>
+              ))}
+            </div>
+
+            <ul className="divide-y divide-white/10">
+              {queue.items.map((item) => (
+                <li
+                  key={item.title}
+                  className="flex flex-col gap-3 px-6 py-5 sm:flex-row sm:items-center sm:justify-between"
+                >
+                  <div className="flex items-start gap-3">
+                    <span
+                      className={`mt-2 h-2 w-2 shrink-0 rounded-full ${item.dot}`}
+                      aria-hidden="true"
+                    />
+                    <div>
+                      <p className="font-semibold text-zinc-100">
+                        {item.title}
+                      </p>
+                      <p className="mt-1 text-sm text-zinc-400 [text-wrap:pretty]">
+                        Proposed action: {item.action}
+                      </p>
+                    </div>
+                  </div>
+                  <div className="flex shrink-0 flex-wrap gap-2 pl-5 sm:pl-0">
+                    <span className="rounded-full border border-white/15 px-3 py-1 text-xs text-zinc-300">
+                      {item.state}
+                    </span>
+                    <span className="rounded-full border border-white/15 px-3 py-1 text-xs text-zinc-300">
+                      {item.risk}
+                    </span>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          </motion.div>
+          <p className="mt-5 text-center text-sm text-zinc-500 [text-wrap:pretty]">
+            An example queue, not a client screenshot. Nothing in it sends
+            before a person approves it.
+          </p>
+        </div>
+      </section>
+
       {/* Principles */}
       <section className="relative px-4 py-24 bg-white/[0.02]">
         <div className="max-w-4xl mx-auto">
@@ -195,6 +398,134 @@ export function AutomationsContent() {
               </motion.div>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* Three systems */}
+      <section className="relative px-4 py-24 bg-white/[0.02]">
+        <div className="mx-auto max-w-7xl">
+          <h2 className="font-heading text-4xl md:text-5xl font-bold text-center mb-6 [text-wrap:balance]">
+            The three systems I build most often
+          </h2>
+          <p className="mx-auto mb-16 max-w-2xl text-center text-xl text-zinc-400 [text-wrap:pretty]">
+            Your first workflow usually sits inside one of these three. We pick
+            one on the call.
+          </p>
+          <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
+            {systems.map((system, index) => (
+              <motion.div
+                key={system.title}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: index * 0.08 }}
+                viewport={{ once: true }}
+                className="flex h-full flex-col rounded-3xl border border-white/10 bg-white/[0.03] p-7"
+              >
+                <span className="font-heading text-sm font-bold text-blue-400">
+                  {system.index}
+                </span>
+                <h3 className="mt-3 font-heading text-2xl font-bold">
+                  {system.title}
+                </h3>
+                <p className="mt-4 leading-relaxed text-zinc-400 [text-wrap:pretty]">
+                  {system.description}
+                </p>
+                <ul className="mt-6 space-y-2 text-sm text-zinc-300">
+                  {system.capabilities.map((capability) => (
+                    <li key={capability} className="flex items-start gap-2">
+                      <Check className="mt-0.5 h-4 w-4 shrink-0 text-blue-400" />
+                      <span>{capability}</span>
+                    </li>
+                  ))}
+                </ul>
+                <p className="mt-auto border-l border-blue-400/40 pl-4 pt-6 text-sm leading-relaxed text-zinc-400 [text-wrap:pretty]">
+                  {system.example}
+                </p>
+              </motion.div>
+            ))}
+          </div>
+          <p className="mt-10 text-center text-sm text-zinc-500 [text-wrap:pretty]">
+            These are examples, not products on a shelf. The scope depends on
+            your workflow, your data, and the access I get to your tools.
+          </p>
+        </div>
+      </section>
+
+      {/* Chat against a supervised system */}
+      <section className="relative px-4 py-24">
+        <div className="mx-auto max-w-5xl">
+          <h2 className="font-heading text-4xl md:text-5xl font-bold text-center mb-6 [text-wrap:balance]">
+            This is not a chat box with your logo on it
+          </h2>
+          <p className="mx-auto mb-16 max-w-2xl text-center text-xl text-zinc-400 [text-wrap:pretty]">
+            Chat is useful when you think. Work that repeats needs state,
+            controls, and an end.
+          </p>
+          <div className="grid gap-6 md:grid-cols-2">
+            <div className="rounded-3xl border border-white/10 p-7">
+              <h3 className="font-heading text-xl font-bold text-zinc-300">
+                A chat assistant
+              </h3>
+              <ul className="mt-6 space-y-4">
+                {comparison.chat.map((line) => (
+                  <li
+                    key={line}
+                    className="flex items-start gap-3 text-zinc-400"
+                  >
+                    <X className="mt-0.5 h-5 w-5 shrink-0 text-zinc-600" />
+                    <span>{line}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className="rounded-3xl border border-blue-400/30 bg-blue-400/[0.06] p-7">
+              <h3 className="font-heading text-xl font-bold">
+                A supervised system
+              </h3>
+              <ul className="mt-6 space-y-4">
+                {comparison.system.map((line) => (
+                  <li
+                    key={line}
+                    className="flex items-start gap-3 text-zinc-200"
+                  >
+                    <Check className="mt-0.5 h-5 w-5 shrink-0 text-blue-400" />
+                    <span>{line}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* What we measure */}
+      <section className="relative px-4 py-24 bg-white/[0.02]">
+        <div className="mx-auto max-w-5xl">
+          <h2 className="font-heading text-4xl md:text-5xl font-bold text-center mb-6 [text-wrap:balance]">
+            Every workflow must move revenue, cost, or risk
+          </h2>
+          <p className="mx-auto mb-16 max-w-2xl text-center text-xl text-zinc-400 [text-wrap:pretty]">
+            We agree the measure on the map, before I build anything.
+          </p>
+          <div className="grid gap-6 md:grid-cols-3">
+            {measures.map((measure) => (
+              <div
+                key={measure.title}
+                className="rounded-3xl border border-white/10 bg-white/[0.03] p-7"
+              >
+                <h3 className="font-heading text-2xl font-bold">
+                  {measure.title}
+                </h3>
+                <p className="mt-4 leading-relaxed text-zinc-400 [text-wrap:pretty]">
+                  {measure.body}
+                </p>
+              </div>
+            ))}
+          </div>
+          <p className="mt-10 text-center text-sm text-zinc-500 [text-wrap:pretty]">
+            If the workflow cannot be measured yet, the map defines the measure
+            first. I do not publish invented percentages.
+          </p>
         </div>
       </section>
 
