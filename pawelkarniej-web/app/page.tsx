@@ -281,7 +281,7 @@ export default function Home() {
           </div>
         </div>
         <p className="mt-6 text-center text-sm text-zinc-500">
-          20+ shipped apps. Select an icon to read its story.
+          Every icon is an app I shipped. Open one to read how it went.
         </p>
       </section>
 
@@ -296,11 +296,11 @@ export default function Home() {
             className="text-center mb-16"
           >
             <h2 className="text-4xl md:text-5xl font-heading font-bold mb-6 [text-wrap:balance]">
-              Two ways to work with me
+              Which one is costing you more?
             </h2>
             <p className="text-xl text-zinc-600 dark:text-zinc-400 max-w-2xl mx-auto [text-wrap:pretty]">
-              Choose mobile apps or AI automations. I scope and deliver both
-              directly.
+              Most people arrive with one of these two. Start there. The other
+              one can wait.
             </p>
           </motion.div>
 
@@ -319,9 +319,9 @@ export default function Home() {
                   </div>
                   <CardTitle className="text-2xl">Mobile apps</CardTitle>
                   <CardDescription className="text-zinc-600 dark:text-zinc-400 text-base [text-wrap:pretty]">
-                    I take your idea to the App Store and Google Play in four
-                    weeks. Fixed scope, fixed price, iOS and Android in one
-                    build, paywall and subscriptions included.
+                    Your idea becomes an app that can charge money. One build for
+                    iOS and Android, with the paywall and the subscriptions
+                    already working, submitted to both stores in four weeks.
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
@@ -385,9 +385,9 @@ export default function Home() {
                   </div>
                   <CardTitle className="text-2xl">AI automations</CardTitle>
                   <CardDescription className="text-zinc-600 dark:text-zinc-400 text-base [text-wrap:pretty]">
-                    I map one recurring workflow in your business and turn it
-                    into a supervised automation. Work arrives prepared, and the
-                    important decisions stay with your team.
+                    We take the one job that eats your week, map how it really
+                    runs, and build a system that prepares it for you. Nothing
+                    leaves your company before a person approves it.
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
@@ -439,11 +439,11 @@ export default function Home() {
             viewport={{ once: true }}
           >
             <h2 className="text-4xl md:text-5xl font-heading font-bold [text-wrap:balance]">
-              Have an app idea, or a workflow that eats your week?
+              So which one is it?
             </h2>
             <p className="mt-6 text-xl text-zinc-600 dark:text-zinc-400 [text-wrap:pretty]">
-              Tell me what you want to build. You talk to me directly, and I do
-              the work myself.
+              Tell me about the app, or about the work that keeps coming back.
+              You will get an answer from me, not from a sales page.
             </p>
             <div className="mt-10 flex flex-col sm:flex-row justify-center gap-4">
               <GradientButton
