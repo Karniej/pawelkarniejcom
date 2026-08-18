@@ -114,10 +114,10 @@ export default function Home() {
                 className="font-heading text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight [text-wrap:balance]"
               >
                 <span className="gradient-text block">
-                  I put your app in the App Store and Google Play.
+                  Your app in the stores.
                 </span>
                 <span className="gradient-text block">
-                  I automate the work that repeats every week.
+                  Your repeat work off your desk.
                 </span>
               </motion.h1>
 
@@ -131,10 +131,10 @@ export default function Home() {
                 }}
                 className="text-xl text-zinc-600 dark:text-zinc-400 max-w-2xl leading-relaxed [text-wrap:pretty]"
               >
-                I&apos;m Paweł Karniej. I build mobile apps and AI automations
-                for founders and small teams, shipping React Native since 2018.
-                You talk to me directly, and I do the work myself, from the
-                first call to the store release.
+                I have shipped more than twenty apps and kept them running after
+                launch: support, subscriptions, store reviews. So I can tell you
+                early which parts of your idea will earn, and which will only
+                cost. You talk to me, and I write the code.
               </motion.p>
 
               <motion.dl
