@@ -7,7 +7,16 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { useTheme } from "next-themes";
-import { Home, Menu, Moon, Smartphone, Sun, X, Zap } from "lucide-react";
+import {
+  ArrowUpRight,
+  Home,
+  Menu,
+  Moon,
+  Smartphone,
+  Sun,
+  X,
+  Zap,
+} from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const NAV_LINKS = [
@@ -70,7 +79,7 @@ export function SiteNav() {
         aria-label="Main navigation"
         className="fixed top-0 inset-x-0 z-50 hidden md:flex justify-center pointer-events-none"
       >
-        <div className="pointer-events-auto mt-6 flex items-center gap-1 rounded-full border border-selfmade/60 bg-selfmade/90 px-3 py-2 shadow-[0_12px_40px_-12px_rgba(254,198,2,0.8)] backdrop-blur-xl backdrop-saturate-200 dark:border-selfmade/60 dark:bg-selfmade/88">
+        <div className="pointer-events-auto mt-6 flex items-center gap-1 rounded-full border border-selfmade/60 bg-selfmade/90 px-3 py-2 shadow-[0_12px_40px_-12px_rgba(254,198,2,0.8)] backdrop-blur-xl backdrop-saturate-200 dark:border-selfmade/60 dark:bg-selfmade/90">
           {NAV_LINKS.map((link) => (
             <Link
               key={link.href}
@@ -81,50 +90,81 @@ export function SiteNav() {
                 // both themes. Light text on this yellow is unreadable.
                 "rounded-full px-3 py-2 text-sm font-semibold text-zinc-900 transition-all duration-700 ease-[cubic-bezier(0.32,0.72,0,1)] dark:text-zinc-900",
                 isActive(link.href)
-                  ? "bg-black/15 text-black dark:bg-black/20 dark:text-black"
-                  : "hover:bg-black/10 hover:text-black dark:hover:bg-black/15 dark:hover:text-black",
+                  ? "bg-black/20 text-black dark:bg-black/20 dark:text-black"
+                  : "hover:bg-black/10 hover:text-black dark:hover:bg-black/20 dark:hover:text-black",
               )}
             >
               {link.label}
             </Link>
           ))}
-          <ThemeToggle className="ml-1 h-9 w-9 text-zinc-900 hover:bg-black/15 hover:text-black dark:text-zinc-900 dark:hover:bg-black/20 dark:hover:text-black" />
+          <ThemeToggle className="ml-1 h-9 w-9 text-zinc-900 hover:bg-black/20 hover:text-black dark:text-zinc-900 dark:hover:bg-black/20 dark:hover:text-black" />
         </div>
       </nav>
 
-      {/* Mobile: a bottom bar, the way a phone app puts navigation under the
-          thumb. The full list opens as a sheet that slides up from the bar. */}
-      <div className="fixed inset-x-3 bottom-3 z-50 md:hidden">
-        <div className="flex items-center justify-around gap-1 rounded-3xl border border-selfmade/60 bg-selfmade/90 px-2 py-2 shadow-[0_16px_40px_-12px_rgba(254,198,2,0.8)] backdrop-blur-2xl backdrop-saturate-200 dark:border-selfmade/60 dark:bg-selfmade/88">
-          {PRIMARY_LINKS.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              onClick={() => setOpen(false)}
-              aria-current={isActive(link.href) ? "page" : undefined}
-              className={cn(
-                "flex flex-1 flex-col items-center gap-1 rounded-2xl px-2 py-2 text-[11px] font-semibold text-zinc-900 transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] active:scale-[0.97] dark:text-zinc-900",
-                isActive(link.href) && !open
-                  ? "bg-black/15 text-black dark:bg-black/20"
-                  : "hover:bg-black/10",
-              )}
-            >
-              <link.icon className="h-5 w-5" />
-              {link.short}
-            </Link>
-          ))}
+      {/* Mobile: a compact floating pill, not a full width slab. The active
+          item carries a black lozenge that slides between the icons, which is
+          where the glass feels alive. */}
+      <div className="pointer-events-none fixed inset-x-0 bottom-4 z-50 flex justify-center px-4 md:hidden">
+        <div className="pointer-events-auto flex items-center gap-1 rounded-full border border-white/25 bg-selfmade/90 p-1.5 shadow-[inset_0_1px_0_rgba(255,255,255,0.55),0_18px_45px_-12px_rgba(0,0,0,0.65)] backdrop-blur-2xl backdrop-saturate-200">
+          {PRIMARY_LINKS.map((link) => {
+            const active = isActive(link.href) && !open;
+            return (
+              <Link
+                key={link.href}
+                href={link.href}
+                onClick={() => setOpen(false)}
+                aria-label={link.label}
+                aria-current={isActive(link.href) ? "page" : undefined}
+                className="relative flex h-12 items-center gap-2 rounded-full px-4 text-zinc-900 transition-transform duration-300 active:scale-[0.96]"
+              >
+                {active && (
+                  <motion.span
+                    layoutId="nav-pill"
+                    transition={{ type: "spring", stiffness: 420, damping: 34 }}
+                    className="absolute inset-0 rounded-full bg-black/80"
+                  />
+                )}
+                <link.icon
+                  className={cn(
+                    "relative h-5 w-5 transition-colors duration-300",
+                    active ? "text-selfmade" : "text-zinc-900",
+                  )}
+                />
+                {active && (
+                  <span className="relative text-[13px] font-semibold text-selfmade">
+                    {link.short}
+                  </span>
+                )}
+              </Link>
+            );
+          })}
+
+          <span className="mx-0.5 h-6 w-px bg-black/20" aria-hidden="true" />
+
           <button
             type="button"
             aria-label={open ? "Close menu" : "Open menu"}
             aria-expanded={open}
             onClick={() => setOpen((v) => !v)}
-            className={cn(
-              "flex flex-1 flex-col items-center gap-1 rounded-2xl px-2 py-2 text-[11px] font-semibold text-zinc-900 transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] active:scale-[0.97] focus:outline-none focus-visible:ring-2 focus-visible:ring-black/40 dark:text-zinc-900",
-              open ? "bg-black/15 text-black dark:bg-black/20" : "hover:bg-black/10",
-            )}
+            className="relative flex h-12 items-center gap-2 rounded-full px-4 text-zinc-900 transition-transform duration-300 active:scale-[0.96] focus:outline-none focus-visible:ring-2 focus-visible:ring-black/40"
           >
-            {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-            {open ? "Close" : "More"}
+            {open && (
+              <motion.span
+                layoutId="nav-pill"
+                transition={{ type: "spring", stiffness: 420, damping: 34 }}
+                className="absolute inset-0 rounded-full bg-black/80"
+              />
+            )}
+            {open ? (
+              <X className="relative h-5 w-5 text-selfmade" />
+            ) : (
+              <Menu className="relative h-5 w-5 text-zinc-900" />
+            )}
+            {open && (
+              <span className="relative text-[13px] font-semibold text-selfmade">
+                Close
+              </span>
+            )}
           </button>
         </div>
       </div>
@@ -140,47 +180,42 @@ export function SiteNav() {
               exit={{ opacity: 0 }}
               transition={{ duration: 0.3 }}
               onClick={() => setOpen(false)}
-              className="fixed inset-0 z-40 bg-black/40 backdrop-blur-sm md:hidden"
+              className="fixed inset-0 z-40 bg-black/50 backdrop-blur-md md:hidden"
             />
             <motion.div
-              initial={{ y: "100%" }}
-              animate={{ y: 0 }}
-              exit={{ y: "100%" }}
-              transition={{ duration: 0.45, ease: [0.32, 0.72, 0, 1] }}
-              className="fixed inset-x-3 bottom-[5.5rem] z-40 rounded-3xl border border-selfmade/60 bg-selfmade/90 p-4 shadow-[0_24px_60px_-20px_rgba(254,198,2,0.8)] backdrop-blur-2xl backdrop-saturate-150 md:hidden dark:border-selfmade/50 dark:bg-selfmade/85"
+              initial={{ y: 24, opacity: 0, scale: 0.98 }}
+              animate={{ y: 0, opacity: 1, scale: 1 }}
+              exit={{ y: 24, opacity: 0, scale: 0.98 }}
+              transition={{ duration: 0.35, ease: [0.32, 0.72, 0, 1] }}
+              className="fixed inset-x-4 bottom-24 z-40 overflow-hidden rounded-[28px] border border-white/25 bg-selfmade/90 p-2 shadow-[inset_0_1px_0_rgba(255,255,255,0.55),0_28px_60px_-20px_rgba(0,0,0,0.7)] backdrop-blur-2xl backdrop-saturate-200 md:hidden"
             >
               <nav aria-label="Mobile navigation">
-                <ul className="space-y-1">
-                  {NAV_LINKS.map((link, index) => (
-                    <motion.li
-                      key={link.href}
-                      initial={{ opacity: 0, y: 12 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{
-                        duration: 0.4,
-                        delay: 0.05 + index * 0.04,
-                        ease: [0.32, 0.72, 0, 1],
-                      }}
-                    >
+                <ul>
+                  {NAV_LINKS.map((link) => (
+                    <li key={link.href}>
                       <Link
                         href={link.href}
                         onClick={() => setOpen(false)}
                         aria-current={isActive(link.href) ? "page" : undefined}
                         className={cn(
-                          "block rounded-2xl px-4 py-3 font-heading text-xl font-bold text-zinc-900 transition-colors duration-300 dark:text-zinc-900",
+                          "flex items-center justify-between rounded-[20px] px-4 py-3 font-heading text-lg font-bold text-zinc-900 transition-colors duration-300",
                           isActive(link.href)
-                            ? "bg-black/15 text-black dark:bg-black/20"
+                            ? "bg-black/80 text-selfmade"
                             : "hover:bg-black/10",
                         )}
                       >
                         {link.label}
+                        <ArrowUpRight className="h-4 w-4 opacity-60" />
                       </Link>
-                    </motion.li>
+                    </li>
                   ))}
                 </ul>
               </nav>
-              <div className="mt-3 flex justify-end border-t border-black/10 pt-3">
-                <ThemeToggle className="h-11 w-11 text-zinc-900 hover:bg-black/15 hover:text-black dark:text-zinc-900 dark:hover:bg-black/20" />
+              <div className="mt-1 flex items-center justify-between border-t border-black/20 px-4 pt-3 pb-1">
+                <span className="text-xs font-semibold uppercase tracking-[0.18em] text-zinc-800">
+                  Theme
+                </span>
+                <ThemeToggle className="h-10 w-10 text-zinc-900 hover:bg-black/20 hover:text-black dark:text-zinc-900 dark:hover:bg-black/20" />
               </div>
             </motion.div>
           </>

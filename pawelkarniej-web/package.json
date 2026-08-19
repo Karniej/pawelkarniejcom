@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "prebuild": "node scripts/fetch-youtube-videos.mjs && node scripts/fetch-podcast-episodes.mjs",
+    "prebuild": "node scripts/fetch-youtube-videos.mjs && node scripts/fetch-podcast-episodes.mjs && node scripts/build-latest-posts.mjs",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
