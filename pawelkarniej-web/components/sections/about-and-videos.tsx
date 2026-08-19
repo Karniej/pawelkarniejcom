@@ -11,18 +11,18 @@ import podcastEpisodes from "@/data/podcast-episodes.json";
 const milestones = [
   {
     label: "Before software",
-    title: "I learned operations in logistics.",
-    body: "That work taught me to look for handoffs, delays, exceptions, and the point where a process loses its owner.",
+    title: "I worked in logistics.",
+    body: "Freight taught me where work gets stuck: at the hand-off, at the exception, and at the moment nobody owns the next step.",
   },
   {
     label: "Since 2018",
-    title: "I learned products by shipping my own.",
-    body: "I moved into mobile development, shipped more than 20 apps, operated them after launch, and sold two to new owners.",
+    title: "I learned products by paying for my own mistakes.",
+    body: "More than twenty apps of mine went to the stores. Two sold to new owners. Two I killed, and I wrote down why.",
   },
   {
     label: "Now",
-    title: "I build the product and the system around it.",
-    body: "I work directly with founders and small teams, from the first product decision through release.",
+    title: "I build the product, then the system that runs it.",
+    body: "Founders and small teams hire me for one of those two. I do the work, and they talk to me while I do it.",
   },
 ];
 
@@ -51,11 +51,12 @@ export function AboutAndVideos() {
               About me
             </p>
             <h2 className="mt-5 font-heading text-4xl font-bold [text-wrap:balance] md:text-6xl">
-              I learned to ship by putting my own products on the line.
+              I learned this with my own money on the table.
             </h2>
             <p className="mt-7 text-xl leading-relaxed text-zinc-600 dark:text-zinc-400 [text-wrap:pretty]">
-              I have owned launches, support, subscriptions, store reviews, and
-              product bets from the first build through the result.
+              Every launch, support ticket, one star review, and dead product
+              was mine. That is a slower way to learn than a course, and it
+              sticks.
             </p>
           </motion.div>
 
@@ -105,11 +106,11 @@ export function AboutAndVideos() {
                   From my channel
                 </p>
                 <h2 className="mt-5 font-heading text-4xl font-bold [text-wrap:balance] md:text-5xl">
-                  What I am building and learning now
+                  I film the work while I do it
                 </h2>
                 <p className="mt-5 text-lg leading-relaxed text-zinc-600 dark:text-zinc-400">
-                  The latest videos from my work on apps, automation, and the
-                  systems behind both.
+                  The apps, the automations, and the parts that go wrong. You
+                  can see how I work before you hire me.
                 </p>
               </div>
               <a
