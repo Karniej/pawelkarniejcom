@@ -37,7 +37,7 @@ export const metadata: Metadata = {
     "width=device-width, initial-scale=1, viewport-fit=cover",
   appleWebApp: {
     capable: true,
-    title: "Karniej",
+    title: "pawelkarniej.com",
     statusBarStyle: "black-translucent",
   },
   title: "Paweł Karniej | Mobile apps and AI automations",
