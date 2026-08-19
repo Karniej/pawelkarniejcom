@@ -150,8 +150,8 @@ export const AppQuickNav = ({
     <section
       className={
         reduceMotion
-          ? "bg-black pb-16 pt-10 md:pb-20 md:pt-12"
-          : "overflow-hidden bg-black pb-16 pt-10 md:pb-20 md:pt-12"
+          ? "bg-black/[0.02] pb-16 pt-10 dark:bg-white/[0.02] md:pb-20 md:pt-12"
+          : "overflow-hidden bg-black/[0.02] pb-16 pt-10 dark:bg-white/[0.02] md:pb-20 md:pt-12"
       }
     >
       <div
@@ -207,7 +207,7 @@ export const AppQuickNav = ({
                       e.preventDefault();
                     }
                   }}
-                  className="group flex w-36 flex-col items-center rounded-2xl border border-white/15 bg-white/[0.04] px-3 py-4 text-center transition-all duration-700 hover:-translate-y-2 hover:scale-105 hover:border-emerald-500/40 hover:bg-white/[0.07] hover:shadow-xl hover:shadow-emerald-500/10 motion-reduce:translate-y-0 motion-reduce:scale-100 motion-reduce:transition-none motion-reduce:hover:translate-y-0 motion-reduce:hover:scale-100"
+                  className="group flex w-36 flex-col items-center rounded-2xl border border-black/10 bg-black/[0.03] px-3 py-4 text-center transition-all duration-700 hover:-translate-y-2 hover:scale-105 hover:border-emerald-500/40 hover:bg-black/[0.06] hover:shadow-xl hover:shadow-emerald-500/10 dark:border-white/15 dark:bg-white/[0.04] dark:hover:bg-white/[0.07] motion-reduce:translate-y-0 motion-reduce:scale-100 motion-reduce:transition-none motion-reduce:hover:translate-y-0 motion-reduce:hover:scale-100"
                   style={
                     reduceMotion
                       ? undefined
@@ -226,18 +226,18 @@ export const AppQuickNav = ({
                     className={`h-14 w-14 rounded-[14px] border shadow-lg shadow-black/40 transition-transform duration-700 group-hover:scale-110 motion-reduce:transition-none motion-reduce:group-hover:scale-100 ${
                       app.acquired
                         ? "border-amber-400/60 shadow-amber-500/20"
-                        : "border-white/15"
+                        : "border-black/10 dark:border-white/15"
                     }`}
                   />
-                  <span className="mt-2.5 text-sm font-semibold leading-tight text-white">
+                  <span className="mt-2.5 text-sm font-semibold leading-tight text-zinc-900 dark:text-white">
                     {app.title}
                   </span>
                   {app.acquired ? (
-                    <span className="mt-1 rounded-full bg-amber-500/20 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-amber-300">
+                    <span className="mt-1 rounded-full bg-amber-500/20 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-amber-700 dark:text-amber-300">
                       {acquiredLabel}
                     </span>
                   ) : (
-                    <span className="mt-1 text-xs leading-snug text-zinc-400">
+                    <span className="mt-1 text-xs leading-snug text-zinc-600 dark:text-zinc-400">
                       {app.tagline}
                     </span>
                   )}
