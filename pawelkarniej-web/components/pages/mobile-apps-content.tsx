@@ -123,7 +123,7 @@ const faqs = [
 
 export function MobileAppsContent() {
   return (
-    <div className="min-h-screen bg-black text-white overflow-hidden">
+    <div className="min-h-screen bg-background text-foreground overflow-hidden">
       <div className="absolute inset-0 grid-pattern opacity-20"></div>
 
       {/* Hero */}
@@ -152,7 +152,7 @@ export function MobileAppsContent() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="text-xl text-zinc-400 leading-relaxed [text-wrap:pretty]"
+            className="text-xl text-zinc-600 dark:text-zinc-400 leading-relaxed [text-wrap:pretty]"
           >
             You get an app that can take money on the day it launches, on iOS
             and Android at the same time. One price, one person, and a deadline
@@ -199,7 +199,7 @@ export function MobileAppsContent() {
             <h2 className="font-heading text-4xl md:text-5xl font-bold mb-6 [text-wrap:balance]">
               Two scopes, the same deadline
             </h2>
-            <p className="text-xl text-zinc-400 max-w-2xl mx-auto [text-wrap:pretty]">
+            <p className="text-xl text-zinc-600 dark:text-zinc-400 max-w-2xl mx-auto [text-wrap:pretty]">
               Both ship iOS and Android with the paywall working and the app
               submitted. The larger one also fights for downloads once it is
               there.
@@ -230,7 +230,7 @@ export function MobileAppsContent() {
                     <div className="font-heading text-4xl font-bold mt-2">
                       {tier.price}
                     </div>
-                    <CardDescription className="text-zinc-400">
+                    <CardDescription className="text-zinc-600 dark:text-zinc-400">
                       {tier.delivery}
                     </CardDescription>
                   </CardHeader>
@@ -239,7 +239,7 @@ export function MobileAppsContent() {
                       {tier.features.map((feature) => (
                         <li
                           key={feature}
-                          className="flex items-start gap-3 text-zinc-300"
+                          className="flex items-start gap-3 text-zinc-700 dark:text-zinc-300"
                         >
                           <Check className="h-5 w-5 text-emerald-400 shrink-0 mt-0.5" />
                           <span>{feature}</span>
@@ -277,7 +277,7 @@ export function MobileAppsContent() {
                         {option.price}
                       </span>
                     </div>
-                    <CardDescription className="text-zinc-400 [text-wrap:pretty]">
+                    <CardDescription className="text-zinc-600 dark:text-zinc-400 [text-wrap:pretty]">
                       {option.description}
                     </CardDescription>
                   </CardHeader>
@@ -289,13 +289,13 @@ export function MobileAppsContent() {
       </section>
 
       {/* Guarantee */}
-      <section className="relative px-4 py-24 bg-white/[0.02]">
+      <section className="relative px-4 py-24 bg-black/[0.02] dark:bg-white/[0.02]">
         <div className="mx-auto max-w-[680px] text-center space-y-6">
           <ShieldCheck className="h-10 w-10 mx-auto text-emerald-400" />
           <h2 className="font-heading text-3xl md:text-4xl font-bold [text-wrap:balance]">
             The four week guarantee
           </h2>
-          <p className="text-lg text-zinc-300 leading-relaxed [text-wrap:pretty]">
+          <p className="text-lg text-zinc-700 dark:text-zinc-300 leading-relaxed [text-wrap:pretty]">
             If I miss the agreed store submission deadline, you receive a refund
             and you keep the code. Your reservation deposit is refundable any
             time before kickoff. The risk of the deadline sits with me, where it
@@ -325,7 +325,7 @@ export function MobileAppsContent() {
                       <step.icon className="h-6 w-6 text-emerald-400" />
                     </div>
                     <CardTitle className="text-xl">{step.title}</CardTitle>
-                    <CardDescription className="text-zinc-400 [text-wrap:pretty]">
+                    <CardDescription className="text-zinc-600 dark:text-zinc-400 [text-wrap:pretty]">
                       {step.body}
                     </CardDescription>
                   </CardHeader>
@@ -353,7 +353,7 @@ export function MobileAppsContent() {
                 <p className="font-semibold text-lg">
                   Already have an app that is broken or stuck?
                 </p>
-                <p className="text-zinc-400 [text-wrap:pretty]">
+                <p className="text-zinc-600 dark:text-zinc-400 [text-wrap:pretty]">
                   My 48 hour rescue audit tells you whether to repair, rebuild,
                   or start clean. The $499 fee is credited in full if I do the
                   build.
@@ -390,7 +390,7 @@ export function MobileAppsContent() {
                 <Card className="modern-card">
                   <CardHeader>
                     <CardTitle className="text-lg">{faq.question}</CardTitle>
-                    <CardDescription className="text-zinc-400 text-base [text-wrap:pretty]">
+                    <CardDescription className="text-zinc-600 dark:text-zinc-400 text-base [text-wrap:pretty]">
                       {faq.answer}
                     </CardDescription>
                   </CardHeader>
@@ -402,12 +402,12 @@ export function MobileAppsContent() {
       </section>
 
       {/* Final CTA */}
-      <section className="relative px-4 py-24 bg-white/[0.02]">
+      <section className="relative px-4 py-24 bg-black/[0.02] dark:bg-white/[0.02]">
         <div className="mx-auto max-w-[680px] text-center space-y-8">
           <h2 className="font-heading text-4xl md:text-5xl font-bold [text-wrap:balance]">
             Tell me what the app has to do
           </h2>
-          <p className="text-xl text-zinc-400 [text-wrap:pretty]">
+          <p className="text-xl text-zinc-600 dark:text-zinc-400 [text-wrap:pretty]">
             A few sentences are enough. You get back a fixed scope, a fixed
             price, and a date.
           </p>

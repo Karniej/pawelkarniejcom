@@ -53,7 +53,7 @@ const queue = {
     { value: "7", label: "Needs a decision", tone: "text-amber-300" },
     { value: "12", label: "Awaiting response", tone: "text-blue-300" },
     { value: "4", label: "Running now", tone: "text-emerald-300" },
-    { value: "18", label: "Completed today", tone: "text-zinc-200" },
+    { value: "18", label: "Completed today", tone: "text-zinc-800 dark:text-zinc-200" },
   ],
   items: [
     {
@@ -204,7 +204,7 @@ const faqs = [
 
 export function AutomationsContent() {
   return (
-    <div className="min-h-screen bg-black text-white overflow-hidden">
+    <div className="min-h-screen bg-background text-foreground overflow-hidden">
       <div className="absolute inset-0 grid-pattern opacity-20"></div>
 
       {/* Hero */}
@@ -235,7 +235,7 @@ export function AutomationsContent() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="text-xl text-zinc-400 leading-relaxed [text-wrap:pretty]"
+            className="text-xl text-zinc-600 dark:text-zinc-400 leading-relaxed [text-wrap:pretty]"
           >
             Pick the job that eats your week. I map how it really runs, then
             build a system that does the preparation for you. Your team stops
@@ -275,9 +275,9 @@ export function AutomationsContent() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="overflow-hidden rounded-3xl border border-white/10 bg-white/[0.03]"
+            className="overflow-hidden rounded-3xl border border-black/10 dark:border-white/10 bg-black/[0.03] dark:bg-white/[0.03]"
           >
-            <div className="flex items-center justify-between border-b border-white/10 px-6 py-4">
+            <div className="flex items-center justify-between border-b border-black/10 dark:border-white/10 px-6 py-4">
               <p className="font-heading text-lg font-bold">Your work queue</p>
               <span className="text-xs font-semibold uppercase tracking-[0.18em] text-zinc-500">
                 Illustrative
@@ -288,7 +288,7 @@ export function AutomationsContent() {
               {queue.counts.map((count) => (
                 <div
                   key={count.label}
-                  className="border-b border-r border-white/10 px-6 py-5 last:border-r-0"
+                  className="border-b border-r border-black/10 dark:border-white/10 px-6 py-5 last:border-r-0"
                 >
                   <p
                     className={`font-heading text-3xl font-bold ${count.tone}`}
@@ -314,19 +314,19 @@ export function AutomationsContent() {
                       aria-hidden="true"
                     />
                     <div>
-                      <p className="font-semibold text-zinc-100">
+                      <p className="font-semibold text-zinc-900 dark:text-zinc-100">
                         {item.title}
                       </p>
-                      <p className="mt-1 text-sm text-zinc-400 [text-wrap:pretty]">
+                      <p className="mt-1 text-sm text-zinc-600 dark:text-zinc-400 [text-wrap:pretty]">
                         Proposed action: {item.action}
                       </p>
                     </div>
                   </div>
                   <div className="flex shrink-0 flex-wrap gap-2 pl-5 sm:pl-0">
-                    <span className="rounded-full border border-white/20 px-3 py-1 text-xs text-zinc-300">
+                    <span className="rounded-full border border-black/20 dark:border-white/20 px-3 py-1 text-xs text-zinc-700 dark:text-zinc-300">
                       {item.state}
                     </span>
-                    <span className="rounded-full border border-white/20 px-3 py-1 text-xs text-zinc-300">
+                    <span className="rounded-full border border-black/20 dark:border-white/20 px-3 py-1 text-xs text-zinc-700 dark:text-zinc-300">
                       {item.risk}
                     </span>
                   </div>
@@ -342,7 +342,7 @@ export function AutomationsContent() {
       </section>
 
       {/* Principles */}
-      <section className="relative px-4 py-24 bg-white/[0.02]">
+      <section className="relative px-4 py-24 bg-black/[0.02] dark:bg-white/[0.02]">
         <div className="max-w-4xl mx-auto">
           <h2 className="font-heading text-3xl md:text-4xl font-bold text-center mb-12 [text-wrap:balance]">
             Four rules I never break
@@ -355,7 +355,7 @@ export function AutomationsContent() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.05 }}
                 viewport={{ once: true }}
-                className="flex items-start gap-3 rounded-2xl border border-white/10 bg-white/5 p-6 text-lg text-zinc-300 [text-wrap:pretty]"
+                className="flex items-start gap-3 rounded-2xl border border-black/10 dark:border-white/10 bg-black/5 dark:bg-white/5 p-6 text-lg text-zinc-700 dark:text-zinc-300 [text-wrap:pretty]"
               >
                 <Check className="h-6 w-6 text-blue-400 shrink-0 mt-0.5" />
                 <span>{principle}</span>
@@ -371,7 +371,7 @@ export function AutomationsContent() {
           <h2 className="font-heading text-4xl md:text-5xl font-bold text-center mb-6 [text-wrap:balance]">
             The path from busywork to system
           </h2>
-          <p className="text-xl text-zinc-400 text-center max-w-2xl mx-auto mb-16 [text-wrap:pretty]">
+          <p className="text-xl text-zinc-600 dark:text-zinc-400 text-center max-w-2xl mx-auto mb-16 [text-wrap:pretty]">
             Three steps, each one cheap enough to stop after and valuable
             enough to keep.
           </p>
@@ -390,7 +390,7 @@ export function AutomationsContent() {
                       <step.icon className="h-6 w-6 text-blue-400" />
                     </div>
                     <CardTitle className="text-xl">{step.title}</CardTitle>
-                    <CardDescription className="text-zinc-400 [text-wrap:pretty]">
+                    <CardDescription className="text-zinc-600 dark:text-zinc-400 [text-wrap:pretty]">
                       {step.body}
                     </CardDescription>
                   </CardHeader>
@@ -402,12 +402,12 @@ export function AutomationsContent() {
       </section>
 
       {/* Three systems */}
-      <section className="relative px-4 py-24 bg-white/[0.02]">
+      <section className="relative px-4 py-24 bg-black/[0.02] dark:bg-white/[0.02]">
         <div className="mx-auto max-w-7xl">
           <h2 className="font-heading text-4xl md:text-5xl font-bold text-center mb-6 [text-wrap:balance]">
             The three systems I build most often
           </h2>
-          <p className="mx-auto mb-16 max-w-2xl text-center text-xl text-zinc-400 [text-wrap:pretty]">
+          <p className="mx-auto mb-16 max-w-2xl text-center text-xl text-zinc-600 dark:text-zinc-400 [text-wrap:pretty]">
             Your first workflow usually sits inside one of these three. We pick
             one on the call.
           </p>
@@ -419,7 +419,7 @@ export function AutomationsContent() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.08 }}
                 viewport={{ once: true }}
-                className="flex h-full flex-col rounded-3xl border border-white/10 bg-white/[0.03] p-7"
+                className="flex h-full flex-col rounded-3xl border border-black/10 dark:border-white/10 bg-black/[0.03] dark:bg-white/[0.03] p-7"
               >
                 <span className="font-heading text-sm font-bold text-blue-400">
                   {system.index}
@@ -427,10 +427,10 @@ export function AutomationsContent() {
                 <h3 className="mt-3 font-heading text-2xl font-bold">
                   {system.title}
                 </h3>
-                <p className="mt-4 leading-relaxed text-zinc-400 [text-wrap:pretty]">
+                <p className="mt-4 leading-relaxed text-zinc-600 dark:text-zinc-400 [text-wrap:pretty]">
                   {system.description}
                 </p>
-                <ul className="mt-6 space-y-2 text-sm text-zinc-300">
+                <ul className="mt-6 space-y-2 text-sm text-zinc-700 dark:text-zinc-300">
                   {system.capabilities.map((capability) => (
                     <li key={capability} className="flex items-start gap-2">
                       <Check className="mt-0.5 h-4 w-4 shrink-0 text-blue-400" />
@@ -438,7 +438,7 @@ export function AutomationsContent() {
                     </li>
                   ))}
                 </ul>
-                <p className="mt-auto border-l border-blue-400/40 pl-4 pt-6 text-sm leading-relaxed text-zinc-400 [text-wrap:pretty]">
+                <p className="mt-auto border-l border-blue-400/40 pl-4 pt-6 text-sm leading-relaxed text-zinc-600 dark:text-zinc-400 [text-wrap:pretty]">
                   {system.example}
                 </p>
               </motion.div>
@@ -457,20 +457,20 @@ export function AutomationsContent() {
           <h2 className="font-heading text-4xl md:text-5xl font-bold text-center mb-6 [text-wrap:balance]">
             This is not a chat box with your logo on it
           </h2>
-          <p className="mx-auto mb-16 max-w-2xl text-center text-xl text-zinc-400 [text-wrap:pretty]">
+          <p className="mx-auto mb-16 max-w-2xl text-center text-xl text-zinc-600 dark:text-zinc-400 [text-wrap:pretty]">
             Chat is useful when you think. Work that repeats needs state,
             controls, and an end.
           </p>
           <div className="grid gap-6 md:grid-cols-2">
-            <div className="rounded-3xl border border-white/10 p-7">
-              <h3 className="font-heading text-xl font-bold text-zinc-300">
+            <div className="rounded-3xl border border-black/10 dark:border-white/10 p-7">
+              <h3 className="font-heading text-xl font-bold text-zinc-700 dark:text-zinc-300">
                 A chat assistant
               </h3>
               <ul className="mt-6 space-y-4">
                 {comparison.chat.map((line) => (
                   <li
                     key={line}
-                    className="flex items-start gap-3 text-zinc-400"
+                    className="flex items-start gap-3 text-zinc-600 dark:text-zinc-400"
                   >
                     <X className="mt-0.5 h-5 w-5 shrink-0 text-zinc-600" />
                     <span>{line}</span>
@@ -486,7 +486,7 @@ export function AutomationsContent() {
                 {comparison.system.map((line) => (
                   <li
                     key={line}
-                    className="flex items-start gap-3 text-zinc-200"
+                    className="flex items-start gap-3 text-zinc-800 dark:text-zinc-200"
                   >
                     <Check className="mt-0.5 h-5 w-5 shrink-0 text-blue-400" />
                     <span>{line}</span>
@@ -499,24 +499,24 @@ export function AutomationsContent() {
       </section>
 
       {/* What we measure */}
-      <section className="relative px-4 py-24 bg-white/[0.02]">
+      <section className="relative px-4 py-24 bg-black/[0.02] dark:bg-white/[0.02]">
         <div className="mx-auto max-w-5xl">
           <h2 className="font-heading text-4xl md:text-5xl font-bold text-center mb-6 [text-wrap:balance]">
             Every workflow must move revenue, cost, or risk
           </h2>
-          <p className="mx-auto mb-16 max-w-2xl text-center text-xl text-zinc-400 [text-wrap:pretty]">
+          <p className="mx-auto mb-16 max-w-2xl text-center text-xl text-zinc-600 dark:text-zinc-400 [text-wrap:pretty]">
             We agree the measure on the map, before I build anything.
           </p>
           <div className="grid gap-6 md:grid-cols-3">
             {measures.map((measure) => (
               <div
                 key={measure.title}
-                className="rounded-3xl border border-white/10 bg-white/[0.03] p-7"
+                className="rounded-3xl border border-black/10 dark:border-white/10 bg-black/[0.03] dark:bg-white/[0.03] p-7"
               >
                 <h3 className="font-heading text-2xl font-bold">
                   {measure.title}
                 </h3>
-                <p className="mt-4 leading-relaxed text-zinc-400 [text-wrap:pretty]">
+                <p className="mt-4 leading-relaxed text-zinc-600 dark:text-zinc-400 [text-wrap:pretty]">
                   {measure.body}
                 </p>
               </div>
@@ -555,7 +555,7 @@ export function AutomationsContent() {
                 <Card className="modern-card">
                   <CardHeader>
                     <CardTitle className="text-lg">{faq.question}</CardTitle>
-                    <CardDescription className="text-zinc-400 text-base [text-wrap:pretty]">
+                    <CardDescription className="text-zinc-600 dark:text-zinc-400 text-base [text-wrap:pretty]">
                       {faq.answer}
                     </CardDescription>
                   </CardHeader>
@@ -567,12 +567,12 @@ export function AutomationsContent() {
       </section>
 
       {/* Final CTA */}
-      <section className="relative px-4 py-24 bg-white/[0.02]">
+      <section className="relative px-4 py-24 bg-black/[0.02] dark:bg-white/[0.02]">
         <div className="mx-auto max-w-[680px] text-center space-y-8">
           <h2 className="font-heading text-4xl md:text-5xl font-bold [text-wrap:balance]">
             Which job eats your week?
           </h2>
-          <p className="text-xl text-zinc-400 [text-wrap:pretty]">
+          <p className="text-xl text-zinc-600 dark:text-zinc-400 [text-wrap:pretty]">
             Twenty minutes, free, and honest. If automation will not pay for
             itself in your case, I say so on the call and we stop there.
           </p>

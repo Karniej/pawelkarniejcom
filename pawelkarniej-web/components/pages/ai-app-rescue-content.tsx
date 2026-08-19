@@ -84,7 +84,7 @@ const faqs = [
 
 export function AiAppRescueContent() {
   return (
-    <div className="min-h-screen bg-black text-white overflow-hidden">
+    <div className="min-h-screen bg-background text-foreground overflow-hidden">
       <div className="absolute inset-0 grid-pattern opacity-20"></div>
 
       {/* Hero */}
@@ -113,7 +113,7 @@ export function AiAppRescueContent() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="text-xl text-zinc-400 leading-relaxed [text-wrap:pretty]"
+            className="text-xl text-zinc-600 dark:text-zinc-400 leading-relaxed [text-wrap:pretty]"
           >
             In 48 hours I audit your React Native or Expo codebase and give
             you one decision: repair, rebuild, or start clean. $499, credited
@@ -146,7 +146,7 @@ export function AiAppRescueContent() {
       </section>
 
       {/* Symptoms */}
-      <section className="relative px-4 py-24 bg-white/[0.02]">
+      <section className="relative px-4 py-24 bg-black/[0.02] dark:bg-white/[0.02]">
         <div className="max-w-4xl mx-auto">
           <h2 className="font-heading text-3xl md:text-4xl font-bold text-center mb-12 [text-wrap:balance]">
             Sound familiar?
@@ -159,14 +159,14 @@ export function AiAppRescueContent() {
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.05 }}
                 viewport={{ once: true }}
-                className="flex items-start gap-3 text-lg text-zinc-300 [text-wrap:pretty]"
+                className="flex items-start gap-3 text-lg text-zinc-700 dark:text-zinc-300 [text-wrap:pretty]"
               >
                 <Check className="h-6 w-6 text-emerald-400 shrink-0 mt-0.5" />
                 <span>{symptom}</span>
               </motion.li>
             ))}
           </ul>
-          <p className="text-lg text-zinc-400 mt-10 text-center [text-wrap:pretty]">
+          <p className="text-lg text-zinc-600 dark:text-zinc-400 mt-10 text-center [text-wrap:pretty]">
             None of this means your idea is bad. It means the prototype tool
             did its job and stopped. Getting from a prototype to a store
             approved product is a different discipline, and it is the one I
@@ -196,7 +196,7 @@ export function AiAppRescueContent() {
                       <step.icon className="h-6 w-6 text-emerald-400" />
                     </div>
                     <CardTitle className="text-xl">{step.title}</CardTitle>
-                    <CardDescription className="text-zinc-400 [text-wrap:pretty]">
+                    <CardDescription className="text-zinc-600 dark:text-zinc-400 [text-wrap:pretty]">
                       {step.body}
                     </CardDescription>
                   </CardHeader>
@@ -215,13 +215,13 @@ export function AiAppRescueContent() {
       />
 
       {/* Risk reversal */}
-      <section className="relative px-4 py-24 bg-white/[0.02]">
+      <section className="relative px-4 py-24 bg-black/[0.02] dark:bg-white/[0.02]">
         <div className="mx-auto max-w-[680px] text-center space-y-6">
           <ShieldCheck className="h-10 w-10 mx-auto text-emerald-400" />
           <h2 className="font-heading text-3xl md:text-4xl font-bold [text-wrap:balance]">
             The audit pays for itself
           </h2>
-          <p className="text-lg text-zinc-300 leading-relaxed [text-wrap:pretty]">
+          <p className="text-lg text-zinc-700 dark:text-zinc-300 leading-relaxed [text-wrap:pretty]">
             The $499 fee is credited in full against any build I do afterward.
             If the honest answer is that you should not spend more money, the
             report says exactly that, and you have spent $499 to avoid a five
@@ -248,7 +248,7 @@ export function AiAppRescueContent() {
                 <Card className="modern-card">
                   <CardHeader>
                     <CardTitle className="text-lg">{faq.question}</CardTitle>
-                    <CardDescription className="text-zinc-400 text-base [text-wrap:pretty]">
+                    <CardDescription className="text-zinc-600 dark:text-zinc-400 text-base [text-wrap:pretty]">
                       {faq.answer}
                     </CardDescription>
                   </CardHeader>
@@ -260,12 +260,12 @@ export function AiAppRescueContent() {
       </section>
 
       {/* Final CTA */}
-      <section className="relative px-4 py-24 bg-white/[0.02]">
+      <section className="relative px-4 py-24 bg-black/[0.02] dark:bg-white/[0.02]">
         <div className="mx-auto max-w-[680px] text-center space-y-8">
           <h2 className="font-heading text-4xl md:text-5xl font-bold [text-wrap:balance]">
             Get unstuck this week
           </h2>
-          <p className="text-xl text-zinc-400 [text-wrap:pretty]">
+          <p className="text-xl text-zinc-600 dark:text-zinc-400 [text-wrap:pretty]">
             Send me the repository today and you will have a written verdict
             with fixed prices in 48 hours.
           </p>
