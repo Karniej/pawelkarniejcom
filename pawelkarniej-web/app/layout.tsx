@@ -7,6 +7,7 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { SiteNav } from "@/components/site-nav";
 import localFont from "next/font/local";
 import AnalyticsScripts from "@/components/analytics-scripts";
+import { PwaRegister } from "@/components/pwa-register";
 
 // Body font - Geist (using variable font for better performance)
 const geist = localFont({
@@ -24,6 +25,21 @@ const outfit = Outfit({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://pawelkarniej.com"),
+  manifest: "/manifest.webmanifest",
+  // Next 13 keeps these inside metadata. The phone paints the status bar and
+  // the task switcher with the theme colour, and viewport-fit lets the bottom
+  // bar sit inside the safe area.
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#FEC602" },
+    { media: "(prefers-color-scheme: dark)", color: "#000000" },
+  ],
+  viewport:
+    "width=device-width, initial-scale=1, viewport-fit=cover",
+  appleWebApp: {
+    capable: true,
+    title: "Karniej",
+    statusBarStyle: "black-translucent",
+  },
   title: "Paweł Karniej | Mobile apps and AI automations",
   description:
     "I build mobile apps and AI automations for founders and small teams. Shipping React Native since 2018, with 20+ apps launched and two sold.",
@@ -96,6 +112,7 @@ export default function RootLayout({
             {children}
           </main>
           <AnalyticsScripts />
+          <PwaRegister />
         </ThemeProvider>
       </body>
     </html>
