@@ -35,7 +35,9 @@ export const IndividualAppShowcase = ({
       id={app.id}
       className={cn(
         "relative scroll-mt-20 py-16 md:py-24",
-        index % 2 === 0 ? "bg-black" : "bg-white/[0.02]",
+        index % 2 === 0
+          ? "bg-background"
+          : "bg-black/[0.03] dark:bg-white/[0.03]",
       )}
     >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -58,7 +60,7 @@ export const IndividualAppShowcase = ({
           >
             <div className="mb-6">
               <div className="mb-2 flex flex-wrap items-center gap-2">
-                <span className="rounded-full bg-white/10 px-2 py-1 text-xs uppercase tracking-wider text-zinc-400">
+                <span className="rounded-full bg-black/5 px-2 py-1 text-xs uppercase tracking-wider text-zinc-600 dark:bg-white/10 dark:text-zinc-400">
                   {app.category}
                 </span>
                 {app.platforms.map((platform) => (
@@ -75,23 +77,23 @@ export const IndividualAppShowcase = ({
                   </span>
                 )}
               </div>
-              <h2 className="mb-4 font-heading text-3xl font-bold text-white [text-wrap:balance] md:text-4xl">
+              <h2 className="mb-4 font-heading text-3xl font-bold [text-wrap:balance] md:text-4xl">
                 {app.title}
               </h2>
-              <p className="text-lg leading-relaxed text-zinc-300 [text-wrap:pretty]">
+              <p className="text-lg leading-relaxed text-zinc-700 dark:text-zinc-300 [text-wrap:pretty]">
                 {app.detailedDescription || app.description}
               </p>
             </div>
 
             <div className="mb-8">
-              <h3 className="mb-4 font-heading text-lg font-semibold uppercase tracking-wide text-white">
+              <h3 className="mb-4 font-heading text-lg font-semibold uppercase tracking-wide">
                 {featuresLabel}
               </h3>
               <ul className="space-y-3">
                 {app.features.map((feature) => (
                   <li key={feature} className="flex items-start">
                     <Check className="mr-3 mt-0.5 h-5 w-5 flex-shrink-0 text-emerald-400" />
-                    <span className="text-zinc-300">{feature}</span>
+                    <span className="text-zinc-700 dark:text-zinc-300">{feature}</span>
                   </li>
                 ))}
               </ul>
@@ -99,14 +101,14 @@ export const IndividualAppShowcase = ({
 
             {app.techStack && (
               <div className="mb-8">
-                <h3 className="mb-4 font-heading text-lg font-semibold uppercase tracking-wide text-white">
+                <h3 className="mb-4 font-heading text-lg font-semibold uppercase tracking-wide">
                   {techStackLabel}
                 </h3>
                 <div className="flex flex-wrap gap-2">
                   {app.techStack.map((tech) => (
                     <span
                       key={tech}
-                      className="rounded-full border border-white/10 bg-white/[0.04] px-3 py-1 text-xs text-zinc-300"
+                      className="rounded-full border border-black/10 bg-black/[0.04] px-3 py-1 text-xs text-zinc-700 dark:border-white/10 dark:bg-white/[0.04] dark:text-zinc-300"
                     >
                       {tech}
                     </span>
@@ -128,7 +130,7 @@ export const IndividualAppShowcase = ({
                   href={app.appStoreUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 text-sm text-zinc-400 transition-colors hover:text-white"
+                  className="inline-flex items-center gap-1.5 text-sm text-zinc-600 transition-colors hover:text-black dark:text-zinc-400 dark:hover:text-white"
                 >
                   App Store
                   <ExternalLink className="h-3.5 w-3.5" />

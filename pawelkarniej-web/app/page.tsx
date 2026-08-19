@@ -318,7 +318,7 @@ export default function Home() {
                   <div className="w-14 h-14 rounded-2xl bg-selfmade/10 border border-selfmade/25 flex items-center justify-center mb-4">
                     <Smartphone className="h-7 w-7 text-selfmade-deep dark:text-selfmade" />
                   </div>
-                  <CardTitle className="text-2xl">Mobile apps</CardTitle>
+                  <CardTitle className="text-2xl">Apps</CardTitle>
                   <CardDescription className="text-zinc-600 dark:text-zinc-400 text-base [text-wrap:pretty]">
                     Your idea becomes an app that can charge money. One build for
                     iOS and Android, with the paywall and the subscriptions
@@ -349,11 +349,11 @@ export default function Home() {
                   </ul>
                   <div className="space-y-4">
                     <GradientButton
-                      href="/mobile-apps"
+                      href="/apps"
                       variant="primary"
                       icon={ArrowRight}
                     >
-                      See the mobile apps offer
+                      See the apps offer
                     </GradientButton>
                     <p className="text-sm text-zinc-600 dark:text-zinc-400">
                       <Wrench className="inline h-4 w-4 mr-1 text-selfmade-deep dark:text-selfmade" />
@@ -450,12 +450,12 @@ export default function Home() {
             </p>
             <div className="mt-10 flex flex-col sm:flex-row justify-center gap-4">
               <GradientButton
-                href="/mobile-apps"
+                href="/apps"
                 variant="primary"
                 icon={ArrowRight}
                 size="lg"
               >
-                See the mobile apps offer
+                See the apps offer
               </GradientButton>
               <GradientButton
                 href="/automations"
@@ -482,10 +482,10 @@ export default function Home() {
           >
             <div className="flex flex-wrap justify-center gap-8">
               <Link
-                href="/mobile-apps"
+                href="/apps"
                 className="link-hover text-zinc-600 dark:text-zinc-400"
               >
-                Mobile apps
+                Apps
               </Link>
               <Link
                 href="/automations"

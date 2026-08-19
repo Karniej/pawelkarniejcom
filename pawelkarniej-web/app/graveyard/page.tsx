@@ -187,7 +187,7 @@ export default function GraveyardPage() {
                 See the live apps
               </Link>
               <Link
-                href="/mobile-apps"
+                href="/apps"
                 className="rounded-full border border-white/15 px-5 py-2.5 text-sm text-zinc-200 transition hover:border-emerald-400/40 hover:text-emerald-300"
               >
                 Hire me to build yours

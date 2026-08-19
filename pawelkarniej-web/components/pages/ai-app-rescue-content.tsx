@@ -282,7 +282,7 @@ export function AiAppRescueContent() {
           <p className="text-sm text-zinc-500">
             Building from scratch instead?{" "}
             <Link
-              href="/mobile-apps"
+              href="/apps"
               className="link-hover text-emerald-400 hover:text-emerald-300"
             >
               See the sprint offer

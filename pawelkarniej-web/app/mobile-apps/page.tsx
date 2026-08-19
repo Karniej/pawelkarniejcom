@@ -1,14 +1,27 @@
 /** @format */
 
-import type { Metadata } from "next";
-import { MobileAppsContent } from "@/components/pages/mobile-apps-content";
+"use client";
 
-export const metadata: Metadata = {
-  title: "Mobile app development with Paweł Karniej | Fixed price, 4 weeks",
-  description:
-    "I build revenue ready iOS and Android apps in four week sprints. Fixed scope, fixed price from $3,999, paywall and subscriptions included, store submission handled.",
-};
+import { useEffect } from "react";
+import Link from "next/link";
 
-export default function MobileAppsPage() {
-  return <MobileAppsContent />;
+export default function MobileAppsRedirectPage() {
+  useEffect(() => {
+    window.location.replace("/apps/");
+  }, []);
+
+  return (
+    <main className="flex min-h-screen items-center justify-center bg-background px-4 text-foreground">
+      <p className="text-center text-lg text-zinc-600 dark:text-zinc-400">
+        This page moved.{" "}
+        <Link
+          href="/apps/"
+          className="text-emerald-700 underline dark:text-emerald-300"
+        >
+          Open Apps
+        </Link>
+        .
+      </p>
+    </main>
+  );
 }
