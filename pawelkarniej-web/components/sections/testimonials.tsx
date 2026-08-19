@@ -44,7 +44,7 @@ export function TestimonialsSection() {
                       href={item.href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="relative h-20 w-20 shrink-0 overflow-hidden rounded-2xl border border-black/10 dark:border-white/15"
+                      className="relative h-20 w-20 shrink-0 overflow-hidden rounded-2xl border border-black/10 dark:border-white/20"
                     >
                       <Image
                         src={item.image}
@@ -95,7 +95,7 @@ export function TestimonialsSection() {
         <div className="mt-12 text-center">
           <Link
             href="/apps"
-            className="inline-flex items-center gap-2 rounded-full border border-black/15 px-6 py-3 font-semibold text-zinc-700 transition hover:border-selfmade/50 hover:text-selfmade-deep dark:border-white/15 dark:text-zinc-200 dark:hover:text-selfmade"
+            className="inline-flex items-center gap-2 rounded-full border border-black/20 px-6 py-3 font-semibold text-zinc-700 transition hover:border-selfmade/50 hover:text-selfmade-deep dark:border-white/20 dark:text-zinc-200 dark:hover:text-selfmade"
           >
             See all live and sold apps
             <ArrowRight className="h-4 w-4" />

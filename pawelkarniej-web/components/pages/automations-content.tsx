@@ -323,10 +323,10 @@ export function AutomationsContent() {
                     </div>
                   </div>
                   <div className="flex shrink-0 flex-wrap gap-2 pl-5 sm:pl-0">
-                    <span className="rounded-full border border-white/15 px-3 py-1 text-xs text-zinc-300">
+                    <span className="rounded-full border border-white/20 px-3 py-1 text-xs text-zinc-300">
                       {item.state}
                     </span>
-                    <span className="rounded-full border border-white/15 px-3 py-1 text-xs text-zinc-300">
+                    <span className="rounded-full border border-white/20 px-3 py-1 text-xs text-zinc-300">
                       {item.risk}
                     </span>
                   </div>

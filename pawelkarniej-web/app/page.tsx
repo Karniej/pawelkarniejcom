@@ -33,6 +33,7 @@ import {
 } from "@/components/ui/card";
 import { TestimonialsSection } from "@/components/sections/testimonials";
 import { AboutAndVideos } from "@/components/sections/about-and-videos";
+import { LatestPosts } from "@/components/sections/latest-posts";
 import { getAllApps } from "@/lib/apps-data";
 
 const SOCIAL_LINKS = [
@@ -428,6 +429,8 @@ export default function Home() {
       </section>
 
       <AboutAndVideos />
+
+      <LatestPosts />
 
       {/* Final CTA */}
       <section className="relative py-24 px-4">
