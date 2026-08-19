@@ -16,3 +16,15 @@
   from = "/blog/what-1999-actually-buys-you-silpho-launch-breakdown/"
   to = "/blog/what-1999-actually-buys-you-product-build-sprint/"
   status = 301
+
+# The service worker must never be served from a long lived cache. If a browser
+# holds an old copy, the site cannot ship a new worker.
+[[headers]]
+  for = "/sw.js"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+[[headers]]
+  for = "/manifest.webmanifest"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
