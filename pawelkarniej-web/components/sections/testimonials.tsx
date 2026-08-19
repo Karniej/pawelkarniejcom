@@ -22,11 +22,8 @@ export function TestimonialsSection() {
           transition={{ duration: 0.6 }}
           className="mx-auto max-w-3xl text-center"
         >
-          <p className="text-sm font-semibold uppercase tracking-[0.22em] text-selfmade-deep dark:text-selfmade">
-            What founders say
-          </p>
-          <h2 className="mt-5 font-heading text-4xl font-bold [text-wrap:balance] md:text-5xl">
-            One founder bought my app. One hired me to build his.
+          <h2 className="font-heading text-4xl font-bold [text-wrap:balance] md:text-5xl">
+            Testimonials
           </h2>
         </motion.div>
 

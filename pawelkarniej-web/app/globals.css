@@ -126,6 +126,14 @@ html {
   scroll-behavior: smooth;
 }
 
+/* The mobile navigation is a floating bottom bar, so the page needs room under
+   its last element. Without this the footer sits behind the bar. */
+@media (max-width: 767px) {
+  body {
+    padding-bottom: calc(5.5rem + env(safe-area-inset-bottom, 0px));
+  }
+}
+
 /* Modern animations */
 @keyframes fadeIn {
   from {
