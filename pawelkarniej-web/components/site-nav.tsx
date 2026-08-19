@@ -74,30 +74,42 @@ export function SiteNav() {
 
   return (
     <>
-      {/* Desktop: yellow glass pill — tinted, not solid, so the CTA stays the loud yellow */}
+      {/* Desktop: the same pill as the phone. The active item carries a black
+          lozenge that slides between the links, so both sizes behave alike. */}
       <nav
         aria-label="Main navigation"
         className="fixed top-0 inset-x-0 z-50 hidden md:flex justify-center pointer-events-none"
       >
-        <div className="pointer-events-auto mt-6 flex items-center gap-1 rounded-full border border-selfmade/60 bg-selfmade/90 px-3 py-2 shadow-[0_12px_40px_-12px_rgba(254,198,2,0.8)] backdrop-blur-xl backdrop-saturate-200 dark:border-selfmade/60 dark:bg-selfmade/90">
-          {NAV_LINKS.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              aria-current={isActive(link.href) ? "page" : undefined}
-              className={cn(
-                // The pill is the brand yellow, so the text stays near black in
-                // both themes. Light text on this yellow is unreadable.
-                "rounded-full px-3 py-2 text-sm font-semibold text-zinc-900 transition-all duration-700 ease-[cubic-bezier(0.32,0.72,0,1)] dark:text-zinc-900",
-                isActive(link.href)
-                  ? "bg-black/20 text-black dark:bg-black/20 dark:text-black"
-                  : "hover:bg-black/10 hover:text-black dark:hover:bg-black/20 dark:hover:text-black",
-              )}
-            >
-              {link.label}
-            </Link>
-          ))}
-          <ThemeToggle className="ml-1 h-9 w-9 text-zinc-900 hover:bg-black/20 hover:text-black dark:text-zinc-900 dark:hover:bg-black/20 dark:hover:text-black" />
+        <div className="pointer-events-auto mt-6 flex items-center gap-1 rounded-full border border-white/25 bg-selfmade/90 p-1.5 shadow-[inset_0_1px_0_rgba(255,255,255,0.55),0_18px_45px_-14px_rgba(0,0,0,0.55)] backdrop-blur-xl backdrop-saturate-200">
+          {NAV_LINKS.map((link) => {
+            const active = isActive(link.href);
+            return (
+              <Link
+                key={link.href}
+                href={link.href}
+                aria-current={active ? "page" : undefined}
+                className={cn(
+                  // The pill is the brand yellow, so the resting text stays near
+                  // black in both themes. Light text on this yellow is unreadable.
+                  "relative rounded-full px-4 py-2 text-sm font-semibold transition-colors duration-300",
+                  active
+                    ? "text-selfmade"
+                    : "text-zinc-900 hover:text-black dark:text-zinc-900",
+                )}
+              >
+                {active && (
+                  <motion.span
+                    layoutId="nav-pill-desktop"
+                    transition={{ type: "spring", stiffness: 420, damping: 34 }}
+                    className="absolute inset-0 rounded-full bg-black/80"
+                  />
+                )}
+                <span className="relative">{link.label}</span>
+              </Link>
+            );
+          })}
+          <span className="mx-1 h-6 w-px bg-black/20" aria-hidden="true" />
+          <ThemeToggle className="h-9 w-9 text-zinc-900 hover:bg-black/20 hover:text-black dark:text-zinc-900 dark:hover:bg-black/20 dark:hover:text-black" />
         </div>
       </nav>
 
