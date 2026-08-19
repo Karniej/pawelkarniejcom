@@ -237,9 +237,9 @@ export function AutomationsContent() {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="text-xl text-zinc-400 leading-relaxed [text-wrap:pretty]"
           >
-            I connect your tools, knowledge, and approval rules into a
-            supervised automation. The busywork gets done before anyone asks,
-            and the important decisions stay with your team.
+            Pick the job that eats your week. I map how it really runs, then
+            build a system that does the preparation for you. Your team stops
+            gathering context and starts approving finished work.
           </motion.p>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -541,7 +541,7 @@ export function AutomationsContent() {
       <section className="relative px-4 py-24">
         <div className="max-w-4xl mx-auto">
           <h2 className="font-heading text-4xl md:text-5xl font-bold text-center mb-16 [text-wrap:balance]">
-            Common questions
+            Questions people ask me
           </h2>
           <div className="space-y-6">
             {faqs.map((faq, index) => (
@@ -570,11 +570,11 @@ export function AutomationsContent() {
       <section className="relative px-4 py-24 bg-white/[0.02]">
         <div className="mx-auto max-w-[680px] text-center space-y-8">
           <h2 className="font-heading text-4xl md:text-5xl font-bold [text-wrap:balance]">
-            Find your first workflow
+            Which job eats your week?
           </h2>
           <p className="text-xl text-zinc-400 [text-wrap:pretty]">
             Twenty minutes, free, and honest. If automation will not pay for
-            itself in your case, I will say so on the call.
+            itself in your case, I say so on the call and we stop there.
           </p>
           <div className="flex justify-center">
             <GradientButton

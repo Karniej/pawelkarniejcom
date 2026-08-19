@@ -234,7 +234,7 @@ export function AiAppRescueContent() {
       <section className="relative px-4 py-24">
         <div className="max-w-4xl mx-auto">
           <h2 className="font-heading text-4xl md:text-5xl font-bold text-center mb-16 [text-wrap:balance]">
-            Common questions
+            Questions people ask before they send me the repository
           </h2>
           <div className="space-y-6">
             {faqs.map((faq, index) => (

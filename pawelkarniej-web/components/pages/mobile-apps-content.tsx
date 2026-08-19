@@ -154,9 +154,9 @@ export function MobileAppsContent() {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="text-xl text-zinc-400 leading-relaxed [text-wrap:pretty]"
           >
-            I design, build, and submit revenue ready iOS and Android apps
-            myself. One fixed price, one person responsible, and a deadline with
-            a refund behind it.
+            You get an app that can take money on the day it launches, on iOS
+            and Android at the same time. One price, one person, and a deadline
+            that costs me money if I miss it.
           </motion.p>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -197,12 +197,12 @@ export function MobileAppsContent() {
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="font-heading text-4xl md:text-5xl font-bold mb-6 [text-wrap:balance]">
-              Two sprint scopes
+              Two scopes, the same deadline
             </h2>
             <p className="text-xl text-zinc-400 max-w-2xl mx-auto [text-wrap:pretty]">
-              Both include iOS and Android, a paywall, subscriptions, and store
-              submission. The difference is how much launch firepower comes with
-              it.
+              Both ship iOS and Android with the paywall working and the app
+              submitted. The larger one also fights for downloads once it is
+              there.
             </p>
           </div>
 
@@ -376,7 +376,7 @@ export function MobileAppsContent() {
       <section className="relative px-4 py-24">
         <div className="max-w-4xl mx-auto">
           <h2 className="font-heading text-4xl md:text-5xl font-bold text-center mb-16 [text-wrap:balance]">
-            Questions founders ask me
+            Questions founders ask me before they book
           </h2>
           <div className="space-y-6">
             {faqs.map((faq, index) => (
@@ -405,11 +405,11 @@ export function MobileAppsContent() {
       <section className="relative px-4 py-24 bg-white/[0.02]">
         <div className="mx-auto max-w-[680px] text-center space-y-8">
           <h2 className="font-heading text-4xl md:text-5xl font-bold [text-wrap:balance]">
-            Ready to scope your app?
+            Tell me what the app has to do
           </h2>
           <p className="text-xl text-zinc-400 [text-wrap:pretty]">
-            Tell me what you want to build. I will turn it into a fixed scope
-            and price.
+            A few sentences are enough. You get back a fixed scope, a fixed
+            price, and a date.
           </p>
           <div className="flex justify-center">
             <GradientButton
