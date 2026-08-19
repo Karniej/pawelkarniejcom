@@ -21,9 +21,8 @@ import { cn } from "@/lib/utils";
 
 const NAV_LINKS = [
   { href: "/", label: "Home" },
-  { href: "/mobile-apps", label: "Mobile apps" },
+  { href: "/apps", label: "Apps" },
   { href: "/automations", label: "Automations" },
-  { href: "/apps", label: "My apps" },
   { href: "/blog", label: "Blog" },
   { href: "/contact", label: "Contact" },
 ];
@@ -31,7 +30,7 @@ const NAV_LINKS = [
 // The three the bottom bar shows without opening the sheet.
 const PRIMARY_LINKS = [
   { href: "/", label: "Home", short: "Home", icon: Home },
-  { href: "/mobile-apps", label: "Mobile apps", short: "Apps", icon: Smartphone },
+  { href: "/apps", label: "Apps", short: "Apps", icon: Smartphone },
   { href: "/automations", label: "Automations", short: "Automate", icon: Zap },
 ];
 

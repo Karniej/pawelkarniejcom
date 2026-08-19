@@ -17,6 +17,18 @@
   to = "/blog/what-1999-actually-buys-you-product-build-sprint/"
   status = 301
 
+[[redirects]]
+  from = "/mobile-apps"
+  to = "/apps"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/mobile-apps/"
+  to = "/apps/"
+  status = 301
+  force = true
+
 # The service worker must never be served from a long lived cache. If a browser
 # holds an old copy, the site cannot ship a new worker.
 [[headers]]

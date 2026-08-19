@@ -23,9 +23,11 @@ import {
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { TaglineReveal } from "@/components/tagline-reveal";
+import Image from "next/image";
 import { AppQuickNav } from "@/components/sections/app-quick-nav";
+import { IndividualAppShowcase } from "@/components/sections/individual-app-showcase";
 import { ProductProofSection } from "@/components/sections/product-proof";
-import { getFeaturedApps } from "@/lib/apps-data";
+import { DEVELOPER_PAGES, getFeaturedApps } from "@/lib/apps-data";
 
 const sprints = [
   {
@@ -134,7 +136,7 @@ export function MobileAppsContent() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
-            <span className="status-badge">Mobile apps · Fixed price</span>
+            <span className="status-badge">Apps · Fixed price</span>
           </motion.div>
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
@@ -191,6 +193,62 @@ export function MobileAppsContent() {
       />
 
       <ProductProofSection />
+
+      <section id="shipped" className="relative scroll-mt-24">
+        {getFeaturedApps()
+          .filter((app) => app.id !== "aividly" && app.id !== "vidnotes")
+          .map((app, index) => (
+            <IndividualAppShowcase
+              key={app.id}
+              app={app}
+              index={index}
+              isReversed={index % 2 !== 0}
+            />
+          ))}
+      </section>
+
+      <section className="bg-black/[0.02] px-4 py-20 dark:bg-white/[0.02]">
+        <div className="mx-auto grid max-w-5xl items-center gap-8 rounded-3xl border border-black/10 bg-black/[0.03] p-7 dark:border-white/10 dark:bg-white/[0.03] md:grid-cols-[auto_1fr_auto] md:p-10">
+          <div className="relative h-20 w-20 overflow-hidden rounded-2xl border border-black/10 bg-white p-2 dark:border-white/10">
+            <Image
+              src="/images/rhava.svg"
+              alt="Rhava app icon"
+              fill
+              className="object-contain p-2"
+            />
+          </div>
+          <div className="text-left">
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-amber-700 dark:text-amber-300">
+              Second app sold
+            </p>
+            <h2 className="mt-2 font-heading text-3xl font-bold">
+              Rhava became Bibleily
+            </h2>
+            <p className="mt-3 leading-relaxed text-zinc-600 dark:text-zinc-400">
+              I sold Rhava in 2025. Its new owner brought the distribution the
+              original product did not have and continued it as Bibleily.
+            </p>
+          </div>
+          <a
+            href="https://apps.apple.com/gb/app/bibleily-speak-god-bible/id6747157033"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="rounded-full border border-black/15 px-5 py-2.5 text-sm font-semibold text-zinc-800 transition hover:border-amber-400/50 hover:text-amber-700 dark:border-white/15 dark:text-zinc-200 dark:hover:text-amber-300"
+          >
+            Open Bibleily
+          </a>
+        </div>
+        <p className="mx-auto mt-8 max-w-3xl text-center text-sm text-zinc-500">
+          <a
+            href={DEVELOPER_PAGES.pawelKarniej}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-emerald-700 hover:underline dark:text-emerald-300"
+          >
+            Verify the work on the App Store
+          </a>
+        </p>
+      </section>
 
       {/* Pricing */}
       <section id="pricing" className="relative px-4 py-24 scroll-mt-24">

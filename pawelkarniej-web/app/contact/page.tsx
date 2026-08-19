@@ -3,7 +3,6 @@
 "use client";
 
 import { motion } from "framer-motion";
-import Link from "next/link";
 import { Mail, ArrowLeft, MessageCircle, Clock } from "lucide-react";
 import { GradientButton } from "@/components/ui/gradient-button";
 import {
@@ -19,29 +18,27 @@ export default function ContactPage() {
   const appNames = ["Newsletterytics", "Coldsmith"];
 
   return (
-    <div className="min-h-screen bg-black text-white overflow-hidden">
-      {/* Background Grid Pattern */}
+    <div className="min-h-screen overflow-hidden bg-background text-foreground">
       <div className="absolute inset-0 grid-pattern opacity-20"></div>
 
-      <div className="relative flex items-center justify-center min-h-screen px-4 py-20">
-        <div className="max-w-4xl mx-auto w-full">
+      <div className="relative flex min-h-screen items-center justify-center px-4 py-20">
+        <div className="mx-auto w-full max-w-4xl">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="text-center mb-12"
+            className="mb-12 text-center"
           >
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold mb-6">
-              Let&apos;s Work <span className="gradient-text">Together</span>
+            <h1 className="mb-6 font-heading text-4xl font-bold md:text-5xl lg:text-6xl">
+              Let&apos;s work <span className="gradient-text">together</span>
             </h1>
-            <p className="text-xl text-zinc-400 max-w-2xl mx-auto leading-relaxed">
+            <p className="mx-auto max-w-2xl text-xl leading-relaxed text-zinc-600 dark:text-zinc-400">
               Ready to build your next AI-powered mobile application? Get in
               touch and let&apos;s discuss your project.
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            {/* Contact Card */}
+          <div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
             <motion.div
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
@@ -49,27 +46,27 @@ export default function ContactPage() {
             >
               <Card className="modern-card glow-effect h-full">
                 <CardHeader className="text-center">
-                  <div className="w-16 h-16 mx-auto mb-4 p-3 rounded-full bg-emerald-500/20 border border-emerald-500/30">
-                    <Mail className="w-full h-full text-emerald-400" />
+                  <div className="mx-auto mb-4 h-16 w-16 rounded-full border border-emerald-500/30 bg-emerald-500/20 p-3">
+                    <Mail className="h-full w-full text-emerald-600 dark:text-emerald-400" />
                   </div>
-                  <CardTitle className="text-2xl font-heading font-bold mb-2">
-                    Get In Touch
+                  <CardTitle className="mb-2 font-heading text-2xl font-bold">
+                    Get in touch
                   </CardTitle>
-                  <CardDescription className="text-zinc-400 text-lg">
+                  <CardDescription className="text-lg text-zinc-600 dark:text-zinc-400">
                     Ready to start your project? Send me an email and let&apos;s
                     discuss your ideas.
                   </CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-6 text-center">
                   <div className="space-y-4">
-                    <div className="p-4 rounded-lg bg-white/5 border border-white/10">
-                      <div className="flex items-center justify-center gap-3 text-emerald-400 mb-2">
+                    <div className="rounded-lg border border-black/10 bg-black/[0.03] p-4 dark:border-white/10 dark:bg-white/5">
+                      <div className="mb-2 flex items-center justify-center gap-3 text-emerald-700 dark:text-emerald-400">
                         <Mail className="h-5 w-5" />
-                        <span className="font-medium text-lg">
+                        <span className="text-lg font-medium">
                           {supportEmail}
                         </span>
                       </div>
-                      <p className="text-sm text-zinc-400">
+                      <p className="text-sm text-zinc-600 dark:text-zinc-400">
                         I typically respond within 24 hours
                       </p>
                     </div>
@@ -88,7 +85,6 @@ export default function ContactPage() {
               </Card>
             </motion.div>
 
-            {/* Support Info Card */}
             <motion.div
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
@@ -96,37 +92,37 @@ export default function ContactPage() {
             >
               <Card className="modern-card h-full">
                 <CardHeader>
-                  <div className="w-16 h-16 mb-4 p-3 rounded-full bg-blue-500/20 border border-blue-500/30">
-                    <Clock className="w-full h-full text-blue-400" />
+                  <div className="mb-4 h-16 w-16 rounded-full border border-blue-500/30 bg-blue-500/20 p-3">
+                    <Clock className="h-full w-full text-blue-600 dark:text-blue-400" />
                   </div>
-                  <CardTitle className="text-2xl font-heading font-bold mb-2">
-                    App Support
+                  <CardTitle className="mb-2 font-heading text-2xl font-bold">
+                    App support
                   </CardTitle>
-                  <CardDescription className="text-zinc-400 text-lg">
+                  <CardDescription className="text-lg text-zinc-600 dark:text-zinc-400">
                     Official support for my published applications
                   </CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-6">
                   <div className="space-y-4">
-                    <p className="text-zinc-300">
+                    <p className="text-zinc-700 dark:text-zinc-300">
                       Need help with any of these apps?
                     </p>
 
                     <div className="space-y-3">
-                      {appNames.map((app, index) => (
+                      {appNames.map((app) => (
                         <div
                           key={app}
-                          className="flex items-center gap-3 p-3 rounded-lg bg-white/5 border border-white/10"
+                          className="flex items-center gap-3 rounded-lg border border-black/10 bg-black/[0.03] p-3 dark:border-white/10 dark:bg-white/5"
                         >
-                          <div className="w-2 h-2 rounded-full bg-emerald-400"></div>
-                          <span className="text-white font-medium">{app}</span>
+                          <div className="h-2 w-2 rounded-full bg-emerald-400"></div>
+                          <span className="font-medium">{app}</span>
                         </div>
                       ))}
                     </div>
 
-                    <div className="p-4 rounded-lg bg-yellow-500/10 border border-yellow-500/20">
-                      <p className="text-sm text-yellow-200">
-                        <strong>Response Time:</strong> Usually within 24-48
+                    <div className="rounded-lg border border-yellow-500/20 bg-yellow-500/10 p-4">
+                      <p className="text-sm text-yellow-800 dark:text-yellow-200">
+                        <strong>Response time:</strong> Usually within 24-48
                         hours for support requests
                       </p>
                     </div>
@@ -136,39 +132,38 @@ export default function ContactPage() {
             </motion.div>
           </div>
 
-          {/* Bottom Section */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.6 }}
             className="mt-12 text-center"
           >
-            <div className="p-6 rounded-lg modern-card">
-              <h3 className="text-xl font-semibold mb-3 text-white">
+            <div className="modern-card rounded-lg p-6">
+              <h3 className="mb-3 text-xl font-semibold">
                 What can I help you with?
               </h3>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
-                <div className="p-3 rounded-lg bg-white/5">
-                  <div className="font-medium text-emerald-400 mb-1">
+              <div className="grid grid-cols-1 gap-4 text-sm md:grid-cols-3">
+                <div className="rounded-lg bg-black/[0.03] p-3 dark:bg-white/5">
+                  <div className="mb-1 font-medium text-emerald-700 dark:text-emerald-400">
                     React Native Development
                   </div>
-                  <div className="text-zinc-400">
+                  <div className="text-zinc-600 dark:text-zinc-400">
                     Mobile app development from concept to deployment
                   </div>
                 </div>
-                <div className="p-3 rounded-lg bg-white/5">
-                  <div className="font-medium text-blue-400 mb-1">
+                <div className="rounded-lg bg-black/[0.03] p-3 dark:bg-white/5">
+                  <div className="mb-1 font-medium text-blue-700 dark:text-blue-400">
                     AI Integration
                   </div>
-                  <div className="text-zinc-400">
+                  <div className="text-zinc-600 dark:text-zinc-400">
                     Adding AI capabilities to your mobile applications
                   </div>
                 </div>
-                <div className="p-3 rounded-lg bg-white/5">
-                  <div className="font-medium text-purple-400 mb-1">
+                <div className="rounded-lg bg-black/[0.03] p-3 dark:bg-white/5">
+                  <div className="mb-1 font-medium text-purple-700 dark:text-purple-400">
                     Technical Consulting
                   </div>
-                  <div className="text-zinc-400">
+                  <div className="text-zinc-600 dark:text-zinc-400">
                     Architecture review and technical guidance
                   </div>
                 </div>

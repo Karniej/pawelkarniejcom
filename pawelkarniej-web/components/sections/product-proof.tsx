@@ -18,7 +18,7 @@ export function ProductProofSection() {
   return (
     <section
       id="proof"
-      className="relative scroll-mt-24 bg-black px-4 py-24 text-white"
+      className="relative scroll-mt-24 bg-background px-4 py-24 text-foreground"
     >
       <div className="mx-auto max-w-7xl">
         <motion.div
@@ -34,7 +34,7 @@ export function ProductProofSection() {
           <h2 className="mt-5 font-heading text-4xl font-bold [text-wrap:balance] md:text-6xl">
             Products I shipped and founders bought
           </h2>
-          <p className="mt-6 text-xl leading-relaxed text-zinc-400 [text-wrap:pretty]">
+          <p className="mt-6 text-xl leading-relaxed text-zinc-600 dark:text-zinc-400 [text-wrap:pretty]">
             AIVidly and VidNotes show the product, store, and business work
             behind my mobile app offer.
           </p>
@@ -54,7 +54,7 @@ export function ProductProofSection() {
             >
               <div>
                 <div className="flex flex-wrap items-center gap-2">
-                  <span className="rounded-full border border-white/15 bg-white/[0.05] px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-zinc-300">
+                  <span className="rounded-full border border-black/10 bg-black/[0.05] px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-zinc-700 dark:border-white/15 dark:bg-white/[0.05] dark:text-zinc-300">
                     {app.category}
                   </span>
                   <span
@@ -70,10 +70,10 @@ export function ProductProofSection() {
                 <h3 className="mt-5 font-heading text-3xl font-bold md:text-5xl">
                   {app.title}
                 </h3>
-                <p className="mt-5 text-lg leading-relaxed text-zinc-300 [text-wrap:pretty]">
+                <p className="mt-5 text-lg leading-relaxed text-zinc-700 dark:text-zinc-300 [text-wrap:pretty]">
                   {app.detailedDescription || app.description}
                 </p>
-                <ul className="mt-7 grid gap-3 text-sm text-zinc-400 sm:grid-cols-2">
+                <ul className="mt-7 grid gap-3 text-sm text-zinc-600 dark:text-zinc-400 sm:grid-cols-2">
                   {app.features.slice(0, 4).map((feature) => (
                     <li
                       key={feature}
@@ -96,7 +96,7 @@ export function ProductProofSection() {
                       href={app.appStoreUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 text-zinc-300 transition hover:text-white"
+                      className="inline-flex items-center gap-2 text-zinc-700 transition hover:text-black dark:text-zinc-300 dark:hover:text-white"
                     >
                       Open on the App Store
                       <ExternalLink className="h-4 w-4" />
@@ -121,7 +121,7 @@ export function ProductProofSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.15 }}
               transition={{ duration: 0.6 }}
-              className="rounded-3xl border border-white/10 bg-white/[0.04] p-7 sm:p-10"
+              className="rounded-3xl border border-black/10 bg-black/[0.03] p-7 sm:p-10 dark:border-white/10 dark:bg-white/[0.04]"
             >
               <div className="grid gap-10 lg:grid-cols-[0.75fr_1.25fr] lg:items-start">
                 <figcaption className="space-y-5">
@@ -130,7 +130,7 @@ export function ProductProofSection() {
                       href={item.href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="relative h-20 w-20 shrink-0 overflow-hidden rounded-2xl border border-white/15"
+                      className="relative h-20 w-20 shrink-0 overflow-hidden rounded-2xl border border-black/10 dark:border-white/15"
                     >
                       <Image
                         src={item.image}
@@ -144,19 +144,19 @@ export function ProductProofSection() {
                       <strong className="block font-heading text-2xl">
                         {item.name}
                       </strong>
-                      <span className="mt-1 block text-sm text-zinc-400">
+                      <span className="mt-1 block text-sm text-zinc-600 dark:text-zinc-400">
                         {item.role}
                       </span>
                     </div>
                   </div>
-                  <p className="text-sm leading-relaxed text-zinc-400 [text-wrap:pretty]">
+                  <p className="text-sm leading-relaxed text-zinc-600 dark:text-zinc-400 [text-wrap:pretty]">
                     {item.context}
                   </p>
                   <a
                     href={item.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 text-sm font-semibold text-zinc-300 transition hover:text-selfmade"
+                    className="inline-flex items-center gap-2 text-sm font-semibold text-zinc-700 transition hover:text-selfmade-deep dark:text-zinc-300 dark:hover:text-selfmade"
                   >
                     {item.linkLabel}
                     <ExternalLink className="h-4 w-4" />
@@ -180,10 +180,10 @@ export function ProductProofSection() {
 
         <div className="mt-12 text-center">
           <Link
-            href="/apps"
-            className="inline-flex items-center gap-2 rounded-full border border-white/15 px-6 py-3 font-semibold text-zinc-200 transition hover:border-selfmade/50 hover:text-selfmade"
+            href="#shipped"
+            className="inline-flex items-center gap-2 rounded-full border border-black/15 px-6 py-3 font-semibold text-zinc-800 transition hover:border-selfmade/50 hover:text-selfmade-deep dark:border-white/15 dark:text-zinc-200 dark:hover:text-selfmade"
           >
-            See all live and sold apps
+            More apps I shipped
             <ArrowRight className="h-4 w-4" />
           </Link>
         </div>

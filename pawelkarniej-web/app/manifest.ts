@@ -42,7 +42,7 @@ export default function manifest(): MetadataRoute.Manifest {
       },
     ],
     shortcuts: [
-      { name: "Mobile apps", url: "/mobile-apps" },
+      { name: "Apps", url: "/apps" },
       { name: "Automations", url: "/automations" },
       { name: "Contact", url: "/contact" },
     ],
