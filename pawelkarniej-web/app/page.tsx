@@ -228,15 +228,16 @@ export default function Home() {
                 delay: 0.3,
                 ease: [0.32, 0.72, 0, 1],
               }}
-              className="relative"
+              className="relative w-full max-w-md lg:max-w-none lg:flex-1"
             >
-              <div className="relative w-80 h-80 lg:w-96 lg:h-96">
+              <div className="relative aspect-square w-full">
                 <div className="absolute inset-0 -rotate-3 rounded-3xl border border-selfmade/30 bg-selfmade/10"></div>
                 <div className="relative h-full w-full rotate-2 overflow-hidden rounded-3xl border border-black/10 dark:border-white/10 shadow-[0_24px_80px_-24px_rgba(254,198,2,0.35)] transition-transform duration-700 ease-[cubic-bezier(0.32,0.72,0,1)] hover:rotate-0">
                   <Image
-                    src="/images/me.jpg"
+                    src="/images/hero-portrait-aura.jpg"
                     alt="Pawel Karniej"
                     fill
+                    sizes="(min-width: 1024px) 40vw, 28rem"
                     className="object-cover"
                     priority
                   />
