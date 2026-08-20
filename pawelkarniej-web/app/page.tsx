@@ -86,22 +86,21 @@ export default function Home() {
       <div className="grain-overlay" aria-hidden="true"></div>
 
       {/* Hero Section */}
-      <section className="relative min-h-[70vh] flex items-center px-4 pt-16">
-        <video
-          className="hero-background-video"
-          autoPlay
-          muted
-          loop
-          playsInline
-          preload="metadata"
-          aria-hidden="true"
-        >
-          <source src="/videos/home-hero.mp4" type="video/mp4" />
-        </video>
+      <section className="relative min-h-[70vh] flex items-center px-4 pt-16 pb-8 overflow-hidden">
+        <div className="hero-backdrop" aria-hidden="true">
+          <Image
+            src="/images/hero-backdrop.jpg"
+            alt=""
+            fill
+            sizes="100vw"
+            className="object-cover"
+            priority
+          />
+        </div>
         <div className="hero-background-overlay" aria-hidden="true"></div>
         <div className="hero-aurora" aria-hidden="true"></div>
-        <div className="relative z-10 max-w-7xl mx-auto">
-          <div className="flex flex-col lg:flex-row items-center gap-10 lg:gap-16">
+        <div className="relative z-10 max-w-7xl mx-auto w-full">
+          <div className="flex flex-col lg:flex-row items-center lg:items-end gap-10 lg:gap-12">
             {/* Left Content */}
             <div className="flex-1 space-y-8">
               <motion.h1
@@ -219,7 +218,7 @@ export default function Home() {
               </motion.div>
             </div>
 
-            {/* Right Content - Cropped portrait loop, no card */}
+            {/* Right Content - Cutout portrait loop, no card */}
             <motion.div
               initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
@@ -228,19 +227,20 @@ export default function Home() {
                 delay: 0.3,
                 ease: [0.32, 0.72, 0, 1],
               }}
-              className="relative w-[18rem] sm:w-[20rem] lg:w-[24rem] shrink-0"
+              className="relative w-[14rem] sm:w-[16rem] lg:w-[20rem] shrink-0"
             >
-              <div className="relative aspect-[3/4] w-full overflow-hidden">
+              <div className="hero-portrait-glow" aria-hidden="true"></div>
+              <div className="relative aspect-[3/4] w-full">
                 <Image
                   src="/images/hero-portrait-cutout.png"
                   alt="Pawel Karniej"
                   fill
-                  sizes="24rem"
-                  className="origin-[center_12%] scale-[1.35] object-cover object-[center_10%]"
+                  sizes="20rem"
+                  className="object-contain"
                   priority
                 />
                 <video
-                  className="hero-portrait-video absolute inset-0 h-full w-full origin-[center_12%] scale-[1.35] object-cover object-[center_10%]"
+                  className="hero-portrait-video absolute inset-0 h-full w-full object-contain"
                   autoPlay
                   muted
                   loop

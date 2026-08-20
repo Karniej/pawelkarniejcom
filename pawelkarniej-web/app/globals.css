@@ -197,17 +197,12 @@ html {
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
-/* Muted hero video with a static yellow fallback for reduced motion. */
-.hero-background-video {
+/* Still gold-lit plate behind the cutout. No looping header video. */
+.hero-backdrop {
   position: absolute;
   inset: 0;
   z-index: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
   pointer-events: none;
-  opacity: 0.34;
-  filter: saturate(0.85) contrast(1.08);
 }
 
 .hero-background-overlay {
@@ -216,18 +211,32 @@ html {
   z-index: 1;
   pointer-events: none;
   background:
-    linear-gradient(to right, rgba(9, 9, 11, 0.94) 0%, rgba(9, 9, 11, 0.72) 54%, rgba(9, 9, 11, 0.48) 100%),
-    linear-gradient(to bottom, rgba(9, 9, 11, 0.28), rgba(9, 9, 11, 0.82));
+    linear-gradient(to right, rgba(9, 9, 11, 0.62) 0%, rgba(9, 9, 11, 0.28) 52%, rgba(9, 9, 11, 0.08) 100%),
+    linear-gradient(to bottom, rgba(9, 9, 11, 0.12), rgba(9, 9, 11, 0.55));
 }
 
-.light .hero-background-video {
-  opacity: 0.22;
+.light .hero-backdrop {
+  opacity: 0.38;
 }
 
 .light .hero-background-overlay {
   background:
-    linear-gradient(to right, rgba(250, 250, 250, 0.94) 0%, rgba(250, 250, 250, 0.74) 54%, rgba(250, 250, 250, 0.56) 100%),
-    linear-gradient(to bottom, rgba(250, 250, 250, 0.18), rgba(250, 250, 250, 0.86));
+    linear-gradient(to right, rgba(250, 250, 250, 0.92) 0%, rgba(250, 250, 250, 0.72) 54%, rgba(250, 250, 250, 0.5) 100%),
+    linear-gradient(to bottom, rgba(250, 250, 250, 0.12), rgba(250, 250, 250, 0.78));
+}
+
+.hero-portrait-glow {
+  position: absolute;
+  inset: 8% 2% 4% 2%;
+  z-index: -1;
+  pointer-events: none;
+  background: radial-gradient(
+    ellipse at 58% 42%,
+    rgba(254, 198, 2, 0.38),
+    rgba(234, 88, 12, 0.14) 42%,
+    transparent 70%
+  );
+  filter: blur(28px);
 }
 
 /* Slow yellow drift behind the hero. */
@@ -286,7 +295,6 @@ html {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .hero-background-video,
   .hero-portrait-video {
     display: none;
   }
