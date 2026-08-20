@@ -87,18 +87,6 @@ export default function Home() {
 
       {/* Hero Section */}
       <section className="relative min-h-[70vh] flex items-center px-4 pt-16">
-        <video
-          className="hero-background-video"
-          autoPlay
-          muted
-          loop
-          playsInline
-          preload="metadata"
-          aria-hidden="true"
-        >
-          <source src="/videos/home-hero.mp4" type="video/mp4" />
-        </video>
-        <div className="hero-background-overlay" aria-hidden="true"></div>
         <div className="hero-aurora" aria-hidden="true"></div>
         <div className="relative z-10 max-w-7xl mx-auto">
           <div className="flex flex-col lg:flex-row items-center gap-16">
@@ -219,7 +207,7 @@ export default function Home() {
               </motion.div>
             </div>
 
-            {/* Right Content - Profile Image */}
+            {/* Right Content - Contained portrait loop */}
             <motion.div
               initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
@@ -240,6 +228,21 @@ export default function Home() {
                     className="object-cover"
                     priority
                   />
+                  <video
+                    className="hero-portrait-video absolute inset-0 h-full w-full object-cover"
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                    preload="metadata"
+                    poster="/images/me.jpg"
+                    aria-hidden="true"
+                  >
+                    <source
+                      src="/videos/home-portrait-loop.mp4"
+                      type="video/mp4"
+                    />
+                  </video>
                 </div>
               </div>
             </motion.div>
