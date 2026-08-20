@@ -11,8 +11,8 @@ import podcastEpisodes from "@/data/podcast-episodes.json";
 const milestones = [
   {
     label: "Before software",
-    title: "I worked in logistics.",
-    body: "Freight taught me where work gets stuck: at the hand-off, at the exception, and at the moment nobody owns the next step.",
+    title: "I planned chip shipments from China.",
+    body: "I was a purchasing specialist. I bought chips from a supplier in Shenzhen over email and timed planes, trains, and ships so parts reached the factory on the right day. That is where programming and automation started for me, more than ten years ago.",
   },
   {
     label: "Since 2018",
