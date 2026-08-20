@@ -286,7 +286,8 @@ html {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .hero-background-video {
+  .hero-background-video,
+  .hero-portrait-video {
     display: none;
   }
 

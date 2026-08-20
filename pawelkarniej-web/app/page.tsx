@@ -101,7 +101,7 @@ export default function Home() {
         <div className="hero-background-overlay" aria-hidden="true"></div>
         <div className="hero-aurora" aria-hidden="true"></div>
         <div className="relative z-10 max-w-7xl mx-auto">
-          <div className="flex flex-col lg:flex-row items-center lg:items-stretch gap-10 lg:gap-12">
+          <div className="flex flex-col lg:flex-row items-center gap-10 lg:gap-16">
             {/* Left Content */}
             <div className="flex-1 space-y-8">
               <motion.h1
@@ -219,7 +219,7 @@ export default function Home() {
               </motion.div>
             </div>
 
-            {/* Right Content - Portrait, no card, match the copy column */}
+            {/* Right Content - Cropped portrait loop, no card */}
             <motion.div
               initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
@@ -228,17 +228,32 @@ export default function Home() {
                 delay: 0.3,
                 ease: [0.32, 0.72, 0, 1],
               }}
-              className="relative w-full max-w-md lg:max-w-none lg:flex-1 lg:min-h-[28rem]"
+              className="relative w-[18rem] sm:w-[20rem] lg:w-[24rem] shrink-0"
             >
-              <div className="relative aspect-[3/4] w-full lg:absolute lg:inset-0 lg:aspect-auto">
+              <div className="relative aspect-[3/4] w-full overflow-hidden">
                 <Image
-                  src="/images/hero-portrait-wan.jpg"
+                  src="/images/hero-portrait-poster.jpg"
                   alt="Pawel Karniej"
                   fill
-                  sizes="(min-width: 1024px) 42vw, 28rem"
-                  className="object-cover object-[center_18%]"
+                  sizes="24rem"
+                  className="object-cover object-[center_10%]"
                   priority
                 />
+                <video
+                  className="hero-portrait-video absolute inset-0 h-full w-full origin-[center_12%] scale-[1.35] object-cover object-[center_10%]"
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  preload="metadata"
+                  poster="/images/hero-portrait-poster.jpg"
+                  aria-hidden="true"
+                >
+                  <source
+                    src="/videos/home-portrait-loop.mp4"
+                    type="video/mp4"
+                  />
+                </video>
               </div>
             </motion.div>
           </div>
