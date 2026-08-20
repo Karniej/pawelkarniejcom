@@ -101,7 +101,7 @@ export default function Home() {
         <div className="hero-background-overlay" aria-hidden="true"></div>
         <div className="hero-aurora" aria-hidden="true"></div>
         <div className="relative z-10 max-w-7xl mx-auto">
-          <div className="flex flex-col lg:flex-row items-center gap-16">
+          <div className="flex flex-col lg:flex-row items-center lg:items-stretch gap-10 lg:gap-12">
             {/* Left Content */}
             <div className="flex-1 space-y-8">
               <motion.h1
@@ -219,7 +219,7 @@ export default function Home() {
               </motion.div>
             </div>
 
-            {/* Right Content - Profile Image */}
+            {/* Right Content - Portrait, no card, match the copy column */}
             <motion.div
               initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
@@ -228,19 +228,17 @@ export default function Home() {
                 delay: 0.3,
                 ease: [0.32, 0.72, 0, 1],
               }}
-              className="relative"
+              className="relative w-full max-w-md lg:max-w-none lg:flex-1 lg:min-h-[28rem]"
             >
-              <div className="relative w-80 h-80 lg:w-96 lg:h-96">
-                <div className="absolute inset-0 -rotate-3 rounded-3xl border border-selfmade/30 bg-selfmade/10"></div>
-                <div className="relative h-full w-full rotate-2 overflow-hidden rounded-3xl border border-black/10 dark:border-white/10 shadow-[0_24px_80px_-24px_rgba(254,198,2,0.35)] transition-transform duration-700 ease-[cubic-bezier(0.32,0.72,0,1)] hover:rotate-0">
-                  <Image
-                    src="/images/me.jpg"
-                    alt="Pawel Karniej"
-                    fill
-                    className="object-cover"
-                    priority
-                  />
-                </div>
+              <div className="relative aspect-[3/4] w-full lg:absolute lg:inset-0 lg:aspect-auto">
+                <Image
+                  src="/images/hero-portrait-wan.jpg"
+                  alt="Pawel Karniej"
+                  fill
+                  sizes="(min-width: 1024px) 42vw, 28rem"
+                  className="object-cover object-[center_18%]"
+                  priority
+                />
               </div>
             </motion.div>
           </div>
