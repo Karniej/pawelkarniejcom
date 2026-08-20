@@ -32,6 +32,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { TestimonialsSection } from "@/components/sections/testimonials";
+import { ProfessionalWorkSection } from "@/components/sections/professional-work";
 import { AboutAndVideos } from "@/components/sections/about-and-videos";
 import { LatestPosts } from "@/components/sections/latest-posts";
 import { getAllApps } from "@/lib/apps-data";
@@ -249,6 +250,8 @@ export default function Home() {
 
       {/* Testimonials sit directly under the hero: the buyers speak before I do. */}
       <TestimonialsSection />
+
+      <ProfessionalWorkSection />
 
       {/* App icon marquee */}
       <section aria-label="Icons of apps I shipped" className="relative py-12">

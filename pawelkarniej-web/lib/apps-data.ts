@@ -14,7 +14,6 @@ export type AppShowcaseItem = {
   screenshots: string[];
   detailedDescription?: string;
   techStack?: string[];
-  results?: string[];
   appStoreUrl?: string;
   acquired?: boolean;
   /** Offer and /apps carousel. Keep this list short and production-only. */
@@ -99,12 +98,6 @@ export const appShowcases: AppShowcaseItem[] = [
       "FFmpeg",
       "RevenueCat",
     ],
-    results: [
-      "40% reduction in content creation time for users",
-      "200% user growth in first 3 months",
-      "Successfully monetized with Apple Search Ads",
-      "Acquired by its current owner",
-    ],
     appStoreUrl:
       "https://apps.apple.com/us/app/aividly-ai-video-creator-pro/id6698894140",
     acquired: true,
@@ -173,12 +166,6 @@ export const appShowcases: AppShowcaseItem[] = [
       "OpenAI API",
       "RevenueCat",
     ],
-    results: [
-      "150% increase in user engagement tracking accuracy",
-      "Launched to App Store in 2 weeks",
-      "Featured in productivity app collections",
-      "4.8/5 average user rating",
-    ],
     appStoreUrl:
       "https://apps.apple.com/us/app/newsletterytics-beehiivs-app/id6505141597",
   },
@@ -213,11 +200,6 @@ export const appShowcases: AppShowcaseItem[] = [
       "HealthKit",
       "Supabase",
       "RevenueCat",
-    ],
-    results: [
-      "Idea to App Store in 14 days",
-      "Featured in wellness app collections",
-      "Daily retention loops driving 3x return visits",
     ],
     appStoreUrl:
       "https://apps.apple.com/pl/app/cold-breathwork-coldsmith/id6469033824",
