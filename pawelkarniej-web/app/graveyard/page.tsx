@@ -92,7 +92,7 @@ export default function GraveyardPage() {
             Apps I built and killed
           </h1>
           <p className="mt-6 text-lg leading-relaxed text-zinc-400 [text-wrap:pretty]">
-            I have shipped more than 25 products since 2018. Not all of them
+            I have shipped more than 20 products since 2018. Not all of them
             deserved to live. This page holds the ones I retired, with the
             honest reason when I have written it down. No spin, no pivot
             language.
