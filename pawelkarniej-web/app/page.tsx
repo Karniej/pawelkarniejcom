@@ -232,11 +232,11 @@ export default function Home() {
             >
               <div className="relative aspect-[3/4] w-full overflow-hidden">
                 <Image
-                  src="/images/hero-portrait-poster.jpg"
+                  src="/images/hero-portrait-cutout.png"
                   alt="Pawel Karniej"
                   fill
                   sizes="24rem"
-                  className="object-cover object-[center_10%]"
+                  className="origin-[center_12%] scale-[1.35] object-cover object-[center_10%]"
                   priority
                 />
                 <video
@@ -246,12 +246,12 @@ export default function Home() {
                   loop
                   playsInline
                   preload="metadata"
-                  poster="/images/hero-portrait-poster.jpg"
+                  poster="/images/hero-portrait-cutout.png"
                   aria-hidden="true"
                 >
                   <source
-                    src="/videos/home-portrait-loop.mp4"
-                    type="video/mp4"
+                    src="/videos/home-portrait-loop.webm"
+                    type="video/webm"
                   />
                 </video>
               </div>
