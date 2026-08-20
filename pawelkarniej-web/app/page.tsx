@@ -218,24 +218,24 @@ export default function Home() {
               }}
               className="relative"
             >
-              <div className="relative w-80 h-80 lg:w-96 lg:h-96">
+              <div className="relative w-72 aspect-[3/4] lg:w-80">
                 <div className="absolute inset-0 -rotate-3 rounded-3xl border border-selfmade/30 bg-selfmade/10"></div>
                 <div className="relative h-full w-full rotate-2 overflow-hidden rounded-3xl border border-black/10 dark:border-white/10 shadow-[0_24px_80px_-24px_rgba(254,198,2,0.35)] transition-transform duration-700 ease-[cubic-bezier(0.32,0.72,0,1)] hover:rotate-0">
                   <Image
-                    src="/images/me.jpg"
+                    src="/images/hero-portrait-poster.jpg"
                     alt="Pawel Karniej"
                     fill
-                    className="object-cover"
+                    className="object-cover object-top"
                     priority
                   />
                   <video
-                    className="hero-portrait-video absolute inset-0 h-full w-full object-cover"
+                    className="hero-portrait-video absolute inset-0 h-full w-full object-cover object-top"
                     autoPlay
                     muted
                     loop
                     playsInline
                     preload="metadata"
-                    poster="/images/me.jpg"
+                    poster="/images/hero-portrait-poster.jpg"
                     aria-hidden="true"
                   >
                     <source
