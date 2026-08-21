@@ -127,10 +127,44 @@ html {
 }
 
 /* The mobile navigation is a floating bottom bar, so the page needs room under
-   its last element. Without this the footer sits behind the bar. */
+   its last element. Without this the footer sits behind the bar. The status
+   stripe sits above that bar. */
 @media (max-width: 767px) {
   body {
-    padding-bottom: calc(5.5rem + env(safe-area-inset-bottom, 0px));
+    padding-bottom: calc(8.75rem + env(safe-area-inset-bottom, 0px));
+  }
+}
+
+@keyframes now-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.now-marquee {
+  overflow: hidden;
+}
+
+.now-marquee-track {
+  display: flex;
+  width: max-content;
+  animation: now-marquee 32s linear infinite;
+}
+
+.now-marquee:hover .now-marquee-track,
+.now-marquee:focus-within .now-marquee-track {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .now-marquee {
+    overflow-x: auto;
+  }
+  .now-marquee-track {
+    animation: none;
   }
 }
 

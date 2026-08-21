@@ -5,7 +5,13 @@ import latestX from "@/data/latest-x.json";
 import podcastEpisodes from "@/data/podcast-episodes.json";
 import youtubeVideos from "@/data/youtube-videos.json";
 
-export type NowKind = "video" | "blog" | "podcast" | "x";
+export type NowKind =
+  | "video"
+  | "blog"
+  | "podcast"
+  | "x"
+  | "instagram"
+  | "tiktok";
 
 export type NowItem = {
   kind: NowKind;
@@ -16,6 +22,8 @@ export type NowItem = {
 };
 
 const PODCAST_HOME = "https://firedbyrobots.com/";
+
+const LATEST_KINDS: NowKind[] = ["video", "blog", "podcast", "x"];
 
 export function getNowItems(): NowItem[] {
   const items: NowItem[] = [];
@@ -63,5 +71,25 @@ export function getNowItems(): NowItem[] {
     });
   }
 
+  items.push({
+    kind: "instagram",
+    label: "Instagram",
+    title: "@pawelkarniej",
+    href: "https://www.instagram.com/pawelkarniej/",
+    external: true,
+  });
+
+  items.push({
+    kind: "tiktok",
+    label: "TikTok",
+    title: "@thepawelk",
+    href: "https://www.tiktok.com/@thepawelk",
+    external: true,
+  });
+
   return items;
+}
+
+export function getDesktopNowItems(): NowItem[] {
+  return getNowItems().filter((item) => LATEST_KINDS.includes(item.kind));
 }
