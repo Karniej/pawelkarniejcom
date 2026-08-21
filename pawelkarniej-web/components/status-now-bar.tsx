@@ -138,8 +138,10 @@ export function StatusNowBar({ items }: { items: NowItem[] }) {
       className="group px-2 py-1"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
+      onFocus={() => setPaused(true)}
+      onBlur={() => setPaused(false)}
     >
-      <div className="relative h-7 overflow-hidden" aria-live="polite">
+      <div className="relative h-7 overflow-hidden" aria-live="off">
         {reduceMotion ? (
           <ItemRow item={active} />
         ) : (

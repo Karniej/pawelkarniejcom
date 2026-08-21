@@ -111,7 +111,7 @@ export default function RootLayout({
           <SiteNav nowItems={getNowItems()} />
           <main
             id="main-content"
-            className="flex min-h-screen flex-col pb-36 md:pb-0 md:pt-6"
+            className="flex min-h-screen flex-col md:pt-6"
           >
             {children}
           </main>
