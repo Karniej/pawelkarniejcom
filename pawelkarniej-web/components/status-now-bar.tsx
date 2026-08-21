@@ -107,10 +107,10 @@ function ItemRow({ item }: { item: NowItem }) {
       item={item}
       className="flex h-full min-w-0 items-center gap-3 hover:text-selfmade"
     >
-      <span className="flex h-8 w-8 shrink-0 items-center justify-center">
+      <span className="flex h-7 w-7 shrink-0 items-center justify-center">
         <BrandMark kind={item.kind} />
       </span>
-      <span className="min-w-0 truncate text-[15px] font-semibold text-white group-hover:text-selfmade">
+      <span className="min-w-0 truncate pr-1 text-[14px] font-semibold text-white group-hover:text-selfmade">
         {item.title}
       </span>
     </NowLink>
@@ -135,11 +135,11 @@ export function StatusNowBar({ items }: { items: NowItem[] }) {
 
   return (
     <div
-      className="group mx-auto max-w-7xl px-3 py-2.5"
+      className="group px-2 py-1"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
     >
-      <div className="relative h-8 overflow-hidden" aria-live="polite">
+      <div className="relative h-7 overflow-hidden" aria-live="polite">
         {reduceMotion ? (
           <ItemRow item={active} />
         ) : (
