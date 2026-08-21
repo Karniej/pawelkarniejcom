@@ -23,8 +23,6 @@ export type NowItem = {
 
 const PODCAST_HOME = "https://firedbyrobots.com/";
 
-const LATEST_KINDS: NowKind[] = ["video", "blog", "podcast", "x"];
-
 export function getNowItems(): NowItem[] {
   const items: NowItem[] = [];
   const video = youtubeVideos[0];
@@ -34,7 +32,7 @@ export function getNowItems(): NowItem[] {
   if (video?.title && video.url) {
     items.push({
       kind: "video",
-      label: "Video",
+      label: "YouTube",
       title: video.title,
       href: video.url,
       external: true,
@@ -88,8 +86,4 @@ export function getNowItems(): NowItem[] {
   });
 
   return items;
-}
-
-export function getDesktopNowItems(): NowItem[] {
-  return getNowItems().filter((item) => LATEST_KINDS.includes(item.kind));
 }
