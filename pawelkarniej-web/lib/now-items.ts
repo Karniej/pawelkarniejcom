@@ -13,10 +13,7 @@ export type NowItem = {
   title: string;
   href: string;
   external: boolean;
-  image: string | null;
 };
-
-const PODCAST_ART = "/images/fired-by-robots.png";
 
 export function getNowItems(): NowItem[] {
   const items: NowItem[] = [];
@@ -31,7 +28,6 @@ export function getNowItems(): NowItem[] {
       title: video.title,
       href: video.url,
       external: true,
-      image: video.thumbnail || null,
     });
   }
 
@@ -42,7 +38,6 @@ export function getNowItems(): NowItem[] {
       title: post.title,
       href: `/blog/${post.slug}`,
       external: false,
-      image: post.image || "/favicon.png",
     });
   }
 
@@ -53,7 +48,6 @@ export function getNowItems(): NowItem[] {
       title: episode.title,
       href: "https://firedbyrobots.com/",
       external: true,
-      image: PODCAST_ART,
     });
   }
 
@@ -64,7 +58,6 @@ export function getNowItems(): NowItem[] {
       title: latestX.text,
       href: latestX.url,
       external: true,
-      image: null,
     });
   }
 
