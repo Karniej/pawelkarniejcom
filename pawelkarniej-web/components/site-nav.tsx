@@ -18,6 +18,8 @@ import {
   Zap,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { StatusNowBar } from "@/components/status-now-bar";
+import type { NowItem } from "@/lib/now-items";
 
 const NAV_LINKS = [
   { href: "/", label: "Home" },
@@ -64,7 +66,20 @@ function ThemeToggle({ className }: { className?: string }) {
   );
 }
 
-export function SiteNav() {
+function NowDock({ items }: { items: NowItem[] }) {
+  if (items.length === 0) return null;
+
+  return (
+    <div
+      aria-label="Latest from Paweł"
+      className="pointer-events-auto w-[min(20rem,calc(100vw-2.5rem))] overflow-hidden rounded-full border border-white/20 bg-zinc-950/90 shadow-[inset_0_1px_0_rgba(255,255,255,0.12),0_12px_28px_-16px_rgba(0,0,0,0.7)] backdrop-blur-xl md:w-[min(24rem,calc(100vw-3rem))]"
+    >
+      <StatusNowBar items={items} />
+    </div>
+  );
+}
+
+export function SiteNav({ nowItems = [] }: { nowItems?: NowItem[] }) {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
 
@@ -74,109 +89,117 @@ export function SiteNav() {
   return (
     <>
       {/* Desktop: the same pill as the phone. The active item carries a black
-          lozenge that slides between the links, so both sizes behave alike. */}
+          lozenge that slides between the links, so both sizes behave alike.
+          The ticker hangs off the bottom of that pill. */}
       <nav
         aria-label="Main navigation"
         className="fixed top-0 inset-x-0 z-50 hidden md:flex justify-center pointer-events-none"
       >
-        <div className="pointer-events-auto mt-6 flex items-center gap-1 rounded-full border border-white/25 bg-selfmade/90 p-1.5 shadow-[inset_0_1px_0_rgba(255,255,255,0.55),0_18px_45px_-14px_rgba(0,0,0,0.55)] backdrop-blur-xl backdrop-saturate-200">
-          {NAV_LINKS.map((link) => {
-            const active = isActive(link.href);
-            return (
-              <Link
-                key={link.href}
-                href={link.href}
-                aria-current={active ? "page" : undefined}
-                className={cn(
-                  // The pill is the brand yellow, so the resting text stays near
-                  // black in both themes. Light text on this yellow is unreadable.
-                  "relative rounded-full px-4 py-2 text-sm font-semibold transition-colors duration-300",
-                  active
-                    ? "text-selfmade"
-                    : "text-zinc-900 hover:text-black dark:text-zinc-900",
-                )}
-              >
-                {active && (
-                  <motion.span
-                    layoutId="nav-pill-desktop"
-                    transition={{ type: "spring", stiffness: 420, damping: 34 }}
-                    className="absolute inset-0 rounded-full bg-black/80"
-                  />
-                )}
-                <span className="relative">{link.label}</span>
-              </Link>
-            );
-          })}
-          <span className="mx-1 h-6 w-px bg-black/20" aria-hidden="true" />
-          <ThemeToggle className="h-9 w-9 text-zinc-900 hover:bg-black/20 hover:text-black dark:text-zinc-900 dark:hover:bg-black/20 dark:hover:text-black" />
+        <div className="mt-6 flex flex-col items-center gap-1.5">
+          <div className="pointer-events-auto flex items-center gap-1 rounded-full border border-white/25 bg-selfmade/90 p-1.5 shadow-[inset_0_1px_0_rgba(255,255,255,0.55),0_18px_45px_-14px_rgba(0,0,0,0.55)] backdrop-blur-xl backdrop-saturate-200">
+            {NAV_LINKS.map((link) => {
+              const active = isActive(link.href);
+              return (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  aria-current={active ? "page" : undefined}
+                  className={cn(
+                    // The pill is the brand yellow, so the resting text stays near
+                    // black in both themes. Light text on this yellow is unreadable.
+                    "relative rounded-full px-4 py-2 text-sm font-semibold transition-colors duration-300",
+                    active
+                      ? "text-selfmade"
+                      : "text-zinc-900 hover:text-black dark:text-zinc-900",
+                  )}
+                >
+                  {active && (
+                    <motion.span
+                      layoutId="nav-pill-desktop"
+                      transition={{ type: "spring", stiffness: 420, damping: 34 }}
+                      className="absolute inset-0 rounded-full bg-black/80"
+                    />
+                  )}
+                  <span className="relative">{link.label}</span>
+                </Link>
+              );
+            })}
+            <span className="mx-1 h-6 w-px bg-black/20" aria-hidden="true" />
+            <ThemeToggle className="h-9 w-9 text-zinc-900 hover:bg-black/20 hover:text-black dark:text-zinc-900 dark:hover:bg-black/20 dark:hover:text-black" />
+          </div>
+          <NowDock items={nowItems} />
         </div>
       </nav>
 
       {/* Mobile: a compact floating pill, not a full width slab. The active
           item carries a black lozenge that slides between the icons, which is
-          where the glass feels alive. */}
+          where the glass feels alive. The ticker hangs off the top of that
+          pill. Hide it while the sheet is open so the two don't stack. */}
       <div className="pointer-events-none fixed inset-x-0 bottom-4 z-50 flex justify-center px-4 md:hidden">
-        <div className="pointer-events-auto flex items-center gap-1 rounded-full border border-white/25 bg-selfmade/90 p-1.5 shadow-[inset_0_1px_0_rgba(255,255,255,0.55),0_18px_45px_-12px_rgba(0,0,0,0.65)] backdrop-blur-2xl backdrop-saturate-200">
-          {PRIMARY_LINKS.map((link) => {
-            const active = isActive(link.href) && !open;
-            return (
-              <Link
-                key={link.href}
-                href={link.href}
-                onClick={() => setOpen(false)}
-                aria-label={link.label}
-                aria-current={isActive(link.href) ? "page" : undefined}
-                className="relative flex h-12 items-center gap-2 rounded-full px-4 text-zinc-900 transition-transform duration-300 active:scale-[0.96]"
-              >
-                {active && (
-                  <motion.span
-                    layoutId="nav-pill"
-                    transition={{ type: "spring", stiffness: 420, damping: 34 }}
-                    className="absolute inset-0 rounded-full bg-black/80"
-                  />
-                )}
-                <link.icon
-                  className={cn(
-                    "relative h-5 w-5 transition-colors duration-300",
-                    active ? "text-selfmade" : "text-zinc-900",
+        <div className="flex flex-col items-center gap-1.5">
+          {!open && <NowDock items={nowItems} />}
+          <div className="pointer-events-auto flex items-center gap-1 rounded-full border border-white/25 bg-selfmade/90 p-1.5 shadow-[inset_0_1px_0_rgba(255,255,255,0.55),0_18px_45px_-12px_rgba(0,0,0,0.65)] backdrop-blur-2xl backdrop-saturate-200">
+            {PRIMARY_LINKS.map((link) => {
+              const active = isActive(link.href) && !open;
+              return (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  onClick={() => setOpen(false)}
+                  aria-label={link.label}
+                  aria-current={isActive(link.href) ? "page" : undefined}
+                  className="relative flex h-12 items-center gap-2 rounded-full px-4 text-zinc-900 transition-transform duration-300 active:scale-[0.96]"
+                >
+                  {active && (
+                    <motion.span
+                      layoutId="nav-pill"
+                      transition={{ type: "spring", stiffness: 420, damping: 34 }}
+                      className="absolute inset-0 rounded-full bg-black/80"
+                    />
                   )}
+                  <link.icon
+                    className={cn(
+                      "relative h-5 w-5 transition-colors duration-300",
+                      active ? "text-selfmade" : "text-zinc-900",
+                    )}
+                  />
+                  {active && (
+                    <span className="relative text-[13px] font-semibold text-selfmade">
+                      {link.short}
+                    </span>
+                  )}
+                </Link>
+              );
+            })}
+
+            <span className="mx-0.5 h-6 w-px bg-black/20" aria-hidden="true" />
+
+            <button
+              type="button"
+              aria-label={open ? "Close menu" : "Open menu"}
+              aria-expanded={open}
+              onClick={() => setOpen((v) => !v)}
+              className="relative flex h-12 items-center gap-2 rounded-full px-4 text-zinc-900 transition-transform duration-300 active:scale-[0.96] focus:outline-none focus-visible:ring-2 focus-visible:ring-black/40"
+            >
+              {open && (
+                <motion.span
+                  layoutId="nav-pill"
+                  transition={{ type: "spring", stiffness: 420, damping: 34 }}
+                  className="absolute inset-0 rounded-full bg-black/80"
                 />
-                {active && (
-                  <span className="relative text-[13px] font-semibold text-selfmade">
-                    {link.short}
-                  </span>
-                )}
-              </Link>
-            );
-          })}
-
-          <span className="mx-0.5 h-6 w-px bg-black/20" aria-hidden="true" />
-
-          <button
-            type="button"
-            aria-label={open ? "Close menu" : "Open menu"}
-            aria-expanded={open}
-            onClick={() => setOpen((v) => !v)}
-            className="relative flex h-12 items-center gap-2 rounded-full px-4 text-zinc-900 transition-transform duration-300 active:scale-[0.96] focus:outline-none focus-visible:ring-2 focus-visible:ring-black/40"
-          >
-            {open && (
-              <motion.span
-                layoutId="nav-pill"
-                transition={{ type: "spring", stiffness: 420, damping: 34 }}
-                className="absolute inset-0 rounded-full bg-black/80"
-              />
-            )}
-            {open ? (
-              <X className="relative h-5 w-5 text-selfmade" />
-            ) : (
-              <Menu className="relative h-5 w-5 text-zinc-900" />
-            )}
-            {open && (
-              <span className="relative text-[13px] font-semibold text-selfmade">
-                Close
-              </span>
-            )}
-          </button>
+              )}
+              {open ? (
+                <X className="relative h-5 w-5 text-selfmade" />
+              ) : (
+                <Menu className="relative h-5 w-5 text-zinc-900" />
+              )}
+              {open && (
+                <span className="relative text-[13px] font-semibold text-selfmade">
+                  Close
+                </span>
+              )}
+            </button>
+          </div>
         </div>
       </div>
 

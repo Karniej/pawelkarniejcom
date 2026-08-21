@@ -127,10 +127,11 @@ html {
 }
 
 /* The mobile navigation is a floating bottom bar, so the page needs room under
-   its last element. Without this the footer sits behind the bar. */
+   its last element. Without this the footer sits behind the bar. The latest
+   ticker hangs off the bar, so keep a little extra. */
 @media (max-width: 767px) {
   body {
-    padding-bottom: calc(5.5rem + env(safe-area-inset-bottom, 0px));
+    padding-bottom: calc(8.5rem + env(safe-area-inset-bottom, 0px));
   }
 }
 

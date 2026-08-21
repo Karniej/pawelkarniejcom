@@ -86,7 +86,7 @@ export default function Home() {
       <div className="grain-overlay" aria-hidden="true"></div>
 
       {/* Hero Section */}
-      <section className="relative min-h-[70vh] flex items-center px-4 pt-16">
+      <section className="relative min-h-[70vh] flex items-center px-4 pt-24 md:pt-20">
         <video
           className="hero-background-video"
           autoPlay
