@@ -85,7 +85,7 @@ pawelkarniej-web/
 ### Projects Featured:
 
 - **AIVidly**: AI-powered video generation app
-- **Newsletterytics**: Beehiiv analytics application
+- **Newsletterytics**: Beehiiv analytics application (sold)
 - **Coldsmith**: Cold exposure tracking app
 - **Countdown Nuts**: Consumable item management
 - **Themegen.xyz**: React Native theme generator

@@ -51,6 +51,11 @@ export default function AppPage({ params }: Props) {
           <p className="mt-6 text-sm font-semibold uppercase tracking-[0.22em] text-emerald-700 dark:text-emerald-300">{app.category} · {app.platforms.join(" / ")}</p>
           <h1 className="mt-4 text-4xl font-bold tracking-tight md:text-6xl">{app.title}</h1>
           <p className="mt-4 text-2xl text-zinc-700 dark:text-zinc-300">{app.tagline}</p>
+          {app.acquired ? (
+            <p className="mt-3 text-sm font-semibold uppercase tracking-[0.18em] text-amber-700 dark:text-amber-300">
+              Built and sold
+            </p>
+          ) : null}
           <p className="mx-auto mt-6 max-w-3xl text-lg leading-relaxed text-zinc-600 dark:text-zinc-400">{app.detailedDescription ?? app.description}</p>
           {app.appStoreUrl ? <a href={app.appStoreUrl} target="_blank" rel="noopener noreferrer" className="mt-8 inline-flex items-center gap-2 rounded-full bg-zinc-900 px-6 py-3 text-sm font-semibold text-white transition hover:bg-zinc-700 dark:bg-white dark:text-black dark:hover:bg-zinc-200">View on the App Store <ExternalLink className="h-4 w-4" /></a> : null}
         </section>

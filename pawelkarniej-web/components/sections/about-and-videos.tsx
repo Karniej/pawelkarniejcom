@@ -17,7 +17,7 @@ const milestones = [
   {
     label: "Since 2018",
     title: "I learned products by paying for my own mistakes.",
-    body: "More than twenty apps of mine went to the stores. Two sold to new owners. Two I killed, and I wrote down why.",
+    body: "More than twenty apps of mine went to the stores. Three sold to new owners. Two I killed, and I wrote down why.",
   },
   {
     label: "Now",

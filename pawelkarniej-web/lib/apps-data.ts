@@ -24,8 +24,8 @@ export type AppShowcaseItem = {
 // Every live app, shown with a full section on /our-work and a case study
 // page at /apps/<id>. Names, icons, and screenshots pulled from the actual
 // App Store listings (see scripts/fetch-appstore-assets.mjs). Verified live
-// under the Pawel Karniej developer account, except Aividly,
-// which we built and later sold to its current owner.
+// under the Pawel Karniej developer account, except Aividly and
+// Newsletterytics, which were built and later sold to their current owners.
 export const appShowcases: AppShowcaseItem[] = [
   {
     id: "vidnotes",
@@ -143,11 +143,11 @@ export const appShowcases: AppShowcaseItem[] = [
     id: "newsletterytics",
     title: "Newsletterytics",
     featured: true,
-    description: "Beehiiv newsletter analytics on the go.",
-    tagline: "Beehiiv analytics on the go",
+    description: "Beehiiv newsletter analytics on the go. Built and sold.",
+    tagline: "Beehiiv analytics, acquired",
     icon: "/images/apps/newsletterytics/icon.png",
     detailedDescription:
-      "Newsletter analytics that show creators what their subscribers actually do, not just open rates. AI surfaces engagement patterns, subscriber segments, and the content that drives retention. Built with React Native and a native iOS widget.",
+      "Beehiiv newsletter analytics on the phone, with subscriber insights, performance trends, and a native iOS widget. I built it, grew it organically, and sold it. The app now runs under its new owner on the App Store.",
     category: "Productivity",
     features: [
       "Beehiiv subscription tracker analytics",
@@ -174,13 +174,13 @@ export const appShowcases: AppShowcaseItem[] = [
       "RevenueCat",
     ],
     results: [
-      "150% increase in user engagement tracking accuracy",
-      "Launched to App Store in 2 weeks",
-      "Featured in productivity app collections",
-      "4.8/5 average user rating",
+      "First app of mine that made money on the internet",
+      "Grew organically to number one for the Beehiiv keyword",
+      "Acquired by its current owner",
     ],
     appStoreUrl:
       "https://apps.apple.com/us/app/newsletterytics-beehiivs-app/id6505141597",
+    acquired: true,
   },
   {
     id: "coldsmith",

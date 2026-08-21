@@ -76,7 +76,7 @@ export default function Home() {
 
   const stats = [
     { label: "Apps shipped", value: "20+" },
-    { label: "Apps sold", value: "2" },
+    { label: "Apps sold", value: "3" },
     { label: "Workflow at a time", value: "1" },
   ];
 

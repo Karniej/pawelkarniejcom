@@ -181,7 +181,7 @@ export function MobileAppsContent() {
             transition={{ duration: 0.5, delay: 0.4 }}
             className="text-sm text-zinc-500"
           >
-            20+ apps shipped since 2018, including two that sold to new owners.
+            20+ apps shipped since 2018, including three that sold to new owners.
           </motion.p>
         </div>
       </section>
@@ -208,35 +208,65 @@ export function MobileAppsContent() {
       </section>
 
       <section className="bg-black/[0.02] px-4 py-20 dark:bg-white/[0.02]">
-        <div className="mx-auto grid max-w-5xl items-center gap-8 rounded-3xl border border-black/10 bg-black/[0.03] p-7 dark:border-white/10 dark:bg-white/[0.03] md:grid-cols-[auto_1fr_auto] md:p-10">
-          <div className="relative h-20 w-20 overflow-hidden rounded-2xl border border-black/10 bg-white p-2 dark:border-white/10">
-            <Image
-              src="/images/rhava.svg"
-              alt="Rhava app icon"
-              fill
-              className="object-contain p-2"
-            />
+        <div className="mx-auto grid max-w-5xl gap-6">
+          <div className="grid items-center gap-8 rounded-3xl border border-black/10 bg-black/[0.03] p-7 dark:border-white/10 dark:bg-white/[0.03] md:grid-cols-[auto_1fr_auto] md:p-10">
+            <div className="relative h-20 w-20 overflow-hidden rounded-2xl border border-black/10 bg-white p-2 dark:border-white/10">
+              <Image
+                src="/images/apps/newsletterytics/icon.png"
+                alt="Newsletterytics app icon"
+                fill
+                className="object-contain p-2"
+              />
+            </div>
+            <div className="text-left">
+              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-amber-700 dark:text-amber-300">
+                Third app sold
+              </p>
+              <h2 className="mt-2 font-heading text-3xl font-bold">
+                I sold Newsletterytics
+              </h2>
+              <p className="mt-3 leading-relaxed text-zinc-600 dark:text-zinc-400">
+                Beehiiv analytics on the phone. First app of mine that made
+                money on the internet. It now runs under its new owner.
+              </p>
+            </div>
+            <a
+              href="/blog/i-sold-newsletterytics"
+              className="rounded-full border border-black/15 px-5 py-2.5 text-sm font-semibold text-zinc-800 transition hover:border-amber-400/50 hover:text-amber-700 dark:border-white/15 dark:text-zinc-200 dark:hover:text-amber-300"
+            >
+              Read the story
+            </a>
           </div>
-          <div className="text-left">
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-amber-700 dark:text-amber-300">
-              Second app sold
-            </p>
-            <h2 className="mt-2 font-heading text-3xl font-bold">
-              Rhava became Bibleily
-            </h2>
-            <p className="mt-3 leading-relaxed text-zinc-600 dark:text-zinc-400">
-              I sold Rhava in 2025. Its new owner brought the distribution the
-              original product did not have and continued it as Bibleily.
-            </p>
+          <div className="grid items-center gap-8 rounded-3xl border border-black/10 bg-black/[0.03] p-7 dark:border-white/10 dark:bg-white/[0.03] md:grid-cols-[auto_1fr_auto] md:p-10">
+            <div className="relative h-20 w-20 overflow-hidden rounded-2xl border border-black/10 bg-white p-2 dark:border-white/10">
+              <Image
+                src="/images/rhava.svg"
+                alt="Rhava app icon"
+                fill
+                className="object-contain p-2"
+              />
+            </div>
+            <div className="text-left">
+              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-amber-700 dark:text-amber-300">
+                Second app sold
+              </p>
+              <h2 className="mt-2 font-heading text-3xl font-bold">
+                Rhava became Bibleily
+              </h2>
+              <p className="mt-3 leading-relaxed text-zinc-600 dark:text-zinc-400">
+                I sold Rhava in 2025. Its new owner brought the distribution the
+                original product did not have and continued it as Bibleily.
+              </p>
+            </div>
+            <a
+              href="https://apps.apple.com/gb/app/bibleily-speak-god-bible/id6747157033"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="rounded-full border border-black/15 px-5 py-2.5 text-sm font-semibold text-zinc-800 transition hover:border-amber-400/50 hover:text-amber-700 dark:border-white/15 dark:text-zinc-200 dark:hover:text-amber-300"
+            >
+              Open Bibleily
+            </a>
           </div>
-          <a
-            href="https://apps.apple.com/gb/app/bibleily-speak-god-bible/id6747157033"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="rounded-full border border-black/15 px-5 py-2.5 text-sm font-semibold text-zinc-800 transition hover:border-amber-400/50 hover:text-amber-700 dark:border-white/15 dark:text-zinc-200 dark:hover:text-amber-300"
-          >
-            Open Bibleily
-          </a>
         </div>
         <p className="mx-auto mt-8 max-w-3xl text-center text-sm text-zinc-500">
           <a

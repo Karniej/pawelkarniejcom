@@ -1,5 +1,11 @@
 [
   {
+    "slug": "i-sold-newsletterytics",
+    "title": "I sold Newsletterytics",
+    "date": "2026-08-21T00:00:00.000Z",
+    "excerpt": "This was the first app that made me money on the internet. Five dollars. Today I sold it."
+  },
+  {
     "slug": "app-store-organic-traffic-is-dying-whats-next",
     "title": "App Store Organic Traffic is Dying, What's next?",
     "date": "2026-08-17T00:00:00.000Z",
@@ -10,11 +16,5 @@
     "title": "Why I killed FIFTN and Fishify",
     "date": "2026-08-17T00:00:00.000Z",
     "excerpt": "I ship quite a lot of apps. That doesn’t mean I should keep all of them alive."
-  },
-  {
-    "slug": "fix-ai-app-before-launch",
-    "title": "How to Fix an AI App Before Launch",
-    "date": "2026-07-23T00:00:00.000Z",
-    "excerpt": "Fix an AI-built app before launch by triaging auth, payments, analytics, device builds, and App Store blockers in the right order."
   }
 ]
