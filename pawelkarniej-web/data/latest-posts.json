@@ -3,18 +3,21 @@
     "slug": "i-sold-newsletterytics",
     "title": "I sold Newsletterytics",
     "date": "2026-08-21T00:00:00.000Z",
-    "excerpt": "First five dollars I made on the internet. Two years later I sold the app. Small exit. Time to focus."
+    "excerpt": "First five dollars I made on the internet. Two years later I sold the app. Small exit. Time to focus.",
+    "image": "/images/apps/newsletterytics/shot-1.webp"
   },
   {
     "slug": "app-store-organic-traffic-is-dying-whats-next",
     "title": "App Store Organic Traffic is Dying, What's next?",
     "date": "2026-08-17T00:00:00.000Z",
-    "excerpt": "App Store organic traffic still exists, but it can no longer carry an app business by itself. Distribution, software as content, and two B2B models I am watching."
+    "excerpt": "App Store organic traffic still exists, but it can no longer carry an app business by itself. Distribution, software as content, and two B2B models I am watching.",
+    "image": "/images/blog/app-store-organic-traffic-is-dying.png"
   },
   {
     "slug": "why-i-killed-fiftn-and-fishify",
     "title": "Why I killed FIFTN and Fishify",
     "date": "2026-08-17T00:00:00.000Z",
-    "excerpt": "I ship quite a lot of apps. That doesn’t mean I should keep all of them alive."
+    "excerpt": "I ship quite a lot of apps. That doesn’t mean I should keep all of them alive.",
+    "image": "/images/blog/why-i-killed-fiftn-and-fishify.png"
   }
 ]

@@ -5,13 +5,7 @@ import latestX from "@/data/latest-x.json";
 import podcastEpisodes from "@/data/podcast-episodes.json";
 import youtubeVideos from "@/data/youtube-videos.json";
 
-export type NowKind =
-  | "video"
-  | "blog"
-  | "podcast"
-  | "x"
-  | "instagram"
-  | "tiktok";
+export type NowKind = "video" | "blog" | "podcast" | "x";
 
 export type NowItem = {
   kind: NowKind;
@@ -19,9 +13,10 @@ export type NowItem = {
   title: string;
   href: string;
   external: boolean;
+  image: string | null;
 };
 
-const PODCAST_HOME = "https://firedbyrobots.com/";
+const PODCAST_ART = "/images/fired-by-robots.png";
 
 export function getNowItems(): NowItem[] {
   const items: NowItem[] = [];
@@ -36,6 +31,7 @@ export function getNowItems(): NowItem[] {
       title: video.title,
       href: video.url,
       external: true,
+      image: video.thumbnail || null,
     });
   }
 
@@ -46,6 +42,7 @@ export function getNowItems(): NowItem[] {
       title: post.title,
       href: `/blog/${post.slug}`,
       external: false,
+      image: post.image || "/favicon.png",
     });
   }
 
@@ -54,8 +51,9 @@ export function getNowItems(): NowItem[] {
       kind: "podcast",
       label: "Podcast",
       title: episode.title,
-      href: PODCAST_HOME,
+      href: "https://firedbyrobots.com/",
       external: true,
+      image: PODCAST_ART,
     });
   }
 
@@ -66,24 +64,9 @@ export function getNowItems(): NowItem[] {
       title: latestX.text,
       href: latestX.url,
       external: true,
+      image: null,
     });
   }
-
-  items.push({
-    kind: "instagram",
-    label: "Instagram",
-    title: "@pawelkarniej",
-    href: "https://www.instagram.com/pawelkarniej/",
-    external: true,
-  });
-
-  items.push({
-    kind: "tiktok",
-    label: "TikTok",
-    title: "@thepawelk",
-    href: "https://www.tiktok.com/@thepawelk",
-    external: true,
-  });
 
   return items;
 }

@@ -135,39 +135,6 @@ html {
   }
 }
 
-@keyframes now-marquee {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(-50%);
-  }
-}
-
-.now-marquee {
-  overflow: hidden;
-}
-
-.now-marquee-track {
-  display: flex;
-  width: max-content;
-  animation: now-marquee 32s linear infinite;
-}
-
-.now-marquee:hover .now-marquee-track,
-.now-marquee:focus-within .now-marquee-track {
-  animation-play-state: paused;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .now-marquee {
-    overflow-x: auto;
-  }
-  .now-marquee-track {
-    animation: none;
-  }
-}
-
 /* Modern animations */
 @keyframes fadeIn {
   from {

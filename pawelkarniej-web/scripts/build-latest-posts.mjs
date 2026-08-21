@@ -37,6 +37,7 @@ const main = () => {
         title: data.title,
         date: new Date(data.date).toISOString(),
         excerpt: data.excerpt || "",
+        image: data.featuredImage || "/favicon.png",
       };
     })
     .filter(Boolean)
