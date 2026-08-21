@@ -5,6 +5,7 @@ import type { Metadata } from "next";
 import { Outfit } from "next/font/google";
 import { ThemeProvider } from "@/components/theme-provider";
 import { SiteNav } from "@/components/site-nav";
+import { StatusStripe } from "@/components/status-stripe";
 import localFont from "next/font/local";
 import AnalyticsScripts from "@/components/analytics-scripts";
 import { PwaRegister } from "@/components/pwa-register";
@@ -108,7 +109,11 @@ export default function RootLayout({
             Skip to content
           </a>
           <SiteNav />
-          <main id="main-content" className="flex min-h-screen flex-col">
+          <StatusStripe />
+          <main
+            id="main-content"
+            className="flex min-h-screen flex-col pb-36 md:pb-0 md:pt-6"
+          >
             {children}
           </main>
           <AnalyticsScripts />
