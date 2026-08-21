@@ -15,7 +15,7 @@ import {
 
 export default function ContactPage() {
   const supportEmail = "contact@pawelkarniej.com";
-  const appNames = ["Newsletterytics", "Coldsmith"];
+  const appNames = ["Coldsmith"];
 
   return (
     <div className="min-h-screen overflow-hidden bg-background text-foreground">
