@@ -31,16 +31,6 @@ export function getNowItems(): NowItem[] {
     });
   }
 
-  if (post?.title && post.slug) {
-    items.push({
-      kind: "blog",
-      label: "Blog",
-      title: post.title,
-      href: `/blog/${post.slug}`,
-      external: false,
-    });
-  }
-
   if (episode?.title) {
     items.push({
       kind: "podcast",
@@ -48,6 +38,16 @@ export function getNowItems(): NowItem[] {
       title: episode.title,
       href: "https://firedbyrobots.com/",
       external: true,
+    });
+  }
+
+  if (post?.title && post.slug) {
+    items.push({
+      kind: "blog",
+      label: "Blog",
+      title: post.title,
+      href: `/blog/${post.slug}`,
+      external: false,
     });
   }
 

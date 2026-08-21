@@ -7,10 +7,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState, type ReactNode } from "react";
 import type { NowItem, NowKind } from "@/lib/now-items";
-import { cn } from "@/lib/utils";
 
-const SNAP = { type: "spring" as const, stiffness: 520, damping: 32 };
-const SLIDE = { duration: 0.22, ease: [0.32, 0.72, 0, 1] as const };
+const SLIDE = { duration: 0.28, ease: [0.32, 0.72, 0, 1] as const };
 
 function YouTubeLogo() {
   return (
@@ -72,12 +70,10 @@ function BrandMark({ kind }: { kind: NowKind }) {
 function NowLink({
   item,
   className,
-  onActivate,
   children,
 }: {
   item: NowItem;
   className: string;
-  onActivate?: () => void;
   children: ReactNode;
 }) {
   if (item.external) {
@@ -88,8 +84,6 @@ function NowLink({
         rel="noopener noreferrer"
         className={className}
         aria-label={`${item.label}: ${item.title}`}
-        onMouseEnter={onActivate}
-        onFocus={onActivate}
       >
         {children}
       </a>
@@ -101,11 +95,25 @@ function NowLink({
       href={item.href}
       className={className}
       aria-label={`${item.label}: ${item.title}`}
-      onMouseEnter={onActivate}
-      onFocus={onActivate}
     >
       {children}
     </Link>
+  );
+}
+
+function ItemRow({ item }: { item: NowItem }) {
+  return (
+    <NowLink
+      item={item}
+      className="flex h-full min-w-0 items-center gap-3 hover:text-selfmade"
+    >
+      <span className="flex h-8 w-8 shrink-0 items-center justify-center">
+        <BrandMark kind={item.kind} />
+      </span>
+      <span className="min-w-0 truncate text-[15px] font-semibold text-white group-hover:text-selfmade">
+        {item.title}
+      </span>
+    </NowLink>
   );
 }
 
@@ -115,82 +123,36 @@ export function StatusNowBar({ items }: { items: NowItem[] }) {
   const [paused, setPaused] = useState(false);
 
   useEffect(() => {
-    if (reduceMotion || paused || items.length < 2) return;
+    if (paused || items.length < 2) return;
     const timer = window.setInterval(() => {
       setIndex((current) => (current + 1) % items.length);
-    }, 3200);
+    }, 3600);
     return () => window.clearInterval(timer);
-  }, [items.length, paused, reduceMotion]);
+  }, [items.length, paused]);
 
   const active = items[index];
   if (!active) return null;
 
-  const title = (
-    <span className="block truncate text-[15px] font-semibold text-white hover:text-selfmade">
-      {active.title}
-    </span>
-  );
-
   return (
     <div
-      className="mx-auto flex max-w-7xl items-center gap-3 px-3 py-2.5"
+      className="group mx-auto max-w-7xl px-3 py-2.5"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
     >
-      <div className="flex shrink-0 items-center gap-1">
-        {items.map((item, itemIndex) => {
-          const isActive = itemIndex === index;
-          return (
-            <NowLink
-              key={item.kind}
-              item={item}
-              onActivate={() => setIndex(itemIndex)}
-              className="relative flex h-8 w-8 items-center justify-center rounded-[7px] focus:outline-none focus-visible:ring-2 focus-visible:ring-selfmade"
-            >
-              {isActive && (
-                <motion.span
-                  layoutId="now-active-ring"
-                  className="absolute inset-0 rounded-[7px] bg-white/10 ring-2 ring-selfmade"
-                  transition={SNAP}
-                />
-              )}
-              <motion.span
-                className="relative flex items-center justify-center"
-                animate={
-                  reduceMotion ? { scale: 1 } : { scale: isActive ? 1.12 : 0.92 }
-                }
-                transition={SNAP}
-              >
-                <BrandMark kind={item.kind} />
-              </motion.span>
-            </NowLink>
-          );
-        })}
-      </div>
-      <div
-        className={cn(
-          "relative min-w-0 flex-1 overflow-hidden",
-          reduceMotion ? "h-auto" : "h-6",
-        )}
-        aria-live="polite"
-      >
+      <div className="relative h-8 overflow-hidden" aria-live="polite">
         {reduceMotion ? (
-          <NowLink item={active} className="block min-w-0">
-            {title}
-          </NowLink>
+          <ItemRow item={active} />
         ) : (
-          <AnimatePresence mode="wait" initial={false}>
+          <AnimatePresence initial={false}>
             <motion.div
               key={active.kind}
-              initial={{ y: "80%", opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              exit={{ y: "-80%", opacity: 0 }}
+              initial={{ y: "100%" }}
+              animate={{ y: 0 }}
+              exit={{ y: "-100%" }}
               transition={SLIDE}
-              className="absolute inset-0 flex items-center"
+              className="absolute inset-0"
             >
-              <NowLink item={active} className="block min-w-0 max-w-full">
-                {title}
-              </NowLink>
+              <ItemRow item={active} />
             </motion.div>
           </AnimatePresence>
         )}
